@@ -37,3 +37,4 @@ for (const value of urls) {
   assert.ok(cached.has(url.pathname + url.search), 'HTML asset is absent from offline shell: ' + value);
 }
 console.log(JSON.stringify({ result: 'passed', questions: questions.length, professional: sports.length, offlineResources: shell.length }));
+require('./check-words.cjs');

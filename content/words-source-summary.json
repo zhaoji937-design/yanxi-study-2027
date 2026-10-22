@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "title": "词辨 · 考研易混词",
+  "wordCount": 3600,
+  "groupCount": 119,
+  "questionCount": 325,
+  "examTagged": 3494,
+  "soundCoverage": 3596,
+  "selection": "按开源词典 ky 标记与通用词频选取，优先纳入重点辨析和词族补充；不是官方3600词表或真题频率榜。",
+  "sources": [
+    {
+      "repo": "skywind3000/ECDICT",
+      "sha": "bc015ed2e24a7abef49fc6dbbb7fe32c1dadaf8b"
+    },
+    {
+      "repo": "cmusphinx/cmudict",
+      "sha": "74790861f652b15e4ac49015a90074ad62a27690"
+    }
+  ]
+}

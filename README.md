@@ -6,12 +6,17 @@
 
 内置676道题：346体育综合592道（名词解释389、简答191、论述12）、政治56道、英语（二）28道。可按教材、章、节筛选，直接展开答案核对，无需逐题提交。
 
+独立的英语易混词工具“词辨”：<https://yanxi-study-2027.onrender.com/words/>。3600词可查、119组原创重点辨析、325道原创语境题，支持词族/字形/读音/词义对照、遮住中文、自建易混组、复习与备份。它与原题库使用独立存储和离线缓存。设备朗读依赖浏览器的英语语音。
+
+词库按 ECDICT 的 ky 标记与通用词频选取，并补充重点词族，不是官方3600词表或真题频率榜。重点辨析的释义、提示与例句为原创；其余基础释义来自 ECDICT（MIT），音近候选采用 CMUdict（BSD 类许可），均随网页保留完整许可。自动候选只是查找线索，基础释义未逐词审订。来源版本见 `content/words-source-summary.json`。
+
 参考作答是依据指定教材整理的模拟答案，并非官方评分标准。教材引用显示印刷页码，未包含原教材PDF。
 
 ## 运行和部署
 
 - 静态文件位于 `dist/`，所有页面依赖均为同目录文件。
 - 构建检查：`node scripts/check-site.cjs`。
+- 词辨逻辑检查：`node --test scripts/words.test.cjs`。
 - Render服务类型：Static Site；Build Command：`node scripts/check-site.cjs`；Publish Directory：`dist`。
 - 不需要数据库、后台服务器或AI接口。浏览器访问和离线功能不依赖GPT或原托管平台。
 
@@ -24,3 +29,5 @@
 ## 后续更新
 
 修改页面、样式、脚本或题库后，需同步更新 `dist/sw.js` 的缓存版本和资源清单，检查新缓存完整，再发布。本站使用hash路由，不需要把所有文件请求重写为首页；缺失脚本应保持404。
+
+“词辨”文件位于 `dist/words/`；修改它时更新 `dist/words/sw.js` 的专属 `yanxi-words-` 缓存版本。基础词表预处理脚本为 `scripts/build-words.py`，仅本地运行，依赖 rapidfuzz/numpy 以及仓库外的固定版本数据；托管构建直接验证已生成的 JSON，不会下载语料或运行 Python。
