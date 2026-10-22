@@ -1,13 +1,13 @@
 'use strict';
 // Bump this version whenever a bundled HTML, script, stylesheet or question bank changes.
-const CACHE = 'yanxi-offline-v7';
+const CACHE = 'yanxi-offline-v8';
 const ROOT = new URL('./', self.location.href);
 const SHELL = [
-  './', 'style.css', 'simple.css?v=4', 'icon.svg',
-  'study.css?v=1', 'study-tools.js?v=1', 'engine.js?v=5', 'bank-politics.js', 'bank-english.js',
+  './', 'latest.html', 'textbook-images.json', 'bank-sports-revised.js?v=1', 'style.css', 'simple.css?v=4', 'icon.svg',
+  'study.css?v=2', 'study-tools.js?v=1', 'engine.js?v=6', 'bank-politics.js', 'bank-english.js',
   'bank-sports-legacy.js', 'bank-sports.js', 'bank-challenge.js',
   'bank-politics-extended.js', 'bank-sports-expanded.js', 'bank-sports-systematic.js?v=4.1',
-  'bank-study.js?v=1', 'paper-data.js?v=1', 'app.js?v=6', 'offline.js?v=5', 'manifest.json',
+  'bank-study.js?v=1', 'paper-data.js?v=1', 'app.js?v=7', 'offline.js?v=5', 'manifest.json',
   'touch-icon.png', 'icon-192.png', 'icon-512.png'
 ].map(function (path) { return new URL(path, ROOT).href; });
 
@@ -37,11 +37,12 @@ self.addEventListener('activate', function (event) {
 self.addEventListener('fetch', function (event) {
   const url = new URL(event.request.url);
   if (event.request.method !== 'GET' || url.origin !== ROOT.origin) return;
-  const isHome = event.request.mode === 'navigate' && (url.pathname === ROOT.pathname || url.pathname === ROOT.pathname + 'index.html');
+  const isHome = event.request.mode === 'navigate' && (url.pathname === ROOT.pathname || url.pathname === ROOT.pathname + 'index.html' || url.pathname === ROOT.pathname + 'latest.html');
   if (!isHome && !SHELL.includes(url.href)) return;
   event.respondWith((async function () {
     const cache = await caches.open(CACHE);
     const cached = await cache.match(isHome ? ROOT.href : event.request);
+    if(isHome){try{const response=await fetch(event.request);if(response.ok&&(await response.clone().text()).includes('id="app"')){await cache.put(ROOT.href,response.clone());return response;}}catch(_){}if(cached)return cached;throw new Error('App unavailable');}
     return cached || fetch(event.request);
   })());
 });

@@ -1,0 +1,9 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict'),E=require('../dist/engine.js');
+const sample=JSON.parse(require('node:fs').readFileSync(require('node:path').join(__dirname,'../content/verified-study-cards.json'),'utf8')).find(q=>q.examType==='term');
+function revised(){const q=structuredClone(sample);q.textbookRevision={status:'verbatim',revisedAt:'2026-10-23',originalExamType:'term',sources:q.studyGuide.verbatim.map(e=>({text:e.text,printedPages:e.printedPages}))};return q;}
+test('verbatim definition and source metadata survive round-trip',()=>{const q=revised(),out=E.validateBank([q]).questions[0];assert.deepEqual(out.textbookRevision,q.textbookRevision);assert.deepEqual(E.validateBank(JSON.parse(JSON.stringify([out]))).questions[0].textbookRevision,out.textbookRevision);});
+test('a rewritten definition cannot be marked verbatim',()=>{const q=revised();q.answer[0]+='这句话是我的理解。';assert.throws(()=>E.validateBank([q]),/与所列教材原文不一致/);});
+test('a source spanning pages may be joined without changing words',()=>{const q=revised(),quote=q.answer.join('\n\n'),mid=Math.floor(quote.length/2);q.textbookRevision.sources=[{text:quote.slice(0,mid),printedPages:[10]},{text:quote.slice(mid),printedPages:[11]}];assert.doesNotThrow(()=>E.validateBank([q]));});
+test('missing provenance, invalid print pages and forged status are rejected',()=>{for(const alter of [q=>q.textbookRevision.sources=[],q=>q.textbookRevision.sources[0].printedPages=[0],q=>q.textbookRevision.status='maybe']){const q=revised();alter(q);assert.throws(()=>E.validateBank([q]));}});
+test('organized short answers retain their distinct status',()=>{const q=revised();q.examType='short';q.textbookRevision.status='organized';q.answer=['（一）含义与边界\n这是一段根据教材组织的说明，不冒充原文。'];assert.equal(E.validateBank([q]).questions[0].textbookRevision.status,'organized');});

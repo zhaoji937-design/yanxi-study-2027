@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#234d40">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="研习">
+  <meta name="description" content="面向厦门大学2027年入学目标的个人考研练习室，练习政治、英语（二）与346体育综合，积累错题与学习记录。">
+  <title>研习 · 我的考研练习室</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="touch-icon.png">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="simple.css?v=4">
+  <link rel="stylesheet" href="study.css?v=2">
+  <script defer src="study-tools.js?v=1"></script>
+  <script defer src="engine.js?v=6"></script>
+  <script defer src="bank-politics.js"></script>
+  <script defer src="bank-english.js"></script>
+  <script defer src="bank-sports-legacy.js"></script>
+  <script defer src="bank-sports.js"></script>
+  <script defer src="bank-challenge.js"></script>
+  <script defer src="bank-politics-extended.js"></script>
+  <script defer src="bank-sports-expanded.js"></script>
+  <script defer src="bank-sports-systematic.js?v=4.1"></script>
+  <script defer src="bank-study.js?v=1"></script>
+  <script defer src="bank-sports-revised.js?v=1"></script>
+  <script defer src="paper-data.js?v=1"></script>
+  <script defer src="app.js?v=7"></script>
+  <script defer src="offline.js?v=5"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <div id="app"><div class="loading">研习 · 正在打开你的练习室…</div></div>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <dialog id="modal" aria-labelledby="modal-title"></dialog>
+  <input id="bank-file" type="file" accept=".json,application/json" hidden>
+  <input id="notes-file" type="file" accept=".json,.txt,.md,application/json,text/plain" hidden>
+  <input id="backup-file" type="file" accept=".json,application/json" hidden>
+</body>
+</html>

@@ -82,6 +82,30 @@
       if (!Array.isArray(raw[field]) || raw[field].length > 30) fail(label + field + '必须为不超过30项的数组');
       q[field] = raw[field].map(function (item) { return str(item, label + field, 3000); });
     });
+    if(raw.textbookRevision!=null){
+      var revision=raw.textbookRevision;
+      if(type!=='free'||!isObject(revision)||!['verbatim','organized','needs-check'].includes(revision.status))fail(label+'教材修订状态不合法');
+      if(!Array.isArray(revision.sources)||revision.sources.length<1||revision.sources.length>50)fail(label+'教材修订依据不合法');
+      var revised={status:revision.status,revisedAt:str(revision.revisedAt,label+'修订日期',30),sources:revision.sources.map(function(s){
+        if(!isObject(s)||!Array.isArray(s.printedPages)||!s.printedPages.length||s.printedPages.length>30||s.printedPages.some(function(p){return !Number.isInteger(p)||p<1||p>10000;}))fail(label+'教材修订页码不合法');
+        var excerpt={text:str(s.text,label+'教材依据',50000),printedPages:Array.from(new Set(s.printedPages))};if(s.verified!=null)excerpt.verified=s.verified===true;return excerpt;
+      })};
+      if(revision.originalExamType!=null){if(!['term','short','essay'].includes(revision.originalExamType))fail(label+'原题型不合法');revised.originalExamType=revision.originalExamType;}
+      if(revision.note!=null)revised.note=str(revision.note,label+'修订说明',2000);
+      if(revision.images!=null){
+        if(!Array.isArray(revision.images)||revision.images.length>50)fail(label+'原页摘图不合法');
+        revised.images=revision.images.map(function(img){
+          if(!isObject(img)||!/^\w{24}$/.test(img.key)||!/^[a-f0-9]+$/.test(img.key)||!Number.isInteger(img.width)||!Number.isInteger(img.height)||img.width<1||img.height<1||img.width>5000||img.height>5000||!Array.isArray(img.printedPages)||!img.printedPages.length||img.printedPages.length>30||img.printedPages.some(function(p){return !Number.isInteger(p)||p<1||p>10000;}))fail(label+'原页摘图参数不合法');
+          return {key:img.key,printedPages:Array.from(new Set(img.printedPages)),width:img.width,height:img.height};
+        });
+      }
+      if(q.examType==='term'&&revised.status==='verbatim'){
+        var cleanQuote=function(text){return text.replace(/\s/g,'');};
+        var quoted=revised.sources.map(function(s){return cleanQuote(s.text);}).join('');
+        if(!q.answer.every(function(answer){return quoted.includes(cleanQuote(answer));}))fail(label+'名词解释与所列教材原文不一致');
+      }
+      q.textbookRevision=revised;
+    }
     if(raw.studyGuide!=null){
       var g=raw.studyGuide;if(type!=='free'||!isObject(g)||g.verified!==true)fail(label+'复习说明不合法');
       var guide={verified:true,auditKey:id(g.auditKey,label+'核对标识'),lookup:str(g.lookup,label+'核对方式',30),recallCue:str(g.recallCue,label+'回忆提示',3000)};

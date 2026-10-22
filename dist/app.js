@@ -137,6 +137,7 @@
     if (route === 'summary' && !session) route = 'overview';
     var views = { overview: overview, bank: bankView, professional: professionalView, mistakes: bankView, favorites: bankView, materials: materialsView, settings: settingsView, practice: practiceView, summary: summaryView, review: readerView, notes: legacyMaterialsView, study: studyView, papers: papersView };
     app.innerHTML = shell((views[route] || overview)());
+    mountSourceImages();
     if (globalThis.YanxiOffline) globalThis.YanxiOffline.refresh();
     if (route === 'practice') { updateElapsed(); timerId = setInterval(updateElapsed, 1000); }
   }
@@ -212,9 +213,12 @@
   function levelOptions(current) {
     return '<option value="">全部难度</option>' + [1,2,3].map(function (value) { return '<option value="' + value + '"' + (String(value) === String(current) ? ' selected' : '') + '>' + difficulty(value) + '</option>'; }).join('');
   }
+  function printedPagesLabel(values){
+    var groups=[];Array.from(new Set(values)).sort(function(a,b){return a-b;}).forEach(function(n){var last=groups[groups.length-1];if(last&&last[1]+1===n)last[1]=n;else groups.push([n,n]);});return groups.map(function(pair){return pair[0]===pair[1]?String(pair[0]):pair[0]+'—'+pair[1];}).join('、');
+  }
   function printedRef(q) {
     if(!q.textbookRefs || !q.textbookRefs.length)return '';
-    return '<p class="printed-ref">' + q.textbookRefs.map(function(ref){ return esc(ref.bookTitle) + ' · ' + esc(ref.chapter) + (ref.printedPages && ref.printedPages.length ? ' · 教材第 ' + ref.printedPages.join('、') + ' 页' : ''); }).join('<br>') + '</p>';
+    return '<p class="printed-ref">' + q.textbookRefs.map(function(ref){ return esc(ref.bookTitle) + ' · ' + esc(ref.chapter) + (ref.printedPages && ref.printedPages.length ? ' · 教材第 ' + printedPagesLabel(ref.printedPages) + ' 页' : ''); }).join('<br>') + '</p>';
   }
   function answerSupport(q) {
     var html='';
@@ -222,18 +226,37 @@
     if(q.commonMistakes && q.commonMistakes.length)html+='<details class="answer-more"><summary>易错提醒</summary><ul class="answer-list">'+q.commonMistakes.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul></details>';
     return html+printedRef(q);
   }
+  var textbookImageData=null,textbookImageRequest=null;
+  function mountSourceImages(){
+    var nodes=document.querySelectorAll('img[data-source-key]');if(!nodes.length)return;
+    if(!textbookImageData){
+      if(!textbookImageRequest)textbookImageRequest=fetch('textbook-images.json').then(function(response){if(!response.ok)throw Error('原图暂未载入');return response.json();}).then(function(raw){textbookImageData=raw.images||{};mountSourceImages();}).catch(function(){textbookImageRequest=null;document.querySelectorAll('.source-image-state').forEach(function(el){el.textContent='原图暂未载入，可展开文字或联网后重试。';});});
+      return;
+    }
+    nodes.forEach(function(img){var src=textbookImageData[img.dataset.sourceKey];if(typeof src==='string'&&/^data:image\/webp;base64,[A-Za-z0-9+/=]+$/.test(src)){img.src=src;img.hidden=false;var label=img.parentElement.querySelector('.source-image-state');if(label)label.hidden=true;}});
+  }
+  function sourceImages(q){
+    var images=q.textbookRevision&&q.textbookRevision.images;if(!images||!images.length)return '';
+    return '<div class="source-image-list">'+images.map(function(img){var caption=(q.textbookRefs&&q.textbookRefs[0]?.bookTitle||'教材')+' · 印刷第 '+printedPagesLabel(img.printedPages)+' 页';return '<figure><button type="button" class="source-image-button" data-action="zoom-source-image" data-key="'+img.key+'" data-caption="'+esc(caption)+'" aria-label="放大'+esc(caption)+'教材原文"><span class="source-image-state">正在打开教材原文…</span><img data-source-key="'+img.key+'" width="'+img.width+'" height="'+img.height+'" alt="'+esc(caption)+'的定义段原图" loading="lazy" hidden></button><figcaption>'+esc(caption)+' · 点图放大</figcaption></figure>';}).join('')+'</div>';
+  }
   function compactAnswer(q) {
     var html='';
     if(q.type==='free'){
-      if(q.subject==='346 体育综合'&&!q.studyGuide)html+='<p class="study-unchecked">整理参考 · 此题尚未逐句核对教材原文。</p>';
-      if(q.answerOutline && q.answerOutline.length)html+='<h3 class="answer-heading">核对要点</h3><ul class="answer-list">'+q.answerOutline.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>';
-      if(q.examType==='term')html+='<h3 class="answer-heading">参考解释'+(q.studyGuide?' · 教材原文':' · 整理参考')+'</h3><div class="answer-text">'+esc(q.answer.join('\n\n'))+'</div>';
-      else html+='<details class="answer-more full-answer"' + (q.studyGuide || !q.answerOutline || !q.answerOutline.length ? ' open' : '') + '><summary>'+(q.studyGuide?'考场参考作答 · 整理':'完整参考作答')+'</summary><div class="answer-text">'+esc(q.answer.join('\n\n'))+'</div></details>';
+      var revision=q.textbookRevision,verbatim=revision?revision.status==='verbatim':!!q.studyGuide;
+      if(q.subject==='346 体育综合'&&!verbatim&&q.examType==='term')html+='<p class="study-unchecked">此条定义仍待原页校正，不标作教材原文。</p>';
+      if(q.examType==='term'){var originalImages=sourceImages(q);html+='<h3 class="answer-heading">参考解释'+(verbatim?' · 教材原文':' · 待核对')+'</h3>'+(originalImages?originalImages+'<details class="answer-more source-transcript"><summary>展开校对文字 · 便于复制</summary><div class="answer-text verbatim-answer">'+esc(q.answer.join('\n\n'))+'</div></details>':'<div class="answer-text verbatim-answer">'+esc(q.answer.join('\n\n'))+'</div>');}
+      else html+='<h3 class="answer-heading">'+(q.subject==='346 体育综合'?'完整参考作答 · 依据教材组织':'参考作答')+'</h3><div class="structured-answer">'+structuredAnswer(q.answer)+'</div>';
+      html+=printedRef(q);
+      if(q.answerOutline && q.answerOutline.length)html+='<h3 class="answer-heading">核对要点 · 记忆关键词</h3><p class="memory-keywords">'+q.answerOutline.map(esc).join(' · ')+'</p>';
+      if(revision&&q.examType!=='term'&&revision.sources.some(function(s){return s.verified;}))html+='<details class="answer-more"><summary>教材依据 · 已核对原文</summary>'+revision.sources.filter(function(s){return s.verified;}).map(function(s){return '<p class="raw-page">教材第 '+printedPagesLabel(s.printedPages)+' 页</p><blockquote class="raw-quote">'+esc(s.text)+'</blockquote>';}).join('')+'</details>';
     }else{
       html+='<h3 class="answer-heading">答案：'+q.answer.join('、')+'</h3><div class="answer-text">'+esc(q.explanation)+'</div>';
     }
-    if(q.type==='free' || q.commonMistakes && q.commonMistakes.length)html+='<details class="answer-more"><summary>思路与易错提醒</summary><div class="answer-text">'+esc(q.type==='free'?q.explanation:'')+'</div>'+(q.commonMistakes&&q.commonMistakes.length?'<ul class="answer-list">'+q.commonMistakes.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>':'')+'</details>';
-    return html+studySupport(q)+printedRef(q);
+    if(q.type==='free' || q.commonMistakes && q.commonMistakes.length)html+='<details class="answer-more"><summary>思路与易错提醒</summary><div class="answer-text">'+esc(q.type==='free'?q.explanation:'')+'</div>'+(q.commonMistakes&&q.commonMistakes.length?'<ul class="answer-list">'+q.commonMistakes.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>':'')+studySupport(q)+'</details>';
+    return html;
+  }
+  function structuredAnswer(parts){
+    return parts.map(function(part){var lines=part.split('\n'),heading=lines.length>1&&lines[0].length<=90?lines.shift():'';return '<section class="answer-part">'+(heading?'<h4>'+esc(heading)+'</h4>':'')+'<div class="answer-text">'+esc(lines.join('\n'))+'</div></section>';}).join('');
   }
   function showModal(title, description, content) {
     modal.innerHTML = '<div class="modal-head"><h2 id="modal-title">' + title + '</h2><button class="icon-btn" data-action="close-modal" aria-label="关闭对话框">' + icon('close') + '</button></div><p class="modal-desc">' + description + '</p>' + content;
@@ -278,7 +301,7 @@
   }
   function studyView(){
     var due=questions.filter(function(q){return reading.recalls[q.id]&&reading.recalls[q.id].due<=Date.now()&&T.allowPaper(q,settings.paperScope,paperIndex,conceptIndex);}).length;
-    return '<div class="study-layout">'+heading('把知识记准，也能用在题目里','先核对概念，再回忆框架，最后检查有没有答齐题干。',button('回到题库','goto-bank','secondary small'))+'<section class="panel"><h2>怎样使用这一版复习资料</h2><ol class="steps"><li>只看题目，先想定义或列出框架。</li><li>需要时展开“提示框架”，核对对象、任务与范围。</li><li>展开答案，查核心限定和遗漏；把相近概念并列比较。</li><li>遮住后再说一遍。根据真实回忆表现记录，而不是按看着熟不熟记录。</li></ol><p class="notice">27题已完成逐页原文核对与复习说明。其余专业课旧题仍是整理参考，未标作教材原文。</p><div class="btn-row">'+button('查看27题复习示例','study-examples','')+button('到期回忆 '+due+' 题','recall-due','secondary')+button('历年题与来源','past-papers','ghost small')+'</div></section><section class="panel"><h2>防止答到相邻知识点：四步检查</h2><ol class="steps"><li><strong>对象：</strong>题目究竟问谁？“红细胞”不等于整个血液系统。</li><li><strong>任务：</strong>问定义、原因、影响、比较，还是应用？有“并、及、以及”时逐项拆开。</li><li><strong>范围：</strong>急性运动还是长期训练？机制还是检测？不要扩大到整章。</li><li><strong>对照：</strong>写前列任务标题，写后检查每一问是否有对应段落；要求例子时补例子。</li></ol><p>例：“重复训练法与持续训练法的区别，并举例说明”需要比较两种方法的组织、休息与作用，还需要分别举例。只背出两个定义，任务还没有完成。</p></section><section class="panel"><h2>复习和考场常见问题</h2>'+T.FAQ.map(function(item){return '<details><summary>'+esc(item[0])+'</summary><p>'+esc(item[1])+'</p></details>';}).join('')+'</section><section class="panel"><h2>方法依据与使用边界</h2><p class="study-footer">遮住后尝试回忆、得到反馈、隔一段时间再回忆，是这里的练习方向；把相近概念并列比较用于练习分辨。它们是依据学习研究作的设计选择，不能保证分数，默认复习间隔也不是人人最优。</p><div class="source-links"><a href="https://pubmed.ncbi.nlm.nih.gov/16507066/" target="_blank" rel="noopener noreferrer">Roediger与Karpicke：回忆测验与长期保持</a><br><a href="https://pubmed.ncbi.nlm.nih.gov/23138567/" target="_blank" rel="noopener noreferrer">Birnbaum等：交错学习与类别辨别</a></div></section></div>';
+    return '<div class="study-layout">'+heading('把知识记准，也能用在题目里','先核对概念，再回忆框架，最后检查有没有答齐题干。',button('回到题库','goto-bank','secondary small'))+'<section class="panel"><h2>怎样使用这一版复习资料</h2><ol class="steps"><li>只看题目，先想定义或列出框架。</li><li>需要时展开“提示框架”，核对对象、任务与范围。</li><li>展开答案，查核心限定和遗漏；把相近概念并列比较。</li><li>遮住后再说一遍。根据真实回忆表现记录，而不是按看着熟不熟记录。</li></ol><p class="notice">610道专业课已重新整理：358道名词解释以教材定义原图为主，237道简答与15道论述提供分项完整作答。原文与辅助讲解分开展示。</p><div class="btn-row">'+button('查看27题复习示例','study-examples','')+button('到期回忆 '+due+' 题','recall-due','secondary')+button('历年题与来源','past-papers','ghost small')+'</div></section><section class="panel"><h2>防止答到相邻知识点：四步检查</h2><ol class="steps"><li><strong>对象：</strong>题目究竟问谁？“红细胞”不等于整个血液系统。</li><li><strong>任务：</strong>问定义、原因、影响、比较，还是应用？有“并、及、以及”时逐项拆开。</li><li><strong>范围：</strong>急性运动还是长期训练？机制还是检测？不要扩大到整章。</li><li><strong>对照：</strong>写前列任务标题，写后检查每一问是否有对应段落；要求例子时补例子。</li></ol><p>例：“重复训练法与持续训练法的区别，并举例说明”需要比较两种方法的组织、休息与作用，还需要分别举例。只背出两个定义，任务还没有完成。</p></section><section class="panel"><h2>复习和考场常见问题</h2>'+T.FAQ.map(function(item){return '<details><summary>'+esc(item[0])+'</summary><p>'+esc(item[1])+'</p></details>';}).join('')+'</section><section class="panel"><h2>方法依据与使用边界</h2><p class="study-footer">遮住后尝试回忆、得到反馈、隔一段时间再回忆，是这里的练习方向；把相近概念并列比较用于练习分辨。它们是依据学习研究作的设计选择，不能保证分数，默认复习间隔也不是人人最优。</p><div class="source-links"><a href="https://pubmed.ncbi.nlm.nih.gov/16507066/" target="_blank" rel="noopener noreferrer">Roediger与Karpicke：回忆测验与长期保持</a><br><a href="https://pubmed.ncbi.nlm.nih.gov/23138567/" target="_blank" rel="noopener noreferrer">Birnbaum等：交错学习与类别辨别</a></div></section></div>';
   }
   function paperResults(){
     var needle=paperQuery.trim().toLowerCase(),list=papers.filter(function(p){return (!paperYear||String(p.year)===paperYear)&&(!needle||[p.prompt,p.book,p.year].join(' ').toLowerCase().includes(needle));});
@@ -323,7 +346,7 @@
     if (entry.revealed) {
       var free = q.type === 'free', resultClass = free ? 'neutral' : entry.correct ? '' : 'wrong';
       var resultTitle = free ? (entry.answered ? (entry.correct ? '已标记掌握' : '已加入错题本，等待复习') : '对照参考要点，判断是否掌握') : entry.correct ? '回答正确，继续保持' : '这题值得再练一次';
-      content += '<section class="result ' + resultClass + '" aria-label="答案与解析"><div class="result-title">' + icon(free ? 'book' : entry.correct ? 'check' : 'info') + resultTitle + '</div><h4>' + (free ? '参考作答' : '正确答案') + '</h4><div class="answer-text">' + esc(free ? q.answer.join('\n\n') : q.answer.join('、')) + '</div><h4>思路解析</h4><div class="answer-text">' + esc(q.explanation) + '</div>' + answerSupport(q) +
+      content += '<section class="result ' + resultClass + '" aria-label="答案与解析"><div class="result-title">' + icon(free ? 'book' : entry.correct ? 'check' : 'info') + resultTitle + '</div>' + compactAnswer(q) +
         (free && !entry.answered ? '<div class="self-grade">' + button(icon('check') + ' 已掌握', 'grade-free', '', 'data-mastered="true"') + button('需复习', 'grade-free', 'secondary', 'data-mastered="false"') + '</div>' : '') +
         '<div class="source-note">' + esc(q.sourceNote) + (q.sourceUrls && q.sourceUrls.length ? ' · <a href="' + safeUrl(q.sourceUrls[0]) + '" target="_blank" rel="noopener noreferrer">查看依据</a>' : '') + '</div></section>';
     }
@@ -448,7 +471,7 @@
     if (materialsTab === 'sources') {
       content = '<section class="panel" style="margin-bottom:20px"><div class="panel-head"><h3>346 体育综合 · 参考书目</h3><span class="pill">厦大 2027 官方范围已核对</span></div><div class="book-list">' +
         [{ title: '学校体育学（第三版）', author: '潘绍伟、于可红 主编', info: '高等教育出版社 · 2015 年 12 月' }, { title: '运动生理学（第三版）', author: '邓树勋、王健、乔德才、郝选明 主编', info: '高等教育出版社 · 2015 年 4 月' }, { title: '运动训练学（第二版）', author: '田麦久 主编', info: '高等教育出版社 · 2017 年 4 月' }].map(function (b) { return '<div class="book-item"><div class="book-cover">' + icon('book') + '</div><div><h3>' + b.title + '</h3><p>' + b.author + '<br>' + b.info + '</p></div></div>'; }).join('') +
-        '</div><p class="small muted">其中27道专业课示例已依据你提供的三本教材逐页核对；名词解释采用教材原文，简答与论述另列完整整理作答。其余旧题尚未逐句核对，不标作原文。题后页码均按教材印刷页码展示。专业课已按40章（含绪论）、134节建立索引，参考答案为整理与原创组织，并非厦大官方评分细则，也不代表穷尽所有可考知识点。</p></section><div class="section-head"><h2>公开参考资料</h2><span>SOURCES & REFERENCES</span></div><div class="sources-grid">' + getSources().map(function (s, i) { return '<article class="source-card"><span class="pill">' + (i === 0 ? '招生范围 · 官方' : '概念 / 题型参考') + '</span><h3>' + esc(s.title) + '</h3><p>' + esc(s.scope || '用于核对相关基础概念。') + '</p><a href="' + safeUrl(s.url) + '" target="_blank" rel="noopener noreferrer">打开原始资料 ' + icon('external') + '</a></article>'; }).join('') + '</div>';
+        '</div><p class="small muted">610道专业课已按你提供的三本教材重新整理。名词解释以定义段原图为主，可点开放大，并保留校对文字；简答与论述提供分项完整作答。题后页码均按教材印刷页码展示。专业课已按40章（含绪论）、134节建立索引，参考答案为整理与原创组织，并非厦大官方评分细则，也不代表穷尽所有可考知识点。</p></section><div class="section-head"><h2>公开参考资料</h2><span>SOURCES & REFERENCES</span></div><div class="sources-grid">' + getSources().map(function (s, i) { return '<article class="source-card"><span class="pill">' + (i === 0 ? '招生范围 · 官方' : '概念 / 题型参考') + '</span><h3>' + esc(s.title) + '</h3><p>' + esc(s.scope || '用于核对相关基础概念。') + '</p><a href="' + safeUrl(s.url) + '" target="_blank" rel="noopener noreferrer">打开原始资料 ' + icon('external') + '</a></article>'; }).join('') + '</div>';
     } else {
       content = '<div class="notice">' + icon('info') + '<span>把 GPT 聊天摘录、笔记整理到这里。添加资料不会自动生成新题；导出出题资料后发给助手，即可据此继续编写题库。</span></div><div class="btn-row" style="margin-bottom:20px">' + button(icon('plus') + ' 添加资料', 'add-note', '') + button(icon('upload') + ' 导入聊天 / 文本', 'choose-notes', 'secondary') + (notes.length ? button(icon('download') + ' 导出出题资料', 'export-notes', 'secondary') : '') + '</div>' +
         (notes.length ? '<div class="note-grid">' + notes.map(function (n) { return '<article class="note-card"><header><div><span class="pill">' + esc(n.subject) + '</span><h3 style="margin-top:8px">' + esc(n.title) + '</h3></div><div class="btn-row"><button class="icon-btn" data-action="expand-note" data-id="' + esc(n.id) + '" aria-label="展开或收起资料">' + icon('book') + '</button><button class="icon-btn" data-action="delete-note" data-id="' + esc(n.id) + '" aria-label="删除资料">' + icon('close') + '</button></div></header><div class="note-preview" id="note-' + esc(n.id) + '">' + esc(n.text) + '</div><span class="small muted">' + n.text.length.toLocaleString() + ' 字符 · 已保存到当前浏览器</span></article>'; }).join('') + '</div>' : empty('folder', '把学过的内容，变成下一组练习', '粘贴与这三科有关的聊天或笔记，保存出题依据。当前应用无法直接搜索你其他 GPT 聊天。', ''));
@@ -465,7 +488,7 @@
     download('研习-出题资料-' + dateStamp() + '.txt', content, 'text/plain;charset=utf-8'); toast('出题资料已导出，可将文件发给助手。');
   }
   function settingsView() {
-    return heading('备份与设置','题库已内置。更换设备前，请导出完整备份。','')+'<section class="panel settings-simple"><h2>学习记录备份</h2><p>背题位置、回忆自评与到期时间、浏览记录、待复习、收藏和原有作答记录都保存在当前浏览器。</p><div class="btn-row">'+button('导出完整备份','export-backup','')+button('恢复完整备份','choose-backup','secondary')+'</div></section><details class="settings-extra"><summary>手机直接打开与离线使用</summary><p>将本站网址保存在 Safari 书签，或通过 Safari 的分享菜单“添加到主屏幕”，以后直接打开。</p><p id="offline-status" role="status" aria-live="polite">正在检查离线题库…</p><p>首次打开需要网络。离线保存完成后，题目和答案可断网查阅；外部资料链接仍需联网。浏览器清理网站数据会移除离线内容和本机记录，请保留完整备份。</p></details><details class="settings-extra"><summary>题库导入、导出与个人笔记</summary><p>不用重复导入内置题库。仅在添加其他合法来源的 JSON 题库时使用导入。</p><div class="btn-row">'+button('导入其他题库','import-modal','secondary small')+button('导出完整题库','export-bank','secondary small')+button('个人笔记（'+notes.length+'）','open-notes','secondary small')+'</div></details><details class="settings-extra"><summary>题库说明</summary><p>当前题库包含原创模拟与有第三方来源的历年题对应整理。27道专业课题已逐页核对，含15道名词解释、9道简答、3道论述；其余专业课旧题仍是整理参考，尚未逐句核对教材原文。政治未收录肖秀荣《1000题》，之前找到的是正版服务入口。主观题参考答案供核对，不是官方评分细则；题库尚未覆盖全部考试内容。</p><p>专业课题后标注教材印刷页码。同一考点的不同问法不重复计算题库数量。</p></details><details class="settings-extra"><summary>重置学习记录</summary><p>题库和个人笔记会保留，建议先备份。</p>'+button('重置学习记录','reset-modal','danger small')+'</details>';
+    return heading('备份与设置','题库已内置。更换设备前，请导出完整备份。','')+'<section class="panel settings-simple"><h2>学习记录备份</h2><p>背题位置、回忆自评与到期时间、浏览记录、待复习、收藏和原有作答记录都保存在当前浏览器。</p><div class="btn-row">'+button('导出完整备份','export-backup','')+button('恢复完整备份','choose-backup','secondary')+'</div></section><details class="settings-extra"><summary>手机直接打开与离线使用</summary><p>将本站网址保存在 Safari 书签，或通过 Safari 的分享菜单“添加到主屏幕”，以后直接打开。</p><p id="offline-status" role="status" aria-live="polite">正在检查离线题库…</p><p>首次打开需要网络。离线保存完成后，题目、答案和教材定义原图可断网查阅；外部资料链接仍需联网。浏览器清理网站数据会移除离线内容和本机记录，请保留完整备份。</p></details><details class="settings-extra"><summary>题库导入、导出与个人笔记</summary><p>不用重复导入内置题库。仅在添加其他合法来源的 JSON 题库时使用导入。</p><div class="btn-row">'+button('导入其他题库','import-modal','secondary small')+button('导出完整题库','export-bank','secondary small')+button('个人笔记（'+notes.length+'）','open-notes','secondary small')+'</div></details><details class="settings-extra"><summary>题库说明</summary><p>当前题库包含原创模拟与有第三方来源的历年题对应整理。610道专业课已重新整理，含358道名词解释、237道简答、15道论述。名词以教材定义段原图为准，核对要点仅留关键词；思路与提醒是辅助讲解。简答与论述为依据教材组织的参考作答。政治未收录肖秀荣《1000题》，之前找到的是正版服务入口。主观题参考答案供核对，不是官方评分细则；题库尚未覆盖全部考试内容。</p><p>专业课题后标注教材印刷页码。同一考点的不同问法不重复计算题库数量。</p></details><details class="settings-extra"><summary>重置学习记录</summary><p>题库和个人笔记会保留，建议先备份。</p>'+button('重置学习记录','reset-modal','danger small')+'</details>';
   }
   function exportBackup() { download('研习-完整备份-' + dateStamp() + '.json', JSON.stringify({ app: 'yanxi', version: 1, exportedAt: new Date().toISOString(), questions: questions, progress: progress, notes: notes, settings: settings, session: session, reading: reading }, null, 2)); toast('完整备份已导出。'); }
   function sampleBank() {
@@ -522,7 +545,12 @@
     var node = event.target.closest('[data-action]'); if (!node || node.disabled) return;
     var action = node.dataset.action, id = node.dataset.id;
     try {
-      if (action === 'navigate') navigate(node.dataset.route, ['bank','materials','mistakes','favorites'].includes(node.dataset.route) ? '' : undefined);
+      if(action==='zoom-source-image'){
+        if(!textbookImageData||!textbookImageData[node.dataset.key]){mountSourceImages();toast('原图仍在载入，请稍候再点。');return;}
+        showModal('教材原文',esc(node.dataset.caption),'<div class="btn-row">'+button('适应宽度','source-image-zoom','secondary small')+'</div><div class="source-image-viewport enlarged"><img src="'+textbookImageData[node.dataset.key]+'" alt="'+esc(node.dataset.caption)+'原文"></div><p class="small muted">左右滑动查看完整原文。关闭后返回原题。</p>');
+      }
+      else if(action==='source-image-zoom'){var enlarged=modal.querySelector('.source-image-viewport').classList.toggle('enlarged');node.textContent=enlarged?'适应宽度':'放大原图';}
+      else if (action === 'navigate') navigate(node.dataset.route, ['bank','materials','mistakes','favorites'].includes(node.dataset.route) ? '' : undefined);
       else if(action==='study-method')navigate('study');
       else if(action==='past-papers')navigate('papers');
       else if(action==='recall-rate')markRecall(node.dataset.result);
