@@ -1,13 +1,13 @@
 'use strict';
 // Bump this version whenever a bundled HTML, script, stylesheet or question bank changes.
-const CACHE = 'yanxi-offline-v5';
+const CACHE = 'yanxi-offline-v6';
 const ROOT = new URL('./', self.location.href);
 const SHELL = [
   './', 'style.css', 'simple.css?v=4', 'icon.svg',
   'engine.js?v=4', 'bank-politics.js', 'bank-english.js',
   'bank-sports-legacy.js', 'bank-sports.js', 'bank-challenge.js',
   'bank-politics-extended.js', 'bank-sports-expanded.js', 'bank-sports-systematic.js?v=4.1',
-  'app.js?v=5', 'offline.js?v=5', 'manifest.webmanifest',
+  'app.js?v=5', 'offline.js?v=5', 'manifest.json',
   'touch-icon.png', 'icon-192.png', 'icon-512.png'
 ].map(function (path) { return new URL(path, ROOT).href; });
 
