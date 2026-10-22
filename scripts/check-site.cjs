@@ -18,10 +18,10 @@ for (const [, src] of html.matchAll(/<script[^>]+src="([^"]+)"/g)) {
   vm.runInContext(fs.readFileSync(path.join(root, name), 'utf8'), context, { filename: name });
 }
 const questions = context.QuizEngine.validateBank([].concat(context.POLITICS_BANK, context.ENGLISH_BANK, context.SPORTS_BANK)).questions;
-assert.equal(questions.length, 676);
-assert.equal(new Set(questions.map(q => q.id)).size, 676);
+assert.equal(questions.length, 694);
+assert.equal(new Set(questions.map(q => q.id)).size, 694);
 const sports = questions.filter(q => q.subject === '346 体育综合');
-assert.equal(sports.length, 592);
+assert.equal(sports.length, 610);
 for (const q of sports) assert.ok(q.textbookRefs.length && q.textbookRefs.every(r => r.printedPages?.length), q.id + ' printed reference');
 const worker = vm.createContext({ URL, self: { location: { href: 'https://check.invalid/sw.js' }, addEventListener() {} } });
 vm.runInContext(fs.readFileSync(path.join(root, 'sw.js'), 'utf8'), worker);
@@ -38,3 +38,4 @@ for (const value of urls) {
 }
 console.log(JSON.stringify({ result: 'passed', questions: questions.length, professional: sports.length, offlineResources: shell.length }));
 require('./check-words.cjs');
+require('./check-study.cjs');

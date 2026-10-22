@@ -82,6 +82,16 @@
       if (!Array.isArray(raw[field]) || raw[field].length > 30) fail(label + field + '必须为不超过30项的数组');
       q[field] = raw[field].map(function (item) { return str(item, label + field, 3000); });
     });
+    if(raw.studyGuide!=null){
+      var g=raw.studyGuide;if(type!=='free'||!isObject(g)||g.verified!==true)fail(label+'复习说明不合法');
+      var guide={verified:true,auditKey:id(g.auditKey,label+'核对标识'),lookup:str(g.lookup,label+'核对方式',30),recallCue:str(g.recallCue,label+'回忆提示',3000)};
+      if(!['direct','composite','application'].includes(guide.lookup))fail(label+'核对方式不合法');
+      ['core','framework','boundaries','recallQuestions'].forEach(function(k){if(!Array.isArray(g[k])||g[k].length>40)fail(label+k+'不合法');guide[k]=g[k].map(function(t){return str(t,label+k,4000);});});
+      ['requirements','confusions'].forEach(function(k){if(!Array.isArray(g[k])||g[k].length>30)fail(label+k+'不合法');guide[k]=g[k].map(function(v){if(!isObject(v))fail(label+k+'不合法');return k==='requirements'?{label:str(v.label,label+'任务名称',300),detail:str(v.detail,label+'任务内容',4000)}:{term:str(v.term,label+'相近概念',300),difference:str(v.difference,label+'区别',5000)};});});
+      if(!Array.isArray(g.verbatim)||!g.verbatim.length||g.verbatim.length>50)fail(label+'教材原文不合法');
+      guide.verbatim=g.verbatim.map(function(e){if(!isObject(e)||!Array.isArray(e.printedPages)||!e.printedPages.length||e.printedPages.length>30||e.printedPages.some(function(p){return !Number.isInteger(p)||p<1||p>10000;}))fail(label+'原文页码不合法');return {text:str(e.text,label+'原文',30000),printedPages:Array.from(new Set(e.printedPages))};});
+      q.studyGuide=guide;
+    }
     if (raw.textbookRefs != null) {
       if (!Array.isArray(raw.textbookRefs) || raw.textbookRefs.length > 10) fail(label + '教材出处不合法');
       q.textbookRefs = raw.textbookRefs.map(function (ref) {
