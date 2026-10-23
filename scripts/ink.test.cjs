@@ -21,3 +21,18 @@ test('character-relative strokes move with reflow and retain shape at different 
 test('pinch preserves the world position under the midpoint without recentering the selected node',()=>{
  const next=K.zoomAnchor(1,1.7,420,180);assert.equal(next,840);assert.equal((next+180)/1.7,600);assert.ok(Math.abs(K.zoomAnchor(1.7,1,next,180)-420)<.001);
 });
+test('freehand paragraph strokes never clamp the first point or reshape near a boundary',()=>{
+ const stroke={points:[[-1,.1,.5],[0,.5,.5],[3,2,.5]]};
+ const one=Ink.translatePoints(stroke,{x:20,y:30},16);assert.deepEqual(one,[[4,31.6,.5],[20,38,.5],[68,62,.5]]);
+ const moved=Ink.translatePoints(stroke,{x:20,y:120},16);for(let i=0;i<one.length;i++){assert.equal(moved[i][0],one[i][0]);assert.ok(Math.abs(moved[i][1]-one[i][1]-90)<1e-8);}
+ assert.match(Ink.smoothPath(one),/^M4,31.6 Q/);assert.match(Ink.smoothPath(one),/L68,62$/);
+});
+test('custom colors, brush types, opacity and large nibs survive alongside legacy saved strokes',()=>{
+ for(const brush of ['pen','fountain','pencil','marker','highlighter']){
+  const value=example(),stroke=Object.values(value.blocks)[0].strokes[0];Object.assign(stroke,{brush,opacity:.25,color:'#12aBcD',width:2,anchorMode:'paragraph'});
+  assert.deepEqual(Ink.validate(JSON.parse(JSON.stringify(value))),value);
+  const svg=Ink.strokeMarkup(stroke,[[10,15,.3],[20,8,.5],[30,15,.7]],15);assert.match(svg,/#12aBcD/);assert.doesNotMatch(svg,/NaN|undefined/);
+  if(brush==='pencil')assert.match(svg,/stroke-dasharray/);if(brush==='fountain')assert.match(svg,/fill="#12aBcD"/);if(brush==='highlighter')assert.match(svg,/multiply/);
+ }
+ for(const property of [{opacity:0},{opacity:2},{brush:'<svg>'},{color:'red;bad()'},{anchorMode:'screen'}]){const value=example();Object.assign(Object.values(value.blocks)[0].strokes[0],property);assert.throws(()=>Ink.validate(value));}
+});

@@ -438,7 +438,7 @@
     if(!reading.ids.length)return empty('book','还没有选择题目','去题库选择科目，或直接背全部题。',button('开始背题','read-filtered','','data-all="true"'));
     var q=qById(reading.ids[reading.index]);if(!q)return empty('book','这道题已不在题库中','返回题库重新选择。',button('打开题库','goto-bank',''));
     var prompts=[q.prompt].concat(q.promptVariants||[]);reading.variant=reading.variant%prompts.length;
-    var r=record(q.id), content='<div class="reader-top">'+I.controls()+button('返回列表','reader-back','ghost small')+'<span class="small muted">'+(reading.index+1)+' / '+reading.ids.length+'</span>'+button(r&&r.favorite?'已收藏':'收藏','favorite','ghost small','data-id="'+esc(q.id)+'"')+'</div><article class="reader-card"><div class="reader-meta"><span>'+esc(q.subject)+' · '+typeName(q)+'</span><span>'+esc(q.topic)+'</span></div>';
+    var r=record(q.id), content='<div class="reader-top">'+I.controls()+button('返回列表','reader-back','ghost small')+'<span class="small muted">'+(reading.index+1)+' / '+reading.ids.length+'</span>'+button(r&&r.favorite?'已收藏':'收藏','favorite','ghost small','data-id="'+esc(q.id)+'"')+'</div><article class="reader-card" data-ink-surface-owner="question:'+esc(q.id)+'"><div class="reader-meta"><span>'+esc(q.subject)+' · '+typeName(q)+'</span><span>'+esc(q.topic)+'</span></div>';
     if(q.passage)content+='<details class="passage" open><summary>阅读材料</summary><h3>'+esc(q.passage.title)+'</h3><p>'+esc(q.passage.text)+'</p></details>';
     content+='<h1 class="reader-prompt">'+esc(prompts[reading.variant])+'</h1>'+paperLabel(q)+taskHint(q);
     if(q.options.length)content+='<ol class="read-options">'+q.options.map(function(op){return '<li>'+esc(op.id)+'. '+esc(op.text)+'</li>';}).join('')+'</ol>';
