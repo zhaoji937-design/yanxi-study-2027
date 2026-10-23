@@ -38,19 +38,23 @@
     const status = state.mastered.includes(group.id) ? ' · 已掌握' : state.review.includes(group.id) ? ' · 待复习' : '';
     return routeLink('group/' + group.id, `<span><strong>${E(group.entries.map(x => x.word).join(' · '))}</strong><span class="muted">${E(kindLabel(group.kind))} · ${group.entries.length} 词${status}</span></span><span class="arrow" aria-hidden="true">›</span>`, 'group-row');
   }
+  function customGroupRow(pair) {
+    return routeLink('pair/' + pair.id, `<span><strong>${E(pair.words.join(' · '))}</strong><span class="muted">自建易混组 · ${pair.words.length} 词</span></span><span class="arrow" aria-hidden="true">›</span>`, 'group-row custom-group-row');
+  }
   function heading(title, sub = '', eyebrow = '') { return `<div class="page-heading">${eyebrow ? `<p class="eyebrow">${E(eyebrow)}</p>` : ''}<h1>${E(title)}</h1>${sub ? `<p class="intro">${E(sub)}</p>` : ''}</div>`; }
   function searchInput(id, value, placeholder) { return `<div class="searchbox"><label class="visually-hidden" for="${id}">${E(placeholder)}</label><input id="${id}" type="search" autocomplete="off" spellcheck="false" placeholder="${E(placeholder)}" value="${E(value)}">${button('clear-search', '×', 'clear', `data-for="${id}" aria-label="清空搜索"`)}</div>`; }
   function home() {
     const first = data.groups[0];
     return heading('看清区别，再记住。', `${data.meta.wordCount} 词可查 · ${data.meta.groupCount} 组重点辨析`, 'WORDS, SIDE BY SIDE') +
-      `<section class="hero" aria-label="你的第一组易混词"><div class="heading-row"><h2>先从你容易混的词开始</h2><span class="tag">词性 × 词义</span></div><div class="mini-words">${first.entries.map(e => `<div class="mini-word"><strong>${E(e.word)}</strong><small>${E(e.pos)}</small><p>${E(e.meaning)}</p></div>`).join('')}</div><div class="row">${routeLink('group/' + first.id, '并排看清区别 →', 'primary-link')}${routeLink('practice/' + first.id, '放进句子试试', 'quiet-link')}</div></section>` +
-      `<div class="section-head"><h2>重点辨析</h2>${routeLink('custom', '＋ 自建易混组', 'quiet-link')}</div><div class="toolbar">${searchInput('group-search', listQuery, '搜索单词、中文意思或辨析线索')}</div><div class="chips" role="group" aria-label="辨析类型">${[['all', '全部'], ...Object.entries(C.kinds)].map(([k, v]) => button('kind', E(v), 'chip' + (listKind === k ? ' active' : ''), `data-kind="${k}" aria-pressed="${listKind === k}"`)).join('')}</div><p class="notes" id="group-count"></p><div class="section group-list" id="group-results"></div>`;
+      `<section class="hero" aria-label="你的第一组易混词"><div class="heading-row"><h2>先从你容易混的词开始</h2><span class="tag">词性 × 词义</span></div><div class="mini-words">${first.entries.slice(0, 3).map(e => `<div class="mini-word"><strong>${E(e.word)}</strong><small>${E(e.pos)}</small><p>${E(e.meaning)}</p></div>`).join('')}</div><div class="row">${routeLink('group/' + first.id, '查看完整 ' + first.entries.length + ' 词辨析 →', 'primary-link')}${routeLink('practice/' + first.id, '放进句子试试', 'quiet-link')}</div></section>` +
+      `<div class="section-head"><h2>重点辨析</h2></div><div class="toolbar">${searchInput('group-search', listQuery, '搜索单词、中文意思或辨析线索')}</div><div class="chips" role="group" aria-label="辨析类型">${[['all', '全部'], ...Object.entries(C.kinds), ['custom', '自建易混组' + (state.pairs.length ? ' ' + state.pairs.length : '')]].map(([k, v]) => button('kind', E(v), 'chip' + (listKind === k ? ' active' : ''), `data-kind="${k}" aria-pressed="${listKind === k}"`)).join('')}</div><div id="custom-actions"></div><p class="notes" id="group-count"></p><div class="section group-list" id="group-results"></div>`;
   }
   function paintGroups() {
-    const q = C.normal(listQuery);
-    const results = data.groups.filter(g => (listKind === 'all' || g.kind === listKind) && (!q || [g.title, g.contrast, ...g.entries.flatMap(e => [e.word, e.meaning, e.focus])].join(' ').toLowerCase().includes(q)));
-    $('#group-count').textContent = `${results.length} 组 · 可直接看题与答案，不必作答`;
-    $('#group-results').innerHTML = results.length ? results.map(groupRow).join('') : empty('没有找到这组词。可以去“查词”自由选择，或自建易混组。');
+    const results = C.libraryItems(data, state, db, listKind, listQuery);
+    const own = results.filter(item => item.type === 'custom').length;
+    $('#custom-actions').innerHTML = listKind === 'custom' ? `<div class="row section">${routeLink('custom', '＋ 新建易混组', 'primary-link')}${routeLink('search', '去查词选词 →', 'quiet-link')}</div><p class="notes">把还没有整理的易混词放进来。保存后会显示在这里，也会出现在“全部”中。</p>` : '';
+    $('#group-count').textContent = `${results.length} 组${listKind === 'all' && own ? ` · 含 ${own} 组自建` : ''} · 可直接对照，无需作答`;
+    $('#group-results').innerHTML = results.length ? results.map(item => item.type === 'custom' ? customGroupRow(item.pair) : groupRow(item.group)).join('') : empty(listKind === 'custom' && !state.pairs.length ? '还没有自建易混组。点上面的“新建易混组”，把你容易混的词放在一起。' : '没有找到这组词。可以换个关键词，或到“自建易混组”中补充。');
   }
   function meaningLabel(w) {
     return w.meaningSource === 'exam-editorial' ? '阅读常用义与熟词生义 · 已整理' : w.meaningSource === 'NETEM' ? '考研整理词表释义' : w.meaningSource === 'curated' ? '重点辨析常用义' : '通用常用义 · 辨析补充';
@@ -103,7 +107,7 @@
     if (words.length < 2 || words.length > MAX || words.some(w => !db.words.has(w))) return missing(`请从词库选择 2–${MAX} 个不同的词。`);
     selected = [...words];
     const common = data.groups.filter(g => words.every(w => g.entries.some(e => e.word === w)));
-    return back(pairId ? 'mine' : 'search', pairId ? '返回我的易混组' : '返回查词') + heading(words.join(' · '), pairId ? '我的易混组' : '自由对照 · 先看词性，再看意思') +
+    return back(pairId ? 'home/custom' : 'search', pairId ? '返回自建易混组' : '返回查词') + heading(words.join(' · '), pairId ? '我的易混组' : '自由对照 · 先看词性，再看意思') +
       (note && !concealed ? `<p class="contrast">${E(note)}</p>` : '') + compareToolbar(words) + `<div class="compare-grid ${words.length === 2 ? 'two' : words.length === 4 ? 'four' : ''}">${words.map(word => wordCard({ word }, words, false)).join('')}</div>` +
       `<p class="notes">这里只并排展示释义；没有自动推断你为什么会混淆。你可以记下自己的读音联想。</p><div class="row section">${pairId ? routeLink('pair-edit/' + pairId, '修改我的提示', 'primary-link') : routeLink('custom/' + words.join(','), '保存为我的易混组', 'primary-link')}${pairId ? button('delete-pair', '删除这一组', '', `data-id="${E(pairId)}"`) : ''}</div>` +
       (common.length ? `<section class="section"><h2>这组词已有详细辨析</h2><div class="section list">${common.map(groupRow).join('')}</div></section>` : '');
@@ -115,13 +119,13 @@
   }
   function customPage(words = [], id = '') {
     const pair = id ? state.pairs.find(p => p.id === id) : null; if (id && !pair) return missing();
-    return back('mine', '返回我的') + heading(pair ? '修改易混组' : '建一组自己的易混词', '长得不像、只是读音让你联想到一起，也可以记在这里。') + `<form id="pair-form" class="panel form" data-id="${E(id)}"><label for="pair-words">单词 · 2–${MAX} 个</label><input id="pair-words" required autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="1200" value="${E((pair?.words || words).join(', '))}" placeholder="例如 generalization, generalize, generally"><p class="notes">用逗号或空格分隔，支持当前 ${data.meta.wordCount} 词库；含空格的词组请用逗号分隔。</p><label for="pair-note">我为什么会混淆？怎么区分？</label><textarea id="pair-note" maxlength="400" placeholder="写下你自己的发音联想或辨认线索…">${E(pair?.note || '')}</textarea><div class="row"><button type="submit" class="primary">保存并对照</button>${routeLink('search', '去词库选词', 'quiet-link')}</div><p id="pair-error" class="message error" hidden role="alert"></p></form>`;
+    return back('home/custom', '返回自建易混组') + heading(pair ? '修改易混组' : '建一组自己的易混词', '长得不像、只是读音让你联想到一起，也可以记在这里。') + `<form id="pair-form" class="panel form" data-id="${E(id)}"><label for="pair-words">单词 · 2–${MAX} 个</label><input id="pair-words" required autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="1200" value="${E((pair?.words || words).join(', '))}" placeholder="例如 generalization, generalize, generally"><p class="notes">用逗号或空格分隔，支持当前 ${data.meta.wordCount} 词库；含空格的词组请用逗号分隔。</p><label for="pair-note">我为什么会混淆？怎么区分？</label><textarea id="pair-note" maxlength="400" placeholder="写下你自己的发音联想或辨认线索…">${E(pair?.note || '')}</textarea><div class="row"><button type="submit" class="primary">保存并对照</button>${routeLink('search', '去词库选词', 'quiet-link')}</div><p id="pair-error" class="message error" hidden role="alert"></p></form>`;
   }
   function minePage() {
     const tabs = [['review', '待复习', state.review.length], ['favorites', '收藏', state.favorites.length], ['pairs', '自建组', state.pairs.length], ['mistakes', '混淆记录', state.mistakes.length]];
     let body;
     if (mineTab === 'pairs') body = state.pairs.length ? state.pairs.map(p => `<div class="note-card">${routeLink('pair/' + p.id, `<h3>${E(p.words.join(' · '))} ›</h3>`)}${p.note ? `<p>${E(p.note)}</p>` : ''}</div>`).join('') : empty('<p>还没有自己的易混组。</p><p>因读音产生的个人联想，也能放在一起对照。</p>');
-    else if (mineTab === 'mistakes') body = state.mistakes.length ? state.mistakes.slice().sort((a, b) => b.last - a.last).map(m => { const q = db.questions.get(m.id); return `<div class="note-card">${routeLink('group/' + q.group, `<h3>${E(m.target)} ↔ ${E(m.chosen)} <span class="tag">混淆 ${m.count} 次</span></h3>`)}<p>本题参考：${E(q.answer.join(' / '))} · 你选择了 ${E(m.chosen)}</p><p lang="en">${E(q.sentence)}</p>${routeLink('practice/' + q.group, '再辨认一次 →', 'quiet-link')}</div>`; }).join('') : empty('完成语境辨义后，答错时选混的词会记录在这里。直接看答案不会计错。');
+    else if (mineTab === 'mistakes') body = state.mistakes.length ? state.mistakes.slice().sort((a, b) => b.last - a.last).map(m => { const q = db.questions.get(m.id); return `<div class="note-card">${routeLink('group/' + q.group, `<h3>${E(m.target)} ↔ ${E(m.chosen)} <span class="tag">${q.answer.includes(m.chosen) ? '旧记录 · 当前已接受' : '混淆 ' + m.count + ' 次'}</span></h3>`)}<p>本题参考：${E(q.answer.join(' / '))} · 你选择了 ${E(m.chosen)}</p><p lang="en">${E(q.sentence)}</p>${routeLink('practice/' + q.group, '再辨认一次 →', 'quiet-link')}</div>`; }).join('') : empty('完成语境辨义后，答错时选混的词会记录在这里。直接看答案不会计错。');
     else { const ids = state[mineTab]; body = ids.length ? `<div class="group-list">${ids.map(id => groupRow(db.groups.get(id))).join('')}</div>` : empty(mineTab === 'review' ? '还没有待复习组。在辨析页点“放入复习”，或答题后自动记录。' : '还没有收藏。找到想常看的辨析，点“☆ 收藏”。'); }
     return heading('只留下你需要复习的。', '记录保存在当前浏览器；换设备前可到设置导出备份。') + `<div class="stats">${routeLink('search', data.meta.wordCount + ' 词可查')}${routeLink('home', data.meta.groupCount + ' 组辨析')}${routeLink('practice/all', '已辨义 ' + state.stats.attempts + ' 次')}${routeLink('mastered', '已掌握 ' + state.mastered.length + ' 组')}</div><div class="row">${routeLink('custom', '＋ 自建易混组', 'primary-link')}${state.review.length ? routeLink('practice/review', '练习待复习组 →', 'quiet-link') : ''}</div><div class="section chips">${tabs.map(([k, v, n]) => button('mine-tab', `${v} ${n}`, 'chip' + (mineTab === k ? ' active' : ''), `data-tab="${k}" aria-pressed="${mineTab === k}"`)).join('')}</div><div class="section">${body}</div>`;
   }
@@ -151,7 +155,7 @@
     const changed = route !== lastRoute; if (changed) { window.speechSynthesis?.cancel(); lastRoute = route; }
     let html;
     switch (page) {
-      case 'home': html = home(); break;
+      case 'home': if (arg === 'all' || arg === 'custom' || C.kinds[arg]) listKind = arg; html = home(); break;
       case 'group': html = groupPage(arg); break;
       case 'search': html = searchPage(); break;
       case 'word': html = wordPage(arg); break;
@@ -169,7 +173,7 @@
     }
     main.innerHTML = html;
     if (page === 'home') paintGroups(); if (page === 'search') paintWords();
-    const tab = ['search', 'word', 'compare'].includes(page) ? 'search' : ['affix', 'affixes'].includes(page) ? 'affixes' : ['mine', 'mastered', 'pair', 'pair-edit', 'custom'].includes(page) ? 'mine' : 'home';
+    const tab = ['search', 'word', 'compare'].includes(page) ? 'search' : ['affix', 'affixes'].includes(page) ? 'affixes' : ['mine', 'mastered'].includes(page) ? 'mine' : 'home';
     document.querySelectorAll('[data-tab]').forEach(a => { if (a.tagName === 'A') { a.classList.toggle('active', a.dataset.tab === tab); if (a.dataset.tab === tab) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); } });
     if (changed) { window.scrollTo(0, 0); main.focus({ preventScroll: true }); }
     document.title = (page === 'group' ? db.groups.get(arg)?.title : page === 'word' ? arg : '') ? `${page === 'word' ? arg : db.groups.get(arg).title} · 词辨` : '词辨 · 考研易混词';
@@ -203,7 +207,7 @@
     if (a === 'speak') return speak(b.dataset.text ? [b.dataset.text] : b.dataset.words.split(','));
     if (a === 'conceal') { concealed = !concealed; render(); }
     if (['favorite', 'review', 'mastered'].includes(a)) toggleGroup(a === 'favorite' ? 'favorites' : a, id);
-    if (a === 'kind') { listKind = b.dataset.kind; render(); }
+    if (a === 'kind') { listKind = b.dataset.kind; history.replaceState(null, '', '#home/' + listKind); lastRoute = currentRoute(); render(); }
     if (a === 'clear-search') { const input = document.getElementById(b.dataset.for); input.value = ''; input.dispatchEvent(new Event('input', { bubbles: true })); input.focus(); }
     if (a === 'more-words') { wordLimit += 50; paintWords(); }
     if (a === 'select-word' || a === 'remove-selected') modifySelection(b.dataset.word);
@@ -213,7 +217,7 @@
     if (a === 'mine-tab') { mineTab = b.dataset.tab; render(); }
     if (a === 'delete-pair') {
       const p = state.pairs.find(p => p.id === id);
-      if (p && window.confirm('删除这一组自建记录？' + p.words.join(' · '))) { const next = structuredCopy(state); next.pairs = next.pairs.filter(p => p.id !== id); if (commit(next)) { mineTab = 'pairs'; location.hash = 'mine'; } }
+      if (p && window.confirm('删除这一组自建记录？' + p.words.join(' · '))) { const next = structuredCopy(state); next.pairs = next.pairs.filter(p => p.id !== id); if (commit(next)) location.hash = 'home/custom'; }
     }
     if (a === 'answer' && session && !session.answered && !session.revealed) {
       const q = session.questions[session.at], choice = b.dataset.word;
@@ -245,7 +249,7 @@
     if (message) { error.textContent = message; error.hidden = false; return; }
     const next = structuredCopy(state), pair = { id: id || ('p-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 8)), words, note };
     if (id) next.pairs = next.pairs.map(p => p.id === id ? pair : p); else next.pairs.push(pair);
-    if (commit(next)) { toast('已保存到“我的 → 自建组”。'); location.hash = 'pair/' + pair.id; }
+    if (commit(next)) { toast('已保存到“辨析 → 自建易混组”。'); location.hash = 'pair/' + pair.id; }
   });
   main.addEventListener('change', async event => {
     if (event.target.id !== 'backup-file') return; const file = event.target.files[0]; if (!file) return;
@@ -268,7 +272,7 @@
   async function offline() {
     if (!('serviceWorker' in navigator)) { offlineText = '浏览器暂不支持离线保存'; updateOffline(); return; }
     try {
-      const reg = await navigator.serviceWorker.register('sw.js?v=2', { scope: './' });
+      const reg = await navigator.serviceWorker.register('sw.js?v=3', { scope: './' });
       await checkOffline();
       const watch = worker => { if (worker) worker.addEventListener('statechange', () => { if (worker.state === 'activated') checkOffline(); }); };
       watch(reg.installing); reg.addEventListener('updatefound', () => watch(reg.installing));
@@ -278,7 +282,7 @@
   }
   async function init() {
     try {
-      const response = await fetch('data.json?v=2'); if (!response.ok) throw new Error('词库暂时没有载入成功');
+      const response = await fetch('data.json?v=3'); if (!response.ok) throw new Error('词库暂时没有载入成功');
       data = await response.json(); db = C.index(data);
       try { const saved = localStorage.getItem(C.KEY); if (saved) { unreadableBackup = saved; state = C.validState(JSON.parse(saved), db); unreadableBackup = ''; } }
       catch (_) { storedError = '本机原记录暂时无法读取，未自动删除。请先保留原备份。'; }

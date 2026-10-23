@@ -1,7 +1,7 @@
 'use strict';
-const CACHE = 'yanxi-words-v2';
+const CACHE = 'yanxi-words-v3';
 const ROOT = new URL('./', self.location.href);
-const SHELL = ['./', 'index.html', 'latest.html', 'style.css?v=2', 'core.js?v=2', 'app.js?v=2', 'data.json?v=2', 'manifest.json', 'icon.svg', 'icon-192.png', 'icon-512.png', 'touch-icon.png', 'licenses/ECDICT.txt', 'licenses/cmudict.txt', 'licenses/NETEM.txt', 'licenses/ATTRIBUTION.txt'].map(path => new URL(path, ROOT).href);
+const SHELL = ['./', 'index.html', 'latest.html', 'style.css?v=3', 'core.js?v=3', 'app.js?v=3', 'data.json?v=3', 'manifest.json', 'icon.svg', 'icon-192.png', 'icon-512.png', 'touch-icon.png', 'licenses/ECDICT.txt', 'licenses/cmudict.txt', 'licenses/NETEM.txt', 'licenses/ATTRIBUTION.txt'].map(path => new URL(path, ROOT).href);
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE);

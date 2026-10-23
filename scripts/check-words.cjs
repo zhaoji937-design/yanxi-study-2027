@@ -14,7 +14,7 @@ assert.ok(data.meta.editorialWords >= 150);
 assert.equal(data.groups.length, data.meta.groupCount); assert.equal(db.groups.size, data.groups.length);
 assert.equal(db.questions.size, data.meta.questionCount);
 assert.equal(data.groups[0].id, 'general-family');
-assert.deepEqual(data.groups[0].entries.map(e => e.word), ['generalization', 'generalize', 'generally']);
+assert.deepEqual(data.groups[0].entries.slice(0,3).map(e => e.word), ['generalization', 'generalize', 'generally']);
 assert.match(db.words.get('generally').meaning, /通常/);
 assert.doesNotMatch(db.words.get('generally').meaning, /逐渐/);
 for (const w of data.words) {
@@ -25,14 +25,18 @@ for (const w of data.words) {
 }
 for (const g of data.groups) {
   assert.ok(C.kinds[g.kind]); assert.ok(g.contrast); assert.equal(g.entries.length, g.questions.length);
+  assert.ok(g.entries.length >= 2 && g.entries.length <= C.MAX_COMPARE);
   for (const entry of g.entries) { assert.ok(db.words.has(entry.word)); assert.ok(entry.meaning && entry.pos && entry.focus && entry.zh); assert.equal((entry.sentence.match(new RegExp('\\b' + entry.word + '\\b', 'gi')) || []).length, 1); }
   for (const q of g.questions) {
     assert.equal(q.group, g.id); assert.ok(q.answer.includes(q.target)); assert.equal(q.sentence.split('____').length, 2);
     assert.equal(new Set(q.options).size, q.options.length);
     for (const answer of q.answer) assert.ok(q.options.includes(answer));
+    for (const answer of q.historicalChoices || []) assert.ok(q.answer.includes(answer) && answer !== q.target);
     assert.ok(q.intent && q.explanation);
   }
 }
+const groupSets = data.groups.map(g=>g.entries.map(e=>e.word).sort().join(','));
+assert.equal(new Set(groupSets).size, groupSets.length, 'duplicate comparison group');
 for (const a of data.affixes) { assert.ok(a.note && a.hint); a.words.forEach(w => assert.ok(db.words.has(w))); }
 for (const [file, needle] of [['licenses/ECDICT.txt', 'MIT'], ['licenses/cmudict.txt', 'Redistribution'], ['licenses/NETEM.txt', 'Attribution-NonCommercial-ShareAlike'], ['licenses/ATTRIBUTION.txt', base.source.sha]]) assert.ok(fs.readFileSync(path.join(root, file), 'utf8').includes(needle));
 for (const filename of ['app.js', 'core.js', 'sw.js']) new vm.Script(fs.readFileSync(path.join(root, filename), 'utf8'), { filename });

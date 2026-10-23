@@ -1,0 +1,62 @@
+{
+  "assumption-family:assume": [
+    "assume",
+    "presume"
+  ],
+  "assumption-family:presume": [
+    "presume",
+    "assume"
+  ],
+  "assumption-family:assumption": [
+    "assumption",
+    "presumption"
+  ],
+  "assumption-family:presumption": [
+    "presumption",
+    "assumption"
+  ],
+  "relate-family:relation": [
+    "relation",
+    "relationship"
+  ],
+  "relate-family:relationship": [
+    "relationship",
+    "relation"
+  ],
+  "retain-group:maintain": [
+    "maintain",
+    "sustain"
+  ],
+  "retain-group:sustain": [
+    "sustain",
+    "maintain"
+  ],
+  "resource-group:recourse": [
+    "recourse",
+    "resort"
+  ],
+  "attain-group:attain": [
+    "attain",
+    "obtain"
+  ],
+  "expand-group:expand": [
+    "expand",
+    "extend"
+  ],
+  "mix-eminent-imminent:eminent": [
+    "eminent",
+    "prominent"
+  ],
+  "mix-assume-consume-resume:presume": [
+    "presume",
+    "assume"
+  ],
+  "mix-portable-potable:potential": [
+    "potential",
+    "possible"
+  ],
+  "mix-occupation-occasion:opportunity": [
+    "opportunity",
+    "occasion"
+  ]
+}

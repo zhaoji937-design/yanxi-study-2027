@@ -17,6 +17,12 @@
     return words.filter(w => w.word.includes(q) || (w.searchMeaning || w.meaning).toLowerCase().includes(q) || (w.dictionaryMeaning || '').toLowerCase().includes(q)).sort((a, b) => score(a.word, q) - score(b.word, q) || a.rank - b.rank);
   }
   function score(word, q) { return word === q ? 0 : word.startsWith(q) ? 1 : word.includes(q) ? 2 : 3; }
+  function libraryItems(data, state, db, kind = 'all', query = '') {
+    const q = normal(query), contains = values => !q || values.join(' ').toLowerCase().includes(q);
+    const own = kind === 'all' || kind === 'custom' ? state.pairs.slice().reverse().filter(p => contains([p.note, ...p.words.flatMap(w => [w, db.words.get(w)?.meaning || ''])])).map(pair => ({ type: 'custom', pair })) : [];
+    const curated = kind === 'custom' ? [] : data.groups.filter(g => (kind === 'all' || kind === g.kind) && contains([g.title, g.contrast, ...g.entries.flatMap(e => [e.word, e.meaning, e.focus])])).map(group => ({ type: 'curated', group }));
+    return [...own, ...curated];
+  }
   function commonPrefix(words) {
     if (words.length < 2) return '';
     let p = words[0];
@@ -75,7 +81,7 @@
     for (const m of input.mistakes) {
       assert(m && db.questions.has(m.id) && !seen.has(m.id)); seen.add(m.id);
       const q = db.questions.get(m.id);
-      assert(m.target === q.target && q.options.includes(m.chosen) && !q.answer.includes(m.chosen));
+      assert(m.target === q.target && q.options.includes(m.chosen) && (!q.answer.includes(m.chosen) || (q.historicalChoices || []).includes(m.chosen)));
       assert(Number.isSafeInteger(m.count) && m.count > 0 && m.count <= 1e8 && Number.isSafeInteger(m.last) && m.last >= 0);
       out.mistakes.push({ id: m.id, target: m.target, chosen: m.chosen, count: m.count, last: m.last });
     }
@@ -101,5 +107,5 @@
     return validState(value.state, db);
   }
   function save(storage, value, db) { const safe = validState(value, db); storage.setItem(KEY, JSON.stringify(safe)); return safe; }
-  return { KEY, MAX_COMPARE, kinds, fresh, normal, escape, index, search, highlight, grade, validState, record, backup, importBackup, save, toggleSelection };
+  return { KEY, MAX_COMPARE, kinds, fresh, normal, escape, index, search, highlight, grade, validState, record, backup, importBackup, save, toggleSelection, libraryItems };
 });

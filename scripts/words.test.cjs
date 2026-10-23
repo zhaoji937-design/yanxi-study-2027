@@ -82,3 +82,38 @@ test('exam list coverage, familiar-word senses and phrases are searchable', () =
   assert.ok(C.search(data.words,'圣诞').some(w=>w.word==='christmas'));
   assert.ok(C.search(data.words,'according to').some(w=>w.word==='according to'));
 });
+test('home library includes personal groups, filters them separately, and searches notes and meanings', () => {
+  const s = C.fresh();
+  s.pairs = [{id:'p-old',words:['generalization','generally'],note:'我会把词性记反'}, {id:'p-new',words:['subject','sound','bank','case','address'],note:'阅读里总记串'}];
+  const before = JSON.stringify(s);
+  const all = C.libraryItems(data, s, db);
+  assert.equal(all.length, data.groups.length + 2);
+  assert.equal(all[0].pair.id, 'p-new');
+  assert.equal(C.libraryItems(data, s, db, 'custom').length, 2);
+  assert.equal(C.libraryItems(data, s, db, 'custom', '阅读里')[0].pair.id,'p-new');
+  assert.equal(C.libraryItems(data, s, db, 'custom', '受试者')[0].pair.id,'p-new');
+  assert.equal(C.libraryItems(data, s, db, 'custom', 'GENERALLY')[0].pair.id,'p-old');
+  assert.equal(C.libraryItems(data, s, db, 'custom', 'not-present').length,0);
+  assert.equal(C.libraryItems(data, C.fresh(), db, 'custom').length,0);
+  assert.ok(C.libraryItems(data, s, db, 'shape').every(item=>item.type==='curated'&&item.group.kind==='shape'));
+  assert.equal(JSON.stringify(s),before);
+});
+test('a corrected alternate answer preserves historical mistakes without rejecting an old backup', () => {
+  const q = db.questions.get('attain-group:attain');
+  assert.ok(q.answer.includes('obtain'));
+  assert.equal(C.grade(q, 'obtain'), true);
+  const old = C.fresh();
+  old.stats = {attempts:1,correct:0};old.review=['attain-group'];
+  old.mistakes=[{id:q.id,target:'attain',chosen:'obtain',count:1,last:1}];
+  assert.deepEqual(C.importBackup(C.backup(old),db),old);
+  const forged=C.fresh();forged.mistakes=[{id:q.id,target:q.target,chosen:q.target,count:1,last:1}];
+  assert.throws(()=>C.validState(forged,db));
+});
+test('expanded comparison groups cover every word with its own distinction and original context', () => {
+  assert.ok(data.groups.length >= 160);
+  assert.ok(data.groups.filter(g=>g.entries.length>=4).length >= 95);
+  assert.ok(data.groups.some(g=>g.entries.length>=6));
+  for(const word of ['economic','economical','economically','economy','economics']) assert.ok(db.groups.get('economy-family').entries.some(e=>e.word===word));
+  for(const word of ['result','resort','resist','resent','revolt']) assert.ok(db.groups.get('mix-result-resort').entries.some(e=>e.word===word));
+  assert.equal(db.questions.size,data.groups.reduce((n,g)=>n+g.entries.length,0));
+});

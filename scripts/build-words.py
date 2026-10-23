@@ -55,6 +55,21 @@ def read_groups():
         for question in group['questions']:
             if question['id'] in alternatives:
                 question['answer'], question['explanation'] = alternatives[question['id']]
+    extra_file = ROOT / 'content/word-group-answers.json'
+    if extra_file.exists():
+        extra = json.loads(extra_file.read_text(encoding='utf-8'))
+        by_question = {q['id']:q for g in groups for q in g['questions']}
+        for ident, accepted in extra.items():
+            q = by_question[ident]
+            assert q['target'] in accepted and set(accepted) <= set(q['options']), (ident, accepted)
+            q['answer'] = list(dict.fromkeys(q['answer'] + accepted))
+            q['explanation'] += ' 本句也接受 ' + ' / '.join(w for w in q['answer'] if w != q['target']) + '；当前语境有用法重叠，不能据此判作错误。'
+        history_file = ROOT / 'content/word-group-history.json'
+        if history_file.exists():
+            for ident, choices in json.loads(history_file.read_text(encoding='utf-8')).items():
+                q = by_question[ident]
+                assert set(choices) <= set(q['answer']) and q['target'] not in choices, ident
+                q['historicalChoices'] = choices
     return groups
 
 groups = read_groups()
@@ -162,7 +177,7 @@ for i, word in enumerate(ordered):
             matches.append((dist / size, dist, rank(other), other))
         words[i]['sound'] = [m[3] for m in sorted(matches)[:24]]
 
-meta = dict(version=2, title='词辨 · 考研易混词', wordCount=len(words), groupCount=len(groups),
+meta = dict(version=3, title='词辨 · 考研易混词', wordCount=len(words), groupCount=len(groups),
     questionCount=sum(len(g['questions']) for g in groups), examTagged=sum(w['exam'] for w in words),
     soundCoverage=len(phones), examListEntries=len(exam_base['entries']), examUniqueWords=len(exam_entries), editorialWords=len(editorial),
     selection='纳入 NETEMVocabulary 整理的5530条考研词表（合并大小写同词），保留原3600词并补充词族。默认先看考研整理释义，补充词显示通用义；部分多义词整理阅读常用义与搭配，其他词典义项折叠。第三方词表以2024版为基础，未逐词核对2027官方大纲；排序不是考研真题频率榜。',

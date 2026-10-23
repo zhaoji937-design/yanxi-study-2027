@@ -1,148 +1,203 @@
-# 原创辨析与例句。每个词：拼写|词性|本组常用义|辨认线索|原创例句|句意
-@ general-family|family|generalization · generalize · generally|先判断句子需要事物、动作还是修饰语。generalization 指概括出来的说法或概括过程；generalize 是进行概括；generally 表示通常或总体而言。
+# Original exam-oriented comparison groups; expanded 2026-10-23.
+
+@ general-family|family|generalization · generalize · generally · general|general 可表示一般的、总体的；generalize 是由个别作概括；generalization 是概括过程或概括出来的说法；generally 是通常、总体而言。先判断词性，再区分一般情况与普遍结论。
 generalization|n.|概括、归纳；笼统说法|generalize 去 e 加 -ation，变为名词|A generalization based on one interview may be misleading.|根据一次访谈作出的概括可能有误导性。
 generalize|v.|概括、归纳；由个别推及一般|general + -ize，表示进行概括这一动作|We should not generalize from a single interview.|我们不应由一次访谈就作普遍推论。
 generally|adv.|通常；总体而言；普遍地|general + -ly，常修饰形容词、动词或整句|The findings are generally consistent with earlier studies.|这些发现总体上与以往研究一致。
+general|adj./n.|一般的；总体的；将军|in general＝总体而言；本句取形容词总体的|The survey reveals a general decline in trust.|调查显示信任总体下降。
 
-@ economy-family|family|economic · economical · economically|economic 常指经济方面的；economical 常指节约、不浪费；economically 是副词，可表示经济上或节约地，须看语境。
+@ economy-family|family|economic · economical · economically · economy · economics|economy 是经济体、经济状况，也可指节约；economics 是经济学；economic 表示经济方面的；economical 表示节省资源的；economically 是副词，含义随语境变化。
 economic|adj.|经济的；经济学方面的|economic growth＝经济增长|The report examines the economic impact of tourism.|报告研究旅游业的经济影响。
 economical|adj.|节约的；经济实惠的|强调少花钱、少耗资源|A small car can be economical to run.|小型车的使用费用可以比较低。
 economically|adv.|在经济上；节约地|副词，不直接代替 economic 修饰名词|The two regions are economically connected.|这两个地区在经济上相互联系。
+economy|n.|经济；经济体；节约|the global economy＝全球经济|The local economy depends heavily on tourism.|当地经济在很大程度上依赖旅游业。
+economics|n.|经济学|学科名称，通常作单数看待|Economics examines how limited resources are allocated.|经济学研究有限资源如何得到配置。
 
-@ analysis-family|family|analysis · analyze · analytical|analysis 是分析这个过程或结果；analyze 是实施分析；analytical 说明具有分析性质或能力。英式 analyse 与 analyze 是拼写变体。
+@ analysis-family|family|analysis · analyze · analytical · analyst|analysis 是分析过程或结果；analyze 是分析这一动作；analytical 表示分析性的或善于分析的；analyst 指从事分析的人。analyse 是 analyze 的英式拼写，不作为不同词义记忆。
 analysis|n.|分析；分析结果|an analysis of，名词|The analysis reveals a clear change in spending.|分析显示支出发生了明显变化。
 analyze|v.|分析|to analyze data，动词原形|Researchers analyze the responses before drawing conclusions.|研究人员先分析回答，再得出结论。
 analytical|adj.|分析的；善于分析的|analytical skills＝分析能力|The course develops analytical skills.|这门课培养分析能力。
+analyst|n.|分析人员；分析师|指人；区别 analysis 分析过程|The analyst questioned the assumptions behind the forecast.|分析师质疑了预测背后的假设。
 
-@ practice-family|family|practice · practical · practically|practice 是实践、练习，也可作动词；practical 强调实际或可行；practically 可表示几乎，也可表示实际上，不能一律译成实践地。
+@ practice-family|family|practice · practical · practically · practitioner · impractical|practice 是实践、练习或惯常做法；practical 是实际、实用或可行的；practically 常表示几乎；practitioner 是从业者，尤指医生或律师；impractical 是不切实际的。不要把词性相近当成意思相同。
 practice|n./v.|实践；练习；进行练习|put into practice＝付诸实践|Regular practice improves reading speed.|经常练习能提高阅读速度。
 practical|adj.|实际的；可行的；实用的|a practical solution＝可行方案|The team proposed a practical solution.|团队提出了一个可行方案。
 practically|adv.|几乎；实际上|practically impossible＝几乎不可能|The task is practically impossible without reliable data.|没有可靠数据，这项任务几乎不可能完成。
+practitioner|n.|从业者；执业者|a medical practitioner＝执业医师；指人|A practitioner may notice problems that a theory overlooks.|从业者可能发现理论忽略的问题。
+impractical|adj.|不切实际的；不实用的|否定可行性，区别 morally wrong 道德上错误|The plan is attractive but impractical under current conditions.|计划很有吸引力，但在当前条件下不切实际。
 
-@ significance-family|family|significance · significant · significantly|名词说重要性，形容词说重要或显著，副词说明变化达到显著程度。
+@ significance-family|family|significance · significant · significantly · insignificant|significance 是重要性或意义；significant 是重要的、显著的；significantly 是显著地；insignificant 是微小或不重要的。统计上显著与现实中影响很大并不自动相同。
 significance|n.|重要性；意义|the significance of，名词结构|The study highlights the significance of early education.|研究强调早期教育的重要性。
 significant|adj.|重要的；显著的|a significant difference＝显著差异|There was a significant difference between the groups.|两组之间存在显著差异。
 significantly|adv.|显著地；相当大程度地|常修饰 increase、reduce 等动词|The policy can significantly reduce waste.|这项政策可以显著减少浪费。
+insignificant|adj.|微不足道的；不显著的|in- 在这里构成否定|The initial difference appeared insignificant to the observers.|观察者最初认为这种差异微不足道。
 
-@ consequence-family|family|consequence · consequent · consequently|consequence 是后果；consequent 是由此产生的；consequently 表示因此，是副词性衔接语。
+@ consequence-family|family|consequence · consequent · consequently · consequential · inconsequential|consequence 是结果或后果；consequent 是随之发生的；consequently 是因此；consequential 可指影响重大的；inconsequential 指不重要的。看到长词先判断它在说因果关系还是影响大小。
 consequence|n.|后果；结果|a consequence of＝……的后果|Unemployment was one consequence of the crisis.|失业是这场危机的后果之一。
 consequent|adj.|随之发生的；由此产生的|修饰由前事引起的结果|The drought and consequent food shortage affected the region.|干旱及随之而来的粮食短缺影响了该地区。
 consequently|adv.|因此；所以|连接前因与后果，不能当名词|The road was closed; consequently, deliveries were delayed.|道路封闭，因此配送延误了。
+consequential|adj.|影响重大的；作为结果的|本句强调影响重大，而非仅仅时间上随后|The court made a consequential decision about digital privacy.|法院就数字隐私作出了一项影响重大的裁决。
+inconsequential|adj.|不重要的；无关紧要的|重点是不重要，并非没有发生结果|The review ignored several inconsequential errors in punctuation.|审查没有计较几处无关紧要的标点错误。
 
-@ assumption-family|family|assume · assumption · presumably|assume 是假定；assumption 是假定的内容；presumably 表示推测、大概，并不等于 assume 的固定副词形式。
+@ assumption-family|family|assume · assumption · presumably · presume · presumption|assume 是假定，也可表示承担；assumption 是假设或假定；presume 常指根据现有理由推测，也可指擅自；presumption 是推定或擅自；presumably 是想必、大概。后面三词组成 presume 词族，不能说 presumably 是 assume 的规则副词。
 assume|v.|假定；认为；承担|assume that＝假定；assume responsibility＝承担责任|We cannot assume that every student has internet access.|不能假定每名学生都能上网。
 assumption|n.|假设；假定|make an assumption＝作出假设|The argument rests on an untested assumption.|这个论证依赖一个未经检验的假设。
 presumably|adv.|大概；想必；据推测|表达说话人的推测程度|The missing pages were presumably removed by mistake.|缺失的几页大概被误删了。
+presume|v.|推测；假定；擅自|presume that＝推测；presume to do 可含擅自意味|We should not presume that silence means agreement.|我们不应想当然地认为沉默意味着同意。
+presumption|n.|推定；假定；擅自|the presumption of innocence＝无罪推定|The legal system rests on a presumption of innocence.|这一法律制度以无罪推定为基础。
 
-@ diversity-family|family|diverse · diversity · diversify|diverse 描写多种多样；diversity 是多样性；diversify 是使之多样化。
+@ diversity-family|family|diverse · diversity · diversify · diversification|diverse 形容种类或背景多样；diversity 是多样性；diversify 是使多样化这一动作；diversification 是多样化过程或策略。后两词在经营和风险分散语境中很常见。
 diverse|adj.|多种多样的|修饰背景、人群、观点等|The sample includes people from diverse backgrounds.|样本包含不同背景的人。
 diversity|n.|多样性|the diversity of＝……的多样性|The city values the diversity of its communities.|这座城市重视各社区的多样性。
 diversify|v.|使多样化；开展多种经营|-ify 常见于表示使成某种状态的动词|Farmers need to diversify their sources of income.|农民需要使收入来源多样化。
+diversification|n.|多样化；多种经营|diversification of income＝收入来源多样化|Diversification can reduce dependence on a single market.|多样化经营可以降低对单一市场的依赖。
 
-@ creation-family|family|create · creative · creativity|create 是创造这一动作；creative 形容有创造力；creativity 是创造力这一抽象概念。
+@ creation-family|family|create · creative · creativity · creation|create 是创造这一动作；creation 是创造行为或创造物；creative 是有创造力的；creativity 是创造力。用词先分动作、产物、性质和能力。
 create|v.|创造；创作|create opportunities＝创造机会|The project aims to create new opportunities.|这个项目旨在创造新机会。
 creative|adj.|有创造力的；创造性的|creative thinking＝创造性思维|The job requires creative thinking.|这项工作需要创造性思维。
 creativity|n.|创造力|不可直接替代 creative 修饰 thinking|The workshop encourages creativity.|这场工作坊鼓励创造力。
+creation|n.|创造；创作物|job creation＝创造就业；本句取创造行为|The policy encourages the creation of small businesses.|该政策鼓励创办小企业。
 
-@ productivity-family|family|produce · productive · productivity|produce 作动词表示生产、产生；productive 形容有产出的；productivity 指单位投入带来的产出效率。
+@ productivity-family|family|produce · productive · productivity · product · production · producer|produce 是生产或产生；product 是产品或产物；production 是生产过程或产量；producer 是生产者；productive 是富有成效的、多产的；productivity 是单位投入对应的产出效率。
 produce|v.|生产；产生|本组考动词义；produce 另可作农产品这个名词|The factory can produce recycled paper.|这家工厂能够生产再生纸。
 productive|adj.|富有成效的；多产的|a productive discussion＝富有成效的讨论|The meeting was short but productive.|会议虽短，却富有成效。
 productivity|n.|生产率；工作效率|强调产出与投入的关系|Better equipment can improve productivity.|更好的设备可以提高生产率。
+product|n.|产品；产物|a product of＝……的产物|The final product reflects years of research.|最终产品凝结了多年的研究成果。
+production|n.|生产；制作；产量|production costs＝生产成本|Automation has changed the organization of production.|自动化改变了生产组织方式。
+producer|n.|生产者；制片人|区别 consumer 消费者；本句取生产者|A small producer may struggle to reach distant markets.|小型生产者可能难以进入远方市场。
 
-@ competition-family|family|compete · competition · competitive|compete 是竞争；competition 是竞争或比赛；competitive 可指竞争性的，也可指有竞争力的。
+@ competition-family|family|compete · competition · competitive · competitor · competitiveness|compete 是竞争；competition 是竞争或比赛；competitor 是竞争者；competitive 可表示竞争激烈的或有竞争力的；competitiveness 是竞争力。competent 虽然字形近，却表示能胜任的。
 compete|v.|竞争；参加比赛|compete with / for|Small firms compete for a limited market.|小企业争夺有限的市场。
 competition|n.|竞争；比赛|名词，不能直接作谓语动词|Competition can encourage innovation.|竞争能够促进创新。
 competitive|adj.|有竞争力的；竞争激烈的|a competitive price＝有竞争力的价格|The company offers a competitive salary.|公司提供有竞争力的薪酬。
+competitor|n.|竞争者；参赛者|指参与竞争的主体|The new competitor offered a cheaper service.|新的竞争者提供了更便宜的服务。
+competitiveness|n.|竞争力；好胜心|本句侧重市场竞争力|Education can strengthen the competitiveness of an economy.|教育可以增强一个经济体的竞争力。
 
-@ perception-family|family|perceive · perception · perceptive|perceive 是感知、认识到；perception 是感知或看法；perceptive 形容人敏锐、有洞察力。
+@ perception-family|family|perceive · perception · perceptive · perceptible · imperceptible|perceive 是感知或看待；perception 是感知或看法；perceptive 形容人敏锐、有洞察力；perceptible 指能够被察觉；imperceptible 指细微到难以察觉。敏锐的观察者与可观察的变化不能混同。
 perceive|v.|感知；察觉；看待|perceive something as＝把……看作|Children may perceive the same event differently.|儿童对同一事件可能有不同认识。
 perception|n.|感知；看法|public perception＝公众看法|Media coverage can influence public perception.|媒体报道能够影响公众看法。
 perceptive|adj.|有洞察力的；敏锐的|不是被感知的意思|The reviewer made a perceptive observation.|评论者提出了敏锐的观察。
+perceptible|adj.|可察觉的；可感知的|修饰能够被发现的变化或差别|There was a perceptible change in public attitudes.|公众态度发生了可以察觉的变化。
+imperceptible|adj.|难以察觉的；极细微的|im- 在这里表示否定|The adjustment was almost imperceptible to ordinary users.|普通用户几乎察觉不到这项调整。
 
-@ access-family|family|access · accessible · accessibility|access 是进入、使用的机会，也可作动词；accessible 是可接近、可使用；accessibility 是可达性或无障碍程度。
+@ access-family|family|access · accessible · accessibility · inaccessible|access 是进入、获取或使用的机会，也可作动词；accessible 是可接近、可使用或易理解的；accessibility 是可达性或无障碍程度；inaccessible 是无法进入、难以获取或难以理解的。
 access|n./v.|进入或使用的机会；访问|access to information＝获取信息的机会|Students need equal access to learning materials.|学生需要平等获取学习资料的机会。
 accessible|adj.|可使用的；易接近的；易理解的|be accessible to＝可供……使用|The archive is accessible to all students.|所有学生都能使用这份档案。
 accessibility|n.|可达性；无障碍程度|名词，说明可使用的程度|The redesign improved the accessibility of the website.|重新设计提高了网站的无障碍程度。
+inaccessible|adj.|难以进入的；难以获得的；难懂的|be inaccessible to＝对……而言无法使用或接近|Much of the research remains inaccessible to the public.|公众仍然难以获取许多研究成果。
 
-@ critic-family|family|critic · critical · criticism|critic 是评论者；criticism 是批评或评论；critical 可表示批判性的、关键的或危急的，须看搭配。
+@ critic-family|family|critic · critical · criticism · criticize · critically|critic 是评论者；criticism 是批评或评论；criticize 是批评这一动作；critical 可指批判性的、关键的或危急的；critically 是批判性地，也可在搭配中表示严重地。criticize 另有英式拼写 criticise。
 critic|n.|评论家；批评者|指人，不是批评这一行为|The critic praised the director's careful use of silence.|评论家赞扬导演对沉默的巧妙运用。
 critical|adj.|批判性的；关键的；危急的|critical thinking＝批判性思维|Reading requires critical thinking.|阅读需要批判性思维。
 criticism|n.|批评；评论|constructive criticism＝建设性批评|The author welcomed constructive criticism.|作者欢迎建设性批评。
+criticize|v.|批评；评论|criticize a proposal＝批评提案；指动作|Researchers should be free to criticize existing explanations.|研究人员应能自由批评现有解释。
+critically|adv.|批判性地；严重地|read critically＝批判性阅读；critically ill＝病情危重|Students learn to examine evidence critically.|学生学习批判性地审视证据。
 
-@ respond-family|family|respond · response · responsible|respond 是回应；response 是回应的内容；responsible 是负责任的，不是 response 加后缀就可译为回应的。
+@ respond-family|family|respond · response · responsible · responsive · responsibility|respond 是回应这一动作；response 是回应或反应；responsive 是反应迅速、积极回应的；responsible 是负责任的；responsibility 是责任。区分对诉求有回应与对事务负责任。
 respond|v.|回应；作出反应|respond to＝回应|The agency must respond to public concerns.|机构必须回应公众关切。
 response|n.|回应；反应|in response to＝作为对……的回应|The response was more positive than expected.|回应比预期更积极。
 responsible|adj.|负责的；有责任的|be responsible for＝对……负责|Each researcher is responsible for checking the data.|每位研究人员负责核查数据。
+responsive|adj.|反应迅速的；积极回应的|responsive to＝对……作出积极回应|Public services should be responsive to changing needs.|公共服务应积极回应不断变化的需求。
+responsibility|n.|责任；职责|take responsibility for＝为……承担责任|The committee accepted responsibility for the delay.|委员会承担了延误的责任。
 
-@ confident-family|family|confidence · confident · confidential|confidence 可指信心、信任；confident 是有信心；confidential 是保密的，不能认成更长的自信。
+@ confident-family|family|confidence · confident · confidential · confidently · confidentiality|confidence 是信心或信任；confident 是有信心的；confidently 是自信地；confidential 是机密的；confidentiality 是保密性。confidential 这一支不能按照自信来翻译。
 confidence|n.|信心；信任|have confidence in＝信任|Public confidence in the service has improved.|公众对这项服务的信任有所提升。
 confident|adj.|有信心的；确信的|be confident that|The team is confident that the plan will work.|团队确信这个计划会奏效。
 confidential|adj.|保密的；机密的|confidential information＝机密信息|All medical records must remain confidential.|所有病历都必须保密。
+confidently|adv.|自信地；有把握地|副词，修饰表达或行动方式|The speaker confidently defended the proposed reform.|演讲者自信地为所提改革辩护。
+confidentiality|n.|保密性；保密义务|protect confidentiality＝保护信息的保密性|The study guarantees the confidentiality of personal records.|研究保证个人记录保密。
 
 @ current-family|family|current · currently · currency|current 本组指当前的；currently 表示目前；currency 主要指货币，也可指通行、流传，不等于目前这个副词。
 current|adj.|当前的；现行的|current policy＝现行政策|The current policy needs to be reviewed.|现行政策需要重新审查。
 currently|adv.|目前；当前|修饰正在进行的动作或状态|The committee is currently reviewing the proposal.|委员会目前正在审查提案。
 currency|n.|货币；通用、流通|local currency＝当地货币|The local currency lost value last week.|当地货币上周贬值了。
 
-@ success-family|family|succeed · success · successful|succeed 表示成功或接替；success 是成功；successful 表示成功的，不能把名词放到形容词位置。
+@ success-family|family|succeed · success · successful · successfully · successor · succession|succeed 可表示成功，也可表示接替；success 是成功；successful 是成功的；successfully 是成功地；successor 是继任者；succession 是接替或接连。后两词对应接续这一支，不等于成功者和成功。
 succeed|v.|成功；接替|succeed in doing＝成功做成|Few projects succeed without careful planning.|很少有项目能在缺乏周密规划时成功。
 success|n.|成功；成功的人或事|the success of，名词|The success of the policy depends on local support.|政策的成功取决于地方支持。
 successful|adj.|成功的|a successful attempt＝成功的尝试|The campaign was successful in attracting volunteers.|这次活动成功吸引了志愿者。
+successfully|adv.|成功地|副词，说明动作取得预期结果|The team successfully tested the revised model.|团队成功测试了修改后的模型。
+successor|n.|继任者；接替者|successor to＝……的继任者|Her successor continued the program of reform.|她的继任者继续推进改革计划。
+succession|n.|接替；继承；接连发生|in succession＝接连地|Three reports appeared in quick succession.|三份报告接连很快发表。
 
-@ vary-family|family|vary · various · variety|vary 是发生变化；various 是各种各样的；variety 是种类或多样性，常见 a variety of。
+@ vary-family|family|vary · various · variety · variation · variable · invariable|vary 是变化或各不相同；various 是各种各样的；variety 是种类或多样性；variation 是差异、变化或变体；variable 可指可变的或变量；invariable 是始终不变的。
 vary|v.|变化；各不相同|vary from / between / with|Prices vary from one region to another.|各地区的价格不同。
 various|adj.|各种各样的|直接修饰复数名词|The study considers various social factors.|研究考虑了各种社会因素。
 variety|n.|多样性；种类|a variety of＝多种|The course offers a variety of learning activities.|课程提供多种学习活动。
+variation|n.|差异；变化；变体|regional variation＝地区差异|The researchers found substantial variation between schools.|研究人员发现校际差异很大。
+variable|n./adj.|变量；可变的|control a variable＝控制变量；本句取名词|Income was the main variable in the statistical model.|收入是统计模型中的主要变量。
+invariable|adj.|不变的；一贯的|与 variable 可变的形成意义对照|An invariable rule can be unsuitable for changing conditions.|一成不变的规则可能不适合不断变化的条件。
 
-@ relate-family|family|relate · relation · relative|relate 是联系、叙述；relation 是关系；relative 作形容词指相对的或相关的，作名词可指亲属。
+@ relate-family|family|relate · relation · relative · relationship · related · relatively|relate 是联系或叙述；relation 是关系；relationship 是关系或人际关系；related 是有关联的；relative 可表示相对的或亲属；relatively 是相对地。relatively low 表示相比之下较低，而非绝对很低。
 relate|v.|联系；叙述|relate to＝与……有关|The questions relate to everyday spending.|这些问题与日常支出有关。
 relation|n.|关系；联系|the relation between＝……之间的关系|The paper explores the relation between stress and sleep.|论文探讨压力与睡眠之间的关系。
 relative|adj./n.|相对的；亲属|本组句中取相对的，不是关系这个名词|The report compares the relative costs of two options.|报告比较两个方案的相对成本。
+relationship|n.|关系；人际关系|relationship between＝……之间的关系|The study explores the relationship between work and health.|研究探讨工作与健康之间的关系。
+related|adj.|有关联的；有亲属关系的|related to＝与……有关|The two reports address closely related questions.|两份报告讨论密切相关的问题。
+relatively|adv.|相对地；比较而言|relatively low＝相对较低|The procedure is relatively simple for trained staff.|对受过培训的人员来说，该流程相对简单。
 
-@ imply-family|family|imply · implication · implicit|imply 是暗示；implication 是暗示的内容或可能的影响；implicit 是含蓄、未明说的。
+@ imply-family|family|imply · implication · implicit · implicitly · explicit|imply 是暗示；implication 是隐含意思，也可指可能影响；implicit 是未明说但可推知的；implicitly 是含蓄地；explicit 是明确表达的。implicit 与 explicit 是意义对照，不能只看共同结尾。
 imply|v.|暗示；意味着|说话者或证据暗示，读者 infer 推断|The findings do not imply that every policy has failed.|这些发现并不意味着所有政策都失败了。
 implication|n.|含意；可能的影响或后果|the implications of＝……的可能影响|The study examines one implication of longer working hours.|研究考察延长工时的一项潜在影响。
 implicit|adj.|含蓄的；未明说的|implicit agreement＝默示的同意|The proposal contains an implicit assumption about costs.|提案包含一个未明说的成本假设。
+implicitly|adv.|含蓄地；不明说地|副词，强调意义未直接表达；还可表示毫无保留地信任|The policy implicitly favors large firms.|该政策暗中偏向大企业。
+explicit|adj.|明确的；直言的|explicit instructions＝明确的指示|Participants received explicit instructions about data use.|参与者收到了关于数据使用的明确说明。
 
-@ distinguish-family|family|distinguish · distinct · distinctive|distinguish 是区分；distinct 强调不同、清楚；distinctive 强调有辨识度的独特特征。
+@ distinguish-family|family|distinguish · distinct · distinctive · distinction · distinctly · distinguished|distinguish 是区分、辨别；distinct 表示明显不同或清楚的；distinctive 表示具有辨识度的；distinction 是差别或区分；distinctly 是清楚地、明显地；distinguished 是杰出的。distinguished 作为形容词不等于彼此不同的。
 distinguish|v.|区分；辨别|distinguish A from B|Readers must distinguish evidence from opinion.|读者必须区分证据与观点。
 distinct|adj.|不同的；清楚的|two distinct categories＝两个不同类别|The survey identifies two distinct patterns.|调查发现两种不同模式。
 distinctive|adj.|独特的；有辨识度的|distinctive feature＝有辨识度的特征|The building has a distinctive curved roof.|这座建筑有一个独特的弧形屋顶。
+distinction|n.|区别；区分；卓越|make a distinction between＝区分|The argument depends on a distinction between facts and values.|这一论证有赖于区分事实与价值。
+distinctly|adv.|清楚地；明显地|修饰感知或差异程度|I distinctly remember the reason for that decision.|我清楚地记得作出那个决定的原因。
+distinguished|adj.|杰出的；卓越的|a distinguished scholar＝杰出学者|A distinguished scholar reviewed the manuscript.|一位杰出学者审阅了手稿。
 
-@ objective-family|family|object · objective · objection|object 可作物体、对象，也可作反对这个动词；objective 可指目标或客观的；objection 是反对意见。不是同一词性的三个长度版本。
+@ objective-family|family|object · objective · objection · objectivity · objector|object 可作物体、对象，也可作反对这一动词；objective 可指目标或客观的；objection 是反对意见；objectivity 是客观性；objector 是提出反对的人。反对与客观是同形词族中的不同意义分支。
 object|n./v.|物体、对象；反对|作反对讲时常接 to，重音也与常见名词读法不同|Some residents object to the proposed road.|一些居民反对拟建的道路。
 objective|n./adj.|目标；客观的|本句取名词目标|The main objective is to reduce traffic near schools.|主要目标是减少学校附近的交通流量。
 objection|n.|反对；异议|raise an objection＝提出异议|The committee raised an objection to the cost.|委员会对费用提出异议。
+objectivity|n.|客观性|evaluate objectivity＝评价客观程度|Independent review can improve the objectivity of an assessment.|独立审查可以提高评估的客观性。
+objector|n.|反对者；提出异议的人|区别 objection 反对意见；指人|Each objector was invited to explain the concern in writing.|每名反对者都受邀以书面形式说明担忧。
 
-@ consider-family|family|considerable · considerate · consideration|considerable 是数量或程度大；considerate 是替别人着想；consideration 是考虑，也可指体谅。
+@ consider-family|family|considerable · considerate · consideration · consider · considerably|consider 是考虑或认为；consideration 是考虑或体谅；considerable 是数量或程度相当大的；considerably 是相当大程度地；considerate 是体谅别人的。considerable 强调大小，considerate 强调待人态度。
 considerable|adj.|相当大的；可观的|修饰数量、影响、努力等|The project requires considerable effort.|这个项目需要相当大的努力。
 considerate|adj.|体贴的；考虑周到的|常形容人的行为|It was considerate of her to warn us in advance.|她提前提醒我们，很体贴。
 consideration|n.|考虑；体谅|take into consideration＝考虑到|Cost is one important consideration.|费用是一个重要的考虑因素。
+consider|v.|考虑；认为|consider doing＝考虑做；consider A B＝认为 A 是 B|The committee will consider the long-term costs.|委员会将考虑长期成本。
+considerably|adv.|相当大程度地|修饰差距或变化程度|The revised estimate is considerably lower than the original figure.|修订后的估算远低于原先数字。
 
-@ respect-family|family|respective · respectful · respectable|respective 是各自的；respectful 是表现出尊敬；respectable 是值得尊敬或体面的。中间字母很像，侧重点不同。
+@ respect-family|family|respective · respectful · respectable · respect · respectively|respect 是尊重或方面；respective 是各自的；respectively 表示分别地，按前后顺序对应；respectful 是表现出尊敬的；respectable 是值得尊敬或体面的。respective 与 respectively 侧重分属关系，不含尊敬义。
 respective|adj.|各自的；分别的|their respective roles＝他们各自的职责|The teams returned to their respective offices.|各团队回到各自办公室。
 respectful|adj.|恭敬的；尊重他人的|表示主动给予尊重的态度|The interviewer was respectful toward every participant.|采访者尊重每一位参与者。
 respectable|adj.|值得尊敬的；体面的|表示对象受到或值得尊重|She built a respectable career in public service.|她在公共服务领域建立了体面的职业生涯。
+respect|n./v.|尊重；方面；尊重某人|in this respect＝在这一方面；本句取尊重|Mutual respect makes difficult discussions more productive.|相互尊重使艰难的讨论更有成效。
+respectively|adv.|分别地；各自地|按前文列举顺序一一对应|The two groups contained twenty and thirty participants, respectively.|两组分别包含二十名和三十名参与者。
 
-@ comprehend-family|family|comprehensive · comprehensible · comprehension|comprehensive 侧重覆盖全面；comprehensible 侧重能够理解；comprehension 是理解力或理解。
+@ comprehend-family|family|comprehensive · comprehensible · comprehension · comprehend · incomprehensible|comprehend 是理解这一动作；comprehension 是理解或理解力；comprehensible 是能够被理解的；incomprehensible 是难以理解的；comprehensive 则强调覆盖全面。全面与易懂是不同维度。
 comprehensive|adj.|全面的；综合性的|a comprehensive review＝全面评审|The report offers a comprehensive review of the evidence.|报告对证据进行了全面评审。
 comprehensible|adj.|可理解的；易懂的|内容能否被读者理解|The guide should be comprehensible to new users.|指南应让新用户能够理解。
 comprehension|n.|理解；理解力|reading comprehension＝阅读理解|The test measures reading comprehension.|测验衡量阅读理解能力。
+comprehend|v.|理解；领会|动词，后接理解的对象|Readers need context to comprehend the argument fully.|读者需要背景信息才能充分理解论证。
+incomprehensible|adj.|难以理解的；费解的|否定可理解性，不等于不全面|The technical explanation was incomprehensible to most readers.|大多数读者看不懂这段技术解释。
 
-@ convention-family|family|convention · conventional · convenient|convention 是惯例或大会；conventional 是传统、常规的；convenient 是方便的，虽然开头相像却不是前两词的派生形式。
+@ convention-family|family|convention · conventional · convenient · conventionally · convenience|convention 是惯例或大会；conventional 是常规、传统的；conventionally 是按照惯例地；convenient 是方便的；convenience 是便利。convention 与 convenience 形近但不是同一意思，不能机械互换后缀。
 convention|n.|惯例；大会|social convention＝社会惯例|The practice follows a long-established convention.|这种做法遵循一项长期惯例。
 conventional|adj.|传统的；常规的|conventional methods＝常规方法|The study challenges conventional methods of assessment.|研究质疑常规评估方法。
 convenient|adj.|方便的；便利的|be convenient for＝对……方便|Online access is convenient for remote learners.|线上访问方便了远程学习者。
+conventionally|adv.|按照惯例地；以传统方式|副词，说明采用通常的做法|The results are conventionally reported as percentages.|结果通常按惯例以百分比报告。
+convenience|n.|方便；便利|for convenience＝为了方便|The documents are grouped by date for convenience.|为方便起见，文件按日期分组。
 
-@ politics-family|family|politics · political · politician|politics 是政治活动或政治学；political 是政治方面的；politician 是从事政治的人。
+@ politics-family|family|politics · political · politician · politically|politics 是政治活动或政治学；political 是政治方面的；politician 是政治人物；politically 是在政治上。politics 虽以 -s 结尾，作为学科名称时通常按单数处理。
 politics|n.|政治；政治活动|末尾有 s 但常作学科或领域名词|Local politics can affect transport planning.|地方政治会影响交通规划。
 political|adj.|政治的|political debate＝政治辩论|The proposal sparked a political debate.|提案引发了一场政治辩论。
 politician|n.|政治家；政界人士|指人，不是政治这个领域|The politician answered questions about public spending.|这位政界人士回答了有关公共支出的问题。
+politically|adv.|在政治上；从政治角度看|修饰政治可行性、动机或后果|The proposal was economically sensible but politically unpopular.|提案在经济上合理，却在政治上不受欢迎。
 
-@ history-family|family|historic · historical · historically|historic 强调历史性的重要意义；historical 侧重与历史有关；historically 是副词历史上。实际用法存在重叠，按本句意图区分。
+@ history-family|family|historic · historical · historically · history · historian|history 是历史；historic 强调具有重大历史意义；historical 表示与历史有关；historically 是在历史上；historian 是历史学家。historic 和 historical 有时用法重叠，按句子的重点区分。
 historic|adj.|有历史意义的；历史性的|强调重要性，不是所有旧事物都如此|The agreement was a historic achievement.|这项协议是一项历史性成就。
 historical|adj.|历史的；与历史研究有关的|historical records＝史料|The historian examined historical records.|历史学家查阅史料。
 historically|adv.|历史上；从历史角度看|可修饰整句作时间背景|The area has historically relied on fishing.|这个地区历史上依靠渔业。
+history|n.|历史；历史记录|the history of＝……的历史|The archive records the history of public education.|档案记录了公共教育的历史。
+historian|n.|历史学家；历史研究者|指研究历史的人|The historian compared accounts from opposing sides.|历史学家对比了双方的记述。
 
 @ effect-family|meaning|affect · effect · effective|常见用法中 affect 是影响这一动作；effect 是影响或效果；effective 是有效的。effect 也可作动词实现，affect 也有专门名词义，不能把常见词性当成绝对规则。
 affect|v.|影响|affect the result＝影响结果|Lack of sleep can affect memory.|睡眠不足会影响记忆。
@@ -154,20 +209,25 @@ efficient|adj.|效率高的；节省资源的|强调少耗时、少浪费|The ne
 effective|adj.|有效的；产生预期结果的|强调是否起作用|The campaign was effective in raising awareness.|活动有效提高了公众意识。
 efficiently|adv.|高效地；少浪费地|副词，修饰动作完成的方式|The team handled the requests efficiently.|团队高效处理了这些请求。
 
-@ adapt-group|shape|adapt · adopt · adept|adapt 是调整以适应；adopt 是采纳或收养；adept 是熟练的。盯住中间元音和词性，不要只认 ad- 开头。
+@ adapt-group|shape|adapt · adopt · adept · apt|adapt 是调整以适应；adopt 是采纳、收养；adept 是熟练的；apt 是有倾向、恰当的。adapt/adopt 看中间元音，adept/apt 看形容词搭配。
 adapt|v.|适应；改编；调整|adapt to＝适应|Workers must adapt to new technology.|劳动者必须适应新技术。
 adopt|v.|采用；采纳；收养|adopt a policy＝采纳政策|The council decided to adopt the proposal.|议会决定采纳提案。
 adept|adj.|熟练的；擅长的|be adept at＝擅长|She is adept at explaining difficult ideas.|她善于解释复杂观点。
+apt|adj.|易于……的；恰当的；聪明的|be apt to do＝容易做某事|Small samples are apt to produce unstable estimates.|小样本容易产生不稳定的估计。
 
-@ attitude-group|shape|attitude · altitude · aptitude|attitude 是态度；altitude 是海拔或高度；aptitude 是天资、潜能。
+@ attitude-group|shape|attitude · altitude · aptitude · latitude · longitude|attitude 是态度；altitude 是海拔；aptitude 是天资；latitude 是纬度，也指自由裁量空间；longitude 是经度。相似结尾不能替代对中间字母和语境的核对。
 attitude|n.|态度；看法|attitude toward＝对……的态度|The survey measures public attitude toward recycling.|调查询问公众对回收利用的态度。
 altitude|n.|海拔；高度|high altitude＝高海拔|The village lies at an altitude of two thousand meters.|村庄位于海拔两千米处。
 aptitude|n.|天资；才能倾向|aptitude for＝某方面天分|The test measures aptitude for learning languages.|测试衡量语言学习潜能。
+latitude|n.|纬度；自由裁量空间|latitude and longitude＝纬度与经度|The map shows each station at its correct latitude.|地图标出了每个站点的准确纬度。
+longitude|n.|经度|东经、西经谈 longitude|The ship recorded its longitude using satellite signals.|船舶利用卫星信号记录其经度。
 
-@ access-assess|shape|access · assess · excess|access 是进入或使用；assess 是评估；excess 是过量。注意中间 cc/ss 与开头 a/e。
+@ access-assess|shape|access · assess · excess · exceed · accessible|access 是进入或使用；assess 是评估；excess 是过量；exceed 是超过；accessible 是可使用的。cc/ss 与 a/e 要看清，动词和名词也不能混用。
 access|n./v.|访问；进入、使用的机会|access a database＝访问数据库|Researchers can access the database online.|研究人员可以在线访问数据库。
 assess|v.|评估；估算|assess a risk＝评估风险|Experts will assess the environmental risk.|专家将评估环境风险。
 excess|n./adj.|过量；过多的|in excess of＝超过|The body stores excess energy as fat.|身体将过多的能量储存为脂肪。
+exceed|v.|超过；超出|exceed the limit＝超过限额|Total spending must not exceed the approved budget.|总支出不得超过批准的预算。
+accessible|adj.|可接近的；可使用的；易理解的|be accessible to＝可供……使用|The database is accessible to registered researchers.|注册研究人员可以使用该数据库。
 
 @ principal-group|sound|principal · principle|两个词常见美式发音相同。principal 常指主要的或校长；principle 指原则，必须依靠意义与语境区分。
 principal|adj./n.|主要的；校长|the principal reason＝主要原因|The principal reason for the delay was a lack of funding.|延误的主要原因是缺少资金。
@@ -181,19 +241,25 @@ compliment|n./v.|赞美；称赞|pay someone a compliment＝称赞某人|He paid
 stationary|adj.|静止的；不移动的|形容状态|The vehicle remained stationary during the test.|测试期间车辆保持静止。
 stationery|n.|文具；信纸|不可数集合名词，指物品|The office ordered paper and other stationery.|办公室订购了纸张及其他文具。
 
-@ conscience-group|shape|conscious · conscience · conscientious|conscious 是有意识的；conscience 是良心；conscientious 是尽责认真的，三个词不能只看相同的开头。
+@ conscience-group|shape|conscious · conscience · conscientious · unconscious · subconscious|conscious 是有意识的；conscience 是良心；conscientious 是尽责认真的；unconscious 是失去意识的或无意识的；subconscious 是潜意识的。先分词性，再分意识、良心与尽责。
 conscious|adj.|有意识的；意识到的|be conscious of＝意识到|Consumers are increasingly conscious of food safety.|消费者越来越重视食品安全。
 conscience|n.|良心；道德心|a clear conscience＝问心无愧|His conscience would not let him ignore the error.|良心使他不能忽视这个错误。
 conscientious|adj.|认真负责的；尽责的|形容做事认真、有责任心|A conscientious editor checks every reference.|尽责的编辑会核查每一条参考文献。
+unconscious|adj.|失去意识的；无意识的|be unconscious＝失去意识|The injured driver was unconscious when help arrived.|救援到达时，受伤司机已失去意识。
+subconscious|adj./n.|潜意识的；潜意识|subconscious fear＝潜意识中的恐惧|A subconscious fear of failure can affect decisions.|潜意识中对失败的恐惧会影响决策。
 
-@ sensible-group|shape|sensible · sensitive · sensory|sensible 常指明智、合理；sensitive 指敏感、体贴或需谨慎处理；sensory 指感觉器官方面的。
+@ sensible-group|shape|sensible · sensitive · sensory · sensational · sentimental|sensible 指明智合理；sensitive 指敏感、体贴；sensory 指感觉器官方面的；sensational 指轰动的，也可指极好的；sentimental 指感情用事或多愁善感。不是都表示感觉敏锐。
 sensible|adj.|明智的；合理的|a sensible decision＝明智决定|Saving part of the budget was a sensible decision.|保留部分预算是明智的决定。
 sensitive|adj.|敏感的；体贴的|sensitive to＝对……敏感|The equipment is sensitive to changes in temperature.|设备对温度变化敏感。
 sensory|adj.|感觉器官的；感官的|sensory information＝感官信息|The brain combines sensory information from different sources.|大脑整合不同来源的感官信息。
+sensational|adj.|轰动的；耸人听闻的；极好的|sensational headlines＝耸人听闻的标题|The article relies on sensational headlines rather than solid evidence.|这篇文章依赖耸人听闻的标题而非可靠证据。
+sentimental|adj.|感情用事的；多愁善感的|sentimental value＝情感价值|The old photograph has sentimental value for the family.|这张老照片对家人具有情感价值。
 
-@ economic-ecological|shape|economic · ecological|economic 讲经济；ecological 讲生态。两者常见于环境类阅读，但字形相似不能互换。
+@ economic-ecological|shape|economic · ecological · economical · ecology|economic 是经济方面的；ecological 是生态的；economical 是节约、实惠的；ecology 是生态学。economic growth 与 economical use 不能因为中文都含经济就混用。
 economic|adj.|经济的|economic development＝经济发展|The proposal considers economic benefits.|提案考虑了经济收益。
 ecological|adj.|生态的；生态学的|ecological balance＝生态平衡|Wetlands play an important ecological role.|湿地发挥重要的生态作用。
+economical|adj.|节约的；经济实惠的|economical use of resources＝节约使用资源|The design makes economical use of limited space.|这项设计节约利用了有限空间。
+ecology|n.|生态学；生态关系|名词，不直接替代 ecological 修饰形容词位置|The course introduces the ecology of coastal wetlands.|这门课程介绍滨海湿地的生态关系。
 
 @ causal-group|shape|causal · casual|causal 是因果的；casual 是随意、非正式或偶然的。注意 u 和 s 的先后顺序。
 causal|adj.|因果的|a causal relationship＝因果关系|The study does not establish a causal relationship.|研究并未确立因果关系。
@@ -215,19 +281,25 @@ counsel|n./v.|建议；法律顾问；劝告|seek counsel＝寻求建议|The fam
 weather|n./v.|天气；经受住|本句取名词天气|The weather may affect the final schedule.|天气可能影响最终日程。
 whether|conj.|是否|whether or not＝是否|The researchers asked whether the treatment was safe.|研究人员询问疗法是否安全。
 
-@ personal-group|shape|personal · personnel · personality|personal 是个人的；personnel 是人员；personality 是人格、个性。personnel 不是 personal 的复数。
+@ personal-group|shape|personal · personnel · personality · person · impersonal|personal 是个人、私人的；personnel 是全体人员；personality 是个性；person 是一个人；impersonal 是不带个人感情的。personnel 不是 personal 的复数，复数的人通常是 people。
 personal|adj.|个人的；私人的|personal information＝个人信息|The survey does not collect personal information.|调查不收集个人信息。
 personnel|n.|人员；全体职员|指一群员工，常用复数意义|All personnel must complete safety training.|全体员工都必须完成安全培训。
 personality|n.|个性；人格|personality traits＝人格特征|The study examines differences in personality.|研究考察个性差异。
+person|n.|人；个人|in person＝亲自|Each person may submit only one application.|每人只能提交一份申请。
+impersonal|adj.|不带个人感情的；冷淡的|an impersonal tone＝不带个人感情的语气|The report uses an impersonal tone throughout.|整份报告使用不带个人感情的语气。
 
-@ precede-group|shape|precede · proceed · precedent|precede 是先于；proceed 是继续或着手；precedent 是先例。前两个动词常见搭配不同。
+@ precede-group|shape|precede · proceed · precedent · procedure · process|precede 是先于；proceed 是继续进行；precedent 是先例；procedure 是步骤或程序；process 是过程、加工处理。proceed with 是继续某事，follow a procedure 是遵循步骤。
 precede|v.|先于；在……之前|A precedes B＝A在B之前|A brief introduction will precede the main discussion.|简短介绍将在主要讨论之前进行。
 proceed|v.|继续进行；着手|proceed with / to|The team can proceed with the experiment.|团队可以继续进行实验。
 precedent|n.|先例|set a precedent＝开创先例|The decision may set a precedent for future cases.|这一决定可能为今后的案件开创先例。
+procedure|n.|程序；步骤；手续|follow a procedure＝按程序办事|Every technician must follow the same safety procedure.|每位技术人员都必须遵循同样的安全程序。
+process|n./v.|过程；加工处理|本句取处理数据的动词义|The server can process thousands of requests per second.|服务器每秒可以处理数千条请求。
 
-@ perspective-group|shape|perspective · prospective|perspective 是视角、看法；prospective 表示潜在、可能成为的，常修饰学生或顾客。
+@ perspective-group|shape|perspective · prospective · retrospective · prospect|perspective 是视角；prospective 是潜在、未来可能的；retrospective 是回顾过去的；prospect 是前景、可能性。prospective students 是潜在学生，retrospective study 是回顾性研究。
 perspective|n.|视角；观点|from a different perspective|The issue looks different from a historical perspective.|从历史视角看，这个问题有所不同。
 prospective|adj.|潜在的；未来可能的|prospective students＝有意入学的学生|The university invited prospective students to visit.|大学邀请有意入学的学生参观。
+retrospective|adj./n.|回顾性的；回顾展|retrospective study＝回顾性研究|The researchers conducted a retrospective study of medical records.|研究人员对病历开展了回顾性研究。
+prospect|n./v.|前景；可能性；勘探|the prospect of＝……的前景|The prospect of unemployment worries many graduates.|失业的可能性令许多毕业生担忧。
 
 @ explicit-group|meaning|explicit · implicit|explicit 是明确说出的；implicit 是隐含、未明说的。不能只按相同的 -plicit 部分回忆一个笼统意思。
 explicit|adj.|明确的；明说的|explicit instructions＝明确指示|The form requires explicit consent.|表格要求明确同意。
@@ -250,19 +322,25 @@ illicit|adj.|非法的；不正当的|illicit trade＝非法贸易|The report in
 allusion|n.|典故；暗指|an allusion to＝对……的暗指|The essay contains an allusion to Greek mythology.|文章包含一处希腊神话典故。
 illusion|n.|错觉；幻想|an optical illusion＝视觉错觉|The mirror creates an illusion of extra space.|镜子营造出空间更大的错觉。
 
-@ moral-group|shape|moral · morale|moral 讲道德或寓意；morale 讲士气、精神状态，词尾 e 也改变常见读音和重音。
+@ moral-group|shape|moral · morale · immoral · mortal|moral 是道德的或寓意；morale 是士气；immoral 是不道德的；mortal 是终有一死的，也可指致命的。morale 多了 e，mortal 多了 t，意义均发生变化。
 moral|adj./n.|道德的；寓意|moral responsibility＝道德责任|The decision raises a moral question.|这个决定提出了一个道德问题。
 morale|n.|士气；精神状态|boost morale＝鼓舞士气|Regular feedback can improve staff morale.|定期反馈可以提升员工士气。
+immoral|adj.|不道德的|unethical 与 immoral 意义相近|The committee regarded the deliberate deception as immoral.|委员会认为蓄意欺骗是不道德的。
+mortal|adj./n.|终有一死的；致命的；凡人|mortal danger＝致命危险|The discovery placed the witness in mortal danger.|这一发现使证人处于致命危险之中。
 
-@ credible-group|shape|credible · creditable · credulous|credible 是可信；creditable 是值得称赞；credulous 是轻信。不是都译成信任。
+@ credible-group|shape|credible · creditable · credulous · incredible · credit|credible 是可信；creditable 是值得称赞；credulous 是轻信；incredible 是难以置信或极好的；credit 可指信用、赞誉、学分。可信的内容、值得称赞的表现、轻信的人要分开。
 credible|adj.|可信的；可靠的|credible evidence＝可信证据|The claim needs support from a credible source.|这一说法需要可信来源的支持。
 creditable|adj.|值得称赞的|a creditable achievement＝值得称赞的成就|Finishing the study on time was a creditable achievement.|按时完成研究是一项值得称赞的成就。
 credulous|adj.|轻信的；易受骗的|描述容易相信他人说法的人|The advertisement targets credulous buyers.|广告针对容易轻信的买家。
+incredible|adj.|难以置信的；极好的|an incredible claim＝令人难以置信的说法|The witness made an incredible claim about the missing documents.|证人对失踪文件提出了令人难以置信的说法。
+credit|n./v.|信用；赞誉；学分；把……归功于|give credit to＝把功劳归于|The lead author gave credit to the entire research team.|第一作者把功劳归于整个研究团队。
 
-@ literal-group|shape|literal · literary · literate|literal 指字面的；literary 指文学的；literate 指识字或具备某领域素养。
+@ literal-group|shape|literal · literary · literate · literacy · literature|literal 是字面的；literary 是文学的；literate 是识字的；literacy 是读写能力或素养；literature 是文学或研究文献。形容词修饰性质，名词表示能力或作品。
 literal|adj.|字面上的；逐字的|literal meaning＝字面意义|The phrase should not be read in its literal sense.|这个短语不应按字面意义理解。
 literary|adj.|文学的|literary criticism＝文学批评|The journal publishes literary criticism.|期刊发表文学评论。
 literate|adj.|识字的；有读写能力的|digitally literate＝具备数字素养的|The program helps adults become literate.|这个项目帮助成年人掌握读写能力。
+literacy|n.|读写能力；某领域素养|digital literacy＝数字素养|The program aims to improve financial literacy among teenagers.|这项计划旨在提高青少年的金融素养。
+literature|n.|文学；文献|review the literature＝回顾已有文献|The introduction reviews the literature on urban poverty.|引言回顾了关于城市贫困的文献。
 
 @ industrial-group|shape|industrial · industrious|industrial 与工业有关；industrious 形容人勤奋，末尾 -al 与 -ous 不同。
 industrial|adj.|工业的；产业的|industrial development＝工业发展|The region experienced rapid industrial development.|该地区经历了快速工业发展。
@@ -284,9 +362,11 @@ discreet|adj.|谨慎的；言行得体的|注意保密和分寸|The adviser was 
 alternate|v./adj.|交替；轮流；间隔的|alternate between＝在……之间交替|The sessions alternate between discussion and practice.|课程交替安排讨论与练习。
 alternative|n./adj.|替代选择；可替代的|an alternative to＝……的替代方案|Cycling offers an alternative to driving.|骑车提供了驾车之外的选择。
 
-@ eligible-group|shape|eligible · illegible|eligible 是符合资格的；illegible 是字迹难以辨认的。相似读音和字形不能取代词义核对。
+@ eligible-group|shape|eligible · illegible · legible · ineligible|eligible 是符合资格；illegible 是字迹无法辨认；legible 是清晰可辨；ineligible 是不符合资格。先分 eligibility 的资格线与 legibility 的可读线，不能只按 il-/in- 回忆。
 eligible|adj.|符合资格的；有权获得的|be eligible for＝符合……资格|New students are eligible for a travel discount.|新生有资格享受交通折扣。
 illegible|adj.|字迹模糊难认的|il- 加 legible（清晰可辨的）构成否定，与资格无关|The signature was almost illegible.|签名字迹几乎无法辨认。
+legible|adj.|清晰可辨的；易读的|legible handwriting＝清晰的字迹|Please write your address in a legible form.|请把地址写得清楚易认。
+ineligible|adj.|不符合资格的|be ineligible for＝不符合……资格|Applicants without the required certificate are ineligible for the grant.|缺少规定证书的申请者无资格获得资助。
 
 @ latter-group|shape|later · latter · latest|later 是更晚或后来；latter 是两者中的后者或后半部分的；latest 是最新、最晚的。
 later|adv./adj.|后来；更晚的|later in the year＝当年晚些时候|The results will be published later.|结果将稍后公布。
@@ -324,40 +404,49 @@ wonder|v./n.|想知道；惊奇|wonder whether＝想知道是否|Researchers won
 assure|v.|向某人保证；使放心|后接人，再接保证的内容|I can assure you that the records are accurate.|我可以向你保证记录准确。
 ashore|adv.|到岸上；在岸上|come ashore＝上岸|The passengers came ashore after sunrise.|乘客在日出后上岸。
 
-@ resource-group|shape|resource · recourse · source|source 是来源；resource 是可利用的资源；recourse 是求助、依靠的办法，常见 have recourse to。
+@ resource-group|shape|resource · recourse · source · resort|resource 是可利用的资源；recourse 是求助或依靠手段；source 是来源；resort 作动词指诉诸、求助，作名词可指度假胜地。have recourse to 与 resort to 意义相近，但词性和句式不同。
 resource|n.|资源；可利用的手段|learning resource＝学习资源|The library is a valuable resource for students.|图书馆是学生的重要资源。
 recourse|n.|求助；依靠的手段|have recourse to＝求助于|Small businesses may have recourse to mediation.|小企业可以求助于调解。
 source|n.|来源；源头|the source of＝……的来源|The report does not identify the source of the data.|报告没有指出数据来源。
+resort|n./v.|度假胜地；诉诸；求助于|resort to doing＝不得已采取某种办法|The company may resort to borrowing if sales remain weak.|如果销售持续低迷，公司可能不得不借款。
 
 @ preserve-group|shape|preserve · conserve · reserve|preserve 强调保存原状、防止受损；conserve 强调节约和保护资源；reserve 强调预留、保留。语义可能重叠，按意图区分。
 preserve|v.|保存；维护原状|preserve historic buildings＝保护历史建筑|The project aims to preserve historic buildings.|项目旨在保护历史建筑。
 conserve|v.|节约；保护资源|conserve energy＝节约能源|Households can conserve energy by improving insulation.|家庭可以通过改善保温来节约能源。
 reserve|v./n.|预留；储备|reserve a seat＝预订座位|Please reserve a seat before arriving.|请在到达前预订座位。
 
-@ retain-group|shape|retain · detain · maintain|retain 是保留；detain 是拘留、耽搁；maintain 是维持、维护或主张。
+@ retain-group|shape|retain · detain · maintain · sustain · entertain|retain 是保留；detain 是拘留、耽搁；maintain 是维持、维护、主张；sustain 是支撑、使持续，也可指遭受；entertain 是招待、使娱乐，也可指考虑某想法。注意 -tain 前面的完整拼写和宾语。
 retain|v.|保留；保持住|retain information＝记住信息|Regular review helps learners retain information.|定期复习帮助学习者记住信息。
 detain|v.|拘留；耽搁|police detain a suspect＝警方拘留嫌疑人|The police may detain a suspect for questioning.|警方可以拘留嫌疑人进行问询。
 maintain|v.|维持；维护；主张|maintain standards＝维持标准|The agency works to maintain safety standards.|该机构致力于维持安全标准。
+sustain|v.|支撑；使持续；遭受|sustain growth＝维持增长|The region lacks enough water to sustain its growing population.|该地区缺乏足够的水来供养不断增长的人口。
+entertain|v.|招待；使娱乐；考虑某种想法|entertain a possibility＝考虑一种可能性|The board refused to entertain the possibility of fraud.|董事会拒绝考虑存在欺诈的可能性。
 
-@ attain-group|shape|attain · obtain · contain|attain 强调达到目标或水平；obtain 强调取得；contain 是包含、容纳或控制蔓延。
+@ attain-group|shape|attain · obtain · contain · retain · abstain|attain 强调达到目标或水平；obtain 强调取得；contain 是包含或控制；retain 是保留；abstain 是主动弃权或克制不做，常接 from。不是每个 -tain 词都表示得到。
 attain|v.|达到；实现|attain a goal＝达到目标|The program helps students attain a higher level of fluency.|项目帮助学生达到更高的流利程度。
 obtain|v.|获得；取得|obtain permission＝获得许可|Researchers must obtain permission before collecting samples.|研究人员采样前必须获得许可。
 contain|v.|包含；容纳；控制蔓延|contain information＝包含信息|The document may contain confidential information.|文件可能包含机密信息。
+retain|v.|保留；保持|retain control＝保持控制权|The founders hope to retain control of the company.|创始人希望保持对公司的控制权。
+abstain|v.|弃权；戒除；克制不做|abstain from＝不参与或不做|Several members chose to abstain from voting.|几名成员选择投票时弃权。
 
 @ assign-group|shape|assign · resign · design|assign 是分配；resign 是辞职或放弃；design 是设计。看到 -sign 不能统一回忆成签名。
 assign|v.|分配；指派|assign a task＝分配任务|The teacher will assign each group a topic.|教师将为每组分配一个主题。
 resign|v.|辞职；辞去|resign from＝辞去某职|The director decided to resign from the board.|董事决定辞去董事会职务。
 design|v./n.|设计；方案|design a study＝设计研究|The team will design a study to test the claim.|团队将设计研究来检验这一说法。
 
-@ reflect-group|shape|reflect · deflect · inflect|reflect 是反映、反射或思考；deflect 是使偏转、转移；inflect 是使词发生屈折变化，或改变声调。
+@ reflect-group|shape|reflect · deflect · inflect · reject · respect|reflect 是反映、反射或思考；deflect 是使偏转、转移；inflect 是改变词形或声调；reject 是拒绝；respect 是尊重。末尾 -flect、-ject、-spect 字母不同，不能按相近节奏回忆同一个意思。
 reflect|v.|反映；反射；深思|reflect a change＝反映变化|The figures reflect a change in consumer habits.|数字反映了消费习惯的变化。
 deflect|v.|使偏转；转移|deflect criticism＝转移批评|The statement tried to deflect criticism.|声明试图转移批评。
 inflect|v.|使发生词形变化；改变声调|与词形和语调变化相关|Some languages inflect nouns to show grammatical case.|一些语言改变名词词形来表示语法格。
+reject|v.|拒绝；否决|reject an application＝拒绝申请|The editor may reject a paper that lacks reliable evidence.|编辑可能拒绝一篇缺乏可靠证据的论文。
+respect|v./n.|尊重；方面|respect a decision＝尊重决定|Researchers must respect each participant's privacy.|研究人员必须尊重每位参与者的隐私。
 
-@ confirm-group|shape|confirm · conform · confront|confirm 是确认；conform 是遵守、符合；confront 是面对、直面。中间和末尾差异都影响意义。
+@ confirm-group|shape|confirm · conform · confront · confound · comfort|confirm 是确认；conform 是遵守、符合；confront 是面对；confound 是使困惑，也可指混淆研究结果；comfort 是安慰。conform to 接规范，confront 后可直接接困难。
 confirm|v.|确认；证实|confirm a booking＝确认预订|Please confirm the booking before Friday.|请在星期五前确认预订。
 conform|v.|遵守；符合|conform to＝符合|The equipment must conform to safety standards.|设备必须符合安全标准。
 confront|v.|面对；直面问题|confront a challenge＝直面挑战|The government must confront the housing shortage.|政府必须直面住房短缺。
+confound|v.|使困惑；混淆；干扰研究结果|confound the results＝使结果受到混杂影响|Differences in age may confound the results of the comparison.|年龄差异可能对比较结果产生混杂影响。
+comfort|n./v.|舒适；安慰|comfort a child＝安慰孩子|A familiar voice can comfort a frightened child.|熟悉的声音能够安慰受惊的孩子。
 
 @ confine-group|shape|confine · define · refine|confine 是限制在范围内；define 是定义或界定；refine 是改进或提炼，都是 -fine 结尾但动作不同。
 confine|v.|限制；使局限于|confine ... to＝把……限于|The study will confine its analysis to urban areas.|研究将把分析限于城市地区。
@@ -394,10 +483,12 @@ concern|n./v.|关切；担忧；涉及|a matter of concern＝值得关切的事|
 discern|v.|辨别；察觉|discern a pattern＝辨别模式|Researchers can discern a pattern in the data.|研究人员能够从数据中辨别出模式。
 consensus|n.|共识；一致意见|reach a consensus＝达成共识|The panel reached a consensus on the main issue.|专家组就主要问题达成共识。
 
-@ receive-group|shape|receive · deceive · perceive|receive 是收到；deceive 是欺骗；perceive 是感知。词尾 -ceive 相似，但前部区别至关重要。
+@ receive-group|shape|receive · deceive · perceive · conceive · conceit|receive 是收到；deceive 是欺骗；perceive 是感知、看待；conceive 是构想，也可指怀孕；conceit 是自负。前三个 -ceive 与 conceive 的动作不同，conceit 是名词。
 receive|v.|收到；接收|receive a message＝收到消息|All applicants will receive a written response.|所有申请人都将收到书面回复。
 deceive|v.|欺骗；蒙骗|deceive someone＝欺骗某人|Misleading labels can deceive consumers.|误导性标签可能欺骗消费者。
 perceive|v.|感知；看待|perceive as＝把……看作|Many users perceive the update as an improvement.|很多用户把这次更新看作改进。
+conceive|v.|构想；认为；怀孕|conceive of＝想象、构想|Few planners could conceive of a city without private cars.|很少有规划者能设想一座没有私家车的城市。
+conceit|n.|自负；自大|不可把 conceit 当作 conceive 的动词形式|His conceit made it difficult for him to accept criticism.|他的自负使他难以接受批评。
 
 @ release-group|shape|release · relieve · relief|release 是释放、发布；relieve 是缓解、减轻；relief 是宽慰或缓解这一名词。
 release|v./n.|释放；发布|release a report＝发布报告|The agency will release the report next week.|机构将于下周发布报告。
@@ -419,15 +510,18 @@ restrict|v.|限制；限定|restrict access＝限制访问|The rules restrict ac
 restrain|v.|制止；抑制；约束|restrain someone from doing|The barrier helps restrain the crowd.|障碍物帮助约束人群。
 refrain|v./n.|克制不做；反复出现的句子|refrain from doing＝避免做|Please refrain from recording the interview.|请勿录制访谈。
 
-@ reject-group|shape|reject · inject · project|reject 是拒绝；inject 是注射、注入；project 可指项目，也可作预测、投射这个动词。不要把同样的结尾当成同义。
+@ reject-group|shape|reject · inject · project · subject · object|reject 是拒绝；inject 是注射、注入；project 是项目、投射、预测；subject 是主题、对象，也可指使遭受；object 是物体、对象，也可作反对这一动词。后两个有多种词性，须先看句式。
 reject|v.|拒绝；否决|reject a claim＝驳回主张|The reviewers decided to reject the unsupported claim.|评审者决定驳回缺乏依据的主张。
 inject|v.|注射；注入|inject funds into＝向……注入资金|The government may inject funds into local services.|政府可能向地方服务注入资金。
 project|n./v.|项目；预测；投射|本句取名词项目|The project focuses on improving public transport.|项目重点改善公共交通。
+subject|n./adj./v.|主题；对象；使遭受；受制于的|subject someone to＝使某人遭受|The experiment must not subject volunteers to unnecessary risk.|实验不得使志愿者遭受不必要的风险。
+object|n./v.|物体；对象；反对|object to＝反对；本句是动词|Some residents object to the proposed road extension.|一些居民反对拟议的道路延长工程。
 
-@ persist-family|family|persist · persistent · persistence|persist 是坚持或持续；persistent 是持续的、执着的；persistence 是坚持或持续性。先分词性，再看语境褒贬。
+@ persist-family|family|persist · persistent · persistence · persistently|persist 是坚持或持续；persistent 是持续的、执着的；persistence 是坚持或持续性；persistently 是持续地、执着地。这个词族既可描述值得肯定的坚持，也可描述不良问题长期存在。
 persist|v.|坚持；持续|动作或状态持续存在|The symptoms may persist for several weeks.|症状可能持续数周。
 persistent|adj.|持续的；执着的|persistent demand＝持续需求|The city faces a persistent shortage of housing.|这座城市面临持续的住房短缺。
 persistence|n.|坚持；持续性|名词，不代替 persistent 修饰 shortage|Her persistence helped her finish the study.|她的坚持帮助她完成了研究。
+persistently|adv.|持续地；执着地|副词，可修饰偏高、偏低或反复出现的状态|Prices remained persistently high despite falling demand.|尽管需求下降，价格仍然持续偏高。
 
 @ intense-family|shape|intense · intensive · intensity|intense 强调强烈；intensive 常强调集中、密集投入；intensity 是强度这一名词。
 intense|adj.|强烈的；剧烈的|intense pressure＝巨大压力|The proposal faced intense public scrutiny.|提案受到强烈的公众审视。
@@ -449,10 +543,12 @@ expose|v.|暴露；使接触|expose ... to＝使……接触|The course will exp
 impose|v.|强加；实施|impose a tax＝征税|The council may impose a charge on parking.|议会可能收取停车费。
 oppose|v.|反对；抵制|oppose a plan＝反对计划|Several residents oppose the new road.|几名居民反对新道路。
 
-@ expand-group|shape|expand · expend · expense|expand 是扩大；expend 是耗费；expense 是费用。注意中间元音，以及动词与名词。
+@ expand-group|shape|expand · expend · expense · extend · extent|expand 是扩大；expend 是耗费；expense 是费用；extend 是延长、扩展；extent 是程度、范围。expand 常强调规模增大，extend 常强调长度、时间或覆盖延伸，语义有重叠。
 expand|v.|扩大；扩展|expand a service＝扩大服务|The library plans to expand its online service.|图书馆计划扩展线上服务。
 expend|v.|耗费；花费|expend effort＝付出努力|Teams should not expend time on duplicated work.|团队不应把时间耗费在重复工作上。
 expense|n.|费用；开支|at the expense of＝以……为代价|Travel is the largest expense in the budget.|差旅是预算中最大的一项开支。
+extend|v.|延长；延伸；给予|extend the deadline＝延长截止期限|The committee agreed to extend the deadline by two weeks.|委员会同意将截止期限延长两周。
+extent|n.|程度；范围|to some extent＝在某种程度上|The survey cannot reveal the full extent of hidden unemployment.|这项调查不能揭示隐性失业的全部程度。
 
 @ export-group|shape|export · expert · expect|export 讲出口；expert 讲专家或熟练；expect 讲预期。三个词的中间和结尾都要看清。
 export|v./n.|出口；出口商品|export goods＝出口商品|The firm plans to export medical equipment.|公司计划出口医疗设备。
@@ -517,47 +613,336 @@ piece|n.|一件；一块；一篇|a piece of evidence＝一项证据|The letter 
 aisle|n.|过道；通道|an aisle seat＝靠过道的座位|Please keep the aisle clear.|请保持过道畅通。
 isle|n.|小岛；岛屿|较有文学色彩，常出现在地名中|The boat carried visitors to a small isle.|船把游客送到一座小岛。
 
-@ patient-family|family|patient · patience · patiently|patient 可指病人，也可指耐心的；patience 是耐心；patiently 是耐心地。
+@ patient-family|family|patient · patience · patiently · impatient · impatience|patient 作形容词表示耐心的，作名词表示病人；patience 是耐心；patiently 是耐心地；impatient 是不耐烦或急切的；impatience 是不耐烦或急切。impatient for 可表示急切盼望。
 patient|n./adj.|病人；耐心的|本句取形容词耐心的|The teacher was patient with beginners.|老师对初学者很有耐心。
 patience|n.|耐心；忍耐|have patience＝有耐心|Learning a language requires patience.|学习语言需要耐心。
 patiently|adv.|耐心地|副词，描述动作方式|The nurse patiently explained the procedure.|护士耐心解释了流程。
+impatient|adj.|不耐烦的；急切的|impatient with＝对……不耐烦；impatient for＝急切盼望|The audience grew impatient with the repeated delays.|观众对一再延误越来越不耐烦。
+impatience|n.|不耐烦；急切|名词，描述情绪或态度|Public impatience with slow reform was increasing.|公众对改革缓慢的不耐烦情绪在上升。
 
-@ apply-family|family|apply · application · applicable|apply 是申请、应用；application 是申请或应用；applicable 指适用的，常接 to。
+@ apply-family|family|apply · application · applicable · applicant · applied|apply 是申请、应用或适用；application 是申请或应用；applicant 是申请人；applicable 是适用的；applied 表示应用性的。applied research 是应用研究，不等于申请中的研究。
 apply|v.|申请；应用|apply for＝申请；apply to＝适用于|Students can apply for financial support.|学生可以申请经济资助。
 application|n.|申请；应用|an application form＝申请表|The application must include two references.|申请必须包含两份推荐材料。
 applicable|adj.|适用的；可应用的|applicable to＝适用于|The rule is applicable to all departments.|该规则适用于所有部门。
+applicant|n.|申请人|区别 application 申请材料或申请行为|Each applicant must provide evidence of relevant experience.|每位申请人都必须提供相关经历的证明。
+applied|adj.|应用的；实用性的|applied research＝应用研究|The institute supports applied research in environmental science.|研究所支持环境科学领域的应用研究。
 
-@ refer-family|family|refer · reference · referee|refer 是提及、查阅、转介；reference 是参考或提及；referee 指裁判或推荐人，是指人名词。
+@ refer-family|family|refer · reference · referee · referral|refer 是提到、查阅或转介；reference 是参考、提及或推荐材料；referee 是裁判或推荐人；referral 是转介、推荐这一行为。医疗转诊常用 referral，不能把它认成裁判。
 refer|v.|提到；查阅；转介|refer to＝提到或查阅|Please refer to the original instructions.|请查阅原始说明。
 reference|n.|参考；提及；推荐材料|a reference book＝参考书|The handbook provides a useful reference.|手册提供了有用参考。
 referee|n.|裁判；推荐人|求职、申请场景可指推荐人|The referee stopped the match.|裁判暂停了比赛。
+referral|n.|转介；转诊；推荐|a referral to a specialist＝转诊给专科医生|The clinic arranged a referral to a specialist.|诊所安排了向专科医生的转诊。
 
-@ specify-family|family|specific · specify · specification|specific 是具体、特定的；specify 是明确指出；specification 是详细要求、规格。
+@ specify-family|family|specific · specify · specification · specifically · unspecified|specific 是具体或特定的；specify 是明确规定；specification 是规格或详细要求；specifically 是具体地、专门地；unspecified 是未指明的。specifically 可用于限定范围，不是所有情况都译成特别。
 specific|adj.|具体的；特定的|a specific example＝具体例子|The report gives a specific example.|报告给出了一个具体例子。
 specify|v.|明确说明；具体规定|specify a date＝明确日期|The contract should specify the delivery date.|合同应明确交付日期。
 specification|n.|规格；详细说明或要求|meet a specification＝符合规格|The manufacturer revised the technical specification.|制造商修改了技术规格。
+specifically|adv.|具体地；专门地；明确地|修饰针对的对象或明确说明的内容|The grant is specifically intended for early-career researchers.|这项资助专门面向职业生涯早期的研究人员。
+unspecified|adj.|未指明的；未说明的|un- 表示未达到明确说明的状态|The meeting was postponed for unspecified reasons.|会议因未说明的原因延期。
 
-@ precise-family|family|precise · precisely · precision|precise 是精确的；precisely 是精确地或恰恰；precision 是精度。
+@ precise-family|family|precise · precisely · precision · imprecise|precise 是精确或明确的；precisely 是精确地、恰恰；precision 是精度；imprecise 是不够精确的。含糊的估算并不自动意味着完全错误。
 precise|adj.|精确的；明确的|precise measurements＝精确测量结果|The experiment requires precise measurements.|实验需要精确测量。
 precisely|adv.|精确地；恰恰|修饰时间、动作或强调原因|The device records time precisely.|设备精确记录时间。
 precision|n.|精确；精度|with precision＝精确地|The tool operates with remarkable precision.|工具以惊人的精度运行。
+imprecise|adj.|不精确的；不明确的|与 precise 精确的形成对照|The estimate is useful even though it remains imprecise.|尽管仍不够精确，这个估算依然有用。
 
-@ stable-family|family|stable · stability · stabilize|stable 是稳定的；stability 是稳定性；stabilize 是使稳定或趋于稳定。
+@ stable-family|family|stable · stability · stabilize · unstable · instability|stable 是稳定的；stability 是稳定性；stabilize 是使稳定或稳定下来；unstable 是不稳定的；instability 是不稳定性。否定形容词用 unstable，常见否定名词是 instability。
 stable|adj.|稳定的；稳固的|stable prices＝稳定价格|Prices remained stable during the year.|年内价格保持稳定。
 stability|n.|稳定；稳定性|economic stability＝经济稳定|The policy aims to improve financial stability.|政策旨在提高金融稳定性。
 stabilize|v.|使稳定；稳定下来|动词，常说明变化过程|The treatment helped stabilize the patient's condition.|治疗帮助稳定了患者病情。
+unstable|adj.|不稳定的；不牢固的|常描述系统、市场或状态|An unstable supply of electricity limits local production.|不稳定的电力供应限制了当地生产。
+instability|n.|不稳定；不稳定性|注意不是把 unstable 直接加后缀|Political instability discouraged long-term investment.|政治不稳定抑制了长期投资。
 
-@ society-family|family|society · social · sociable|society 是社会或社团；social 是社会的、社交的；sociable 形容人好交际。不能把所有 social 都理解成性格外向。
+@ society-family|family|society · social · sociable · socially · sociology|society 是社会或社团；social 是社会的或社交的；socially 是在社会层面或社交方面；sociable 是合群的、好交际的；sociology 是社会学。social problem 说社会问题，不是性格不合群。
 society|n.|社会；社团|modern society＝现代社会|The debate reflects changes in society.|辩论反映社会变化。
 social|adj.|社会的；社交的|social problems＝社会问题|The study examines social inequality.|研究考察社会不平等。
 sociable|adj.|好交际的；合群的|描述人的交往倾向|The new student is friendly and sociable.|新生友好而合群。
+socially|adv.|在社会层面；在社交方面|socially acceptable＝社会认可的|Working from home can leave some people socially isolated.|居家工作可能使一些人在社交上陷入孤立。
+sociology|n.|社会学|研究社会关系、制度和变迁的学科|Sociology provides tools for examining social inequality.|社会学提供了考察社会不平等的工具。
 
-@ intend-family|family|intend · intention · intentional|intend 表示打算；intention 是意图；intentional 是故意的。最后一个常带有并非偶然的对比。
+@ intend-family|family|intend · intention · intentional · intentionally · unintentional · unintentionally|intend 是打算；intention 是意图；intentional 是故意的；intentionally 是故意地；unintentional 是无意的；unintentionally 是无意中。先分词性，再区分有意与偶然。
 intend|v.|打算；意欲|intend to do＝打算做|The researchers intend to repeat the experiment.|研究人员打算重复实验。
 intention|n.|意图；打算|with the intention of＝打算|The letter clearly states her intention.|信中明确说明了她的意图。
 intentional|adj.|故意的；有意的|强调行为不是偶然发生|The error was accidental rather than intentional.|错误是偶然的，并非故意。
+intentionally|adv.|故意地；有意地|副词，描述行为的主观意图|The report intentionally avoids identifying individual respondents.|报告有意不透露个别受访者的身份。
+unintentional|adj.|无意的；非故意的|un- 否定有意性，不等于后果不严重|The policy had an unintentional effect on small firms.|该政策对小企业产生了意料之外的影响。
+unintentionally|adv.|无意中；非故意地|区别 intentionally 有意地|A poorly designed form may unintentionally exclude some users.|设计不佳的表格可能无意中把一些用户排除在外。
 
 @ evidence-family|family|evidence · evident · evidently|evidence 是证据；evident 是明显的；evidently 表示显然或据现有迹象看来，不自动等于经过严格证明。
 evidence|n.|证据；依据|通常不可数，不说 an evidence|The claim needs further evidence.|这一主张需要更多证据。
 evident|adj.|明显的；明白的|be evident from＝从……明显可见|The improvement was evident from the results.|从结果可以明显看出改善。
 evidently|adv.|显然；据现有迹象看来|副词，表示根据迹象作出的判断|The staff were evidently aware of the problem.|员工显然已经知道这个问题。
+
+@ fam-dependence|family|depend · dependent · dependence · independent · independence|depend 是依赖或取决于；dependent 是依赖的；dependence 是依赖状态；independent 是独立的；independence 是独立。dependent on 与 independent of 的介词也不同。
+depend|v.|依赖；取决于|depend on＝依赖或取决于|Future growth will depend on access to skilled workers.|未来增长将取决于能否获得熟练劳动力。
+dependent|adj./n.|依赖的；受扶养人|dependent on＝依赖于；本句取形容词|The region is dependent on imported fuel.|该地区依赖进口燃料。
+dependence|n.|依赖；依存|dependence on＝对……的依赖|The policy seeks to reduce dependence on private cars.|该政策力求减少对私家车的依赖。
+independent|adj.|独立的；不相关的|independent of＝不受……支配或与……无关|An independent panel will review the findings.|一个独立专家组将审查研究结果。
+independence|n.|独立；自主|名词，区别 independent 独立的|Financial independence can increase freedom of choice.|经济独立可以增加选择自由。
+
+@ fam-difference|family|differ · different · difference · differentiate · indifferent · indifference|differ 是不同；different 是不同的；difference 是差异；differentiate 是区分或形成差异；indifferent 是不关心的；indifference 是漠不关心。indifferent 不能按字面误记为没有差别。
+differ|v.|不同；意见相异|differ from＝与……不同|The two accounts differ in several important details.|两份记述在若干重要细节上不同。
+different|adj.|不同的；有差异的|different from＝不同于|A different approach may reveal hidden assumptions.|不同的方法可能揭示隐藏的假设。
+difference|n.|差异；分歧|make a difference＝产生影响|The difference between correlation and causation matters here.|这里相关与因果之间的区别很重要。
+differentiate|v.|区分；使有区别|differentiate A from B＝区分 A 和 B|The test can differentiate temporary stress from chronic anxiety.|该测试能区分暂时压力与慢性焦虑。
+indifferent|adj.|漠不关心的；不感兴趣的|indifferent to＝对……不关心|Many residents were indifferent to the proposed changes.|许多居民对拟议中的变化漠不关心。
+indifference|n.|漠不关心；冷淡|名词，描述缺乏关心的态度|Public indifference can undermine a worthwhile campaign.|公众的漠不关心可能削弱有价值的活动。
+
+@ fam-definition|family|define · definition · definite · definitely · indefinite|define 是定义或界定；definition 是定义；definite 是明确的、确定的；definitely 是肯定地；indefinite 是不明确的或无限期的。definitely 表达确定性，不等于详细地下定义。
+define|v.|定义；界定|define the scope＝界定范围|The researchers first define the scope of the inquiry.|研究人员首先界定调查范围。
+definition|n.|定义；界定|a definition of＝……的定义|A clear definition prevents confusion during the debate.|明确的定义可以防止辩论中出现混淆。
+definite|adj.|明确的；确定的|a definite answer＝明确答复|The committee has not reached a definite conclusion.|委员会尚未形成明确结论。
+definitely|adv.|肯定地；确实|表明说话人对判断有较高把握|The revised method definitely improves accuracy.|修改后的方法确实提高了准确性。
+indefinite|adj.|不明确的；无限期的|an indefinite period＝期限未定的一段时间|The project was suspended for an indefinite period.|项目被无限期暂停。
+
+@ fam-decision|family|decide · decision · decisive · decisively · indecisive|decide 是决定；decision 是决定的内容或决定行为；decisive 是决定性的或果断的；decisively 是果断地；indecisive 是犹豫不决的。decisive evidence 侧重证据起决定作用，而非证据作出决定。
+decide|v.|决定；裁决|decide to do＝决定做|The board will decide whether to fund the project.|董事会将决定是否资助该项目。
+decision|n.|决定；决策|make a decision＝作出决定|The decision should reflect the available evidence.|这项决定应依据现有证据。
+decisive|adj.|决定性的；果断的|a decisive factor＝决定性因素|Reliable transport was a decisive factor in the choice.|可靠的交通是作出选择的决定性因素。
+decisively|adv.|果断地；决定性地|本句指行动方式果断|The agency acted decisively to prevent further losses.|该机构果断采取行动，防止进一步损失。
+indecisive|adj.|犹豫不决的；无决定作用的|形容人时侧重难以作决定|An indecisive leader can delay urgent action.|犹豫不决的领导者可能延误紧急行动。
+
+@ fam-effective-efficient|family|effect · effective · effectively · effectiveness · efficient · efficiency|effect 是效果或影响；effective 是有效、产生预期效果的；effectiveness 是有效程度；efficient 是高效、投入浪费少的；efficiency 是效率；effectively 可表示有效地，也可表示实际上。有效与高效需要分别判断。
+effect|n./v.|影响；效果；使发生|本句取名词影响；effect change 作动词表示实现改变|The effect of the reform became visible after a year.|改革的影响在一年后显现。
+effective|adj.|有效的；生效的|an effective measure＝有效措施|An effective policy must address the source of the problem.|有效的政策必须处理问题根源。
+effectively|adv.|有效地；实际上|本句取有效地，另可强调实际结果|The teams shared information effectively across departments.|团队有效地跨部门共享信息。
+effectiveness|n.|有效性；成效|强调是否达到预期目标|The review assessed the effectiveness of the training.|审查评估了培训的成效。
+efficient|adj.|高效的；效率高的|强调时间、能源或成本投入较少|An efficient system uses fewer resources for the same output.|高效系统以更少资源获得相同产出。
+efficiency|n.|效率；效能|区别 effectiveness 是否真正达到目标|The new equipment improved energy efficiency.|新设备提高了能源利用效率。
+
+@ fam-knowledge|family|know · knowledge · knowledgeable · unknown|know 是知道；knowledge 是知识或了解；knowledgeable 是知识丰富、熟悉情况的；unknown 是未知的，也可作名词指未知因素。knowledgeable 描述有知识的主体，不是值得知道的。
+know|v.|知道；了解|know about＝了解；know how to＝知道如何|We need to know how the data were collected.|我们需要知道数据如何采集。
+knowledge|n.|知识；了解|通常不可数；knowledge of＝对……的了解|Local knowledge helped the researchers interpret the records.|当地知识帮助研究人员解读记录。
+knowledgeable|adj.|知识渊博的；熟悉情况的|knowledgeable about＝熟悉……的|A knowledgeable guide explained the site's industrial past.|熟悉情况的向导介绍了该地点的工业历史。
+unknown|adj./n.|未知的；不知名的；未知因素|本句作形容词，表示尚不清楚|The long-term consequences remain unknown.|长期后果仍然未知。
+
+@ fam-employment|family|employ · employer · employee · employment · unemployed · unemployment|employ 是雇用，也可指运用方法；employer 是雇主；employee 是雇员；employment 是就业；unemployed 是失业的；unemployment 是失业状态或失业率所对应的现象。特别看清 employer 与 employee 的角色方向。
+employ|v.|雇用；运用|employ a method＝采用方法；本句取运用|The study will employ a different statistical method.|研究将采用不同的统计方法。
+employer|n.|雇主；用人单位|提供职位并雇用他人的一方|The employer must explain how personal data will be used.|雇主必须解释个人数据将如何使用。
+employee|n.|雇员；员工|受雇工作的一方，词尾为 -ee|Each employee received a copy of the revised policy.|每位员工都收到了修订后政策的副本。
+employment|n.|就业；雇用；使用|employment opportunities＝就业机会|The investment created employment in rural areas.|这项投资在农村地区创造了就业。
+unemployed|adj.|失业的；待业的|the unemployed 可总称失业者|The program offers training to unemployed adults.|项目为失业成年人提供培训。
+unemployment|n.|失业；失业人数或状况|the unemployment rate＝失业率|Long-term unemployment can damage confidence.|长期失业可能损害信心。
+
+@ fam-education|family|educate · education · educational · educator|educate 是教育或使了解；education 是教育这一过程或体系；educational 是教育的、有教育意义的；educator 是教育工作者。动作、过程、性质和从事者分别使用不同形式。
+educate|v.|教育；使了解|educate people about＝使人了解……|The campaign aims to educate consumers about food waste.|该活动旨在使消费者了解食物浪费问题。
+education|n.|教育；教育体系|higher education＝高等教育|Access to education can influence future earnings.|受教育机会可能影响未来收入。
+educational|adj.|教育的；有教育意义的|educational resources＝教育资源|The museum develops educational activities for schools.|博物馆为学校开发教育活动。
+educator|n.|教育工作者|指人，区别 education 教育|An experienced educator helped design the course.|一位经验丰富的教育工作者协助设计了课程。
+
+@ fam-organization|family|organize · organization · organizer · organizational|organize 是组织或整理；organization 是组织、机构或组织安排；organizer 是组织者；organizational 是组织方面的。organism 表示生物体，不能因为字形相似就等同于组织机构。
+organize|v.|组织；整理|organize information＝整理信息|The team will organize the material by topic.|团队将按主题整理材料。
+organization|n.|组织；机构；组织安排|本句指机构，而非单个组织者|The organization provides legal advice to residents.|该机构向居民提供法律咨询。
+organizer|n.|组织者；筹办者|指筹划或安排活动的人|The organizer invited local residents to suggest topics.|组织者邀请当地居民提出议题建议。
+organizational|adj.|组织的；组织管理方面的|organizational change＝组织变革|The merger brought major organizational changes.|合并带来了重大的组织变革。
+
+@ fam-science|family|science · scientific · scientist · scientifically|science 是科学这一知识体系或学科；scientific 是科学的；scientist 是科学家；scientifically 是用科学方法地。先区分领域、性质、从事者和研究方式。
+science|n.|科学；科学学科|science and technology＝科学与技术|The debate concerns the role of science in public policy.|这场辩论涉及科学在公共政策中的作用。
+scientific|adj.|科学的；符合科学方法的|scientific evidence＝科学证据|The claim lacks sufficient scientific evidence.|这一说法缺乏充分的科学证据。
+scientist|n.|科学家；科学研究者|指人，区别 science 学科|The scientist explained why replication was necessary.|科学家解释了为什么必须重复验证。
+scientifically|adv.|用科学方法地；从科学角度看|副词，说明检验或分析方式|The proposed explanation must be tested scientifically.|所提出的解释必须用科学方法检验。
+
+@ fam-development|family|develop · development · developer · developmental|develop 是发展、开发或逐渐形成；development 是发展或开发过程；developer 是开发者，也可指房地产开发商；developmental 是发育、发展方面的。developmental 并不总能替代普通的 developed 或 developing。
+develop|v.|发展；开发；逐渐形成|develop a method＝开发方法|The team hopes to develop a more reliable measure.|团队希望开发一种更可靠的测量方法。
+development|n.|发展；开发；进展|the development of＝……的发展或开发|The development of public transport changed the region.|公共交通的发展改变了该地区。
+developer|n.|开发者；房地产开发商|本句取软件开发者|The developer released an update to improve accessibility.|开发者发布了更新，以改善无障碍使用。
+developmental|adj.|发展的；发育的|developmental psychology＝发展心理学|The study examines developmental changes in children's memory.|研究考察儿童记忆的发展变化。
+
+@ fam-recognition|family|recognize · recognition · recognizable · unrecognizable|recognize 是认出、承认或认可；recognition 是识别或认可；recognizable 是能够辨认的；unrecognizable 是认不出来的。recognition of a problem 常表示承认问题存在，不一定指视觉认出。
+recognize|v.|认出；承认；认可|recognize a need＝承认需求的存在|Institutions must recognize the needs of part-time students.|院校必须认识到非全日制学生的需求。
+recognition|n.|识别；认可；承认|public recognition＝公众认可|The discovery brought international recognition to the team.|该发现使团队获得国际认可。
+recognizable|adj.|可辨认的；能够识别的|指特征足以让人认出来|The original pattern is still recognizable in the new design.|新设计中仍然能够辨认出原来的图案。
+unrecognizable|adj.|无法辨认的；认不出来的|un- 否定可辨认性|Rapid construction made the old neighborhood almost unrecognizable.|快速建设使旧街区几乎变得认不出来。
+
+@ mix-result-resort|shape|result · resort · resist · resent · revolt|result 是结果或导致；resort 是度假胜地或诉诸；resist 是抵抗；resent 是怨恨；revolt 是反抗、叛乱。result in 引出结果，resort to 引出不得已使用的办法。
+result|n./v.|结果；导致；起因于|result in＝导致；result from＝起因于|A small error can result in a large financial loss.|一个小错误可能导致巨大的经济损失。
+resort|n./v.|度假胜地；诉诸|resort to＝诉诸|The negotiators refused to resort to threats.|谈判者拒绝诉诸威胁。
+resist|v.|抵抗；抗拒；忍住|resist doing＝忍住不做|Many readers find it hard to resist checking their phones.|许多读者发现很难忍住不看手机。
+resent|v.|怨恨；对……感到不满|resent doing＝因做某事而感到不满|Employees may resent being excluded from important decisions.|员工可能因被排除在重要决策之外而感到不满。
+revolt|n./v.|反抗；叛乱；使厌恶|revolt against＝反抗|The documentary explains why farmers chose to revolt against the new tax.|纪录片解释了农民为何选择反抗新税。
+
+@ mix-inspect-suspect|shape|inspect · suspect · expect · respect · aspect|inspect 是检查；suspect 是怀疑，也可指嫌疑人；expect 是预期；respect 是尊重、方面；aspect 是方面、外观。相似的 -spect 不意味着词义相同，suspect that 与 expect that 表示怀疑和预期。
+inspect|v.|检查；视察|inspect equipment＝检查设备|Technicians inspect the bridge for signs of damage.|技术人员检查桥梁是否有损坏迹象。
+suspect|v./n./adj.|怀疑；嫌疑人；可疑的|suspect that＝怀疑|Investigators suspect that the figures were altered.|调查人员怀疑数字被篡改了。
+expect|v.|预期；期待|expect someone to do＝预期某人做某事|Teachers expect students to explain their reasoning.|教师期望学生解释推理过程。
+respect|n./v.|尊重；方面|in this respect＝在这方面|The two theories differ in one important respect.|这两种理论在一个重要方面存在差异。
+aspect|n.|方面；外观|an aspect of＝……的一个方面|The article examines the ethical aspect of data collection.|文章考察数据收集的伦理层面。
+
+@ mix-deduce-deduct|shape|deduce · deduct · induce · reduce · produce|deduce 是从证据推论；deduct 是减去、扣除；induce 是诱发、促使；reduce 是减少；produce 是生产、产生。deduce a conclusion 与 deduct a cost 的宾语不同。
+deduce|v.|推论；演绎|deduce from＝根据……推论|Scientists can deduce the planet's mass from its motion.|科学家可以根据这颗行星的运动推算其质量。
+deduct|v.|扣除；减去|deduct from＝从……扣除|You may deduct this fee from the final payment.|你可以从尾款中扣除这笔费用。
+induce|v.|诱发；促使|induce someone to do＝促使某人做某事|The incentive may induce firms to invest in cleaner equipment.|这一激励可能促使企业投资更清洁的设备。
+reduce|v.|减少；降低|reduce by 表减少量，reduce to 表减到|The policy aims to reduce household energy use.|政策旨在降低家庭能源消耗。
+produce|v./n.|生产；产生；农产品|produce evidence＝提供证据|The experiment may produce evidence of a previously unknown effect.|实验可能产生关于一种先前未知效应的证据。
+
+@ mix-prescribe-proscribe|shape|prescribe · proscribe · describe · subscribe|prescribe 是开药、规定；proscribe 是正式禁止；describe 是描述；subscribe 是订阅、认同或定期捐助。prescribe 与 proscribe 只有一个元音差别，却可能表达相反的规定方向。
+prescribe|v.|开药；规定|prescribe medicine＝开药|Only qualified clinicians may prescribe this medicine.|只有合格临床医师可以开具这种药物。
+proscribe|v.|正式禁止|proscribe a practice＝禁止某种做法|The new rules proscribe the sale of patient records.|新规禁止出售病历。
+describe|v.|描述|describe as＝描述为|The authors describe the method as a preliminary tool.|作者把这种方法描述为一种初步工具。
+subscribe|v.|订阅；认同；定期捐助|subscribe to a view＝认同某种观点|Not all economists subscribe to this view of competition.|并非所有经济学家都认同这种竞争观。
+
+@ mix-persecute-prosecute|shape|persecute · prosecute · execute|persecute 是迫害；prosecute 是起诉、检控；execute 是执行，也可指处决。prosecute a suspect 是依法起诉，persecute someone 是对人施加迫害，两者不能混成惩罚。
+persecute|v.|迫害；长期骚扰|persecute people for their beliefs＝因信仰迫害人|The regime used the law to persecute political opponents.|该政权利用法律迫害政治对手。
+prosecute|v.|起诉；检控|prosecute someone for＝因……起诉某人|The agency can prosecute companies for serious fraud.|该机构可以因严重欺诈起诉企业。
+execute|v.|执行；实行；处决|execute a plan＝执行计划|The team must execute the plan within the agreed budget.|团队必须在约定预算内执行计划。
+
+@ mix-eminent-imminent|shape|eminent · imminent · prominent · permanent|eminent 指人杰出、著名；imminent 指事情即将发生；prominent 是显著、重要或知名；permanent 是永久的。eminent/prominent 描写名望时可能重叠，imminent 专看临近发生。
+eminent|adj.|杰出的；著名的|an eminent scholar＝著名学者|An eminent historian was invited to review the archive.|一位著名历史学家获邀审查档案。
+imminent|adj.|即将发生的；迫近的|imminent danger＝迫在眉睫的危险|The warning indicated an imminent risk of flooding.|警报表明洪灾风险已迫在眉睫。
+prominent|adj.|显著的；重要的；知名的|a prominent position＝显眼的位置|The safety notice occupies a prominent position near the entrance.|安全告示位于入口附近的显眼位置。
+permanent|adj.|永久的；长期的|permanent damage＝永久损害|The accident caused permanent damage to the wetland.|事故给湿地造成永久损害。
+
+@ mix-attribute-contribute|shape|attribute · contribute · distribute · tribute|attribute 作动词是归因，作名词是特征；contribute 是贡献、促成；distribute 是分发、分布；tribute 是致敬或贡物。attribute A to B 是把A归于B，contribute to 是促成某结果。
+attribute|v./n.|把……归因于；特征|attribute A to B＝把A归因于B|The report does not attribute the decline to a single cause.|报告没有把下降归因于单一原因。
+contribute|v.|贡献；促成；投稿|contribute to＝促成、有助于|Poor ventilation can contribute to the spread of infection.|通风不良可能助长感染传播。
+distribute|v.|分发；分配；使分布|distribute among＝在……之间分配|Volunteers distribute food among families affected by the storm.|志愿者向受风暴影响的家庭分发食物。
+tribute|n.|致敬；颂辞；贡物|pay tribute to＝向……致敬|The exhibition pays tribute to early women scientists.|这场展览向早期女性科学家致敬。
+
+@ mix-clause-cause-course|shape|clause · cause · course · coarse|clause 是条款、从句；cause 是原因、事业或引起；course 是课程、进程、路线；coarse 是粗糙、粗俗的。course 与 coarse 常同音，clause 比 cause 多一个 l。
+clause|n.|条款；从句|a clause in a contract＝合同条款|The contract contains a clause on early termination.|合同包含一项提前终止条款。
+cause|n./v.|原因；事业；引起|cause and effect＝因果|The study seeks to identify the main cause of the decline.|研究试图查明下降的主要原因。
+course|n.|课程；进程；路线|in the course of＝在……过程中|Several assumptions changed in the course of the investigation.|调查过程中，几项假设发生了变化。
+coarse|adj.|粗糙的；粗俗的|coarse material＝粗糙材料|The filter removes coarse particles before the water is tested.|该过滤器在水质检测前去除较粗的颗粒。
+
+@ mix-compact-complex|shape|compact · complex · complicate · comply|compact 是紧凑的或压实；complex 是复杂的或综合体；complicate 是使复杂化；comply 是遵守，常接 with。complex 是性质，complicate 是使性质改变这一动作。
+compact|adj./v./n.|紧凑的；压实；协定|compact design＝紧凑设计|The device has a compact design suitable for small classrooms.|该设备设计紧凑，适合小教室。
+complex|adj./n.|复杂的；综合体|a complex issue＝复杂问题|The dispute raises a complex question of ownership.|这场争议提出了一个复杂的所有权问题。
+complicate|v.|使复杂化|complicate a problem＝使问题复杂化|Conflicting regulations can complicate cross-border trade.|相互冲突的法规可能使跨境贸易复杂化。
+comply|v.|遵守；依从|comply with＝遵守|All laboratories must comply with the revised safety rules.|所有实验室都必须遵守修订后的安全规则。
+
+@ mix-assume-consume-resume|shape|assume · consume · resume · presume|assume 是假定、承担；consume 是消耗、消费；resume 是恢复、重新开始，也可作履历；presume 是推定、认为很可能。assume/presume 有重叠，不能把所有假定句硬分唯一答案。
+assume|v.|假定；承担；呈现|assume responsibility＝承担责任|A new manager will assume responsibility for the archive.|新经理将承担档案管理责任。
+consume|v.|消耗；消费；吃喝|consume resources＝消耗资源|Older machines consume more electricity than newer models.|旧机器比新型号消耗更多电力。
+resume|v./n.|恢复；重新开始；履历|resume work＝恢复工作|The committee will resume its discussion after lunch.|委员会午餐后将继续讨论。
+presume|v.|推定；认为很可能；冒昧|presume innocent＝推定无罪|Courts must presume a defendant innocent until guilt is proved.|在罪行得到证实之前，法庭必须推定被告无罪。
+
+@ mix-identity-identify|shape|identity · identify · identical · identification|identity 是身份、同一性；identify 是识别、确定；identical 是完全相同的；identification 是识别过程或身份证明。名词、动词、形容词各有句法位置，不要只记一个笼统的认同。
+identity|n.|身份；特征；同一性|a sense of identity＝身份认同感|Language can strengthen a community's sense of identity.|语言能增强一个群体的身份认同感。
+identify|v.|识别；确定；认同|identify a problem＝发现并确定问题|The survey helps identify households at risk of poverty.|调查有助于识别面临贫困风险的家庭。
+identical|adj.|完全相同的|be identical to＝与……完全相同|The two samples are identical in chemical composition.|两个样本的化学成分完全相同。
+identification|n.|识别；身份证明；认同|proof of identification＝身份证明|Visitors must show valid identification at the entrance.|访客必须在入口出示有效身份证明。
+
+@ mix-elaborate-collaborate|shape|elaborate · collaborate · deliberate · liberate|elaborate 是详尽阐述或精心制作的；collaborate 是合作；deliberate 是故意的、审慎的，作动词是仔细考虑；liberate 是解放、使摆脱。看清中间字母，不能按相似节奏串义。
+elaborate|v./adj.|详尽阐述；精心制作的|elaborate on＝详细阐述|Could you elaborate on the final stage of the procedure?|你能详细阐述程序的最后阶段吗？
+collaborate|v.|合作；协作|collaborate with＝与……合作|The museum will collaborate with local schools on the project.|博物馆将就此项目与当地学校合作。
+deliberate|adj./v.|故意的；审慎的；仔细考虑|a deliberate attempt＝蓄意的尝试|The audit found a deliberate attempt to hide the payments.|审计发现有人蓄意隐瞒付款。
+liberate|v.|解放；使摆脱束缚|liberate from＝使摆脱|Better public transport can liberate residents from dependence on cars.|更好的公共交通能使居民摆脱对汽车的依赖。
+
+@ mix-integral-integrity|shape|integral · integrate · integrity · integration|integral 是不可或缺的、完整的；integrate 是整合；integrity 是正直或完整性；integration 是整合过程。an integral part 强调整体不可缺的一部分，data integrity 强调数据完整可靠。
+integral|adj.|不可或缺的；完整的|an integral part of＝……不可或缺的一部分|Fieldwork is an integral part of the training program.|实地工作是培训计划不可或缺的组成部分。
+integrate|v.|整合；使融入|integrate A with B＝把A与B整合|The platform can integrate text with audio recordings.|平台可以把文字与录音整合。
+integrity|n.|正直；完整性|data integrity＝数据完整性|Independent checks help protect the integrity of the data.|独立检查有助于维护数据的完整性。
+integration|n.|整合；一体化；融入|economic integration＝经济一体化|The report examines the costs of regional economic integration.|报告研究区域经济一体化的成本。
+
+@ mix-depend-suspend|shape|depend · suspend · append · spend|depend 是依赖、取决于；suspend 是暂停、悬挂；append 是附加；spend 是花费。depend on 接所依赖对象，suspend a service 是暂停服务。
+depend|v.|依赖；取决于|depend on＝取决于|Final approval will depend on the safety review.|最终批准将取决于安全审查。
+suspend|v.|暂停；悬挂；使停职|suspend a service＝暂停服务|The operator may suspend the service during severe weather.|运营方可能在恶劣天气时暂停服务。
+append|v.|附加；追加|append a note＝附上一条注释|Please append a note explaining how the sample was selected.|请附上一条说明样本如何选取的注释。
+spend|v.|花费；度过|spend time doing＝花时间做|Students spend two hours reviewing each practice paper.|学生花两个小时复盘每份练习卷。
+
+@ mix-possess-process|shape|possess · process · proceed · propose · purpose|possess 是拥有；process 是过程或处理；proceed 是继续；propose 是提出、建议；purpose 是目的。process 有 ss，possess 的中间与词尾也有 ss，但动作完全不同。
+possess|v.|拥有；具有|possess a skill＝具备技能|Applicants must possess basic statistical skills.|申请者必须具备基本统计技能。
+process|n./v.|过程；加工处理|process data＝处理数据|The program can process images without sending them online.|该程序可以在不联网发送图片的情况下处理图片。
+proceed|v.|继续；着手|proceed to do＝接着做|After checking consent, researchers may proceed to collect the data.|核对知情同意后，研究人员可以接着收集数据。
+propose|v.|提出；建议；求婚|propose a solution＝提出解决办法|The authors propose a new way to measure inequality.|作者提出一种衡量不平等的新方法。
+purpose|n./v.|目的；意图；打算|for the purpose of＝为了……目的|The primary purpose of the survey is to assess access to care.|调查的主要目的是评估医疗服务的可及性。
+
+@ mix-portable-potable|shape|portable · potable · possible · potential|portable 是便携的；potable 是可饮用的；possible 是可能的；potential 是潜在的，也可作潜力。portable/potable 只差一个 r，别把饮用安全认成便携。
+portable|adj.|便携的；可移动的|a portable device＝便携设备|The clinic uses a portable scanner during home visits.|诊所在上门服务时使用便携式扫描仪。
+potable|adj.|可饮用的|potable water＝饮用水|The emergency team delivered potable water to the village.|应急团队向村庄运送了可饮用水。
+possible|adj.|可能的；可能做到的|as soon as possible＝尽快|It is possible to recover some of the missing records.|部分丢失记录有可能恢复。
+potential|adj./n.|潜在的；潜力|potential benefits＝潜在好处|The study weighs the potential benefits against the known risks.|研究权衡潜在好处与已知风险。
+
+@ mix-stimulate-simulate|shape|stimulate · simulate · assimilate · accumulate|stimulate 是刺激、促进；simulate 是模拟、假装；assimilate 是吸收、同化；accumulate 是积累。simulate a situation 是模拟场景，stimulate growth 是促进增长。
+stimulate|v.|刺激；促进；激发|stimulate growth＝促进增长|The policy is intended to stimulate investment in rural areas.|该政策旨在促进农村投资。
+simulate|v.|模拟；假装|simulate a situation＝模拟情境|The model can simulate the movement of crowds during an evacuation.|模型可以模拟疏散时的人群移动。
+assimilate|v.|吸收；理解；同化|assimilate information＝吸收信息|Learners need time to assimilate unfamiliar information.|学习者需要时间吸收陌生信息。
+accumulate|v.|积累；聚集|accumulate evidence＝积累证据|Errors can accumulate when the same data are copied repeatedly.|同一数据被反复复制时，错误可能不断积累。
+
+@ mix-facility-faculty|shape|facility · faculty · fidelity · fertility|facility 是设施、便利或某方面的熟练；faculty 是教职员工、院系或官能；fidelity 是忠实、精确度；fertility 是生育力、肥力。fac- 开头两词尤其要看是否有 -ili-。
+facility|n.|设施；便利；熟练|a research facility＝研究设施|The new facility provides clean rooms for medical research.|这座新设施为医学研究提供洁净室。
+faculty|n.|教职员工；院系；官能|faculty members＝教职员工|The faculty voted to revise the assessment policy.|教职员工投票决定修订评价政策。
+fidelity|n.|忠实；忠诚；精确度|high fidelity＝高保真|The archive aims to preserve the sound with maximum fidelity.|档案项目力求以最高保真度保存声音。
+fertility|n.|生育力；肥力|soil fertility＝土壤肥力|Repeated planting without replenishment can reduce soil fertility.|连续种植而不补充养分可能降低土壤肥力。
+
+@ mix-affection-affectation|shape|affection · affectation · infection · friction|affection 是喜爱、感情；affectation 是装腔作势；infection 是感染；friction 是摩擦或冲突。affection 不是感染，affectation 比 affection 多一段字母也多了做作意味。
+affection|n.|喜爱；感情|affection for＝对……的喜爱|The memoir expresses deep affection for the author's hometown.|这部回忆录表达了作者对故乡的深厚感情。
+affectation|n.|装腔作势；矫揉造作|an affectation of sophistication＝故作老练|The critic disliked the actor's affectation of sophistication.|评论者不喜欢这位演员故作老练的姿态。
+infection|n.|感染；传染|prevent infection＝预防感染|Clean instruments help prevent infection after surgery.|清洁的器械有助于预防术后感染。
+friction|n.|摩擦；冲突|friction between＝……之间的摩擦|Different expectations created friction between the two departments.|不同的预期造成了两部门之间的摩擦。
+
+@ mix-occupation-occasion|shape|occupation · occasion · occurrence · opportunity|occupation 是职业、占领或占用；occasion 是场合、时机；occurrence 是发生、事件；opportunity 是机会。occu-/occa-/occu- 与 opp- 要看清，场合不总是可利用的机会。
+occupation|n.|职业；占领；占用|填写表格的 occupation 常问职业|The form asks for each applicant's present occupation.|表格要求填写每位申请者目前的职业。
+occasion|n.|场合；时机；某次事件|on this occasion＝在这次场合|Formal clothing is not required on this occasion.|这一场合不要求正式着装。
+occurrence|n.|发生；事件|a common occurrence＝常见的事|Power failure is a rare occurrence in the city.|停电在这座城市很少发生。
+opportunity|n.|机会；时机|an opportunity to do＝做……的机会|The internship provides an opportunity to test classroom knowledge.|实习提供了检验课堂知识的机会。
+
+@ mix-virtual-visual|shape|virtual · visual · vital · viral|virtual 是虚拟的，也可指事实上的；visual 是视觉的；vital 是至关重要的、维持生命的；viral 是病毒的，也可指网络迅速传播的。词中 tu/s/ta/ra 不同，不能凭开头 vi- 判断意义。
+virtual|adj.|虚拟的；事实上的|virtual reality＝虚拟现实|The course includes a virtual tour of an ancient city.|课程包含一场古城虚拟游览。
+visual|adj.|视觉的；可见的|visual evidence＝视觉证据|The diagram provides a visual summary of the argument.|图表以视觉形式概述了论证。
+vital|adj.|至关重要的；维持生命的|be vital to＝对……至关重要|Reliable transport is vital to the local economy.|可靠交通对当地经济至关重要。
+viral|adj.|病毒引起的；网络迅速传播的|a viral infection＝病毒感染|The patient was diagnosed with a viral infection.|患者被诊断为病毒感染。
+
+@ mix-deficit-deficient|shape|deficit · deficient · efficient · sufficient|deficit 是赤字、缺额；deficient 是不足、有缺陷的；efficient 是高效率的；sufficient 是足够的。deficit 是名词，deficient/sufficient 常接 in/for，efficient 描写投入产出效率。
+deficit|n.|赤字；不足额|a budget deficit＝预算赤字|The government reported a larger budget deficit this year.|政府报告今年预算赤字扩大。
+deficient|adj.|缺乏的；不足的|be deficient in＝缺乏|The soil is deficient in essential nutrients.|土壤缺乏必需养分。
+efficient|adj.|高效率的；节约资源的|an efficient system＝高效系统|The new engine is more efficient at converting fuel into power.|新发动机把燃料转为动力的效率更高。
+sufficient|adj.|足够的；充分的|sufficient evidence＝充分证据|There is sufficient evidence to justify further investigation.|现有证据足以支持进一步调查。
+
+@ mix-demand-command|shape|demand · command · recommend · commend|demand 是要求、需求；command 是命令、掌握；recommend 是推荐、建议；commend 是赞扬。recommend someone for a job 是推荐，commend someone for work 是表扬。
+demand|n./v.|需求；坚决要求|demand for＝对……的需求|Demand for affordable housing continues to increase.|对可负担住房的需求持续增加。
+command|n./v.|命令；掌握；指挥|a good command of＝熟练掌握|The position requires a good command of written English.|该职位要求熟练掌握书面英语。
+recommend|v.|推荐；建议|recommend doing＝建议做|The guidelines recommend checking the data before publication.|指南建议在发表前核对数据。
+commend|v.|赞扬；表彰；推荐|commend someone for＝因……赞扬某人|The reviewers commend the team for making its methods transparent.|评审者赞扬团队公开研究方法。
+
+@ mix-indicate-dedicate|shape|indicate · dedicate · dictate · predict|indicate 是表明、指出；dedicate 是致力于、献给；dictate 是口述、命令或决定；predict 是预测。indicate 指示证据含义，predict 预测尚未发生的情况。
+indicate|v.|表明；指出|indicate that＝表明|The findings indicate that income alone cannot explain the gap.|研究结果表明，仅收入不能解释这一差距。
+dedicate|v.|致力于；献给|dedicate time to doing＝投入时间做某事|The charity will dedicate more resources to adult education.|慈善机构将向成人教育投入更多资源。
+dictate|v.|口述；命令；决定|dictate the terms＝规定条件|Available funds will dictate the scale of the project.|可用资金将决定项目规模。
+predict|v.|预测；预言|predict an outcome＝预测结果|The model cannot predict the exact date of the next earthquake.|模型无法预测下一次地震的确切日期。
+
+@ mix-incline-decline|shape|incline · decline · recline|incline 是倾向、使倾斜；decline 是下降、婉拒；recline 是斜倚。be inclined to do 是倾向于做，decline to do 是拒绝做，recline 描写身体姿势。
+incline|v./n.|使倾斜；倾向；斜坡|incline someone to do＝使某人倾向于做|The evidence may incline readers to question the original claim.|证据可能使读者倾向于质疑最初的说法。
+decline|v./n.|下降；衰退；婉拒|decline to do＝婉拒做某事|The witness chose to decline the interview request.|证人选择婉拒采访请求。
+recline|v.|斜倚；靠卧|recline in a chair＝斜靠在椅子上|Passengers may recline in their seats after takeoff.|乘客在起飞后可以靠卧在座椅上。
+
+@ mix-observe-deserve|shape|observe · deserve · preserve · serve|observe 是观察、遵守，也可指评论说；deserve 是值得、应得；preserve 是保护、保存；serve 是服务、供应、起作用。observe a rule 是遵守规则，preserve a record 是保存记录。
+observe|v.|观察；遵守；评论说|observe a rule＝遵守规则|All visitors must observe the laboratory's safety rules.|所有访客都必须遵守实验室安全规则。
+deserve|v.|值得；应得|deserve attention＝值得关注|The long-term effects deserve closer attention.|长期影响值得更密切关注。
+preserve|v.|保护；保存|preserve a record＝保存记录|The archive uses special paper to preserve fragile documents.|档案馆用特殊纸张保护脆弱的文献。
+serve|v.|服务；供应；起作用|serve as＝充当|The library will serve as a temporary shelter during the storm.|暴风雨期间图书馆将充当临时避难所。
+
+@ mix-collision-collusion|shape|collision · collusion · collection · correction|collision 是碰撞、冲突；collusion 是串通、勾结；collection 是收集或收藏品；correction 是纠正、修正。collision/collusion 中间元音不同，前者可谈物理碰撞，后者涉及秘密合作。
+collision|n.|碰撞；冲突|a collision between＝……之间的碰撞|The investigation focused on the collision between the two vehicles.|调查聚焦于两辆车之间的碰撞。
+collusion|n.|串通；勾结|collusion between firms＝企业之间的串通|The regulator found evidence of collusion among several suppliers.|监管机构发现了几家供应商串通的证据。
+collection|n.|收集；收藏品；文集|data collection＝数据收集|The collection of personal data requires informed consent.|收集个人数据需要获得知情同意。
+correction|n.|纠正；修正|a correction to＝对……的修正|The journal published a correction to the original table.|期刊刊登了对原表格的修正。
+
+@ mix-complaint-compliant|shape|complaint · complain · compliant · compliance|complaint 是抱怨、投诉这一名词；complain 是抱怨的动词；compliant 是顺从、符合规定的；compliance 是遵守。complaint 词尾是 -aint，compliant 是 -iant，顺序不同。
+complaint|n.|抱怨；投诉|file a complaint＝提出投诉|The office received a formal complaint about the delay.|办公室收到了关于延误的正式投诉。
+complain|v.|抱怨；投诉|complain about＝抱怨|Residents complain about noise from the construction site.|居民抱怨施工现场的噪声。
+compliant|adj.|顺从的；符合规定的|be compliant with＝符合|The device is compliant with the latest safety standards.|该设备符合最新安全标准。
+compliance|n.|遵守；服从|in compliance with＝遵照|The company changed its procedures in compliance with the new law.|公司遵照新法修改了程序。
+
+@ mix-former-formal|shape|former · formal · format · formula|former 是以前的或两者中的前者；formal 是正式、形式上的；format 是格式；formula 是公式、配方或惯用办法。former 不表示正式，formula 不只是文字排版格式。
+former|adj./n.|以前的；前者|the former ... the latter＝前者……后者|The former director now advises a local charity.|前任主任现在为当地一家慈善机构提供咨询。
+formal|adj.|正式的；形式上的|formal approval＝正式批准|The project cannot begin without formal approval.|项目未经正式批准不能启动。
+format|n./v.|格式；安排形式；使格式化|in digital format＝以数字格式|Please submit the report in the required format.|请按要求的格式提交报告。
+formula|n.|公式；配方；惯用办法|a formula for＝……的公式或办法|There is no simple formula for solving every social problem.|解决所有社会问题没有简单通用的办法。
+
+@ mix-temporary-temperate|shape|contemporary · temporary · temporal · temperate|contemporary 是当代的、同时代的；temporary 是临时的；temporal 是时间的、世俗的；temperate 是气候温和的或行为有节制的。temporary 关注持续不久，temporal 关注时间维度。
+contemporary|adj./n.|当代的；同时代的；同代人|contemporary society＝当代社会|The course examines changes in contemporary society.|课程研究当代社会的变化。
+temporary|adj.|临时的；暂时的|a temporary solution＝临时解决办法|The bridge is closed while a temporary crossing is built.|在修建临时通道期间，这座桥暂停通行。
+temporal|adj.|时间的；世俗的|temporal order＝时间顺序|The analysis compares the spatial and temporal patterns of migration.|分析比较迁移的空间与时间模式。
+temperate|adj.|温和的；有节制的|a temperate climate＝温和气候|The plant grows best in a temperate climate.|这种植物在温和气候中生长最好。
+
+@ mix-assent-ascent-accent|sound|assent · ascent · accent · access|assent 是同意、赞同；ascent 是上升、攀登；accent 是口音、重音；access 是进入使用的机会。assent/ascent 常同音，accent/access 只属近似，仍需听重音并看语境。
+assent|n./v.|同意；赞同|give assent to＝同意|The council gave its assent to the revised proposal.|议会同意了修订后的提议。
+ascent|n.|上升；攀登|the ascent of＝……的上升或登高|The final ascent to the summit took three hours.|最后登上峰顶的路程花了三个小时。
+accent|n./v.|口音；重音；强调|a regional accent＝地方口音|The speaker's regional accent did not affect the clarity of the lecture.|讲者的地方口音没有影响讲座的清晰度。
+access|n./v.|进入使用的机会；访问|access to＝获取……的机会|The law guarantees access to public information.|法律保障获取公共信息的权利。
+
+@ mix-wave-waive-wage|sound|wave · waive · wage|wave 是波浪、挥手；waive 是放弃权利或免除要求；wage 是工资，也可指发动战争等。wave/waive 常同音，wage 词尾辅音不同，不能用听觉相近代替词义。
+wave|n./v.|波浪；浪潮；挥手|a wave of＝一波……|A new wave of automation has changed the industry.|新一波自动化改变了这个行业。
+waive|v.|放弃权利；免除要求|waive a fee＝免收费用|The university agreed to waive the application fee for eligible students.|大学同意免收符合资格学生的申请费。
+wage|n./v.|工资；发动或进行|a minimum wage＝最低工资|The debate concerns the effect of a higher minimum wage.|争论涉及提高最低工资的影响。
