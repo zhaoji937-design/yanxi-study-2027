@@ -1,0 +1,2636 @@
+{
+  "section": {
+    "id": "tr4s2",
+    "title": "第二节 运动员心理能力及其训练",
+    "printedPages": [
+      141,
+      142,
+      143,
+      144,
+      145,
+      146,
+      147,
+      148,
+      149,
+      150,
+      151,
+      152,
+      153,
+      154
+    ]
+  },
+  "nodes": [
+    {
+      "id": "psy-ability",
+      "parentId": "tr4s2",
+      "title": "一、运动员心理能力的定义及其构成",
+      "kind": "heading",
+      "original": true,
+      "printedPages": [
+        141,
+        142,
+        143
+      ],
+      "body": [
+        "本部分先解释心理能力是什么，再从训练目的与训练阶段两个不同角度认识心理训练，最后列出影响心理能力的八类因素。",
+        "心理能力服务于运动行为的组织与控制，既涉及相对稳定的个性心理特征，也涉及随训练和竞赛情境变化的心理过程。"
+      ],
+      "keywords": [
+        "个性心理特征",
+        "心理过程",
+        "训练分类",
+        "影响因素"
+      ],
+      "explanation": "",
+      "core": "后续各种心理训练方法的共同起点：明确要改善什么，再选择相应手段。"
+    },
+    {
+      "id": "psy-overview",
+      "parentId": "psy-ability",
+      "title": "（一）运动员心理能力概述",
+      "kind": "heading",
+      "original": true,
+      "printedPages": [
+        141,
+        142,
+        143
+      ],
+      "body": [
+        "从含义、可训练性、训练内容和训练阶段四个角度理解心理能力。心理训练应像体能、技术、战术训练一样有意识地开展。"
+      ],
+      "keywords": [
+        "含义",
+        "可训练性",
+        "系统训练"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-definition",
+      "parentId": "psy-overview",
+      "title": "1. 心理能力释义",
+      "kind": "heading",
+      "original": true,
+      "printedPages": [
+        141
+      ],
+      "body": [
+        "运动员心理能力即指运动员与训练竞赛有关的个性心理特征，以及依训练竞赛的需要把握和调整心理过程的能力，是运动员竞技能力的重要组成部分。",
+        "其本质在于运动员对自己运动行为的把握与控制，包括训练及竞赛行为的动员能力、控制能力、意志能力等。心理活动与脑的活动有依存关系，不能按日常“心想”等用语把它理解为心脏活动。"
+      ],
+      "keywords": [
+        "个性心理特征",
+        "把握和调整心理过程",
+        "竞技能力",
+        "动员",
+        "控制",
+        "意志"
+      ],
+      "explanation": "“有信心、能坚持”只是其中一部分；能按比赛需要调动自己、稳定情绪、调整注意，也属于心理能力。",
+      "core": "定义有两部分：相对稳定的心理特征＋按情境调整心理过程的能力，答题时两者都要覆盖。",
+      "definition": "运动员心理能力即指运动员与训练竞赛有关的个性心理特征，以及依训练竞赛的需要把握和调整心理过程的能力，是运动员竞技能力的重要组成部分。"
+    },
+    {
+      "id": "psy-training",
+      "parentId": "psy-overview",
+      "title": "2. 运动员心理训练的内容与特点",
+      "kind": "heading",
+      "original": true,
+      "printedPages": [
+        141,
+        142,
+        143
+      ],
+      "body": [
+        "超常心理素质和高水平心理技能需要通过经验、系统训练及个人努力形成；心理训练的主要目的和任务是发展心理能力，为训练和比赛做好心理准备。",
+        "理解心理训练时要分清两套分类：一套按训练内容和针对性，分为基础的与有针对性的心理训练；另一套依据与训练和比赛的关系，分为日常与比赛期心理训练。两套分类不能简单一一等同。"
+      ],
+      "keywords": [
+        "系统训练",
+        "心理准备",
+        "两套分类"
+      ],
+      "explanation": "“练什么、针对什么”和“什么时候练”是两个问题，因而会有两套分类。",
+      "core": "本节最容易混淆的层级：基础/专门是内容与针对性；日常/赛期是与训练比赛的关系。",
+      "definition": "心理训练是以发展运动员的心理能力，为训练和比赛做好心理准备作为其主要目的和任务的。"
+    },
+    {
+      "id": "psy-content-class",
+      "parentId": "psy-training",
+      "title": "按训练内容与针对性：基础的心理训练与有针对性的心理训练",
+      "kind": "point",
+      "original": false,
+      "printedPages": [
+        142
+      ],
+      "body": [
+        "两类训练共同构成系统心理训练：基础训练建立参与训练竞赛所必需的基本素质和技能，有针对性的训练解决具体比赛准备或具体心理问题。"
+      ],
+      "keywords": [
+        "基础心理训练",
+        "一般心理训练",
+        "有针对性的心理训练",
+        "专门心理训练"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-basic",
+      "parentId": "psy-content-class",
+      "title": "基础的心理训练",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        142
+      ],
+      "body": [
+        "亦称一般心理训练，发展训练和比赛所需的基本心理素质，包含掌握各种心理技能、发展专项心理素质、培养良好个性品质三方面。"
+      ],
+      "keywords": [
+        "基本心理素质",
+        "心理技能",
+        "专项心理素质",
+        "个性品质"
+      ],
+      "explanation": "“一般”不表示没有专项内容；图中“发展专项心理素质”正属于基础训练。"
+    },
+    {
+      "id": "psy-basic-skills",
+      "parentId": "psy-basic",
+      "title": "掌握各种心理技能",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        142
+      ],
+      "body": [
+        "包括目标设置技能、想象技能、放松技能、注意集中技能等。它们是运动员能主动掌握并反复使用的调控工具。"
+      ],
+      "keywords": [
+        "目标设置",
+        "想象",
+        "放松",
+        "注意集中"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-basic-special",
+      "parentId": "psy-basic",
+      "title": "发展专项心理素质",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        142
+      ],
+      "body": [
+        "包括球感、水感等专门化知觉以及专项意识。发展内容应与项目的运动环境、动作特点和判断要求相适应。"
+      ],
+      "keywords": [
+        "专门化知觉",
+        "球感",
+        "水感",
+        "专项意识"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-basic-personality",
+      "parentId": "psy-basic",
+      "title": "培养良好个性品质",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        142
+      ],
+      "body": [
+        "包括强烈的成就动机、坚定的自信心和顽强的意志品质。它们为长期投入训练和应对竞赛困难提供支持。"
+      ],
+      "keywords": [
+        "成就动机",
+        "自信心",
+        "意志品质"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-targeted",
+      "parentId": "psy-content-class",
+      "title": "有针对性的心理训练",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        142
+      ],
+      "body": [
+        "亦称专门心理训练，旨在为某个具体比赛做好心理准备，同时包括针对某些心理障碍开展的训练。图示分为消除某些心理障碍、做好赛前心理准备两个分支。"
+      ],
+      "keywords": [
+        "专门心理训练",
+        "具体比赛",
+        "心理障碍",
+        "赛前准备"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-targeted-obstacle",
+      "parentId": "psy-targeted",
+      "title": "消除某些心理障碍",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        142
+      ],
+      "body": [
+        "图示举出系统脱敏训练、行为强化等方法，说明专门训练可以围绕明确心理问题选择相应手段。此处作为教材体系说明，不将这些方法展开为自行诊断或治疗流程。"
+      ],
+      "keywords": [
+        "系统脱敏训练",
+        "行为强化"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-targeted-preparation",
+      "parentId": "psy-targeted",
+      "title": "做好赛前心理准备",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        142
+      ],
+      "body": [
+        "图示举出模拟训练、心理动员等方法，目的是让运动员在具体比赛条件下形成较合适的心理状态。"
+      ],
+      "keywords": [
+        "模拟训练",
+        "心理动员"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-period-class",
+      "parentId": "psy-training",
+      "title": "按与训练和比赛的关系：比赛期心理训练与日常心理训练",
+      "kind": "point",
+      "original": false,
+      "printedPages": [
+        142,
+        143
+      ],
+      "body": [
+        "比赛期训练主要调整心理过程，日常训练相对偏重发展心理技能、改善个性心理特征；二者分工有侧重，而非彼此割裂。"
+      ],
+      "keywords": [
+        "比赛期",
+        "日常",
+        "心理过程",
+        "个性心理特征"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-competition",
+      "parentId": "psy-period-class",
+      "title": "赛期心理训练",
+      "kind": "point",
+      "original": false,
+      "printedPages": [
+        142
+      ],
+      "body": [
+        "依据特定比赛需要进行，包含赛前的心理准备、赛中的心理控制和赛后的心理调整。不能将“赛期”缩小为仅仅赛前动员。"
+      ],
+      "keywords": [
+        "赛前准备",
+        "赛中控制",
+        "赛后调整"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-before",
+      "parentId": "psy-competition",
+      "title": "赛前：心理准备",
+      "kind": "point",
+      "original": false,
+      "printedPages": [
+        142
+      ],
+      "body": [
+        "激发比赛动机，控制适宜的激活水平，增强参赛信心，建立稳定而灵活的参赛思维程序和行为程序。赛前体能、技能与战术能力相对稳定，但心理状态仍可能明显波动，因此应重视心理准备。"
+      ],
+      "keywords": [
+        "动机",
+        "激活水平",
+        "信心",
+        "思维程序",
+        "行为程序"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-during",
+      "parentId": "psy-competition",
+      "title": "赛中：心理控制",
+      "kind": "point",
+      "original": false,
+      "printedPages": [
+        142
+      ],
+      "body": [
+        "面对环境与比赛进程变化，保持良好而稳定的情绪，以便充分发挥体能、技能和战术水平；比赛本身也是心理能力的高强度锻炼。"
+      ],
+      "keywords": [
+        "情绪稳定",
+        "变化情境",
+        "能力发挥"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-after",
+      "parentId": "psy-competition",
+      "title": "赛后：心理调整",
+      "kind": "point",
+      "original": false,
+      "printedPages": [
+        142
+      ],
+      "body": [
+        "对成功者肯定积极情绪体验，同时反思胜利掩盖的问题，防止自满和松懈；对失败者缓解消极体验，寻找局部积极表现，恢复再战求胜的动机。"
+      ],
+      "keywords": [
+        "成功者",
+        "失败者",
+        "积极体验",
+        "自满松懈",
+        "再战动机"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-daily",
+      "parentId": "psy-period-class",
+      "title": "日常心理训练（训练期心理训练）",
+      "kind": "point",
+      "original": false,
+      "printedPages": [
+        142,
+        143
+      ],
+      "body": [
+        "日常训练偏重发展心理技能和改善个性心理特征。依据年龄、训练年限和训练阶段安排一般与专项心理训练比例：基础阶段少年选手侧重一般特征，随专项任务加重逐步增加符合专项特点的心理训练。"
+      ],
+      "keywords": [
+        "年龄",
+        "训练年限",
+        "训练阶段",
+        "一般与专项比例"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-factors",
+      "parentId": "psy-ability",
+      "title": "（二）运动员心理能力的影响因素",
+      "kind": "heading",
+      "original": true,
+      "printedPages": [
+        143
+      ],
+      "body": [
+        "影响心理能力的因素包括个性特征、竞赛情绪、注意特征、感知觉能力、比赛动机水平、意志品质、自信水平和中枢神经疲劳。分析具体运动员时，应结合多方面表现，不能把所有失常都归为缺乏意志或不够自信。"
+      ],
+      "keywords": [
+        "个性",
+        "情绪",
+        "注意",
+        "感知觉",
+        "动机",
+        "意志",
+        "自信",
+        "疲劳"
+      ],
+      "explanation": "",
+      "core": "八项因素是分析心理状态和选择训练内容的检查表，彼此可能相互影响。"
+    },
+    {
+      "id": "psy-factor-personality",
+      "parentId": "psy-factors",
+      "title": "（1）个性特征。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        143
+      ],
+      "body": [
+        "测试指标包括性格倾向性、精神质（适应力）和情绪稳定性。"
+      ],
+      "keywords": [
+        "性格倾向性",
+        "精神质（适应力）",
+        "情绪稳定性"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-factor-emotion",
+      "parentId": "psy-factors",
+      "title": "（2）竞赛情绪。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        143
+      ],
+      "body": [
+        "包括赛前情绪和竞赛状态焦虑水平。"
+      ],
+      "keywords": [
+        "赛前情绪",
+        "竞赛状态焦虑"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-factor-attention",
+      "parentId": "psy-factors",
+      "title": "（3）注意特征。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        143
+      ],
+      "body": [
+        "包括注意的分配、广度、稳定性和转移。"
+      ],
+      "keywords": [
+        "分配",
+        "广度",
+        "稳定性",
+        "转移"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-factor-perception",
+      "parentId": "psy-factors",
+      "title": "（4）感知觉能力。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        143
+      ],
+      "body": [
+        "包括速度知觉和反应能力。"
+      ],
+      "keywords": [
+        "速度知觉",
+        "反应能力"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-factor-motivation",
+      "parentId": "psy-factors",
+      "title": "（5）比赛动机水平。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        143
+      ],
+      "body": [
+        "包括赛前动机水平和动机变化趋势。"
+      ],
+      "keywords": [
+        "赛前动机",
+        "变化趋势"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-factor-will",
+      "parentId": "psy-factors",
+      "title": "（6）意志品质。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        143
+      ],
+      "body": [
+        "包括主动性、果断性、坚韧性、自制性和自觉性。"
+      ],
+      "keywords": [
+        "主动性",
+        "果断性",
+        "坚韧性",
+        "自制性",
+        "自觉性"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-factor-confidence",
+      "parentId": "psy-factors",
+      "title": "（7）自信水平。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        143
+      ],
+      "body": [
+        "包括一般自信、特质自信和状态自信。"
+      ],
+      "keywords": [
+        "一般自信",
+        "特质自信",
+        "状态自信"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-factor-fatigue",
+      "parentId": "psy-factors",
+      "title": "（8）中枢神经疲劳。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        143
+      ],
+      "body": [
+        "主要通过运动员自我感受的测试予以判定。"
+      ],
+      "keywords": [
+        "自我感受",
+        "疲劳"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-methods",
+      "parentId": "tr4s2",
+      "title": "二、常用的心理训练方法",
+      "kind": "heading",
+      "original": true,
+      "printedPages": [
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152
+      ],
+      "body": [
+        "本部分依次介绍目标设置、想象、放松、注意和意志品质训练。应根据心理任务选择并组合方法，而不是把五种方法看作互相替代的同一种训练。"
+      ],
+      "keywords": [
+        "目标设置",
+        "想象",
+        "放松",
+        "注意",
+        "意志品质"
+      ],
+      "explanation": "",
+      "core": "方法需要回答“改善什么、怎样练、什么条件下用”，避免只背方法名称。"
+    },
+    {
+      "id": "psy-goals",
+      "parentId": "psy-methods",
+      "title": "（一）目标设置技能",
+      "kind": "heading",
+      "original": true,
+      "printedPages": [
+        143,
+        144,
+        145
+      ],
+      "body": [
+        "目标设置及为实现目标制定的系统计划，有助于增强自信和提高竞技能力。科学目标能让注意与行为指向训练任务，动员能量和努力，在进步缓慢时维持坚持，并促使教练员和运动员寻找合适策略。",
+        "设置目标需要同时考虑表现与结果、难度、现实性、具体性、时间跨度、个体与全队六个方面。这是六组考量，不是互斥的六类目标：同一个目标可以同时具体、现实、有挑战性、短期而且属于个体。"
+      ],
+      "keywords": [
+        "指向任务",
+        "动员努力",
+        "坚持",
+        "寻找策略",
+        "六组考量"
+      ],
+      "explanation": "“本月把某个动作的达标率提高到约定水平”可以同时满足多条原则；六个方面要一起检查。",
+      "core": "目标不是喊口号，而是用可控制、可检查的要求引导训练行为。"
+    },
+    {
+      "id": "psy-goal-performance",
+      "parentId": "psy-goals",
+      "title": "1. 表现的目标与结果的目标",
+      "kind": "heading",
+      "original": true,
+      "printedPages": [
+        143,
+        144
+      ],
+      "body": [
+        "应把重点放在运动员能够控制的竞赛表现上，而不是仅以战胜他人、名次或输赢定义成功。评价应重视是否完成自身表现要求和付出相应努力；这不等于否认比赛结果，而是把行动控制点放回自身。"
+      ],
+      "keywords": [
+        "自身控制",
+        "表现目标",
+        "结果目标"
+      ],
+      "explanation": "“完成自己的技术要求”主要取决于自身；“必须夺冠”还受对手和比赛条件影响。"
+    },
+    {
+      "id": "psy-goal-challenge",
+      "parentId": "psy-goals",
+      "title": "2. 挑战性的目标与轻而易举的目标",
+      "kind": "heading",
+      "original": true,
+      "printedPages": [
+        144
+      ],
+      "body": [
+        "目标应有挑战性，以激发努力和动机；但难度不能高到反复努力仍无法达到或使运动员直接放弃。根据能力与进步逐步提高要求，在达成后获得成功体验，支持下一阶段努力。"
+      ],
+      "keywords": [
+        "挑战性",
+        "适度难度",
+        "动机",
+        "逐步提高"
+      ],
+      "explanation": "有挑战不等于越难越好，要能通过努力接近和实现。"
+    },
+    {
+      "id": "psy-goal-realistic",
+      "parentId": "psy-goals",
+      "title": "3. 现实的目标与非现实的目标",
+      "kind": "heading",
+      "original": true,
+      "printedPages": [
+        144
+      ],
+      "body": [
+        "以真实水平为起点，区分“现在具备的水平”和“希望具有的水平”。教练员与运动员应建立信任，根据实际进程适当调整目标，共同服务长远发展，避免仅因渴望取胜而脱离实际。"
+      ],
+      "keywords": [
+        "真实水平",
+        "相互信任",
+        "适当调整"
+      ],
+      "explanation": "现实性检查的是是否有实际依据；它与挑战性并不矛盾。"
+    },
+    {
+      "id": "psy-goal-specific",
+      "parentId": "psy-goals",
+      "title": "4. 具体的目标与笼统的目标",
+      "kind": "heading",
+      "original": true,
+      "printedPages": [
+        144
+      ],
+      "body": [
+        "目标应明确成功标准，尽可能数量化，并限定特定时间或事件，以便指导和评价行动。“尽最大努力”可以表达追求，却因缺乏清楚界限而不足以充当具体训练目标。"
+      ],
+      "keywords": [
+        "成功标准",
+        "数量化",
+        "时间或事件",
+        "可检查"
+      ],
+      "explanation": "把“好好练”改成可以观察、记录和核对的任务。"
+    },
+    {
+      "id": "psy-goal-time",
+      "parentId": "psy-goals",
+      "title": "5. 短期的目标与长期的目标",
+      "kind": "heading",
+      "original": true,
+      "printedPages": [
+        144,
+        145
+      ],
+      "body": [
+        "通过一系列短期目标推进长期方向。短期目标便于及时指导、反馈、奖励成功、发现技能缺口和调整训练；长期目标明确发展方向，并把单次比赛置于整体过程之中，减轻对一次结果的过度紧张。原书提醒明确的近期执行目标不宜跨度过大，并以一个月作说明；学习时应理解为近期细化、远期滚动调整，不能否认长期规划的价值。"
+      ],
+      "keywords": [
+        "短期推进",
+        "长期方向",
+        "及时反馈",
+        "调整训练",
+        "缓解应激"
+      ],
+      "explanation": "短期回答“眼下具体做什么”，长期回答“这些努力最终往哪里去”。"
+    },
+    {
+      "id": "psy-goal-individual",
+      "parentId": "psy-goals",
+      "title": "6. 个体的目标与全队的目标",
+      "kind": "heading",
+      "original": true,
+      "printedPages": [
+        145
+      ],
+      "body": [
+        "目标计划应落实个体目标，明确每位运动员可控制的责任。集体项目需要全队目标来引导合作，但只有与清楚的个体任务相结合才有效；应注意并预防个体与全队目标冲突。"
+      ],
+      "keywords": [
+        "个体责任",
+        "全队合作",
+        "结合",
+        "预防冲突"
+      ],
+      "explanation": "团队说“提高防守”，还需落实到每人的站位、协防和执行责任。"
+    },
+    {
+      "id": "psy-imagery",
+      "parentId": "psy-methods",
+      "title": "（二）想象技能",
+      "kind": "heading",
+      "original": true,
+      "printedPages": [
+        145,
+        146,
+        147
+      ],
+      "body": [
+        "想象技能是指运动员利用头脑中已形成的运动表象进行训练的一种技能。",
+        "其作用包括获得和练习复杂动作技能、演练特殊比赛技术与战术、获得其他心理技能。想象训练亦称念动训练或意念训练，应围绕准确而可控制的运动表象进行，不能仅理解为幻想取胜。"
+      ],
+      "keywords": [
+        "运动表象",
+        "复杂动作",
+        "技术战术",
+        "心理技能",
+        "念动训练",
+        "意念训练"
+      ],
+      "explanation": "例如在头脑中按真实节奏演练助跑、起跳和过杆，并调动视觉、动觉等体验。它辅助实际训练，不能用愿望代替动作练习。",
+      "core": "“有感觉、形象清楚、能够控制”是想象训练质量的关键。",
+      "definition": "想象技能是指运动员利用头脑中已形成的运动表象进行训练的一种技能。"
+    },
+    {
+      "id": "psy-imagery-stages",
+      "parentId": "psy-imagery",
+      "title": "1. 发展想象技能的三个阶段",
+      "kind": "heading",
+      "original": true,
+      "printedPages": [
+        146
+      ],
+      "body": [
+        "发展顺序为感觉意识、鲜明生动性、控制性：先有清楚的动作体验，再使形象鲜明，最后使想象过程按任务需要进行。"
+      ],
+      "keywords": [
+        "感觉意识",
+        "鲜明生动性",
+        "控制性"
+      ],
+      "explanation": "三个阶段是发展顺序，不是三种放松方法。"
+    },
+    {
+      "id": "psy-imagery-stage-sense",
+      "parentId": "psy-imagery-stages",
+      "title": "第一阶段：感觉意识。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        146
+      ],
+      "body": [
+        "以已经获得的运动经验为基础，清楚意识到完成动作时的身体位置、脚步、时间节律、动作连贯性、方向变化，以及视觉、动觉、听觉等体验。"
+      ],
+      "keywords": [
+        "运动经验",
+        "动作感觉",
+        "视觉",
+        "动觉",
+        "听觉"
+      ],
+      "explanation": "先知道真实动作“是什么感觉”，头脑中的演练才有依据。"
+    },
+    {
+      "id": "psy-imagery-stage-vivid",
+      "parentId": "psy-imagery-stages",
+      "title": "第二阶段：鲜明生动性。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        146
+      ],
+      "body": [
+        "让各种感觉形成鲜明生动的形象。基础薄弱时可从熟悉场景开始，再逐步变换并与运动项目联系，鼓励运动员自己设计练习、主动参与训练。"
+      ],
+      "keywords": [
+        "多感觉",
+        "鲜明生动",
+        "由简到难",
+        "主动设计"
+      ],
+      "explanation": "不是只看一张模糊图片，而是让动作或情境像实际体验一样清楚。"
+    },
+    {
+      "id": "psy-imagery-stage-control",
+      "parentId": "psy-imagery-stages",
+      "title": "第三阶段：控制性。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        146
+      ],
+      "body": [
+        "练习按需要操纵想象形象，使其产生所需结果。可以先做简单的身体感觉想象，再进入项目专门练习，例如在头脑中运球、练习投篮或演练防守。"
+      ],
+      "keywords": [
+        "操纵形象",
+        "所需结果",
+        "专项练习"
+      ],
+      "explanation": "形象很清楚却总不受控制地出现失误，说明仍需练习控制性。"
+    },
+    {
+      "id": "psy-imagery-conditions",
+      "parentId": "psy-imagery",
+      "title": "2. 想象训练的准备条件",
+      "kind": "heading",
+      "original": true,
+      "printedPages": [
+        146,
+        147
+      ],
+      "body": [
+        "准备条件包括背景、注意放松状态和想象提示物。安排条件应随技能发展由容易逐步过渡到复杂竞赛情境。"
+      ],
+      "keywords": [
+        "背景",
+        "注意放松状态",
+        "想象提示物"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-imagery-background",
+      "parentId": "psy-imagery-conditions",
+      "title": "（1）背景。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        146
+      ],
+      "body": [
+        "初学者宜从没有分心因素的环境开始，熟练后逐步在多种甚至激烈竞赛背景下练习，在集中于内部形象时学会过滤外部干扰。"
+      ],
+      "keywords": [
+        "初学安静",
+        "熟练复杂",
+        "过滤干扰"
+      ],
+      "explanation": "不能把“安静环境适合开始”记成“只有绝对安静才能想象”。"
+    },
+    {
+      "id": "psy-imagery-relaxed",
+      "parentId": "psy-imagery-conditions",
+      "title": "（2）注意放松的状态。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        146,
+        147
+      ],
+      "body": [
+        "每次练习前使身心平静、肌肉放松，同时仍能注意要做的事情；不是放松到睡着，也不是带着反复分析错误和担忧的紧张状态进行。放松与想象可以结合使用。",
+        "原书以左右半球分工解释想象受紧张思维抑制的情形。这是本版教材的历史性说明；理解本节点应抓住“减少担忧与无关思维、维持清醒放松”，不把“大脑左半球只分析、右半球只想象”当作现代神经科学定论。"
+      ],
+      "keywords": [
+        "清醒放松",
+        "减少担忧",
+        "放松与想象结合"
+      ],
+      "explanation": "身体放松但头脑仍清醒，能持续跟随自己要演练的内容。"
+    },
+    {
+      "id": "psy-imagery-cue",
+      "parentId": "psy-imagery-conditions",
+      "title": "（3）想象提示物。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        147
+      ],
+      "body": [
+        "利用与项目相关的先兆或物体作为触发器，引出运动形象并提高想象能力，例如与专项情境有关的器材。提示物起到启动和提示作用，不能代替完整的想象练习。"
+      ],
+      "keywords": [
+        "触发器",
+        "先兆或物体",
+        "启动想象"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-imagery-evaluation",
+      "parentId": "psy-imagery",
+      "title": "3. 想象技能评价",
+      "kind": "heading",
+      "original": true,
+      "printedPages": [
+        147
+      ],
+      "body": [
+        "评价不能只看有没有视觉画面，还需检查声音、运动感觉、情绪体验与随意控制。多种感觉共同参与，才能较全面地判断想象质量。"
+      ],
+      "keywords": [
+        "清晰度",
+        "颜色",
+        "声音",
+        "连贯活动",
+        "肌肉感觉",
+        "情绪体验",
+        "自主控制"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-imagery-eval-clarity",
+      "parentId": "psy-imagery-evaluation",
+      "title": "（1）想象中图像的清晰度。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        147
+      ],
+      "body": [
+        "形象是否清楚，关键细节能否辨认。"
+      ],
+      "keywords": [
+        "图像清晰"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-imagery-eval-color",
+      "parentId": "psy-imagery-evaluation",
+      "title": "（2）想象中图像的颜色。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        147
+      ],
+      "body": [
+        "图像是否具备相应色彩和场景细节。"
+      ],
+      "keywords": [
+        "颜色"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-imagery-eval-sound",
+      "parentId": "psy-imagery-evaluation",
+      "title": "（3）想象的情境中有无声音。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        147
+      ],
+      "body": [
+        "是否包含与场景有关的听觉体验。"
+      ],
+      "keywords": [
+        "声音"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-imagery-eval-continuity",
+      "parentId": "psy-imagery-evaluation",
+      "title": "（4）想象中图像的连贯性与活动性。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        147
+      ],
+      "body": [
+        "动作过程是否连贯并具有动态变化，而非彼此割裂的静止片段。"
+      ],
+      "keywords": [
+        "连贯性",
+        "活动性"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-imagery-eval-muscle",
+      "parentId": "psy-imagery-evaluation",
+      "title": "（5）想象中自我的肌肉运动感觉。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        147
+      ],
+      "body": [
+        "是否能体验到身体运动及肌肉活动的感觉。"
+      ],
+      "keywords": [
+        "肌肉运动感觉"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-imagery-eval-emotion",
+      "parentId": "psy-imagery-evaluation",
+      "title": "（6）想象中自我的情绪体验深度。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        147
+      ],
+      "body": [
+        "能否体验与运动情境相应的情绪，而非只旁观画面。"
+      ],
+      "keywords": [
+        "情绪体验深度"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-imagery-eval-control",
+      "parentId": "psy-imagery-evaluation",
+      "title": "（7）想象能否按照自己的意愿进行。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        147
+      ],
+      "body": [
+        "能否按照任务要求开始、调整和控制想象过程。"
+      ],
+      "keywords": [
+        "按意愿进行"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-relaxation",
+      "parentId": "psy-methods",
+      "title": "（三）放松技能",
+      "kind": "heading",
+      "original": true,
+      "printedPages": [
+        147,
+        148,
+        149
+      ],
+      "body": [
+        "不必要的肌肉紧张会妨碍技能动作完成，还可能与情绪和心理紧张相互影响，增加能量消耗。这里介绍想象放松、逐渐放松和自我引导放松三种方法；重点是学会辨认并降低无益紧张。"
+      ],
+      "keywords": [
+        "降低无益紧张",
+        "动作完成",
+        "想象放松",
+        "逐渐放松",
+        "自我引导放松"
+      ],
+      "explanation": "",
+      "core": "放松服务于适宜的活动状态，不能简单等同于松懈或失去警觉。"
+    },
+    {
+      "id": "psy-relax-imagery",
+      "parentId": "psy-relaxation",
+      "title": "1. 想象放松法",
+      "kind": "heading",
+      "original": true,
+      "printedPages": [
+        147,
+        148
+      ],
+      "body": [
+        "在舒适位置，以熟悉而能带来安全、舒适和放松感的情境为想象内容。配合呼吸，调动视觉、听觉、气味和身体感觉，使自己仿佛置身其中，以唤起放松体验。选取的情境应与个人曾有的舒适感受形成稳定联系。"
+      ],
+      "keywords": [
+        "舒适情境",
+        "个人经验",
+        "多感觉",
+        "唤起放松"
+      ],
+      "explanation": "它是用想象达到放松；与“演练动作技能”的想象训练在用途上不同。"
+    },
+    {
+      "id": "psy-relax-progressive",
+      "parentId": "psy-relaxation",
+      "title": "2. 逐渐放松法",
+      "kind": "heading",
+      "original": true,
+      "printedPages": [
+        148
+      ],
+      "body": [
+        "先体验身体某一局部肌肉的紧张，再学会解除这种紧张，逐步由局部扩展至全身，使运动员能分辨“紧张—放松”的差异并主动调节。",
+        "熟练后可把较多局部肌群逐渐合并为较少肌群，缩短达到放松状态所需时间。原书给出的持续秒数与周数是其示例程序，理解和作答时重点应是先辨认、后解除、由局部到整体的原理。"
+      ],
+      "keywords": [
+        "先紧张后放松",
+        "感觉对比",
+        "局部到全身",
+        "逐步熟练"
+      ],
+      "explanation": "先学会辨认肌肉什么时候在用力，再学会让无益的紧张消退。"
+    },
+    {
+      "id": "psy-relax-self",
+      "parentId": "psy-relaxation",
+      "title": "3. 自我引导放松法",
+      "kind": "heading",
+      "original": true,
+      "printedPages": [
+        148,
+        149
+      ],
+      "body": [
+        "它是逐渐放松训练的简化形式。以缓慢轻松的呼吸配合自我引导语或想象，引导身体各肌群放松；开始时可按较完整脚本逐步练习，熟练后减少提示语和所需时间。脚本可由本人或他人念诵，语速缓慢、柔和，并在适当位置停顿。"
+      ],
+      "keywords": [
+        "简化形式",
+        "呼吸",
+        "自我引导语",
+        "各肌群",
+        "熟练后缩短"
+      ],
+      "explanation": "重点是运动员逐渐掌握可自行调用的放松程序，而非机械背诵一份长脚本。"
+    },
+    {
+      "id": "psy-relax-script",
+      "parentId": "psy-relax-self",
+      "title": "自我引导放松练习（简化）脚本",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        149
+      ],
+      "body": [
+        "原书脚本的结构是：呼吸并提示“放松”→把注意转向额头和面部→体会并解除局部紧张→依次关注胳膊和双手、颈背、胸腹、大小腿与双脚→再次用呼吸和提示巩固全身放松。这是对脚本步骤的整理，不是原文逐字转录。想象放松与自我引导也可结合，原书另提及生物反馈等方法。"
+      ],
+      "keywords": [
+        "呼吸提示",
+        "局部体验",
+        "全身放松",
+        "方法结合"
+      ],
+      "explanation": "这里是练习示例，不应再与前面三种方法并列为“第四种放松法”。"
+    },
+    {
+      "id": "psy-attention",
+      "parentId": "psy-methods",
+      "title": "（四）注意技能",
+      "kind": "heading",
+      "original": true,
+      "printedPages": [
+        149,
+        150,
+        151
+      ],
+      "body": [
+        "注意是指人的心理活动对一定对象的指向和集中。",
+        "本部分分别讨论注意的指向性和注意的集中：前者解决从众多线索中选择什么，后者解决能否在需要的时间内维持对所选对象的关注。"
+      ],
+      "keywords": [
+        "指向",
+        "集中",
+        "选择线索",
+        "维持注意"
+      ],
+      "explanation": "",
+      "core": "先选对对象，再在任务需要的时间里维持；不是越用力想“我要集中”效果越好。",
+      "definition": "注意是指人的心理活动对一定对象的指向和集中。"
+    },
+    {
+      "id": "psy-attention-direction",
+      "parentId": "psy-attention",
+      "title": "1. 注意的指向性",
+      "kind": "heading",
+      "original": true,
+      "printedPages": [
+        149,
+        150
+      ],
+      "body": [
+        "选择适宜刺激或线索，并过滤无关和对抗性刺激。专项任务不同，所需线索的内部/外部来源、广度以及选择次序也不同，应通过训练形成适宜的选择和反应。"
+      ],
+      "keywords": [
+        "适宜线索",
+        "过滤干扰",
+        "内外",
+        "广狭",
+        "次序"
+      ],
+      "explanation": "例如处理球时，既要看关键防守与空当，也要过滤与当前决策无关的观众声音。"
+    },
+    {
+      "id": "psy-attention-dir-analysis",
+      "parentId": "psy-attention-direction",
+      "title": "（1）与运动员一起分析自己的运动项目中每一种特殊技能对注意的要求，确定这种注意究竟是内在的还是外在的，应该广阔到何种程度或狭窄到何种程度。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        149
+      ],
+      "body": [
+        "确定任务需要内部还是外部注意，以及适宜的注意广度；先分析任务，再规定注意对象。"
+      ],
+      "keywords": [
+        "任务分析",
+        "内部/外部",
+        "广阔/狭窄"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-attention-dir-sequence",
+      "parentId": "psy-attention-direction",
+      "title": "（2）当注意集中于外部时，要让运动员明白注意应该以何种次序指向何种线索，要尽可能地减少注意的线索和尽可能地使其明了。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        150
+      ],
+      "body": [
+        "外部线索尽量精简、明确并有合理次序；内部注意则指向积极、建设性思维，避免消极担忧。"
+      ],
+      "keywords": [
+        "外部线索次序",
+        "精简明确",
+        "积极思维"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-attention-dir-present",
+      "parentId": "psy-attention-direction",
+      "title": "（3）在实际完成某一种技能时，注意要指向当前正在完成的动作和马上就要完成的动作，而不是指向已经过去的比赛情况。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        150
+      ],
+      "body": [
+        "把注意留在当前与即将执行的动作，不纠缠已经结束的比赛情况。"
+      ],
+      "keywords": [
+        "当前",
+        "即将动作",
+        "不过度回顾"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-attention-dir-task",
+      "parentId": "psy-attention-direction",
+      "title": "（4）注意应集中在与任务有关的因素上，例如动作的结构和动作的实施，而不是集中在得分或悬而未决的结果上。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        150
+      ],
+      "body": [
+        "关注动作结构与实施等任务相关因素，而不是得分和悬而未决的结果，避免获胜念头挤占执行下一动作所需注意。"
+      ],
+      "keywords": [
+        "任务因素",
+        "动作实施",
+        "过程而非结果"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-attention-dir-filter",
+      "parentId": "psy-attention-direction",
+      "title": "（5）帮助运动员形成关于何种线索应该注意和何种线索应该过滤掉的心理定势和期望，然后让他们学会对这些线索的适宜反应。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        150
+      ],
+      "body": [
+        "先建立线索选择规则，再学习对这些线索作出适宜反应。"
+      ],
+      "keywords": [
+        "注意什么",
+        "过滤什么",
+        "适宜反应"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-attention-dir-prediction",
+      "parentId": "psy-attention-direction",
+      "title": "（6）在帮助运动员形成心理定势的同时，让运动员掌握那些可以帮助他们预测某些反应的线索，然后帮他们分析何时适宜作出预测反应。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        150
+      ],
+      "body": [
+        "识别可用于预测的线索，并分析何时适宜作出预测反应；不能只求反应快而忽略判断依据。"
+      ],
+      "keywords": [
+        "预测线索",
+        "反应时机"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-attention-dir-learning",
+      "parentId": "psy-attention-direction",
+      "title": "（7）在学习运动技能的时候，要让运动员的注意指向完成这些技能时他们肌肉内部的感觉和体会上。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        150
+      ],
+      "body": [
+        "关注与技能学习有关的运动感觉，帮助形成运动知觉；想象也可以辅助传授这些感觉。此处针对原书所说技能学习情境，不应推成所有任务始终只能内部注意。"
+      ],
+      "keywords": [
+        "运动感觉",
+        "技能学习",
+        "想象辅助"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-attention-dir-timing",
+      "parentId": "psy-attention-direction",
+      "title": "（8）在训练过程中，要在训练开始的时候趁运动员的心理能量还处在高水平时做那些需要注意的教学活动。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        150
+      ],
+      "body": [
+        "把对注意要求较高的教学安排在运动员精力较充足的时候，考虑训练课内的时机。"
+      ],
+      "keywords": [
+        "精力充足",
+        "教学时机"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-attention-dir-distraction",
+      "parentId": "psy-attention-direction",
+      "title": "（9）在训练过程中，当运动员初学某种运动技能时，要尽量减少分心因素，但是，稍后则要引进模拟竞赛的分心因素，这样才能训练运动员的注意技能。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        150
+      ],
+      "body": [
+        "初学时降低干扰，随后逐步加入模拟竞赛的分心因素，使运动员学会在真实干扰中保持任务注意。"
+      ],
+      "keywords": [
+        "初学减扰",
+        "逐步模拟",
+        "抗干扰"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-attention-dir-uncertainty",
+      "parentId": "psy-attention-direction",
+      "title": "（10）当外部环境中有大量的不确定性因素时，特别是那些运动员可能觉得对他们的自我价值是一种威胁的不确定性因素时，这种情况就会使他们产生紧张应激，也会增加他们分心的可能性。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        150
+      ],
+      "body": [
+        "要重视不确定性和自我价值威胁引起的紧张应激及分心，帮助运动员理解情境并把注意重新放回任务。"
+      ],
+      "keywords": [
+        "不确定性",
+        "自我价值威胁",
+        "紧张应激",
+        "分心"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-attention-concentration",
+      "parentId": "psy-attention",
+      "title": "2. 注意的集中",
+      "kind": "heading",
+      "original": true,
+      "printedPages": [
+        150,
+        151
+      ],
+      "body": [
+        "本节将注意集中限定为在一定时间内使注意维持在所选刺激上的能力，即注意的持续时间，不只指缩小注意范围。",
+        "应专注于此时此刻正在做的任务，训练维持时间应适应项目比赛要求。单纯紧张肌肉、反复命令自己“集中”，可能使注意转向“集中本身”；应减少紧张与不确定性，并在实际任务中练习。"
+      ],
+      "keywords": [
+        "维持",
+        "持续时间",
+        "当前任务",
+        "项目要求"
+      ],
+      "explanation": "“看对了什么”是指向性；“能持续看住、处理好它”是集中。"
+    },
+    {
+      "id": "psy-attention-con-readiness",
+      "parentId": "psy-attention-concentration",
+      "title": "（1）由于注意的集中是一个被动的过程，这种技能的改进有些要通过让心理活动准备集中注意来实现，如摆脱紧张应激、沉醉于注意的目标等。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        151
+      ],
+      "body": [
+        "按原书表述，“被动”强调不能仅凭强迫意念获得集中。应减少紧张应激、控制心理能量，让自己投入任务，形成有利于专注的准备状态。"
+      ],
+      "keywords": [
+        "降低应激",
+        "投入任务",
+        "准备状态"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-attention-con-routine",
+      "parentId": "psy-attention-concentration",
+      "title": "（2）提高注意集中水平的另一个有效的途径就是运用临赛前程序，这种临赛前的程序如前所述可以降低不确定性、减少出现分心的潜在可能。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        151
+      ],
+      "body": [
+        "通过稳定的临赛前程序降低不确定性，减少分心的可能；程序应为执行任务服务。"
+      ],
+      "keywords": [
+        "临赛前程序",
+        "降低不确定性"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-attention-con-trigger",
+      "parentId": "psy-attention-concentration",
+      "title": "（3）注意集中的改进还可以采用动作触发器，即一些可以提醒运动员集中注意的词语和动作。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        151
+      ],
+      "body": [
+        "使用能提醒运动员重新集中于任务的词语或动作，建立简明、可调用的注意提示。"
+      ],
+      "keywords": [
+        "动作触发器",
+        "词语或动作"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-attention-con-practice",
+      "parentId": "psy-attention-concentration",
+      "title": "（4）注意的集中可以通过练习迅速得到提升。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        151
+      ],
+      "body": [
+        "在训练课中安排与比赛实际持续时间和任务特点相适应的集中练习，避免只在少数环节短时练习。"
+      ],
+      "keywords": [
+        "比赛要求",
+        "持续练习"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-attention-con-alertness",
+      "parentId": "psy-attention-concentration",
+      "title": "（5）在训练和竞赛中保持心理上的警觉性和控制心理能量不仅可以帮助运动员产生如剃须刀般锋利的注意的集中，而且还能获得更好的注意选择和转换技能。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        151
+      ],
+      "body": [
+        "维持适宜警觉与心理能量，同时支持注意集中、线索选择和注意转换，不把放松误解为无精打采。"
+      ],
+      "keywords": [
+        "警觉性",
+        "心理能量",
+        "选择",
+        "转换"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-will-training",
+      "parentId": "psy-methods",
+      "title": "（五）意志品质训练",
+      "kind": "heading",
+      "original": true,
+      "printedPages": [
+        151,
+        152
+      ],
+      "body": [
+        "意志品质就是能使我们去完成那些几乎不愿意承担的任务，甚至可能是讨厌的任务的一种品质。",
+        "运动员在训练竞赛困难中仍能为明确任务持续努力，需要平时培养主动性、毅力、进取心与拼搏精神；比赛表现会反映训练中养成的应对习惯。意志训练也需适当负荷和明确目标，不等于没有边界地硬撑。"
+      ],
+      "keywords": [
+        "克服困难",
+        "持续努力",
+        "平时培养",
+        "明确任务",
+        "适当负荷"
+      ],
+      "explanation": "不是一到比赛才要求“拼命”，而是在日常小任务中形成主动、认真、遇难不轻易放弃的习惯。",
+      "core": "七条建议把意志从口号落实为有目标、有动机、有任务的训练。",
+      "definition": "意志品质就是能使我们去完成那些几乎不愿意承担的任务，甚至可能是讨厌的任务的一种品质。"
+    },
+    {
+      "id": "psy-will-small",
+      "parentId": "psy-will-training",
+      "title": "（1）从小问题着手。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        152
+      ],
+      "body": [
+        "即使琐碎问题也有训练意义，可通过小任务培养认真落实和克服困难的习惯。"
+      ],
+      "keywords": [
+        "小问题",
+        "日常习惯"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-will-desire",
+      "parentId": "psy-will-training",
+      "title": "（2）自己本身必须有解决问题的渴望。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        152
+      ],
+      "body": [
+        "使运动员认同任务，形成主动解决问题的动机，而非始终依靠外部催促。"
+      ],
+      "keywords": [
+        "主动渴望",
+        "解决问题"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-will-positive",
+      "parentId": "psy-will-training",
+      "title": "（3）学会运用积极思维使自己进入进攻状态。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        152
+      ],
+      "body": [
+        "遇到困难任务先建立克服困难的勇气，用积极思维组织行动。"
+      ],
+      "keywords": [
+        "积极思维",
+        "勇气",
+        "进攻状态"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-will-competition",
+      "parentId": "psy-will-training",
+      "title": "（4）将训练当作比赛，始终处于进攻状态，所有培养意志品质的练习都必须全力以赴。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        152
+      ],
+      "body": [
+        "认真投入训练，避免敷衍形成消极习惯；“进攻状态”指主动应对困难的心理态度，不等于不顾计划无限增加负荷。"
+      ],
+      "keywords": [
+        "训练当比赛",
+        "认真投入",
+        "避免敷衍"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-will-attention",
+      "parentId": "psy-will-training",
+      "title": "（5）要将全部的注意力集中指向当前的任务。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        152
+      ],
+      "body": [
+        "把努力落实于当前可以完成的行动，减少对困难和结果的无效担忧。"
+      ],
+      "keywords": [
+        "当前任务",
+        "注意集中"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-will-load",
+      "parentId": "psy-will-training",
+      "title": "（6）对毅力这种意志品质的训练并不需要进行得过于频繁。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        152
+      ],
+      "body": [
+        "安排能够提高较长时间承受心理负荷能力的练习，同时合理控制频率。"
+      ],
+      "keywords": [
+        "不过频",
+        "较长时间",
+        "心理负荷"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-will-goal",
+      "parentId": "psy-will-training",
+      "title": "（7）培养意志品质的练习和任务必须在心理上有一个明确的目标。",
+      "kind": "point",
+      "original": true,
+      "printedPages": [
+        152
+      ],
+      "body": [
+        "让意志努力指向可辨认的目标，既不怕失败又争取成功，避免反复进行没有目的和成效依据的硬撑。"
+      ],
+      "keywords": [
+        "明确目标",
+        "不怕失败",
+        "力争取胜"
+      ],
+      "explanation": ""
+    },
+    {
+      "id": "psy-requirements",
+      "parentId": "tr4s2",
+      "title": "三、运动员心理训练的基本要求",
+      "kind": "heading",
+      "original": true,
+      "printedPages": [
+        152,
+        153,
+        154
+      ],
+      "body": [
+        "四项要求回答如何把心理训练真正纳入训练体系：认识转为实践、自发转为自觉、零散转为系统、长期坚持并与其他训练贯通。"
+      ],
+      "keywords": [
+        "付诸实践",
+        "自觉运用",
+        "系统运用",
+        "持之以恒",
+        "融会贯通"
+      ],
+      "explanation": "",
+      "core": "训练方法列得再多，若不长期落实到日常训练，仍难形成稳定能力。"
+    },
+    {
+      "id": "psy-require-practice",
+      "parentId": "psy-requirements",
+      "title": "（一）完成由感性认识到理性认识的飞跃，将心理训练付诸实践",
+      "kind": "heading",
+      "original": true,
+      "printedPages": [
+        152,
+        153
+      ],
+      "body": [
+        "不仅承认心理因素重要，还要理解心理训练原理、学习方法、安排实际训练。青少年和初级阶段同样需要心理训练，一些高水平比赛时暴露的问题可能与早期未重视有关，应与体能、技战术一起打好基础。"
+      ],
+      "keywords": [
+        "理性认识",
+        "实际安排",
+        "青少年基础"
+      ],
+      "explanation": "不是等水平高了、比赛失常了，才开始补心理训练。"
+    },
+    {
+      "id": "psy-require-conscious",
+      "parentId": "psy-requirements",
+      "title": "（二）变自发使用为自觉运用",
+      "kind": "heading",
+      "original": true,
+      "printedPages": [
+        153
+      ],
+      "body": [
+        "把凭经验临时使用、出了问题才处理，转为教练员在日常训练中有意识、有计划地传授和提高心理技能。心理专家可以协助，但不能代替教练员持续组织实施的责任；教练员的投入也影响运动员投入。"
+      ],
+      "keywords": [
+        "有意识",
+        "有计划",
+        "日常训练",
+        "教练员实施"
+      ],
+      "explanation": "专业协助有价值，平时的落实不能只等专家临赛救急。"
+    },
+    {
+      "id": "psy-require-systematic",
+      "parentId": "psy-requirements",
+      "title": "（三）由个别、零散运用变成系统运用",
+      "kind": "heading",
+      "original": true,
+      "printedPages": [
+        153
+      ],
+      "body": [
+        "全面理解训练内容，根据实际需要系统安排多种方法并持续练习，不能把心理训练等同于一两种方法，也不能按“心理因素占多大比例”机械切分训练时数。只尝试几次就期待奇效或放弃，无法形成整体训练效应。"
+      ],
+      "keywords": [
+        "全面理解",
+        "系统安排",
+        "非机械比例",
+        "非速效"
+      ],
+      "explanation": "“心理很重要”不能推导出把相同比例的训练时间孤立留给心理课。"
+    },
+    {
+      "id": "psy-require-integrate",
+      "parentId": "psy-requirements",
+      "title": "（四）持之以恒，融会贯通，全面发展。",
+      "kind": "heading",
+      "original": true,
+      "printedPages": [
+        153,
+        154
+      ],
+      "body": [
+        "心理技能需要长期艰苦训练，并与体能、技术、战术训练相互依存、相互制约、相互促进。应有机结合、融为一体，全面发展竞技能力。教练员要理解心理训练，并使其成为日常训练计划不可缺少的组成部分。"
+      ],
+      "keywords": [
+        "长期坚持",
+        "相互依存",
+        "有机结合",
+        "全面发展",
+        "日常计划"
+      ],
+      "explanation": "可以在技术练习中加入注意线索，在模拟比赛中练情绪控制，使心理训练落在实际运动任务中。"
+    }
+  ],
+  "questions": [
+    {
+      "id": "psy-q-definition",
+      "prompt": "名词解释：运动员心理能力。",
+      "examType": "term",
+      "nodeIds": [
+        "psy-definition"
+      ],
+      "printedPages": [
+        141
+      ],
+      "answer": [
+        "运动员心理能力即指运动员与训练竞赛有关的个性心理特征，以及依训练竞赛的需要把握和调整心理过程的能力，是运动员竞技能力的重要组成部分。"
+      ],
+      "keywords": [
+        "个性心理特征",
+        "把握和调整心理过程",
+        "竞技能力的重要组成部分"
+      ],
+      "explanation": "定义按“涉及哪些特征—具备何种调节能力—在竞技能力中的地位”理解，参考定义保持原文。",
+      "sourceType": "original-simulation"
+    },
+    {
+      "id": "psy-q-classifications",
+      "prompt": "心理训练中的“基础与专门”“日常与赛期”是同一套分类吗？请说明分类依据、任务和联系。",
+      "examType": "short",
+      "nodeIds": [
+        "psy-training",
+        "psy-content-class",
+        "psy-basic",
+        "psy-targeted",
+        "psy-period-class",
+        "psy-competition",
+        "psy-daily"
+      ],
+      "printedPages": [
+        142,
+        143
+      ],
+      "answer": [
+        "一、两套分类依据不同。基础与专门心理训练主要按内容及针对性划分；日常与赛期心理训练依据与训练、比赛的关系划分，不能将二者机械地一一对应。",
+        "二、基础心理训练又称一般心理训练，发展训练竞赛必需的基本心理素质，包括心理技能、专项心理素质和良好个性品质。有针对性的心理训练又称专门心理训练，为具体比赛做好准备，或围绕特定心理问题展开。",
+        "三、日常心理训练相对侧重心理技能发展和个性心理特征改善；赛期心理训练侧重特定比赛的心理过程调整，包括赛前准备、赛中控制、赛后调整。",
+        "四、两套分类从不同角度安排同一训练体系。基础技能应在日常逐步建立，并在赛期按具体任务调用；具体问题也可以提前在日常训练中有针对性地解决。"
+      ],
+      "keywords": [
+        "分类依据不同",
+        "基础/专门",
+        "日常/赛期",
+        "三阶段",
+        "不能一一对应"
+      ],
+      "explanation": "先说明两套分类的标准，再逐套交代类别与任务，最后解释交叉联系。这样不把“四个词”误列为同一级四类。",
+      "sourceType": "original-simulation"
+    },
+    {
+      "id": "psy-q-competition",
+      "prompt": "运动员体能、技术和战术准备较充分，仍在重要比赛中发挥失常。简述赛前、赛中、赛后应分别安排哪些心理训练任务。",
+      "examType": "short",
+      "nodeIds": [
+        "psy-competition",
+        "psy-before",
+        "psy-during",
+        "psy-after"
+      ],
+      "printedPages": [
+        142
+      ],
+      "answer": [
+        "一、赛前做好心理准备。激发比赛动机，调节适宜激活水平，增强参赛信心，建立稳定而灵活的参赛思维和行为程序。把准备落实到可执行的比赛任务，减少无序担忧。",
+        "二、赛中实施心理控制。面对环境与比赛进程变化，保持良好稳定情绪，将注意重新放回当前任务，使已有体能、技能和战术能力得到发挥。",
+        "三、赛后区别情况调整。对成功者肯定积极体验，同时查找被胜利掩盖的问题，防止自满松懈；对失败者缓解消极体验，发现局部积极表现，重新激发求胜动机。",
+        "四、三个阶段应连贯安排，不能只做一次赛前动员。赛后调整形成的经验可反馈到后续日常训练与下一次比赛准备。"
+      ],
+      "keywords": [
+        "赛前准备",
+        "赛中控制",
+        "赛后调整",
+        "成功/失败区别",
+        "连续安排"
+      ],
+      "explanation": "沿比赛时间顺序组织，赛后再分成功者、失败者两条，既覆盖阶段又体现对象差异。",
+      "sourceType": "original-simulation"
+    },
+    {
+      "id": "psy-q-factors",
+      "prompt": "简述影响运动员心理能力的主要因素及其具体表现。",
+      "examType": "short",
+      "nodeIds": [
+        "psy-factors",
+        "psy-factor-personality",
+        "psy-factor-emotion",
+        "psy-factor-attention",
+        "psy-factor-perception",
+        "psy-factor-motivation",
+        "psy-factor-will",
+        "psy-factor-confidence",
+        "psy-factor-fatigue"
+      ],
+      "printedPages": [
+        143
+      ],
+      "answer": [
+        "一、个性特征，包括性格倾向性、精神质（适应力）和情绪稳定性；竞赛情绪，包括赛前情绪和竞赛状态焦虑水平。",
+        "二、注意特征，包括分配、广度、稳定性和转移；感知觉能力，包括速度知觉和反应能力。",
+        "三、比赛动机水平，包括赛前动机水平及其变化趋势；意志品质，包括主动性、果断性、坚韧性、自制性和自觉性。",
+        "四、自信水平，包括一般自信、特质自信和状态自信；中枢神经疲劳，主要通过运动员自我感受的测试判定。"
+      ],
+      "keywords": [
+        "个性",
+        "情绪",
+        "注意",
+        "感知觉",
+        "动机",
+        "意志",
+        "自信",
+        "中枢神经疲劳"
+      ],
+      "explanation": "八项按四组配对便于记忆，但每组只是背诵编排，不是书上新增的上位分类；作答保留全部八项。",
+      "sourceType": "original-simulation"
+    },
+    {
+      "id": "psy-q-goal-principles",
+      "prompt": "简述科学设置运动员训练与竞赛目标应考虑的主要因素。",
+      "examType": "short",
+      "nodeIds": [
+        "psy-goals",
+        "psy-goal-performance",
+        "psy-goal-challenge",
+        "psy-goal-realistic",
+        "psy-goal-specific",
+        "psy-goal-time",
+        "psy-goal-individual"
+      ],
+      "printedPages": [
+        143,
+        144,
+        145
+      ],
+      "answer": [
+        "一、以表现目标为重点。把成功要求落实到运动员可控制的自身表现，避免仅以胜负、名次评价训练和竞赛。",
+        "二、难度应有挑战且符合实际。目标应足以激发努力，同时以真实水平为起点，避免过易而无推动力，或过难而削弱动机；根据进程适当调整。",
+        "三、目标必须具体。明确成功标准，尽可能数量化，并限定时间或事件，才能指导行动和核对完成情况。",
+        "四、短期与长期结合。用可检查的近期任务逐步推进长期方向，通过反馈、成功体验和计划调整维持努力；以长远发展看待单次比赛，减轻过度紧张。",
+        "五、个体与全队结合。明确个人可控制的任务和责任，在集体项目中以个体目标支撑全队合作，并预防个人追求与团队要求冲突。"
+      ],
+      "keywords": [
+        "表现",
+        "挑战",
+        "现实",
+        "具体",
+        "长短结合",
+        "个体与全队"
+      ],
+      "explanation": "原书六组考量在答案中合为五点：第二点同时覆盖挑战性和现实性，二者相关却不相同，核对时不能漏任何一项。",
+      "sourceType": "original-simulation"
+    },
+    {
+      "id": "psy-q-goal-case",
+      "prompt": "某队目标是“下一场必须夺冠，每人尽最大努力”，训练后仅按输赢奖惩。请分析目标设置的问题，并提出修改思路。",
+      "examType": "essay",
+      "nodeIds": [
+        "psy-goals",
+        "psy-goal-performance",
+        "psy-goal-challenge",
+        "psy-goal-realistic",
+        "psy-goal-specific",
+        "psy-goal-time",
+        "psy-goal-individual"
+      ],
+      "printedPages": [
+        143,
+        144,
+        145
+      ],
+      "answer": [
+        "一、问题首先在于只设结果目标。夺冠还受对手、赛程等因素影响，不能完全由自身控制；仅按输赢评价，容易忽视实际进步和任务执行。应把全队期望转化为可控制的表现要求。",
+        "二、“尽最大努力”缺少检查标准。应依据项目和队员真实水平，明确某项技术、配合或执行质量的成功标准，限定训练周期或比赛事件，形成可记录、可反馈的具体目标。",
+        "三、难度需有挑战且现实。不能因夺冠愿望强烈就跳过能力分析；应与运动员共同商定努力后可能达到的要求，随训练进程滚动调整，避免过易或长期无法完成。",
+        "四、以阶段任务支持长远方向。保留全队长期追求，同时设置近期训练和本场比赛的执行目标，通过阶段反馈发现不足、安排修正，不把单次输赢当成全部价值。",
+        "五、全队目标必须落实到个人责任。根据位置和任务划分队员各自可控制的表现要求，使个人努力共同服务团队，并检查个人数据追求是否损害配合。",
+        "六、评价兼顾执行过程与结果。既复盘胜负，也核对具体表现目标和努力质量，以反馈指导下一轮训练，形成目标—行动—评价—调整的连续过程。"
+      ],
+      "keywords": [
+        "结果不完全可控",
+        "笼统缺标准",
+        "真实水平",
+        "阶段目标",
+        "个人责任",
+        "反馈调整"
+      ],
+      "explanation": "采用“发现问题—解释为什么—对应修改”的结构；例题没有给队员基础数据，因此不臆造适用于所有队伍的数值指标。",
+      "sourceType": "original-simulation"
+    },
+    {
+      "id": "psy-q-imagery-definition",
+      "prompt": "名词解释：想象技能。",
+      "examType": "term",
+      "nodeIds": [
+        "psy-imagery"
+      ],
+      "printedPages": [
+        145
+      ],
+      "answer": [
+        "想象技能是指运动员利用头脑中已形成的运动表象进行训练的一种技能。"
+      ],
+      "keywords": [
+        "已形成的运动表象",
+        "进行训练"
+      ],
+      "explanation": "把定义中的“表象基础”和“用于训练”两部分记牢；放松中的情境想象只是想象的一种用途。",
+      "sourceType": "original-simulation"
+    },
+    {
+      "id": "psy-q-imagery-stages",
+      "prompt": "简述想象技能的主要作用及其发展的三个阶段。",
+      "examType": "short",
+      "nodeIds": [
+        "psy-imagery",
+        "psy-imagery-stages",
+        "psy-imagery-stage-sense",
+        "psy-imagery-stage-vivid",
+        "psy-imagery-stage-control"
+      ],
+      "printedPages": [
+        145,
+        146
+      ],
+      "answer": [
+        "一、主要作用。帮助运动员获得和练习复杂动作技能，演练特殊比赛技术与战术，并获得其他心理技能。想象围绕已有运动表象进行，服务于实际训练竞赛。",
+        "二、感觉意识阶段。使运动员清楚体验完成动作时的身体位置、脚步、节奏、方向变化以及视觉、动觉、听觉等，为内部演练提供经验材料。",
+        "三、鲜明生动性阶段。把各种感觉组织为清楚、生动的形象；基础较差时从熟悉简单场景开始，逐步变化并与专项动作联系。",
+        "四、控制性阶段。学习按任务需要操纵想象内容，使动作和情境演练能够朝所需过程与结果进行，再逐步用于运球、投篮、防守等专项任务。"
+      ],
+      "keywords": [
+        "三项作用",
+        "感觉意识",
+        "鲜明生动性",
+        "控制性",
+        "经验到控制"
+      ],
+      "explanation": "先回答“为什么练”，再按“有体验—形象清楚—能按需要控制”的递进回答“如何发展”。",
+      "sourceType": "original-simulation"
+    },
+    {
+      "id": "psy-q-imagery-evaluate",
+      "prompt": "运动员说“脑中能看见动作，就说明想象训练很好”。请辨析，并说明想象训练的准备条件与评价维度。",
+      "examType": "short",
+      "nodeIds": [
+        "psy-imagery-conditions",
+        "psy-imagery-background",
+        "psy-imagery-relaxed",
+        "psy-imagery-cue",
+        "psy-imagery-evaluation"
+      ],
+      "printedPages": [
+        146,
+        147
+      ],
+      "answer": [
+        "一、这种判断不全面。想象不是单一视觉画面，而是多种感觉和情绪参与的综合体验，还需要按自身意愿控制。能看见动作只能说明其中一个方面。",
+        "二、准备背景。初学者先在分心因素较少的环境练习，随技能发展逐步进入复杂情境，学会过滤干扰，而不是永远依赖安静环境。",
+        "三、准备状态与提示。练习前保持清醒的身心放松状态，减少担忧和无关思维；必要时用项目相关的先兆或物体作提示物，帮助启动运动形象。",
+        "四、评价形象质量。检查图像清晰度、颜色、有无声音，以及图像的连贯性和活动性。",
+        "五、评价自身体验与控制。检查肌肉运动感觉、情绪体验深度，以及能否按照自己的意愿进行想象。上述维度应共同使用，避免只看“有没有画面”。"
+      ],
+      "keywords": [
+        "多感觉",
+        "背景",
+        "清醒放松",
+        "提示物",
+        "四项形象质量",
+        "感觉情绪控制"
+      ],
+      "explanation": "先纠正观点，再分“练前怎么准备”和“练得怎样如何评价”；注意三条件与七评价是不同层次。",
+      "sourceType": "original-simulation"
+    },
+    {
+      "id": "psy-q-relax-methods",
+      "prompt": "比较想象放松法、逐渐放松法与自我引导放松法的主要实施思路。",
+      "examType": "short",
+      "nodeIds": [
+        "psy-relaxation",
+        "psy-relax-imagery",
+        "psy-relax-progressive",
+        "psy-relax-self",
+        "psy-relax-script"
+      ],
+      "printedPages": [
+        147,
+        148,
+        149
+      ],
+      "answer": [
+        "一、三者共同目的都是减少不必要的身体与心理紧张，为动作完成和适宜心理状态创造条件，但实现途径不同。",
+        "二、想象放松法以舒适情境为媒介。利用与个人放松经验有稳定联系的场景，调动多种感觉并配合呼吸，以唤起安全、舒适和放松体验。",
+        "三、逐渐放松法以肌肉紧张和放松的感觉对比为基础。先体会局部肌肉紧张，再解除紧张，逐步扩展到全身；熟练后合并肌群、缩短所需时间。",
+        "四、自我引导放松法是逐渐放松的简化形式。以呼吸配合自我引导语或想象，按一定程序使各肌群放松；随着熟练，提示语和练习时间逐渐减少。",
+        "五、实际运用可根据需要组合，如将舒适情境想象与自我引导结合。选择时应明确训练目的，而不是只背方法名称或把放松等同于失去警觉。"
+      ],
+      "keywords": [
+        "共同目的",
+        "舒适情境",
+        "先紧后松",
+        "自我引导",
+        "可以结合"
+      ],
+      "explanation": "统一按“依据什么—怎样进行—怎样发展”对照三个方法，末尾说明相互联系。",
+      "sourceType": "original-simulation"
+    },
+    {
+      "id": "psy-q-attention-difference",
+      "prompt": "简述注意的指向性与注意集中的区别，并说明如何避免“越想集中越分心”。",
+      "examType": "short",
+      "nodeIds": [
+        "psy-attention",
+        "psy-attention-direction",
+        "psy-attention-concentration",
+        "psy-attention-con-readiness",
+        "psy-attention-con-routine",
+        "psy-attention-con-trigger",
+        "psy-attention-con-practice",
+        "psy-attention-con-alertness"
+      ],
+      "printedPages": [
+        149,
+        150,
+        151
+      ],
+      "answer": [
+        "一、注意的指向性解决选择对象的问题，即从众多刺激中选取任务相关线索并过滤干扰；注意集中解决维持的问题，即在一定时间内保持对已选对象的关注，不能只理解为缩小范围。",
+        "二、过度命令自己“必须集中”，可能使注意转向集中本身，并伴随肌肉紧张和心理压力，反而挤占执行当前动作所需的注意。应把关注点回到此时此刻的具体任务。",
+        "三、为集中创造条件。降低紧张应激，保持适宜警觉和心理能量；运用临赛前程序减少不确定性，以简明词语或动作触发器提示重新回到任务。",
+        "四、按项目要求训练。把注意维持练习纳入训练课，使任务和持续时间接近实际比赛要求，同时提高线索选择与注意转换能力。"
+      ],
+      "keywords": [
+        "选择对象",
+        "维持时间",
+        "当前任务",
+        "降低应激",
+        "程序",
+        "触发器",
+        "项目练习"
+      ],
+      "explanation": "先分清两个概念，再解释反效果，最后给出对应训练路径。",
+      "sourceType": "original-simulation"
+    },
+    {
+      "id": "psy-q-attention-selection",
+      "prompt": "简述训练中帮助运动员将注意指向适宜线索的主要做法。",
+      "examType": "short",
+      "nodeIds": [
+        "psy-attention-direction",
+        "psy-attention-dir-analysis",
+        "psy-attention-dir-sequence",
+        "psy-attention-dir-present",
+        "psy-attention-dir-task",
+        "psy-attention-dir-filter",
+        "psy-attention-dir-prediction",
+        "psy-attention-dir-learning",
+        "psy-attention-dir-timing",
+        "psy-attention-dir-distraction",
+        "psy-attention-dir-uncertainty"
+      ],
+      "printedPages": [
+        149,
+        150
+      ],
+      "answer": [
+        "一、依据专项任务确定线索。与运动员分析每种技能需要内部还是外部注意、适宜广度和线索次序，使外部线索精简明确，内部思维积极而有建设性。",
+        "二、把注意落在当前行动。关注正在完成及马上完成的动作，关注动作结构和实施，减少对过去失误、得分和未定结果的纠缠。",
+        "三、建立选择与预判规则。明确哪些线索应注意、哪些应过滤，训练适宜反应；同时识别有预测价值的线索，判断何时应作出预测反应。",
+        "四、结合学习阶段安排。技能学习时重视与动作有关的身体感觉，必要时用想象辅助；初学先减少分心因素，随后逐步引入模拟比赛干扰。",
+        "五、安排适宜时机并控制应激。把高注意要求的教学放在精力充足时，重视不确定性和自我价值威胁造成的紧张分心，帮助运动员恢复对任务的关注。"
+      ],
+      "keywords": [
+        "任务分析",
+        "内外广狭",
+        "当前行动",
+        "选择预判",
+        "学习阶段",
+        "教学时机",
+        "控制应激"
+      ],
+      "explanation": "将原书十条按功能归为五点便于背诵，但覆盖范围仍包含十条；展开知识树可逐项核对来源。",
+      "sourceType": "original-simulation"
+    },
+    {
+      "id": "psy-q-will",
+      "prompt": "简述意志品质训练的主要要求，说明它为什么不等于单纯“硬撑”。",
+      "examType": "short",
+      "nodeIds": [
+        "psy-will-training",
+        "psy-will-small",
+        "psy-will-desire",
+        "psy-will-positive",
+        "psy-will-competition",
+        "psy-will-attention",
+        "psy-will-load",
+        "psy-will-goal"
+      ],
+      "printedPages": [
+        151,
+        152
+      ],
+      "answer": [
+        "一、从日常小问题开始，培养主动解决问题的愿望。意志不是只在重大比赛中要求拼搏，而是通过日常任务形成认真、主动的应对习惯。",
+        "二、运用积极思维建立克服困难的勇气，把训练当作比赛认真投入，避免拖延敷衍；将注意集中于当前任务，使努力落实到具体行动。",
+        "三、合理安排心理负荷。毅力练习应提高较长时间承受心理负荷的能力，但不需要过于频繁，不能把无限增加困难当作训练质量。",
+        "四、每项练习须有明确目标。既不怕失败，也争取实现目标，使意志努力指向有意义的任务与进步。",
+        "五、因此，意志训练是动机、思维、注意、任务和负荷的共同安排。没有目标、忽视频率而一味硬撑，并不符合系统培养意志品质的要求。"
+      ],
+      "keywords": [
+        "小问题",
+        "主动渴望",
+        "积极思维",
+        "认真投入",
+        "当前任务",
+        "合理频率",
+        "明确目标"
+      ],
+      "explanation": "先写可操作要求，再用“有目标、有负荷安排”的条件解释与盲目坚持的区别。",
+      "sourceType": "original-simulation"
+    },
+    {
+      "id": "psy-q-requirements",
+      "prompt": "简述运动员心理训练的基本要求。",
+      "examType": "short",
+      "nodeIds": [
+        "psy-requirements",
+        "psy-require-practice",
+        "psy-require-conscious",
+        "psy-require-systematic",
+        "psy-require-integrate"
+      ],
+      "printedPages": [
+        152,
+        153,
+        154
+      ],
+      "answer": [
+        "一、由感性认识上升到理性认识并付诸实践。不仅承认心理因素重要，还要学习原理与方法，在训练中实际安排；青少年和初级阶段同样应打好心理训练基础。",
+        "二、由自发使用转为自觉运用。在教练员持续组织下，把临时救急、凭经验使用，转为有意识、有计划的日常心理技能训练；专家协助不能代替日常实施。",
+        "三、由个别零散转为系统运用。全面理解训练内容，持续安排相应方法，不把心理训练缩减为少数技巧，不机械按重要性比例切分时间，也不期待几次练习立刻见效。",
+        "四、持之以恒、融会贯通、全面发展。心理技能需要长期培养，并应与体能、技术、战术训练有机结合，共同促进竞技能力发展。"
+      ],
+      "keywords": [
+        "认识到实践",
+        "自发到自觉",
+        "零散到系统",
+        "长期贯通",
+        "全面发展"
+      ],
+      "explanation": "沿“认识—实施—组织—持续与结合”四层展开，每层都有针对的常见误区。",
+      "sourceType": "original-simulation"
+    },
+    {
+      "id": "psy-q-integrated-case",
+      "prompt": "某教练认为青少年只需练技术，心理训练等成年后临赛请专家做一次放松即可。请结合心理训练的内容与基本要求评析。",
+      "examType": "essay",
+      "nodeIds": [
+        "psy-training",
+        "psy-basic",
+        "psy-daily",
+        "psy-competition",
+        "psy-relaxation",
+        "psy-requirements",
+        "psy-require-practice",
+        "psy-require-conscious",
+        "psy-require-systematic",
+        "psy-require-integrate"
+      ],
+      "printedPages": [
+        142,
+        143,
+        147,
+        148,
+        149,
+        152,
+        153,
+        154
+      ],
+      "answer": [
+        "一、这种做法把心理训练的对象、内容、时机和实施方式都缩窄了。心理能力是竞技能力的重要组成部分，应从早期训练打基础，不能等到成年或重大比赛失常才补救。",
+        "二、内容不止放松。基础心理训练还包括目标设置、想象、注意等技能，专项心理素质，以及动机、自信和意志等个性品质；放松只是其中一种方法，不能代替整个体系。",
+        "三、日常与赛期应衔接。青少年基础阶段侧重一般心理特征，随专项任务发展增加专项内容；比赛期还需赛前准备、赛中控制、赛后调整，临赛一次放松不能完成这些任务。",
+        "四、训练须自觉、系统、长期开展。教练员应学习原理方法，把心理训练纳入日常计划；专家可以提供专业协助，但持续实施仍需要教练员与运动员共同投入。",
+        "五、心理训练要与技术、战术、体能结合。例如技术学习时练习适宜注意线索，日常训练中设置具体表现目标，模拟比赛时练习状态调节，赛后复盘再调整训练。这样才能逐步形成可在比赛中调用的心理能力。"
+      ],
+      "keywords": [
+        "早期基础",
+        "不止放松",
+        "日常/赛期衔接",
+        "教练员落实",
+        "长期系统",
+        "与其他训练结合"
+      ],
+      "explanation": "按题干四个误区逐一回应，再给可落地的训练结合例子，避免只罗列四条要求而没有评析。",
+      "sourceType": "original-simulation"
+    },
+    {
+      "id": "psy-q-attention-case",
+      "prompt": "运动员初学动作时能完成，一到模拟比赛便反复想着上一次失误和最终名次，越提醒自己集中越紧张。请提出心理训练思路。",
+      "examType": "essay",
+      "nodeIds": [
+        "psy-goals",
+        "psy-goal-performance",
+        "psy-goal-specific",
+        "psy-imagery",
+        "psy-relaxation",
+        "psy-attention-dir-present",
+        "psy-attention-dir-task",
+        "psy-attention-dir-distraction",
+        "psy-attention-dir-uncertainty",
+        "psy-attention-concentration",
+        "psy-attention-con-routine",
+        "psy-attention-con-trigger",
+        "psy-attention-con-practice"
+      ],
+      "printedPages": [
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151
+      ],
+      "answer": [
+        "一、先分析失常的心理环节。其注意停留于过去失误和结果，同时受模拟比赛干扰与紧张影响；过度提醒集中又可能使关注点转向“是否集中”，形成无益紧张。不能简单归为技术不会或意志不足。",
+        "二、重建可执行的表现目标。把注意由名次转向当前动作的具体要求，明确本次练习可控制、可核对的任务，用表现反馈替代只按结果评价。",
+        "三、训练线索选择与回到当前。确定关键动作线索及次序，过滤无关刺激；用简明提示词或动作触发器，使运动员从上次失误回到正在做和马上要做的动作。",
+        "四、降低无益紧张与不确定性。练习适当放松技能，建立稳定而灵活的临赛前程序；保持清醒和警觉，不把放松理解为松散。可用可控制的运动想象演练关键动作与竞赛情境。",
+        "五、循序加入干扰并练习维持。先在干扰较少的条件巩固技能，再逐步增加模拟竞赛因素；按实际任务与持续时间练注意集中，并根据训练反馈调整。"
+      ],
+      "keywords": [
+        "过去/结果占注意",
+        "表现目标",
+        "当前线索",
+        "程序与触发器",
+        "放松",
+        "逐步干扰",
+        "任务时长"
+      ],
+      "explanation": "先找题干表现对应的知识节点，再按“目标—线索—状态—情境练习”串成方案；每种方法都说明针对的问题。",
+      "sourceType": "original-simulation"
+    }
+  ],
+  "comparisons": [
+    {
+      "id": "psy-c-classification",
+      "title": "两套心理训练分类：分类标准不同，不能一一对应",
+      "nodeIds": [
+        "psy-content-class",
+        "psy-basic",
+        "psy-targeted",
+        "psy-period-class",
+        "psy-competition",
+        "psy-daily"
+      ],
+      "printedPages": [
+        142,
+        143
+      ],
+      "columns": [
+        "分类依据",
+        "类别",
+        "主要任务与边界"
+      ],
+      "rows": [
+        [
+          "训练内容与针对性",
+          "基础的心理训练（一般心理训练）",
+          "建立基本心理素质：心理技能、专项心理素质、个性品质。"
+        ],
+        [
+          "训练内容与针对性",
+          "有针对性的心理训练（专门心理训练）",
+          "围绕具体比赛准备或特定心理问题。"
+        ],
+        [
+          "与训练和比赛的关系",
+          "日常心理训练（训练期心理训练）",
+          "相对偏重技能发展和个性心理特征改善。"
+        ],
+        [
+          "与训练和比赛的关系",
+          "比赛期心理训练",
+          "侧重特定比赛心理过程：赛前、赛中、赛后。"
+        ]
+      ],
+      "note": "同一次训练可同时具有“日常阶段”和“有针对性”等属性。“一般”训练中也有专项心理素质；不要凭字面把一般等同无专项内容。"
+    },
+    {
+      "id": "psy-c-competition",
+      "title": "赛前、赛中、赛后：同一赛期中的不同任务",
+      "nodeIds": [
+        "psy-before",
+        "psy-during",
+        "psy-after"
+      ],
+      "printedPages": [
+        142
+      ],
+      "columns": [
+        "分类依据",
+        "类别",
+        "任务与易漏点"
+      ],
+      "rows": [
+        [
+          "比赛时间阶段",
+          "赛前准备",
+          "动机、适宜激活、信心、思维与行为程序。"
+        ],
+        [
+          "比赛时间阶段",
+          "赛中控制",
+          "随情境变化稳定情绪，保证能力发挥。"
+        ],
+        [
+          "比赛时间阶段",
+          "赛后调整",
+          "成功者防自满并反思，失败者缓解消极体验并恢复求胜动机。"
+        ]
+      ],
+      "note": "赛期不等于赛前；赛后也不是只安慰失败者，成功者同样需要调节。"
+    },
+    {
+      "id": "psy-c-goal-axes",
+      "title": "六组目标考量：可以同时作用于同一个目标",
+      "nodeIds": [
+        "psy-goals",
+        "psy-goal-performance",
+        "psy-goal-challenge",
+        "psy-goal-realistic",
+        "psy-goal-specific",
+        "psy-goal-time",
+        "psy-goal-individual"
+      ],
+      "printedPages": [
+        143,
+        144,
+        145
+      ],
+      "columns": [
+        "考量维度",
+        "对照类别",
+        "区分与采用原则"
+      ],
+      "rows": [
+        [
+          "控制内容",
+          "表现目标／结果目标",
+          "表现由自身控制为主；结果还受对手等影响，重点落到可控表现。"
+        ],
+        [
+          "难度",
+          "挑战性／轻而易举",
+          "需要激发努力，又不因过难削弱动机。"
+        ],
+        [
+          "实际依据",
+          "现实／非现实",
+          "以真实能力与进程为基础，必要时调整。"
+        ],
+        [
+          "明确程度",
+          "具体／笼统",
+          "有成功标准、数量化要求及特定时间或事件。"
+        ],
+        [
+          "时间跨度",
+          "短期／长期",
+          "近期执行与反馈支撑远期方向，远期降低单次比赛的过重负担。"
+        ],
+        [
+          "责任主体",
+          "个体／全队",
+          "个人责任清晰，支撑团队合作并预防冲突。"
+        ]
+      ],
+      "note": "这不是六类互斥目标。一个个体短期目标仍须同时具体、现实、有挑战，并尽量指向可控表现。"
+    },
+    {
+      "id": "psy-c-imagery-layers",
+      "title": "想象训练的阶段、条件与评价：三个问题不要混答",
+      "nodeIds": [
+        "psy-imagery-stages",
+        "psy-imagery-conditions",
+        "psy-imagery-evaluation"
+      ],
+      "printedPages": [
+        146,
+        147
+      ],
+      "columns": [
+        "分类依据",
+        "内容",
+        "回答的问题"
+      ],
+      "rows": [
+        [
+          "技能发展顺序",
+          "感觉意识→鲜明生动性→控制性",
+          "怎样由已有经验发展为可控的内部演练？"
+        ],
+        [
+          "练习准备条件",
+          "背景、注意放松状态、想象提示物",
+          "在什么环境与状态下、借助什么开始练？"
+        ],
+        [
+          "训练质量评价",
+          "清晰度、颜色、声音、连贯活动性、肌肉感觉、情绪深度、自主控制",
+          "练得是否清楚、完整、可控？"
+        ]
+      ],
+      "note": "“控制性”既是发展阶段，又可在评价时检查；它们侧重点不同，不能见到相同词就把层级合并。"
+    },
+    {
+      "id": "psy-c-relaxation",
+      "title": "三种放松方法：目的相近，实施依据不同",
+      "nodeIds": [
+        "psy-relax-imagery",
+        "psy-relax-progressive",
+        "psy-relax-self"
+      ],
+      "printedPages": [
+        147,
+        148,
+        149
+      ],
+      "columns": [
+        "分类依据",
+        "方法",
+        "核心路径与联系"
+      ],
+      "rows": [
+        [
+          "达成放松的主要路径",
+          "想象放松法",
+          "舒适情境与个人放松经验联系→多感觉想象→唤起放松。"
+        ],
+        [
+          "达成放松的主要路径",
+          "逐渐放松法",
+          "先感受局部肌肉紧张→解除紧张→由局部到全身→熟练后合并肌群。"
+        ],
+        [
+          "达成放松的主要路径",
+          "自我引导放松法",
+          "逐渐放松的简化形式：呼吸＋自我引导语/想象→全身逐渐放松。"
+        ]
+      ],
+      "note": "想象是可用于多种任务的技能；想象放松是以放松为目的的一种使用。简化脚本不是第四种并列放松法。"
+    },
+    {
+      "id": "psy-c-attention",
+      "title": "注意指向与注意集中：选择什么、维持多久",
+      "nodeIds": [
+        "psy-attention-direction",
+        "psy-attention-concentration"
+      ],
+      "printedPages": [
+        149,
+        150,
+        151
+      ],
+      "columns": [
+        "比较维度",
+        "注意的指向性",
+        "注意的集中"
+      ],
+      "rows": [
+        [
+          "核心问题",
+          "从众多刺激中选什么、过滤什么",
+          "在需要的时间内能否维持所选对象"
+        ],
+        [
+          "训练重点",
+          "任务分析、内外与广狭、线索次序、预测线索、阶段性抗干扰",
+          "减少应激、临赛前程序、触发器、符合比赛要求的持续练习"
+        ],
+        [
+          "易错理解",
+          "所有情境都只看一种固定线索",
+          "集中等于范围越窄越好，或越用力命令自己越好"
+        ]
+      ],
+      "note": "两者相互配合；选错对象却维持很久，同样不能保证动作质量。内部/外部是来源，广阔/狭窄是范围，两条轴也不能混成一条。"
+    },
+    {
+      "id": "psy-c-requirements",
+      "title": "四项基本要求：不是四种具体训练方法",
+      "nodeIds": [
+        "psy-require-practice",
+        "psy-require-conscious",
+        "psy-require-systematic",
+        "psy-require-integrate"
+      ],
+      "printedPages": [
+        152,
+        153,
+        154
+      ],
+      "columns": [
+        "解决的层面",
+        "要求",
+        "主要纠正的误区"
+      ],
+      "rows": [
+        [
+          "认识与行动",
+          "感性认识→理性认识并付诸实践",
+          "只承认重要却不安排；青少年无需训练。"
+        ],
+        [
+          "实施主动性",
+          "自发使用→自觉运用",
+          "出问题才做、临赛救急、完全依赖专家。"
+        ],
+        [
+          "组织完整性",
+          "个别零散→系统运用",
+          "只会一两种技巧、机械按重要性比例分时、几次就求奇效。"
+        ],
+        [
+          "持续性与整合",
+          "持之以恒、融会贯通、全面发展",
+          "把心理与体能、技术、战术割裂，缺少长期投入。"
+        ]
+      ],
+      "note": "目标设置、想象、放松等是“用什么练”；四项要求回答“怎样把训练真正组织和落实”。"
+    }
+  ]
+}

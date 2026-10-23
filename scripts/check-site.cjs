@@ -41,3 +41,6 @@ require('./check-words.cjs');
 require('./check-study.cjs');
 assert.equal(fs.readFileSync(path.join(root,'latest.html'),'utf8'),html,'Fresh entry must match current app');
 require('node:child_process').execFileSync(process.execPath,[path.join(__dirname,'build-sports-revision.cjs'),'--check'],{stdio:'inherit'});
+require('node:child_process').execFileSync(process.execPath,[path.join(__dirname,'build-knowledge.cjs'),'--check'],{stdio:'inherit'});
+const knowledgeContext=vm.createContext({});vm.runInContext(fs.readFileSync(path.join(root,'knowledge-data.js'),'utf8'),knowledgeContext);
+for(const link of knowledgeContext.KNOWLEDGE_DATA.bankLinks)assert.ok(questions.some(q=>q.id===link.bankId),'Unknown knowledge-bank link '+link.bankId);
