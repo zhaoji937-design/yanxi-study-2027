@@ -82,6 +82,20 @@
       if (!Array.isArray(raw[field]) || raw[field].length > 30) fail(label + field + '必须为不超过30项的数组');
       q[field] = raw[field].map(function (item) { return str(item, label + field, 3000); });
     });
+    if(raw.recallGuide!=null){
+      var recall=raw.recallGuide;
+      if(type!=='free'||q.examType!=='short'||!isObject(recall)||recall.version!==1)fail(label+'背诵资料不合法');
+      var guide={version:1,object:str(recall.object,label+'答题对象',400),scope:str(recall.scope,label+'答题范围',600)};
+      ['tasks','checks','highlights','fullAnswer','notes'].forEach(function(field){
+        var limit=field==='highlights'?40:field==='fullAnswer'?30:field==='notes'?30:12;
+        if(!Array.isArray(recall[field])||recall[field].length>limit||(field!=='notes'&&recall[field].length===0))fail(label+'背诵资料'+field+'不合法');
+        guide[field]=recall[field].map(function(value){return str(value,label+'背诵资料'+field,field==='fullAnswer'?30000:field==='highlights'?40:2000);});
+      });
+      guide.highlights=Array.from(new Set(guide.highlights));
+      var answerText=answer.join('\n\n');
+      if(guide.highlights.some(function(key){return key.length<2||!answerText.includes(key);}))fail(label+'记忆词必须出现在参考答案中');
+      q.recallGuide=guide;
+    }
     if(raw.textbookRevision!=null){
       var revision=raw.textbookRevision;
       if(type!=='free'||!isObject(revision)||!['verbatim','organized','needs-check'].includes(revision.status))fail(label+'教材修订状态不合法');

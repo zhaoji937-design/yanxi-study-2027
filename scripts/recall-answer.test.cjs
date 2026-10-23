@@ -1,0 +1,10 @@
+'use strict';
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const E=require('../dist/engine.js'),T=require('../dist/study-tools.js');
+const source=JSON.parse(fs.readFileSync(path.join(__dirname,'../content/sports-revised.json'),'utf8')).questions.find(q=>q.examType==='short');
+function sample(){const q=structuredClone(source);q.answer=['一、供能基础\n磷酸原与糖酵解参与快速供能。','二、恢复\n有氧过程支持间歇恢复。'];q.recallGuide={version:1,object:'无氧耐力',tasks:['说明供能基础','说明恢复关系'],scope:'高强度工作与间歇恢复',checks:['是否同时说明供能与恢复'],highlights:['磷酸原','糖酵解','有氧过程','间歇恢复'],fullAnswer:['磷酸原、糖酵解和有氧过程共同参与供能与恢复。'],notes:['正文为可以直接复述的要点，解释另列。']};return q;}
+test('recall answer, full detail and task coverage survive backup round-trip',()=>{const q=sample(),a=E.validateBank([q]).questions[0],b=E.parseBank(JSON.stringify({version:1,questions:[a]})).questions[0];assert.deepEqual(b.recallGuide,q.recallGuide);assert.deepEqual(b.answer,q.answer);});
+test('incomplete task metadata and unrelated emphasis are rejected',()=>{for(const change of [q=>q.recallGuide.tasks=[],q=>q.recallGuide.checks=[],q=>q.recallGuide.highlights=['不存在的关键词'],q=>q.recallGuide.fullAnswer=[],q=>q.recallGuide.version=2]){const q=sample();change(q);assert.throws(()=>E.validateBank([q]));}});
+test('a recall rewrite cannot silently replace a textbook definition',()=>{const q=sample();q.examType='term';assert.throws(()=>E.validateBank([q]),/背诵资料不合法/);});
+test('emphasis preserves every character and prefers the complete anchor',()=>{const text='ATP再合成与ATP：酸碱缓冲；间歇恢复。',html=T.highlightTerms(text,['ATP','ATP再合成','酸碱缓冲']);assert.ok(html.startsWith('<strong class="answer-key">ATP再合成</strong>'));assert.equal(html.replace(/<\/?strong[^>]*>/g,''),text);});
+test('HTML and regex-shaped text are escaped rather than executed or interpreted',()=>{const html=T.highlightTerms('<img src=x onerror=alert(1)> A+B & ATP',['A+B','<img','ATP']);assert.ok(html.includes('&lt;img'));assert.ok(html.includes('<strong class="answer-key">A+B</strong>'));assert.ok(!html.includes('<img'));assert.ok(html.includes('&amp;'));});

@@ -1,6 +1,13 @@
 (function(root,factory){'use strict';var api=factory();if(typeof module==='object'&&module.exports)module.exports=api;root.StudyTools=api;})(typeof globalThis!=='undefined'?globalThis:this,function(){
   'use strict';
   var RESULTS=['forgot','missing','confused','independent'];
+  function highlightTerms(text,terms){
+    text=String(text);var keys=Array.from(new Set((terms||[]).filter(function(k){return typeof k==='string'&&k.length>=2;}))).sort(function(a,b){return b.length-a.length;});
+    var escape=function(s){return s.replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});};
+    var html='',plain='',i=0;
+    while(i<text.length){var key=keys.find(function(k){return text.startsWith(k,i);});if(key){html+=escape(plain)+'<strong class="answer-key">'+escape(key)+'</strong>';plain='';i+=key.length;}else{plain+=text[i];i++;}}
+    return html+escape(plain);
+  }
   function cleanRecalls(raw,ids){
     var out={};if(!raw||typeof raw!=='object'||Array.isArray(raw))return out;
     Object.keys(raw).slice(0,10000).forEach(function(id){
@@ -34,5 +41,5 @@
     ['教材、整理答案说法不一致时怎么办？','先确认是不是同一版教材、同一个概念、同一种语境。名词解释优先核实教材定义，自己的说明另列。当前只有标为“原文已核对”的条目完成了逐页核查，其他整理答案还需核对。'],
     ['考过的知识点能确定不再考吗？','不能据此确定。按你的选择，日常练习可排除已匹配的原题及关联考点，也可切换为只排除原题；原题与关联理由保留在历年题页面。筛选帮助安排时间，不是对下一次命题的预测。部分年份未取得正文，当前也不能覆盖全部历史考点。']
   ];
-  return {RESULTS:RESULTS,cleanRecalls:cleanRecalls,nextRecall:nextRecall,paperIndex:paperIndex,allowPaper:allowPaper,FAQ:FAQ};
+  return {RESULTS:RESULTS,cleanRecalls:cleanRecalls,nextRecall:nextRecall,paperIndex:paperIndex,allowPaper:allowPaper,highlightTerms:highlightTerms,FAQ:FAQ};
 });

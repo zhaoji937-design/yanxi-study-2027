@@ -8,6 +8,8 @@
 
 专业课610条已重新整理。358条名词解释以用户提供的三本教材定义段原图为主，点击即放大，可左右滑动；校对文字可展开复制。核对要点仅为记忆关键词，辅助解释统一放在“思路与易错提醒”。237条简答、15条论述按题干分项展开，正文是依据教材组织的参考作答。37条没有独立定义的旧名词保留原ID与知识点，改为相应简答。原有27道逐页核对示范的复习辅助和历年题关系保留。题库未穷尽全部可考内容，参考答案不是官方评分细则。
 
+237条简答现默认显示可直接背诵的编号要点，一点一层意思；正文移除“教材指出”等教学说明，保留条件、比较、因果和必要例子。关键术语在正文内使用深绿色与加粗，避免仅靠颜色识别。需要补充时可展开详细答案；审题核对按每题配置对象、任务、范围和覆盖检查，默认折叠。备份包含精简答案、详细答案、记忆词与审题资料。名词解释和论述不受这轮改写影响。
+
 入口：[怎么背与怎么答](https://yanxi-study-2027.onrender.com/#study)、[历年题与排除依据](https://yanxi-study-2027.onrender.com/#papers)。
 
 历年题索引有51条记录：2026年第三方转录27条，2025年回忆24条；其中5条仅有主题，题干不完整，不参与任何自动排除。未取得官方原卷，2022—2024也未取得可核实的完整题干，不能声称近五年全覆盖。默认“日常 · 排除已考考点”暂不展示73道题库题（39道同术语/等价任务精确匹配＋34道关联考点）；可切换“仅排除已考原题”（39道）、“全部题目”或“已考原题 · 有来源”。关联考点不等于原题重复，筛选仅用于安排练习，题目没有删除，**不能据此认为考过的以后不会再考**。每条对应关系和理由可在历年题页面查看。
@@ -25,7 +27,7 @@
 - 学习卡生成：`node scripts/build-study.cjs`，读取仓库内的 `content/verified-study-cards.json` 生成 `dist/bank-study.js`。
 - 全量修订生成：`node scripts/build-sports-revision.cjs`，读取 `content/sports-revised.json`，校验原文与来源的一致、关键词及全部定义原图引用和内容哈希，生成最终覆盖层 `dist/bank-sports-revised.js`。该覆盖层须在旧题库和学习卡之后加载。
 - 定义原图集合：`dist/textbook-images.json`，只包含定义区域与必要上下文，不发布整本PDF。原始扫描件及内部校对脚本不进入仓库。
-- 背诵与词辨逻辑检查：`node --test scripts/study.test.cjs scripts/sports-revision.test.cjs scripts/words.test.cjs`。
+- 背诵与词辨逻辑检查：`node --test scripts/study.test.cjs scripts/sports-revision.test.cjs scripts/recall-answer.test.cjs scripts/words.test.cjs`。
 - Render服务类型：Static Site；Build Command：`node scripts/check-site.cjs`；Publish Directory：`dist`。
 - 不需要数据库、后台服务器或AI接口。浏览器访问和离线功能不依赖GPT或原托管平台。
 

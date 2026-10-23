@@ -23,6 +23,12 @@ assert.equal(safe.length,610);assert.equal(new Set(safe.map(q=>q.id)).size,610);
 for(const q of safe){
  assert.ok(q.textbookRevision,q.id+' missing revision');
  assert.ok(q.answerOutline.length&&q.answerOutline.every(k=>k.length<=45&&!/[。！？]/.test(k)),q.id+' must use memory keywords');
+ if(q.examType==='short'){
+  assert.ok(q.recallGuide,q.id+' must have a direct recall answer');
+  assert.ok(q.answer.every(p=>p.includes('\n')),q.id+' needs separate point headings');
+  assert.doesNotMatch(q.answer.join('\n'),/教材(?:指出|介绍|列举|强调|认为|描述|提出|通过|称为|把)|本书|本版|本题|题干|考场|作答|回答时|答题|复习时|应写|不能只写|不能只背|按教材/,q.id+' contains tutorial commentary in the primary answer');
+  assert.ok(q.recallGuide.highlights.every(k=>q.answer.join('\n').includes(k)),q.id+' emphasis must be literal answer text');
+ }
  if(q.examType==='term'){
   assert.equal(q.textbookRevision.status,'verbatim',q.id+' must have source definition');
   assert.ok(q.textbookRevision.images?.length,q.id+' must have definition images');
@@ -33,7 +39,7 @@ for(const q of safe){
  assert.ok(q.textbookRefs.every(r=>r.printedPages?.length));
 }
 const counts=Object.fromEntries(['term','short','essay'].map(k=>[k,safe.filter(q=>q.examType===k).length]));
-const summary={date:revised.revisedAt,total:safe.length,counts,reclassified:safe.filter(q=>q.textbookRevision.originalExamType!==q.examType).length};
+const summary={date:revised.revisedAt,total:safe.length,counts,reclassified:safe.filter(q=>q.textbookRevision.originalExamType!==q.examType).length,recallAnswers:safe.filter(q=>q.recallGuide).length};
 const source=`/* Reorganized from user-provided textbooks. Definitions quote checked source; commentary is separate. */\n(function(root){'use strict';\nroot.SPORTS_BANK=${JSON.stringify(safe)};\n(root.SPORTS_CATALOG||[]).forEach(function(book){book.chapters.forEach(function(chapter){chapter.sections.forEach(function(section){var qs=root.SPORTS_BANK.filter(function(q){return q.sectionId===section.id;});section.questionIds=qs.map(function(q){return q.id;});section.counts=Object.fromEntries(['term','short','essay'].map(function(k){return [k,qs.filter(function(q){return q.examType===k;}).length];}));});});});\nroot.SPORTS_COVERAGE=Object.assign({},root.SPORTS_COVERAGE,{counts:${JSON.stringify(counts)}});\nroot.SPORTS_REVISION=${JSON.stringify(summary)};\n})(globalThis);\n`;
 assert.doesNotMatch(source,/C:\\\\Users|D:\\\\gpt|桌面上的文件/,'do not publish local source paths');
 if(process.argv.includes('--check')){
