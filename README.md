@@ -43,7 +43,7 @@
 
 原书“隐形运动知识”小标题保留，并在理解提示中说明正文使用“隐性”；旧版个别生理或左右脑说明不扩写成无条件的现实训练建议。样板未覆盖全书其他章节。
 
-源数据为 `content/knowledge-psychology.json`、`content/knowledge-capacity.json`；`node scripts/build-knowledge.cjs` 生成网页数据，`--check` 校验源数据与产物一致。主站专属缓存升级为 `yanxi-offline-v11`，保留词辨缓存与原学习记录。检查：`node --test scripts/knowledge.test.cjs`。
+源数据为 `content/knowledge-psychology.json`、`content/knowledge-capacity.json`；`node scripts/build-knowledge.cjs` 生成网页数据，`--check` 校验源数据与产物一致。主站专属缓存升级为 `yanxi-offline-v12`，保留词辨缓存与原学习记录。检查：`node --test scripts/knowledge.test.cjs`。
 
 ## iPad阅读与手写批注
 
