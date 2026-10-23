@@ -1,7 +1,7 @@
 'use strict';
-const CACHE = 'yanxi-words-v1';
+const CACHE = 'yanxi-words-v2';
 const ROOT = new URL('./', self.location.href);
-const SHELL = ['./', 'index.html', 'style.css', 'core.js', 'app.js', 'data.json', 'manifest.json', 'icon.svg', 'icon-192.png', 'icon-512.png', 'touch-icon.png', 'licenses/ECDICT.txt', 'licenses/cmudict.txt'].map(path => new URL(path, ROOT).href);
+const SHELL = ['./', 'index.html', 'latest.html', 'style.css?v=2', 'core.js?v=2', 'app.js?v=2', 'data.json?v=2', 'manifest.json', 'icon.svg', 'icon-192.png', 'icon-512.png', 'touch-icon.png', 'licenses/ECDICT.txt', 'licenses/cmudict.txt', 'licenses/NETEM.txt', 'licenses/ATTRIBUTION.txt'].map(path => new URL(path, ROOT).href);
 self.addEventListener('install', event => {
   event.waitUntil((async () => {
     const cache = await caches.open(CACHE);
@@ -25,10 +25,13 @@ self.addEventListener('activate', event => {
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
   if (event.request.method !== 'GET' || url.origin !== ROOT.origin) return;
-  const home = event.request.mode === 'navigate' && (url.pathname === ROOT.pathname || url.pathname === ROOT.pathname + 'index.html');
+  const home = event.request.mode === 'navigate' && (url.pathname === ROOT.pathname || ['index.html', 'latest.html'].some(file => url.pathname === ROOT.pathname + file));
   if (!home && !SHELL.includes(url.href)) return;
   event.respondWith((async () => {
     const cache = await caches.open(CACHE);
+    if (home) {
+      try { const response = await fetch(new Request(event.request, { cache: 'no-cache' })); if (response.ok) return response; } catch (_) {}
+    }
     return (await cache.match(home ? ROOT.href : event.request)) || fetch(event.request);
   })());
 });

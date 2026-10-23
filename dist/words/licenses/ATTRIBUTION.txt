@@ -1,0 +1,8 @@
+词辨 derived vocabulary data (data.json)
+CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/
+NETEMVocabulary by exam-data contributors: https://github.com/exam-data/NETEMVocabulary
+Revision: b1850fdd51fca9143006ef54bca99b246d56c934
+Changes: selected word/gloss fields only; merged lowercase IDs and legacy words; added original editorial senses; filtered general dictionary senses; computed candidates. No source example sentences or frequency claims used.
+ECDICT by skywind3000 and contributors: MIT, see ECDICT.txt.
+CMUdict by CMU and contributors: see cmudict.txt.
+Original editorial comparison groups and usage notes: 研习 / 词辨.

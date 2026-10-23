@@ -5,6 +5,7 @@
 })(typeof globalThis !== 'undefined' ? globalThis : this, function () {
   'use strict';
   const KEY = 'yanxi-words-v1';
+  const MAX_COMPARE = 32;
   const kinds = { family: '词族变形', shape: '字形相近', sound: '读音相近', meaning: '词义易串' };
   const fresh = () => ({ version: 1, favorites: [], review: [], mastered: [], pairs: [], stats: { attempts: 0, correct: 0 }, mistakes: [] });
   function normal(text) { return String(text || '').trim().toLowerCase(); }
@@ -13,7 +14,7 @@
   function search(words, query) {
     const q = normal(query);
     if (!q) return words;
-    return words.filter(w => w.word.includes(q) || w.meaning.toLowerCase().includes(q)).sort((a, b) => score(a.word, q) - score(b.word, q) || a.rank - b.rank);
+    return words.filter(w => w.word.includes(q) || (w.searchMeaning || w.meaning).toLowerCase().includes(q) || (w.dictionaryMeaning || '').toLowerCase().includes(q)).sort((a, b) => score(a.word, q) - score(b.word, q) || a.rank - b.rank);
   }
   function score(word, q) { return word === q ? 0 : word.startsWith(q) ? 1 : word.includes(q) ? 2 : 3; }
   function commonPrefix(words) {
@@ -42,6 +43,13 @@
     return question.answer.includes(choice);
   }
   function assert(test, msg) { if (!test) throw new Error(msg || '备份内容不完整，未修改现有记录。'); }
+  function toggleSelection(selected, word, db, anchor = '') {
+    assert(db.words.has(word) && (!anchor || db.words.has(anchor)), '当前词库暂未收录这个词。');
+    let next = selected.includes(word) ? selected.filter(w => w !== word) : [...selected, word];
+    if (anchor && !next.includes(anchor)) next = [anchor, ...next];
+    assert(next.length <= MAX_COMPARE, `一次可对照最多 ${MAX_COMPARE} 词，请先移除不需要的词。`);
+    return next;
+  }
   function validState(input, db) {
     assert(input && input.version === 1 && typeof input === 'object' && !Array.isArray(input));
     const out = fresh();
@@ -54,7 +62,7 @@
     const ids = new Set();
     for (const pair of input.pairs) {
       assert(pair && typeof pair.id === 'string' && /^[a-z0-9-]{1,80}$/.test(pair.id) && !ids.has(pair.id)); ids.add(pair.id);
-      assert(Array.isArray(pair.words) && pair.words.length >= 2 && pair.words.length <= 4 && new Set(pair.words).size === pair.words.length);
+      assert(Array.isArray(pair.words) && pair.words.length >= 2 && pair.words.length <= MAX_COMPARE && new Set(pair.words).size === pair.words.length);
       assert(pair.words.every(w => typeof w === 'string' && db.words.has(w)), '自建组中有不在当前词库的单词，未导入。');
       assert(typeof pair.note === 'string' && pair.note.length <= 400);
       out.pairs.push({ id: pair.id, words: [...pair.words], note: pair.note });
@@ -93,5 +101,5 @@
     return validState(value.state, db);
   }
   function save(storage, value, db) { const safe = validState(value, db); storage.setItem(KEY, JSON.stringify(safe)); return safe; }
-  return { KEY, kinds, fresh, normal, escape, index, search, highlight, grade, validState, record, backup, importBackup, save };
+  return { KEY, MAX_COMPARE, kinds, fresh, normal, escape, index, search, highlight, grade, validState, record, backup, importBackup, save, toggleSelection };
 });

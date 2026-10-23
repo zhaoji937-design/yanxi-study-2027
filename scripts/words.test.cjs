@@ -50,3 +50,35 @@ test('failed writes preserve existing storage; successful saves use a separate k
   let key; C.save({ setItem(k, value) { key = k; current = value; } }, C.fresh(), db);
   assert.equal(key, 'yanxi-words-v1'); assert.equal(JSON.parse(current).version, 1);
 });
+test('candidate multi-selection retains the anchor, toggles independently and never mutates input', () => {
+  const first = C.toggleSelection([], 'principal', db, 'principle');
+  assert.deepEqual(first, ['principle', 'principal']);
+  const second = C.toggleSelection(first, 'discipline', db, 'principle');
+  assert.deepEqual(second, ['principle', 'principal', 'discipline']);
+  assert.deepEqual(first, ['principle', 'principal']);
+  assert.deepEqual(C.toggleSelection(second, 'principal', db, 'principle'), ['principle', 'discipline']);
+  const full = data.words.slice(0, C.MAX_COMPARE).map(w => w.word), before = [...full];
+  assert.throws(() => C.toggleSelection(full, data.words[C.MAX_COMPARE].word, db));
+  assert.deepEqual(full, before);
+  assert.throws(() => C.toggleSelection([], 'notaword', db));
+});
+test('large custom groups retain notes and old v1 backups remain compatible', () => {
+  for (const size of [2, 4, 8, C.MAX_COMPARE]) {
+    const s = C.fresh(); s.pairs.push({id:'large-'+size, words:data.words.slice(0,size).map(w=>w.word), note:'多词联想'});
+    assert.deepEqual(C.importBackup(C.backup(s), db), s);
+  }
+  const s = C.fresh(); s.pairs.push({id:'too-many', words:data.words.slice(0,C.MAX_COMPARE+1).map(w=>w.word), note:''});
+  assert.throws(()=>C.validState(s, db));
+});
+test('exam list coverage, familiar-word senses and phrases are searchable', () => {
+  assert.ok(db.words.size >= 5600);
+  for (const w of ['subject','case','hold','matter','mean','study','sound','set','work','according to','up-to-date',"o'clock"]) assert.ok(db.words.has(w),w);
+  assert.match(db.words.get('address').meaning,/处理/);
+  assert.match(db.words.get('subject').meaning,/受试者/);
+  assert.match(db.words.get('discipline').meaning,/学科/);
+  assert.match(db.words.get('interest').meaning,/利益/);
+  assert.equal(db.words.get('address').meaningSource,'exam-editorial');
+  assert.doesNotMatch(db.words.get('generally').dictionaryMeaning,/逐渐/);
+  assert.ok(C.search(data.words,'圣诞').some(w=>w.word==='christmas'));
+  assert.ok(C.search(data.words,'according to').some(w=>w.word==='according to'));
+});

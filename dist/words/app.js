@@ -1,6 +1,6 @@
 (function () {
   'use strict';
-  const C = window.WordCore, $ = selector => document.querySelector(selector), E = C.escape;
+  const C = window.WordCore, MAX = C.MAX_COMPARE, $ = selector => document.querySelector(selector), E = C.escape;
   const main = $('#main');
   let data, db, state = C.fresh(), concealed = false, selected = [], session = null, importPending = null;
   let listKind = 'all', listQuery = '', wordQuery = '', wordLimit = 50, mineTab = 'review';
@@ -52,11 +52,18 @@
     $('#group-count').textContent = `${results.length} 组 · 可直接看题与答案，不必作答`;
     $('#group-results').innerHTML = results.length ? results.map(groupRow).join('') : empty('没有找到这组词。可以去“查词”自由选择，或自建易混组。');
   }
+  function meaningLabel(w) {
+    return w.meaningSource === 'exam-editorial' ? '阅读常用义与熟词生义 · 已整理' : w.meaningSource === 'NETEM' ? '考研整理词表释义' : w.meaningSource === 'curated' ? '重点辨析常用义' : '通用常用义 · 辨析补充';
+  }
+  function meaningExtra(w) {
+    return (w.usage ? `<p class="sense-usage">${E(w.usage)}</p>` : '') + (w.dictionaryMeaning && w.dictionaryMeaning !== w.meaning ? `<details class="other-senses"><summary>其他词典义项</summary><p class="meaning">${E(w.dictionaryMeaning)}</p></details>` : '');
+  }
+  function meaningBlock(w) { return `<p class="meaning">${E(w.meaning)}</p>${meaningExtra(w)}`; }
   function wordCard(entry, peers, curated = true) {
     const w = db.words.get(entry.word), words = peers.map(e => typeof e === 'string' ? e : e.word);
     const ipa = entry.ipa || w.ipa;
-    return `<article class="word-card"><div class="word-title"><h2>${routeLink('word/' + w.word, C.highlight(w.word, words))}</h2>${soundButton([w.word])}</div><p class="ipa">${ipa ? '/' + E(ipa) + '/' : '音标暂缺'}${entry.ipaLabel ? ' · ' + E(entry.ipaLabel) : ''}</p>` + (concealed ? `<div class="hidden-meaning">中文已遮住，先想一想</div>${curated ? `<p class="example" lang="en">${E(entry.sentence)}</p>` : ''}` :
-      `<p class="meaning">${curated ? `<span class="pos">${E(entry.pos)}</span>${E(entry.meaning)}` : E(w.meaning)}</p>${curated ? `<p class="hint">${E(entry.focus)}</p><p class="example" lang="en">${E(entry.sentence)}</p><p class="example-zh">${E(entry.zh)}</p>` : `<p class="notes">${w.meaningSource === 'curated' ? '重点辨析常用义' : '基础词典释义'}</p>`}`) + (curated ? button('speak', '听例句', 'plain-button sentence-audio', `data-text="${E(entry.sentence)}" aria-label="听 ${E(w.word)} 的例句"`) : '') + '</article>';
+    return `<article class="word-card"><div class="word-title"><h2>${routeLink('word/' + w.word, C.highlight(w.displayWord || w.word, words))}</h2>${soundButton([w.word])}</div><p class="ipa">${ipa ? '/' + E(ipa) + '/' : '音标暂缺'}${entry.ipaLabel ? ' · ' + E(entry.ipaLabel) : ''}</p>` + (concealed ? `<div class="hidden-meaning">中文已遮住，先想一想</div>${curated ? `<p class="example" lang="en">${E(entry.sentence)}</p>` : ''}` :
+      `<p class="meaning">${curated ? `<span class="pos">${E(entry.pos)}</span>${E(entry.meaning)}` : E(w.meaning)}</p>${curated ? `<p class="hint">${E(entry.focus)}</p><p class="example" lang="en">${E(entry.sentence)}</p><p class="example-zh">${E(entry.zh)}</p>` : `${meaningExtra(w)}<p class="notes">${E(meaningLabel(w))}</p>`}`) + (curated ? button('speak', '听例句', 'plain-button sentence-audio', `data-text="${E(entry.sentence)}" aria-label="听 ${E(w.word)} 的例句"`) : '') + '</article>';
   }
   function compareToolbar(words) { return `<div class="toolbar">${button('conceal', concealed ? '显示中文释义' : '遮住中文，快速回忆', 'toggle', `aria-pressed="${concealed}"`)}${button('speak', '依次听读音', '', `data-words="${E(words.join(','))}"`)}</div>`; }
   function groupPage(id) {
@@ -68,27 +75,33 @@
       `<div class="bottom-row"><div class="row">${routeLink('practice/' + id, '语境辨义 · ' + g.questions.length + ' 题', 'primary-link')}${button('favorite', state.favorites.includes(id) ? '★ 已收藏' : '☆ 收藏', 'toggle', `data-id="${E(id)}" aria-pressed="${state.favorites.includes(id)}"`)}${button('review', state.review.includes(id) ? '✓ 待复习' : '放入复习', 'toggle', `data-id="${E(id)}" aria-pressed="${state.review.includes(id)}"`)}${button('mastered', state.mastered.includes(id) ? '✓ 已掌握' : '标记掌握', 'toggle', `data-id="${E(id)}" aria-pressed="${state.mastered.includes(id)}"`)}</div></div>` +
       `<p class="notes">标色帮助看清拼写差别；不是词源拆解。多音词请结合词性与例句判断，设备单词朗读可能只读一种读音。例句与辨析为原创。</p><div class="bottom-row">${n ? routeLink('group/' + data.groups[n - 1].id, '‹ 上一组', 'quiet-link') : '<span></span>'}${n + 1 < data.groups.length ? routeLink('group/' + data.groups[n + 1].id, '下一组 ›', 'quiet-link') : ''}</div>`;
   }
-  function selectionBar() { return selected.length ? `<div class="selection"><span>已选 ${selected.length}/4</span>${selected.map(w => button('remove-selected', E(w) + ' ×', 'selected-word', `data-word="${E(w)}"`)).join('')}${button('compare-selected', '并排对照', 'primary', selected.length < 2 ? 'disabled' : '')}${button('clear-selected', '清空', 'plain-button')}</div>` : ''; }
-  function searchPage() { return heading('把容易混的词，放在一起。', '可查中英文；点“＋”选 2–4 词并排对照。') + `<div id="selection">${selectionBar()}</div><div class="toolbar">${searchInput('word-search', wordQuery, '搜索英文或中文意思')}</div><p class="notes" id="word-count"></p><div class="section list" id="word-results"></div>`; }
+  function selectionBar() { return selected.length ? `<div class="selection"><span>已选 ${selected.length} 词 · 最多 ${MAX} 词</span><div class="selection-words">${selected.map(w => button('remove-selected', E(w) + ' ×', 'selected-word', `data-word="${E(w)}"`)).join('')}</div>${button('compare-selected', '并排对照', 'primary', selected.length < 2 ? 'disabled' : '')}${button('clear-selected', '清空', 'plain-button')}</div>` : ''; }
+  function searchPage() { return heading('把容易混的词，放在一起。', `可查中英文；点“＋”多选，最多 ${MAX} 词一起对照。`) + `<div id="selection">${selectionBar()}</div><div class="toolbar">${searchInput('word-search', wordQuery, '搜索英文或中文意思')}</div><p class="notes" id="word-count"></p><div class="section list" id="word-results"></div>`; }
   function paintWords() {
     const results = C.search(data.words, wordQuery), visible = results.slice(0, wordLimit);
     $('#word-count').textContent = `${results.length} 词${results.length > wordLimit ? ` · 已显示 ${visible.length}` : ''} · 含考研标记词与词族补充`;
     $('#selection').innerHTML = selectionBar();
-    $('#word-results').innerHTML = visible.length ? visible.map(w => `<div class="word-row">${routeLink('word/' + w.word, `<strong>${E(w.word)}</strong><span class="muted">${E(w.brief)}</span>`)}${button('select-word', selected.includes(w.word) ? '✓' : '＋', 'add-word toggle', `data-word="${E(w.word)}" aria-label="${selected.includes(w.word) ? '移除' : '选择'} ${E(w.word)}" aria-pressed="${selected.includes(w.word)}"`)}</div>`).join('') + (results.length > wordLimit ? button('more-words', '再显示 50 词', 'load-more') : '') : empty('暂未收录这个词。可以试试原形，或换一个中文意思。');
+    $('#word-results').innerHTML = visible.length ? visible.map(w => `<div class="word-row">${routeLink('word/' + w.word, `<strong>${E(w.displayWord || w.word)}</strong><span class="muted">${E(w.brief)}</span>`)}${button('select-word', selected.includes(w.word) ? '✓' : '＋', 'add-word toggle', `data-word="${E(w.word)}" aria-label="${selected.includes(w.word) ? '移除' : '选择'} ${E(w.word)}" aria-pressed="${selected.includes(w.word)}"`)}</div>`).join('') + (results.length > wordLimit ? button('more-words', '再显示 50 词', 'load-more') : '') : empty('暂未收录这个词。可以试试原形，或换一个中文意思。');
   }
   function candidates(w, key, label) {
     if (!w[key].length) return `<section class="section"><h2>${label}</h2><p class="notes">当前词库没有足够接近的候选。你仍可自由选择或自建易混组。</p></section>`;
-    return `<section class="section"><h2>${label}</h2><p class="notes">点一个候选词，与 ${E(w.word)} 直接对照。</p><div class="candidates">${w[key].map(v => routeLink('compare/' + w.word + ',' + v, E(v), 'candidate')).join('')}</div></section>`;
+    return `<section class="section"><h2>${label}</h2><p class="notes">可连续多选；自动带上 ${E(w.word)}，选好后点“并排对照”。</p><div class="candidates">${w[key].map(v => button('select-candidate', (selected.includes(v) ? '✓ ' : '＋ ') + E(v), 'candidate toggle', `data-word="${E(v)}" data-anchor="${E(w.word)}" aria-pressed="${selected.includes(v)}" aria-label="${selected.includes(v) ? '移除' : '选择'}候选 ${E(v)}" title="${E(db.words.get(v).brief)}"`)).join('')}</div></section>`;
   }
   function wordPage(word) {
     const w = db.words.get(word); if (!w) return missing('词库里暂时没有这个词。');
-    return `<div class="word-detail">${back('search', '返回查词')}<div class="panel"><div class="word-title"><h1>${E(w.word)}</h1>${soundButton([w.word])}</div><p class="ipa">${w.ipa ? '/' + E(w.ipa) + '/' : '音标暂缺'}</p><p class="meaning">${E(w.meaning)}</p><p class="notes">${w.meaningSource === 'curated' ? '重点辨析中的常用义；并非该词全部词典义项。' : '基础释义来自开源词典；未逐词完成教学审订。'}${w.exam ? '' : ' 本词属于词族或辨析补充。'}</p><div class="row section">${button('select-word', selected.includes(w.word) ? '✓ 已选入对照' : '＋ 选入对照', 'toggle', `data-word="${E(w.word)}" aria-pressed="${selected.includes(w.word)}"`)}${selected.length >= 2 ? routeLink('compare/' + selected.join(','), `查看所选 ${selected.length} 词 →`, 'primary-link') : routeLink('search', '再选一个词 →', 'quiet-link')}</div></div>` +
+    return `<div class="word-detail">${back('search', '返回查词')}<div class="panel"><div class="word-title"><h1>${E(w.displayWord || w.word)}</h1>${soundButton([w.word])}</div><p class="ipa">${w.ipa ? '/' + E(w.ipa) + '/' : '音标暂缺'}</p>${meaningBlock(w)}<p class="notes">${E(meaningLabel(w))}${w.exam ? '' : ' · 词族或辨析补充'}</p><div class="row section">${button('select-word', selected.includes(w.word) ? '✓ 已选入对照' : '＋ 选入对照', 'toggle', `data-word="${E(w.word)}" aria-pressed="${selected.includes(w.word)}"`)}${routeLink('search', '去查词继续选 →', 'quiet-link')}</div></div><div id="selection">${selectionBar()}</div>` +
       (w.groups.length ? `<section class="section"><div class="section-head"><h2>已整理的重点辨析</h2></div><div class="list">${w.groups.map(id => groupRow(db.groups.get(id))).join('')}</div></section>` : '') +
       candidates(w, 'shape', '字形候选') + candidates(w, 'sound', '音近候选 · 美音') + `<p class="notes">候选由拼写距离与 CMU 美式读音数据计算，只帮你发现可能混淆的词；不表示它们含义相近。音标主要采用英式记法，朗读取决于设备语音。</p></div>`;
   }
-  function parseWords(value) { return [...new Set(String(value || '').toLowerCase().split(/[\s,，、;；·]+/).filter(Boolean))]; }
+  function parseWords(value) {
+    const text = C.normal(value);
+    if (db.words.has(text)) return [text];
+    const parts = /[,，、;；·]/.test(text) ? text.split(/[,，、;；·]+/) : text.split(/\s+/);
+    return [...new Set(parts.map(C.normal).filter(Boolean))];
+  }
   function plainCompare(words, note = '', pairId = '') {
-    if (words.length < 2 || words.length > 4 || words.some(w => !db.words.has(w))) return missing('请从词库选择 2–4 个不同的词。');
+    if (words.length < 2 || words.length > MAX || words.some(w => !db.words.has(w))) return missing(`请从词库选择 2–${MAX} 个不同的词。`);
+    selected = [...words];
     const common = data.groups.filter(g => words.every(w => g.entries.some(e => e.word === w)));
     return back(pairId ? 'mine' : 'search', pairId ? '返回我的易混组' : '返回查词') + heading(words.join(' · '), pairId ? '我的易混组' : '自由对照 · 先看词性，再看意思') +
       (note && !concealed ? `<p class="contrast">${E(note)}</p>` : '') + compareToolbar(words) + `<div class="compare-grid ${words.length === 2 ? 'two' : words.length === 4 ? 'four' : ''}">${words.map(word => wordCard({ word }, words, false)).join('')}</div>` +
@@ -98,11 +111,11 @@
   function affixesPage() { return heading('开头相像，也要分清。', '把相似开头与词尾放在一起，核对完整意思。') + `<div class="affix-list">${data.affixes.map(a => routeLink('affix/' + a.id, `<h2>${E(a.title)}</h2><p>${E(a.hint)}</p><p class="notes">${a.words.length} 词 · 点开对照 ›</p>`, 'affix-card')).join('')}</div>`; }
   function affixPage(id) {
     const a = data.affixes.find(a => a.id === id); if (!a) return missing();
-    return back('affixes', '返回词缀') + heading(a.title) + `<p class="contrast">${E(a.hint)}</p><p class="notes">${E(a.note)}</p><div class="toolbar">${button('conceal', concealed ? '显示中文释义' : '遮住中文，快速回忆', 'toggle', `aria-pressed="${concealed}"`)}${routeLink('compare/' + a.words.slice(0, 4).join(','), '先对照前 4 词', 'quiet-link')}</div><div class="list">${a.words.map(word => { const w = db.words.get(word); return `<div class="word-row">${routeLink('word/' + word, `<strong>${E(word)}</strong>${concealed ? '<span class="muted">中文已遮住</span>' : `<span class="muted">${E(w.brief)}</span>`}`)}${soundButton([word])}${button('select-word', selected.includes(word) ? '✓' : '＋', 'add-word', `data-word="${E(word)}" aria-label="选择 ${E(word)}"`)}</div>`; }).join('')}</div>` + (selected.length >= 2 ? `<div class="row section">${routeLink('compare/' + selected.join(','), '对照已选 ' + selected.length + ' 词', 'primary-link')}${button('clear-selected', '清空选择', 'plain-button')}</div>` : '');
+    return back('affixes', '返回词缀') + heading(a.title) + `<p class="contrast">${E(a.hint)}</p><p class="notes">${E(a.note)}</p><div class="toolbar">${button('conceal', concealed ? '显示中文释义' : '遮住中文，快速回忆', 'toggle', `aria-pressed="${concealed}"`)}${routeLink('compare/' + a.words.slice(0, MAX).join(','), `对照本组 ${Math.min(a.words.length, MAX)} 词`, 'quiet-link')}</div><div class="list">${a.words.map(word => { const w = db.words.get(word); return `<div class="word-row">${routeLink('word/' + word, `<strong>${E(word)}</strong>${concealed ? '<span class="muted">中文已遮住</span>' : `<span class="muted">${E(w.brief)}</span>`}`)}${soundButton([word])}${button('select-word', selected.includes(word) ? '✓' : '＋', 'add-word', `data-word="${E(word)}" aria-label="选择 ${E(word)}"`)}</div>`; }).join('')}</div>` + (selected.length >= 2 ? `<div class="row section">${routeLink('compare/' + selected.join(','), '对照已选 ' + selected.length + ' 词', 'primary-link')}${button('clear-selected', '清空选择', 'plain-button')}</div>` : '');
   }
   function customPage(words = [], id = '') {
     const pair = id ? state.pairs.find(p => p.id === id) : null; if (id && !pair) return missing();
-    return back('mine', '返回我的') + heading(pair ? '修改易混组' : '建一组自己的易混词', '长得不像、只是读音让你联想到一起，也可以记在这里。') + `<form id="pair-form" class="panel form" data-id="${E(id)}"><label for="pair-words">单词 · 2–4 个</label><input id="pair-words" required autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="160" value="${E((pair?.words || words).join(', '))}" placeholder="例如 generalization, generalize, generally"><p class="notes">用逗号或空格分隔，支持当前 3600 词库里的单词。</p><label for="pair-note">我为什么会混淆？怎么区分？</label><textarea id="pair-note" maxlength="400" placeholder="写下你自己的发音联想或辨认线索…">${E(pair?.note || '')}</textarea><div class="row"><button type="submit" class="primary">保存并对照</button>${routeLink('search', '去词库选词', 'quiet-link')}</div><p id="pair-error" class="message error" hidden role="alert"></p></form>`;
+    return back('mine', '返回我的') + heading(pair ? '修改易混组' : '建一组自己的易混词', '长得不像、只是读音让你联想到一起，也可以记在这里。') + `<form id="pair-form" class="panel form" data-id="${E(id)}"><label for="pair-words">单词 · 2–${MAX} 个</label><input id="pair-words" required autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="1200" value="${E((pair?.words || words).join(', '))}" placeholder="例如 generalization, generalize, generally"><p class="notes">用逗号或空格分隔，支持当前 ${data.meta.wordCount} 词库；含空格的词组请用逗号分隔。</p><label for="pair-note">我为什么会混淆？怎么区分？</label><textarea id="pair-note" maxlength="400" placeholder="写下你自己的发音联想或辨认线索…">${E(pair?.note || '')}</textarea><div class="row"><button type="submit" class="primary">保存并对照</button>${routeLink('search', '去词库选词', 'quiet-link')}</div><p id="pair-error" class="message error" hidden role="alert"></p></form>`;
   }
   function minePage() {
     const tabs = [['review', '待复习', state.review.length], ['favorites', '收藏', state.favorites.length], ['pairs', '自建组', state.pairs.length], ['mistakes', '混淆记录', state.mistakes.length]];
@@ -128,7 +141,7 @@
     return `<div class="quiz-shell">${back(key === 'all' || key === 'review' ? 'mine' : 'group/' + key, '退出练习')}<div class="heading-row"><h1>放进句子，分清意思。</h1><span class="muted nowrap">${s.at + 1} / ${s.questions.length}</span></div><div class="progress" aria-hidden="true"><span style="width:${s.at / s.questions.length * 100}%"></span></div><div class="panel"><span class="tag">${E(kindLabel(db.groups.get(q.group).kind))}</span><p class="quiz-sentence" lang="en">${E(q.sentence)}</p><p class="quiz-intent">想表达：${E(q.intent)}</p><div class="options">${s.options.map(w => button('answer', E(w), 'option' + (show && q.answer.includes(w) ? ' correct' : s.choice === w && !correct ? ' wrong' : ''), `data-word="${E(w)}" ${show ? 'disabled' : ''}`)).join('')}</div>${show ? `<div class="feedback" role="status"><strong>${s.revealed ? '直接看辨析 · 不计作答' : correct ? '这次辨认正确。' : '这组词再对照一下。'} 参考：${E(q.answer.join(' / '))}</strong><p>${E(q.explanation)}</p></div>` : ''}<div class="bottom-row"><div class="row">${show ? button('next-question', s.at + 1 === s.questions.length ? '完成这一轮' : '下一题 →', 'primary') : button('reveal-question', '直接看答案')}${!show ? button('skip-question', '跳过', 'plain-button') : ''}</div>${routeLink('group/' + q.group, '看完整辨析', 'quiet-link')}</div></div><p class="notes">中文句意帮助明确表达目标；真实用法有重叠时，会接受多种答案。原创题不是真题。</p></div>`;
   }
   function settingsPage() {
-    return `<div class="settings">${back()}${heading('备份与设置')}<section class="panel"><h2>在 Safari 中使用</h2><p id="offline-detail">${E(offlineText)}</p><p>Safari 点“分享”→“添加到主屏幕”，可像应用一样打开。首次打开请等到右上角显示“可离线”；朗读是否离线可用取决于设备语音。</p><div class="row">${button('check-offline', '检查离线保存')}${routeLink('home', '回到辨析', 'quiet-link')}</div></section><section class="panel"><h2>备份我的记录</h2><p>包含收藏、待复习、自建易混组、混淆记录。记录只存于当前设备，不会自动同步；iPhone、iPad 可通过导出和导入迁移。</p>${storedError ? `<p class="message error">${E(storedError)}</p>` : ''}<div class="row">${button('export', storedError ? '导出原始记录' : '导出备份')}<label class="file-label" for="backup-file">导入备份</label><input id="backup-file" type="file" accept=".json,application/json" class="visually-hidden"></div><div id="import-area"></div></section><section class="panel"><h2>词库与内容说明</h2><p>${data.meta.wordCount} 词 · ${data.meta.groupCount} 组原创重点辨析 · ${data.meta.questionCount} 道原创语境题。基础词典与自动候选不等于全部已写好详细辨析。</p><p>${E(data.meta.selection)}</p><p>重点辨析的中文解释、辨认线索与例句为原创。其他基础释义采用 ECDICT；音标主要为英式记法，音近候选采用 CMUdict 美式读音。部分词典义项尚待复核，候选只用来辅助查找。</p><p>朗读使用设备的英语语音。相同拼写有不同读音、重音或英美差异时，设备读音可能不同。</p><p><a class="source" href="https://github.com/skywind3000/ECDICT" target="_blank" rel="noopener noreferrer">ECDICT 来源</a> · <a class="source" href="licenses/ECDICT.txt">MIT 许可</a><br><a class="source" href="https://github.com/cmusphinx/cmudict" target="_blank" rel="noopener noreferrer">CMUdict 来源</a> · <a class="source" href="licenses/cmudict.txt">许可声明</a></p><p>词形辅助参考：<a class="source" href="https://dictionary.cambridge.org/us/grammar/british-grammar/word-formation_2" target="_blank" rel="noopener noreferrer">Cambridge 词形构成说明</a>。不把相同开头一概当成相同词根。</p></section><section class="panel"><h2>研习题库</h2><p>专业课、政治与英语练习仍在原来的题库中。</p><a class="source" href="../">打开研习题库 →</a></section></div>`;
+    return `<div class="settings">${back()}${heading('备份与设置')}<section class="panel"><h2>在 Safari 中使用</h2><p id="offline-detail">${E(offlineText)}</p><p>Safari 点“分享”→“添加到主屏幕”，可像应用一样打开。首次打开请等到右上角显示“可离线”；朗读是否离线可用取决于设备语音。</p><div class="row">${button('check-offline', '检查离线保存')}${routeLink('home', '回到辨析', 'quiet-link')}</div></section><section class="panel"><h2>备份我的记录</h2><p>包含收藏、待复习、自建易混组、混淆记录。记录只存于当前设备，不会自动同步；iPhone、iPad 可通过导出和导入迁移。</p>${storedError ? `<p class="message error">${E(storedError)}</p>` : ''}<div class="row">${button('export', storedError ? '导出原始记录' : '导出备份')}<label class="file-label" for="backup-file">导入备份</label><input id="backup-file" type="file" accept=".json,application/json" class="visually-hidden"></div><div id="import-area"></div></section><section class="panel"><h2>词库与内容说明</h2><p>${data.meta.wordCount} 词 · ${data.meta.groupCount} 组原创重点辨析 · ${data.meta.questionCount} 道原创语境题。基础词典与自动候选不等于全部已写好详细辨析。</p><p>${E(data.meta.selection)}</p><p>重点辨析的中文解释、辨认线索与例句为原创。考研词条优先采用 NETEMVocabulary 的整理释义；部分多义词另行整理阅读常用义与搭配，其他词典义项折叠显示。补充词采用 ECDICT；音标主要为英式记法，音近候选采用 CMUdict 美式读音。部分词典义项尚待复核，候选只用来辅助查找。</p><p>朗读使用设备的英语语音。相同拼写有不同读音、重音或英美差异时，设备读音可能不同。</p><p><a class="source" href="https://github.com/skywind3000/ECDICT" target="_blank" rel="noopener noreferrer">ECDICT 来源</a> · <a class="source" href="licenses/ECDICT.txt">MIT 许可</a><br><a class="source" href="https://github.com/cmusphinx/cmudict" target="_blank" rel="noopener noreferrer">CMUdict 来源</a> · <a class="source" href="licenses/cmudict.txt">许可声明</a></p><p>词表与释义参考：<a class="source" href="https://github.com/exam-data/NETEMVocabulary" target="_blank" rel="noopener noreferrer">exam-data / NETEMVocabulary</a>（以2024词表为基础的第三方整理）。使用其单词与释义，合并、筛选并补充释义；衍生词库 data.json 采用 <a class="source" href="licenses/NETEM.txt">CC BY-NC-SA 4.0</a>，仅限非商业用途，转载需署名并以相同方式共享。未采用其自动生成例句或混合考试词频，未宣称已逐词核对2027官方大纲。</p><p>词形辅助参考：<a class="source" href="https://dictionary.cambridge.org/us/grammar/british-grammar/word-formation_2" target="_blank" rel="noopener noreferrer">Cambridge 词形构成说明</a>。不把相同开头一概当成相同词根。</p></section><section class="panel"><h2>研习题库</h2><p>专业课、政治与英语练习仍在原来的题库中。</p><a class="source" href="../">打开研习题库 →</a></section></div>`;
   }
   function missing(text = '这个页面暂时不存在。') { return back() + empty(E(text)); }
   function currentRoute() { try { return decodeURIComponent(location.hash.slice(1)) || 'home'; } catch (_) { return 'home'; } }
@@ -162,11 +175,19 @@
     document.title = (page === 'group' ? db.groups.get(arg)?.title : page === 'word' ? arg : '') ? `${page === 'word' ? arg : db.groups.get(arg).title} · 词辨` : '词辨 · 考研易混词';
     updateOffline();
   }
-  function modifySelection(word) {
-    if (selected.includes(word)) selected = selected.filter(w => w !== word);
-    else if (selected.length >= 4) { toast('一次最多并排对照 4 个词，请先移除一个。'); return; }
-    else if (db.words.has(word)) selected.push(word);
-    if (currentRoute() === 'search') paintWords(); else render();
+  function modifySelection(word, anchor = '') {
+    try { selected = C.toggleSelection(selected, word, db, anchor); }
+    catch (error) { toast(error.message); return; }
+    if (currentRoute() === 'search') paintWords();
+    else if (currentRoute().startsWith('word/')) {
+      $('#selection').innerHTML = selectionBar();
+      main.querySelectorAll('[data-action="select-candidate"], [data-action="select-word"]').forEach(b => {
+        const on = selected.includes(b.dataset.word), candidate = b.dataset.action === 'select-candidate';
+        b.setAttribute('aria-pressed', String(on));
+        b.setAttribute('aria-label', (on ? '移除' : '选择') + (candidate ? '候选 ' : ' ') + b.dataset.word);
+        b.textContent = candidate ? (on ? '✓ ' : '＋ ') + b.dataset.word : on ? '✓ 已选入对照' : '＋ 选入对照';
+      });
+    } else render();
   }
   function nextQuestion(skipped) {
     if (skipped || session.revealed) session.skipped++;
@@ -186,6 +207,7 @@
     if (a === 'clear-search') { const input = document.getElementById(b.dataset.for); input.value = ''; input.dispatchEvent(new Event('input', { bubbles: true })); input.focus(); }
     if (a === 'more-words') { wordLimit += 50; paintWords(); }
     if (a === 'select-word' || a === 'remove-selected') modifySelection(b.dataset.word);
+    if (a === 'select-candidate') modifySelection(b.dataset.word, b.dataset.anchor);
     if (a === 'clear-selected') { selected = []; if (currentRoute() === 'search') paintWords(); else render(); }
     if (a === 'compare-selected' && selected.length >= 2) location.hash = 'compare/' + selected.join(',');
     if (a === 'mine-tab') { mineTab = b.dataset.tab; render(); }
@@ -216,7 +238,7 @@
     if (event.target.id !== 'pair-form') return; event.preventDefault();
     const words = parseWords($('#pair-words').value), note = $('#pair-note').value.trim(), id = event.target.dataset.id;
     const error = $('#pair-error'); let message = '';
-    if (words.length < 2 || words.length > 4) message = '请填写 2–4 个不同的单词。';
+    if (words.length < 2 || words.length > MAX) message = `请填写 2–${MAX} 个不同的单词。`;
     else if (words.some(w => !db.words.has(w))) message = '当前词库暂未收录：' + words.filter(w => !db.words.has(w)).join(', ') + '。请检查拼写或使用原形。';
     else if (note.length > 400) message = '提示最多 400 字。';
     else if (!id && state.pairs.length >= 200) message = '自建组已满 200 组，请先整理或导出备份。';
@@ -246,7 +268,7 @@
   async function offline() {
     if (!('serviceWorker' in navigator)) { offlineText = '浏览器暂不支持离线保存'; updateOffline(); return; }
     try {
-      const reg = await navigator.serviceWorker.register('sw.js', { scope: './' });
+      const reg = await navigator.serviceWorker.register('sw.js?v=2', { scope: './' });
       await checkOffline();
       const watch = worker => { if (worker) worker.addEventListener('statechange', () => { if (worker.state === 'activated') checkOffline(); }); };
       watch(reg.installing); reg.addEventListener('updatefound', () => watch(reg.installing));
@@ -256,7 +278,7 @@
   }
   async function init() {
     try {
-      const response = await fetch('data.json'); if (!response.ok) throw new Error('词库暂时没有载入成功');
+      const response = await fetch('data.json?v=2'); if (!response.ok) throw new Error('词库暂时没有载入成功');
       data = await response.json(); db = C.index(data);
       try { const saved = localStorage.getItem(C.KEY); if (saved) { unreadableBackup = saved; state = C.validState(JSON.parse(saved), db); unreadableBackup = ''; } }
       catch (_) { storedError = '本机原记录暂时无法读取，未自动删除。请先保留原备份。'; }

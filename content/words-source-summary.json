@@ -1,12 +1,16 @@
 {
-  "version": 1,
+  "version": 2,
   "title": "词辨 · 考研易混词",
-  "wordCount": 3600,
+  "wordCount": 5721,
   "groupCount": 119,
   "questionCount": 325,
-  "examTagged": 3494,
-  "soundCoverage": 3596,
-  "selection": "按开源词典 ky 标记与通用词频选取，优先纳入重点辨析和词族补充；不是官方3600词表或真题频率榜。",
+  "examTagged": 5633,
+  "soundCoverage": 5678,
+  "examListEntries": 5530,
+  "examUniqueWords": 5528,
+  "editorialWords": 330,
+  "selection": "纳入 NETEMVocabulary 整理的5530条考研词表（合并大小写同词），保留原3600词并补充词族。默认先看考研整理释义，补充词显示通用义；部分多义词整理阅读常用义与搭配，其他词典义项折叠。第三方词表以2024版为基础，未逐词核对2027官方大纲；排序不是考研真题频率榜。",
+  "license": "CC BY-NC-SA 4.0 (derived data); ECDICT MIT; CMUdict BSD-style",
   "sources": [
     {
       "repo": "skywind3000/ECDICT",
@@ -15,6 +19,11 @@
     {
       "repo": "cmusphinx/cmudict",
       "sha": "74790861f652b15e4ac49015a90074ad62a27690"
+    },
+    {
+      "repo": "exam-data/NETEMVocabulary",
+      "sha": "b1850fdd51fca9143006ef54bca99b246d56c934",
+      "license": "CC BY-NC-SA 4.0"
     }
   ]
 }

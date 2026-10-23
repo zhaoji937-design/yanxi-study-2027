@@ -1,0 +1,1322 @@
+{
+  "address": {
+    "meaning": "v. 处理、着手解决；向……讲话\nn. 地址；正式讲话",
+    "note": "address a problem＝着手处理问题，不保证已经解决。"
+  },
+  "account": {
+    "meaning": "n. 解释、叙述；账户；账目\nv. 解释原因；占一定比例",
+    "note": "account for 既可解释原因，也可表示占比。"
+  },
+  "subject": {
+    "meaning": "n. 主题；学科；受试者\nv. 使遭受、使接受\nadj. 受……支配的；有待……的",
+    "note": "subject to change＝可能变动；subject A to B＝使A受到B。"
+  },
+  "object": {
+    "meaning": "n. 物体；对象；目的\nv. 反对、不赞成",
+    "note": "object to doing＝反对做某事；动词与名词重音不同。"
+  },
+  "issue": {
+    "meaning": "n. 问题、议题；一期刊物\nv. 发布、颁发",
+    "note": "at issue＝争论中的；issue a statement＝发表声明。"
+  },
+  "concern": {
+    "meaning": "n. 担忧；重要的事；关切\nv. 涉及；使担忧",
+    "note": "be concerned with＝涉及；be concerned about＝担心。"
+  },
+  "interest": {
+    "meaning": "n. 兴趣；利益；利息\nv. 使感兴趣",
+    "note": "in the public interest＝为了公共利益。"
+  },
+  "charge": {
+    "meaning": "n. 费用；指控；责任\nv. 收费；指控；充电",
+    "note": "in charge of＝负责；charge someone with＝指控某人。"
+  },
+  "compound": {
+    "meaning": "n. 化合物；复合物\nv. 使加重；混合\nadj. 复合的",
+    "note": "compound a problem＝使问题更严重，不是解决问题。"
+  },
+  "conduct": {
+    "meaning": "v. 进行、组织；引导；传导\nn. 行为、举止",
+    "note": "conduct research＝开展研究；名词重音在前，动词在后。"
+  },
+  "course": {
+    "meaning": "n. 课程；进程、过程；方向\nv. 奔流",
+    "note": "in the course of＝在……过程中；of course＝当然。"
+  },
+  "claim": {
+    "meaning": "v. 声称；索要；夺去生命\nn. 主张、断言；索赔要求",
+    "note": "claim that 表示声称，作者未必认可内容属实。"
+  },
+  "convention": {
+    "meaning": "n. 惯例；大会；公约",
+    "note": "social convention＝社会惯例，与个人信念不同。"
+  },
+  "content": {
+    "meaning": "n. 内容；含量\nadj. 满足的\nv. 使满足",
+    "note": "be content with＝满足于；名词与形容词的重音不同。"
+  },
+  "context": {
+    "meaning": "n. 上下文；背景、语境",
+    "note": "in context＝结合上下文；context 不是具体内容content。"
+  },
+  "contract": {
+    "meaning": "n. 合同、契约\nv. 收缩；感染疾病；订立合同",
+    "note": "contract a disease＝感染疾病；名词重音在前，动词在后。"
+  },
+  "credit": {
+    "meaning": "n. 信用；赞誉；学分；贷款\nv. 把……归功于；相信",
+    "note": "credit A with B＝认为A有B功劳或特征。"
+  },
+  "decline": {
+    "meaning": "v. 减少、衰退；婉拒\nn. 下降、衰退",
+    "note": "decline an invitation＝婉拒邀请；decline 不一定是拒绝。"
+  },
+  "discipline": {
+    "meaning": "n. 学科；纪律；训练\nv. 训练、管教；处罚",
+    "note": "an academic discipline＝一门学科，不能机械译为纪律。"
+  },
+  "draw": {
+    "meaning": "v. 得出；吸引；描绘；抽取\nn. 平局；抽签",
+    "note": "draw a conclusion＝得出结论；draw on＝利用、借鉴。"
+  },
+  "effect": {
+    "meaning": "n. 影响、结果\nv. 使发生、实现",
+    "note": "effect a change＝实现改变；affect 通常是动词影响。"
+  },
+  "engage": {
+    "meaning": "v. 参与；吸引注意；雇用",
+    "note": "engage in＝参与；engage with＝认真接触、回应。"
+  },
+  "establish": {
+    "meaning": "v. 建立；确立；证实",
+    "note": "establish a link＝确立联系；证实义取决于证据语境。"
+  },
+  "faculty": {
+    "meaning": "n. 能力、官能；全体教师；院系",
+    "note": "faculty members＝教师；a faculty of law＝法学院。"
+  },
+  "fashion": {
+    "meaning": "n. 时尚；方式\nv. 制作、塑造",
+    "note": "in a similar fashion＝以相似方式，不涉及衣着。"
+  },
+  "figure": {
+    "meaning": "n. 数字；人物；图形；身材\nv. 认为；扮演重要角色",
+    "note": "figure out＝弄清楚；figure in＝在……中占重要位置。"
+  },
+  "fine": {
+    "meaning": "adj. 好的；细微的；精细的\nn. 罚款\nv. 处以罚款",
+    "note": "a fine distinction＝细微区别；fine someone＝罚某人款。"
+  },
+  "firm": {
+    "meaning": "n. 公司、商行\nadj. 坚定的；牢固的",
+    "note": "a law firm＝律师事务所；firm evidence＝确凿证据。"
+  },
+  "force": {
+    "meaning": "n. 力量；武力；效力\nv. 强迫、迫使",
+    "note": "come into force＝生效；force someone to do＝迫使某人做。"
+  },
+  "grant": {
+    "meaning": "v. 授予；准许；承认\nn. 补助金、拨款",
+    "note": "take for granted＝想当然；grant that＝即使承认。"
+  },
+  "hold": {
+    "meaning": "v. 持有；举行；认为；保持有效\nn. 握持；控制",
+    "note": "hold true＝成立；hold that＝认为；hold back＝阻碍、隐瞒。"
+  },
+  "identify": {
+    "meaning": "v. 认出；确定；发现\nv. 与……认同",
+    "note": "identify a cause＝查明原因；identify with＝认同。"
+  },
+  "institute": {
+    "meaning": "n. 研究所、学院\nv. 建立、实施制度或措施",
+    "note": "institute reforms＝推行改革；institute不等于institution全部含义。"
+  },
+  "maintain": {
+    "meaning": "v. 维持；维护；坚持认为；供养",
+    "note": "maintain that＝坚持认为，不一定指维护某物。"
+  },
+  "mean": {
+    "meaning": "v. 意味着；意欲\nadj. 吝啬的；刻薄的\nn. 平均值",
+    "note": "mean doing＝意味着做；mean to do＝打算做。"
+  },
+  "observe": {
+    "meaning": "v. 观察；遵守；评论、说；庆祝",
+    "note": "observe a rule＝遵守规则；observe that＝评论道。"
+  },
+  "practice": {
+    "meaning": "n. 实践；惯例；练习；执业\nv. 练习；从事",
+    "note": "in practice＝实际上；medical practice＝行医或诊所。"
+  },
+  "present": {
+    "meaning": "adj. 目前的；在场的\nv. 提出、呈现；赠送\nn. 礼物；现在",
+    "note": "present evidence＝出示证据；be present＝在场。"
+  },
+  "press": {
+    "meaning": "n. 新闻界、报刊；出版社\nv. 按压；敦促",
+    "note": "the press＝新闻界；press for change＝敦促改革。"
+  },
+  "principal": {
+    "meaning": "adj. 主要的\nn. 校长；本金；负责人",
+    "note": "the principal reason＝主要原因；principle才是原则。"
+  },
+  "process": {
+    "meaning": "n. 过程；工序\nv. 处理、加工",
+    "note": "process information＝处理信息；in the process＝在过程中。"
+  },
+  "project": {
+    "meaning": "n. 项目、计划\nv. 预测；投射；展现形象",
+    "note": "project future demand＝预测未来需求；动词重音在后。"
+  },
+  "property": {
+    "meaning": "n. 财产；房产；性质、特性",
+    "note": "physical properties＝物理特性；不总指所有权或房屋。"
+  },
+  "provision": {
+    "meaning": "n. 提供；条款；准备\nv. 供应所需物品",
+    "note": "make provision for＝为……作安排；provisions也可指食品储备。"
+  },
+  "qualify": {
+    "meaning": "v. 获得资格；使合格；限制或修正说法",
+    "note": "qualify a statement＝给论断加限制；qualify for＝具备资格。"
+  },
+  "question": {
+    "meaning": "n. 问题；疑问\nv. 询问；质疑",
+    "note": "question an assumption＝质疑假设，不只是提出问题。"
+  },
+  "raise": {
+    "meaning": "v. 提高；提出；筹集；养育",
+    "note": "raise a question＝提出问题；raise funds＝筹款。"
+  },
+  "range": {
+    "meaning": "n. 范围；一系列；种类\nv. 在一定范围变化；排列",
+    "note": "range from A to B＝范围从A到B。"
+  },
+  "rate": {
+    "meaning": "n. 比率；速率；价格\nv. 评价、评定",
+    "note": "at any rate＝无论如何；rate something highly＝高度评价。"
+  },
+  "regard": {
+    "meaning": "v. 看待、认为\nn. 尊重；关注",
+    "note": "regard A as B＝把A视为B；with regard to＝关于。"
+  },
+  "relate": {
+    "meaning": "v. 有联系；讲述；理解、认同",
+    "note": "relate A to B＝把A与B联系起来；relate to＝涉及、理解。"
+  },
+  "render": {
+    "meaning": "v. 使处于某状态；提供；表达、翻译",
+    "note": "render something useless＝使某物无用；render assistance＝给予帮助。"
+  },
+  "represent": {
+    "meaning": "v. 代表；表示；构成、相当于",
+    "note": "represent a challenge＝构成挑战；不是所有语境都译作代表。"
+  },
+  "reserve": {
+    "meaning": "v. 预留、保留；预订\nn. 储备；保护区；保留态度",
+    "note": "with reservations＝有所保留；reserve a seat＝预订座位。"
+  },
+  "resolve": {
+    "meaning": "v. 解决；决定\nn. 决心",
+    "note": "resolve to do＝决心做；resolve a dispute＝解决争端。"
+  },
+  "respect": {
+    "meaning": "n. 尊重；方面\nv. 尊重、遵守",
+    "note": "in this respect＝在这一方面；with respect to＝关于。"
+  },
+  "respond": {
+    "meaning": "v. 回答；作出反应；响应",
+    "note": "respond to treatment＝对治疗有反应；respond to不只表示答复。"
+  },
+  "scale": {
+    "meaning": "n. 规模；刻度；等级；鳞片\nv. 攀登；按比例调整",
+    "note": "on a large scale＝大规模；scale back＝缩减。"
+  },
+  "secure": {
+    "meaning": "adj. 安全的；稳固的\nv. 获得；使安全；固定",
+    "note": "secure funding＝获得资金；不是仅仅保护资金。"
+  },
+  "sentence": {
+    "meaning": "n. 句子；刑罚\nv. 判刑",
+    "note": "sentence someone to prison＝判某人入狱。"
+  },
+  "set": {
+    "meaning": "v. 设置；确定；树立\nn. 一组；一套\nadj. 固定的；已确定的",
+    "note": "set a standard＝确立标准；a set of＝一组。"
+  },
+  "shed": {
+    "meaning": "v. 脱落；摆脱；洒出\nn. 棚屋",
+    "note": "shed light on＝阐明、使更易理解；不是字面照明。"
+  },
+  "shift": {
+    "meaning": "n. 转变；轮班\nv. 转移、改变",
+    "note": "a shift in attitude＝态度转变；shift attention＝转移注意。"
+  },
+  "sound": {
+    "meaning": "adj. 合理的；可靠的；健全的\nn. 声音\nv. 听起来；发出声音",
+    "note": "a sound argument＝有理据的论证，不是有声音的论证。"
+  },
+  "state": {
+    "meaning": "n. 状态；国家；州\nv. 陈述、说明",
+    "note": "state that＝明确陈述；the state可指国家或政府。"
+  },
+  "stress": {
+    "meaning": "n. 压力；强调；重音\nv. 强调；使承压",
+    "note": "stress the importance of＝强调……的重要性。"
+  },
+  "strike": {
+    "meaning": "v. 打击；突然想到；给人印象\nn. 罢工；打击",
+    "note": "It strikes me that＝我突然想到；strike a balance＝取得平衡。"
+  },
+  "stuff": {
+    "meaning": "n. 东西；材料；事务\nv. 塞满",
+    "note": "stuff通常不可数；staff才指全体工作人员。"
+  },
+  "study": {
+    "meaning": "n. 研究；学习；书房\nv. 研究；学习",
+    "note": "a study of＝关于……的研究，不一定是一门课程。"
+  },
+  "suit": {
+    "meaning": "v. 适合；使满意\nn. 诉讼；套装",
+    "note": "suit one's needs＝适合某人的需要；file a suit＝提起诉讼。"
+  },
+  "support": {
+    "meaning": "v. 支持；供养；证实\nn. 支持；支撑；依据",
+    "note": "support a claim＝为论断提供支持；并非证明一定正确。"
+  },
+  "sustain": {
+    "meaning": "v. 维持；支撑；遭受",
+    "note": "sustain growth＝保持增长；sustain injuries＝受伤。"
+  },
+  "term": {
+    "meaning": "n. 术语；期限；学期\nv. 把……称为",
+    "note": "in terms of＝就……而言；terms可表示条件、关系。"
+  },
+  "treat": {
+    "meaning": "v. 对待；处理、讨论；治疗；款待\nn. 乐事；款待",
+    "note": "treat A as B＝把A当作B；treat a subject＝论述主题。"
+  },
+  "turn": {
+    "meaning": "v. 转变；转向；变得\nn. 轮次；变化",
+    "note": "in turn＝依次、反过来；turn to＝转向、求助于。"
+  },
+  "yield": {
+    "meaning": "v. 产生；让步；屈服\nn. 产量；收益",
+    "note": "yield results＝产生结果；yield to＝让步、屈服于。"
+  },
+  "approach": {
+    "meaning": "n. 方法、途径；接近\nv. 接近；着手处理",
+    "note": "an approach to doing＝做某事的方法；approach a problem＝着手处理问题。"
+  },
+  "appropriate": {
+    "meaning": "adj. 适当的\nv. 拨款；挪用、擅自占用",
+    "note": "appropriate funds可指拨款，需依语境区分挪用义。"
+  },
+  "assume": {
+    "meaning": "v. 假定；承担；呈现某种特征",
+    "note": "assume responsibility＝承担责任；不能一概译成假设。"
+  },
+  "attribute": {
+    "meaning": "v. 把……归因于\nn. 特征、属性",
+    "note": "attribute A to B＝把A归因于B；注意因果方向。"
+  },
+  "authority": {
+    "meaning": "n. 权力；当局；权威人士",
+    "note": "local authorities＝地方当局；an authority on＝某领域权威。"
+  },
+  "bar": {
+    "meaning": "n. 障碍；条状物；酒吧\nv. 阻止、禁止",
+    "note": "bar someone from doing＝禁止某人做某事。"
+  },
+  "bearing": {
+    "meaning": "n. 关系、影响；举止；方位",
+    "note": "have a bearing on＝与……有关或有影响。"
+  },
+  "bear": {
+    "meaning": "v. 承担；忍受；带有；产生\nn. 熊",
+    "note": "bear in mind＝牢记；bear responsibility＝承担责任。"
+  },
+  "bound": {
+    "meaning": "adj. 必然的；受约束的；前往……的\nn. 界限\nv. 跳跃",
+    "note": "be bound to do＝一定会做；bound for＝前往。"
+  },
+  "brief": {
+    "meaning": "adj. 简短的；短暂的\nv. 向……介绍情况\nn. 简报；任务说明",
+    "note": "in brief＝简言之；brief someone on＝向某人说明情况。"
+  },
+  "capital": {
+    "meaning": "n. 资本；首都；大写字母\nadj. 资本的；死刑的",
+    "note": "human capital＝人力资本；capital punishment＝死刑。"
+  },
+  "capacity": {
+    "meaning": "n. 能力；容量；身份、职位",
+    "note": "in one's capacity as＝以……身份；at full capacity＝满负荷。"
+  },
+  "case": {
+    "meaning": "n. 情况；案例；论据；案件",
+    "note": "make a case for＝论证……有道理；in any case＝无论如何。"
+  },
+  "cause": {
+    "meaning": "n. 原因；事业、目标\nv. 引起、导致",
+    "note": "a good cause＝公益事业；cause and effect＝因果。"
+  },
+  "character": {
+    "meaning": "n. 性格；特征；人物；文字、符号",
+    "note": "the character of society＝社会特征；不总指人的品格。"
+  },
+  "check": {
+    "meaning": "v. 检查；制止、遏制\nn. 检查；约束",
+    "note": "keep in check＝抑制、控制；不是继续检查。"
+  },
+  "civil": {
+    "meaning": "adj. 公民的；民用的；民事的；有礼的",
+    "note": "civil rights＝公民权利；civil engineering＝土木工程。"
+  },
+  "class": {
+    "meaning": "n. 类别；阶级；班级\nv. 将……归类",
+    "note": "class A as B＝把A归为B；social class＝社会阶层。"
+  },
+  "command": {
+    "meaning": "n. 命令；掌握、运用能力\nv. 命令；赢得、应得",
+    "note": "a command of English＝英语运用能力；command respect＝赢得尊重。"
+  },
+  "commit": {
+    "meaning": "v. 犯下；承诺、投入；拨出",
+    "note": "be committed to doing＝致力于；commit resources＝投入资源。"
+  },
+  "common": {
+    "meaning": "adj. 常见的；共同的；普通的",
+    "note": "have in common＝有共同之处；common sense＝常识。"
+  },
+  "company": {
+    "meaning": "n. 公司；陪伴；同伴",
+    "note": "in the company of＝在……陪伴下；不一定涉及企业。"
+  },
+  "complex": {
+    "meaning": "adj. 复杂的\nn. 建筑群；情结",
+    "note": "an industrial complex＝工业建筑群；复杂的事物不一定难懂。"
+  },
+  "compose": {
+    "meaning": "v. 组成；创作；使镇定",
+    "note": "be composed of＝由……组成；compose oneself＝使自己镇定。"
+  },
+  "constitution": {
+    "meaning": "n. 宪法；体质；组成、构造",
+    "note": "a strong constitution＝健壮体质；与institution机构不同。"
+  },
+  "constitute": {
+    "meaning": "v. 构成；被视为；建立",
+    "note": "constitute a threat＝构成威胁；不表示制定宪法。"
+  },
+  "contribute": {
+    "meaning": "v. 贡献；促成；投稿",
+    "note": "contribute to＝有助于、促成；也可能促成负面结果。"
+  },
+  "control": {
+    "meaning": "n. 控制；对照组；管理\nv. 控制；抑制",
+    "note": "a control group＝对照组；控制变量不等于完全排除影响。"
+  },
+  "correspond": {
+    "meaning": "v. 相符合；相对应；通信",
+    "note": "correspond to＝对应；correspond with＝通信，也可表示符合。"
+  },
+  "count": {
+    "meaning": "v. 计数；重要；把……算作\nn. 总数；计数",
+    "note": "What counts is...＝重要的是……；count on＝指望。"
+  },
+  "cover": {
+    "meaning": "v. 涵盖；报道；足够支付；覆盖\nn. 封面；掩护",
+    "note": "cover the cost＝够支付费用；cover a topic＝涉及主题。"
+  },
+  "critical": {
+    "meaning": "adj. 至关重要的；批判性的；危急的",
+    "note": "critical thinking＝审辨式思考；critical of＝批评……的。"
+  },
+  "current": {
+    "meaning": "adj. 当前的；通行的\nn. 水流；电流；潮流",
+    "note": "current practice＝现行做法；ocean currents＝洋流。"
+  },
+  "date": {
+    "meaning": "n. 日期；约会\nv. 追溯到；注明日期；使显得过时",
+    "note": "date back to＝追溯到；out of date＝过时。"
+  },
+  "deal": {
+    "meaning": "v. 处理；交易；分发\nn. 协议；交易；大量",
+    "note": "deal with＝处理、涉及；a great deal of＝大量。"
+  },
+  "deliver": {
+    "meaning": "v. 交付；发表；实现承诺；接生",
+    "note": "deliver a speech＝发表演讲；deliver results＝取得预期成果。"
+  },
+  "desert": {
+    "meaning": "n. 沙漠\nv. 抛弃、离弃",
+    "note": "desert one's post＝擅离岗位；dessert才是餐后甜点。"
+  },
+  "develop": {
+    "meaning": "v. 发展；开发；形成；患病",
+    "note": "develop a habit＝形成习惯；develop a disease＝患病。"
+  },
+  "direct": {
+    "meaning": "adj. 直接的\nv. 指导；管理；指向\nadv. 直接地",
+    "note": "direct attention to＝将注意力转向；direct a company＝经营公司。"
+  },
+  "domestic": {
+    "meaning": "adj. 国内的；家庭的；家养的",
+    "note": "domestic demand＝内需；domestic work＝家务劳动。"
+  },
+  "drive": {
+    "meaning": "v. 推动；驱使；驾驶\nn. 驱动力；运动、活动",
+    "note": "drive innovation＝推动创新；a recruitment drive＝招聘活动。"
+  },
+  "due": {
+    "meaning": "adj. 预期到来的；到期的；应得的\nn. 应得之物",
+    "note": "due to＝由于；be due to do＝预计将做。"
+  },
+  "embrace": {
+    "meaning": "v. 接受、采纳；包含；拥抱\nn. 拥抱",
+    "note": "embrace change＝欣然接受变化；不只指肢体动作。"
+  },
+  "employ": {
+    "meaning": "v. 雇用；使用、采用",
+    "note": "employ a method＝采用方法；employ不总指用人。"
+  },
+  "entertain": {
+    "meaning": "v. 考虑、持有想法；招待；使娱乐",
+    "note": "entertain a possibility＝考虑一种可能性。"
+  },
+  "even": {
+    "meaning": "adv. 甚至；更加\nadj. 平坦的；均匀的；偶数的",
+    "note": "even if＝即使；even though＝尽管；even＋比较级表示更加。"
+  },
+  "exercise": {
+    "meaning": "n. 练习；锻炼；运用\nv. 锻炼；行使；运用",
+    "note": "exercise power＝行使权力；exercise caution＝谨慎行事。"
+  },
+  "experience": {
+    "meaning": "n. 经验；经历\nv. 经历、感受",
+    "note": "experience作经验通常不可数，作具体经历可数。"
+  },
+  "exploit": {
+    "meaning": "v. 开发利用；剥削\nn. 英勇事迹",
+    "note": "exploit an opportunity＝利用机会；是否负面要看宾语和语境。"
+  },
+  "express": {
+    "meaning": "v. 表达；表现\nadj. 明确的；快速的\nn. 快车；快递服务",
+    "note": "express permission＝明确许可；express a view＝表达观点。"
+  },
+  "fair": {
+    "meaning": "adj. 公平的；相当大的；尚可的\nn. 展览会",
+    "note": "a fair amount of＝相当多；a book fair＝书展。"
+  },
+  "fall": {
+    "meaning": "v. 下降；落入某范围；发生\nn. 下降；秋天",
+    "note": "fall into a category＝归入某类；fall short of＝未达到。"
+  },
+  "feature": {
+    "meaning": "n. 特征；专题报道\nv. 以……为特色；突出展示",
+    "note": "feature prominently＝占显著位置；feature不只指外貌。"
+  },
+  "field": {
+    "meaning": "n. 领域；田野；场地\nv. 处理问题；派出队伍",
+    "note": "a field of research＝研究领域；field questions＝当场回答问题。"
+  },
+  "follow": {
+    "meaning": "v. 跟随；遵循；理解；由此得出",
+    "note": "It follows that＝由此可推知；不只是接下来发生。"
+  },
+  "frame": {
+    "meaning": "n. 框架；结构\nv. 构思、表述；框定",
+    "note": "frame a question＝组织问题的表达方式；frame不一定指实体框。"
+  },
+  "function": {
+    "meaning": "n. 功能；作用；活动\nv. 发挥作用；正常运转",
+    "note": "function as＝起……作用；不能由名词直接推定动词用法。"
+  },
+  "ground": {
+    "meaning": "n. 地面；根据、理由；领域\nv. 以……为依据",
+    "note": "on the grounds that＝理由是；be grounded in＝以……为基础。"
+  },
+  "home": {
+    "meaning": "n. 家；发源地\nadj. 国内的；家庭的\nadv. 回家；在本地",
+    "note": "the home market＝国内市场；be home to＝是……的栖息地或所在地。"
+  },
+  "immediate": {
+    "meaning": "adj. 立即的；直接的；紧邻的",
+    "note": "the immediate cause＝直接原因；immediate surroundings＝周围环境。"
+  },
+  "impose": {
+    "meaning": "v. 强加；实施；征收",
+    "note": "impose a tax on＝对……征税；impose on＝将……强加于。"
+  },
+  "indifferent": {
+    "meaning": "adj. 不关心的；不偏爱的；平庸的",
+    "note": "be indifferent to＝对……不在意；不等于different不同的。"
+  },
+  "individual": {
+    "meaning": "n. 个人；个体\nadj. 个别的；个人的；各自的",
+    "note": "individual differences＝个体差异；each individual＝每个人。"
+  },
+  "infer": {
+    "meaning": "v. 推断、推知",
+    "note": "infer A from B＝根据B推断A；imply是表达者暗示。"
+  },
+  "inform": {
+    "meaning": "v. 告知；影响、赋予特征",
+    "note": "inform a decision＝为决策提供依据并影响决策。"
+  },
+  "involve": {
+    "meaning": "v. 涉及；包含；使参与；需要",
+    "note": "involve doing＝包含或需要做；be involved in＝参与、卷入。"
+  },
+  "just": {
+    "meaning": "adv. 仅仅；刚刚；恰好\nadj. 公正的、正义的",
+    "note": "a just society＝公正社会；just as＝正如、正当。"
+  },
+  "last": {
+    "meaning": "adj. 最后的；上一个的\nv. 持续；够用\nadv. 最后",
+    "note": "last for years＝持续多年；last but not least＝最后但同样重要。"
+  },
+  "leave": {
+    "meaning": "v. 离开；使处于；留下\nn. 休假；许可",
+    "note": "leave someone alone＝不打扰某人；leave out＝省略。"
+  },
+  "level": {
+    "meaning": "n. 水平；层次；高度\nadj. 平坦的；相等的\nv. 使平整；提出指责",
+    "note": "level criticism at＝批评……；at a local level＝在地方层面。"
+  },
+  "light": {
+    "meaning": "n. 光；理解的角度\nadj. 轻的；浅色的\nv. 点燃、照亮",
+    "note": "in light of＝考虑到、鉴于；come to light＝被发现。"
+  },
+  "line": {
+    "meaning": "n. 线；路线；观点；行业\nv. 排列；衬里",
+    "note": "in line with＝与……一致；a line of reasoning＝推理思路。"
+  },
+  "literature": {
+    "meaning": "n. 文献；文学；宣传资料",
+    "note": "scientific literature＝科学文献，不能译成科学文学。"
+  },
+  "major": {
+    "meaning": "adj. 主要的；重大的\nn. 专业；主修学生\nv. 主修",
+    "note": "major in＝主修；a major factor＝重要因素。"
+  },
+  "matter": {
+    "meaning": "n. 事情；问题；物质\nv. 要紧、有影响",
+    "note": "What matters is...＝重要的是……；as a matter of fact＝事实上。"
+  },
+  "measure": {
+    "meaning": "n. 措施；衡量标准；计量单位\nv. 测量；衡量",
+    "note": "take measures＝采取措施；measure success＝衡量成功。"
+  },
+  "medium": {
+    "meaning": "n. 媒介；传播方式\nadj. 中等的",
+    "note": "a medium of communication＝交流媒介；media是其常见复数。"
+  },
+  "merit": {
+    "meaning": "n. 优点；价值、长处\nv. 值得",
+    "note": "merit attention＝值得注意；on its merits＝按其本身价值判断。"
+  },
+  "minute": {
+    "meaning": "n. 分钟；会议记录（minutes）\nadj. 极小的；细致的",
+    "note": "minute details＝细微细节；形容词与名词读音不同。"
+  },
+  "model": {
+    "meaning": "n. 模型；典范；模特\nv. 模拟；效仿\nadj. 模范的",
+    "note": "model A on B＝以B为蓝本塑造A；economic model＝经济模型。"
+  },
+  "mount": {
+    "meaning": "v. 增加；组织、发动；登上\nn. 支架；底座",
+    "note": "mount a campaign＝组织开展运动；mounting pressure＝日益增加的压力。"
+  },
+  "novel": {
+    "meaning": "adj. 新颖的；新的\nn. 长篇小说",
+    "note": "a novel approach＝新颖方法；不能译为小说式的方法。"
+  },
+  "objective": {
+    "meaning": "n. 目标、目的\nadj. 客观的",
+    "note": "an objective assessment＝客观评价；achieve an objective＝实现目标。"
+  },
+  "occasion": {
+    "meaning": "n. 场合；时机；某一次\nv. 引起、造成",
+    "note": "on occasion＝偶尔；occasion concern＝引起担忧。"
+  },
+  "odd": {
+    "meaning": "adj. 奇怪的；奇数的；零散的",
+    "note": "odd numbers＝奇数；the odd mistake＝偶尔的错误。"
+  },
+  "order": {
+    "meaning": "n. 顺序；秩序；订单；命令\nv. 订购；命令；排列",
+    "note": "in order to＝为了；of the order of＝大约相当于。"
+  },
+  "original": {
+    "meaning": "adj. 原来的；最初的；独创的\nn. 原件、原作",
+    "note": "original research＝原创研究；the original plan＝原计划。"
+  },
+  "owe": {
+    "meaning": "v. 欠；应归功于",
+    "note": "owe A to B＝将A归功于B；owing to＝由于。"
+  },
+  "particular": {
+    "meaning": "adj. 特定的；特别的；讲究的\nn. 细节",
+    "note": "in particular＝尤其；be particular about＝对……很挑剔。"
+  },
+  "party": {
+    "meaning": "n. 一方、当事人；政党；聚会",
+    "note": "a third party＝第三方；不能一概理解成聚会。"
+  },
+  "perspective": {
+    "meaning": "n. 观点、视角；恰当的判断；远景",
+    "note": "put into perspective＝结合整体情况恰当看待。"
+  },
+  "plant": {
+    "meaning": "n. 植物；工厂\nv. 种植；安置",
+    "note": "a power plant＝发电厂；不表示发电的植物。"
+  },
+  "point": {
+    "meaning": "n. 观点；要点；意义；时刻\nv. 指出、指向",
+    "note": "There is no point in doing＝做某事没有意义；point to＝表明、指向。"
+  },
+  "policy": {
+    "meaning": "n. 政策；方针；保险单",
+    "note": "public policy＝公共政策；an insurance policy＝保险单。"
+  },
+  "position": {
+    "meaning": "n. 位置；立场；职位；处境\nv. 放置；为……定位",
+    "note": "take a position on＝对……持某种立场。"
+  },
+  "potential": {
+    "meaning": "adj. 潜在的、可能的\nn. 潜力；可能性",
+    "note": "have the potential to do＝有做某事的潜力或可能。"
+  },
+  "power": {
+    "meaning": "n. 能力；权力；电力；强国\nv. 为……提供动力",
+    "note": "purchasing power＝购买力；a major power＝一个大国。"
+  },
+  "premise": {
+    "meaning": "n. 前提；假设",
+    "note": "on the premise that＝以……为前提；premises另可指经营场所。"
+  },
+  "professional": {
+    "meaning": "adj. 专业的；职业的\nn. 专业人士；职业选手",
+    "note": "professional judgment＝专业判断；不一概指技术工人。"
+  },
+  "prospect": {
+    "meaning": "n. 前景；可能性；潜在客户\nv. 勘探",
+    "note": "the prospect of change＝变化的可能性；job prospects＝就业前景。"
+  },
+  "purchase": {
+    "meaning": "v. 购买\nn. 购买物；购买行为；抓握力",
+    "note": "make a purchase＝购买；gain purchase＝获得牢固抓点。"
+  },
+  "qualification": {
+    "meaning": "n. 资格；资历；限制条件、保留意见",
+    "note": "without qualification＝毫无保留；a qualification不总指证书。"
+  },
+  "radical": {
+    "meaning": "adj. 根本的；激进的\nn. 激进分子；词根",
+    "note": "a radical change＝根本变化；不一定含暴力或极端意味。"
+  },
+  "reason": {
+    "meaning": "n. 原因；理由；理性\nv. 推理；推断",
+    "note": "reason with someone＝与某人讲道理；stand to reason＝合乎道理。"
+  },
+  "record": {
+    "meaning": "n. 记录；履历；最佳成绩\nv. 记录、记载",
+    "note": "a track record＝过往表现；for the record＝郑重声明以作记录。"
+  },
+  "reflect": {
+    "meaning": "v. 反映；反射；认真思考",
+    "note": "reflect on＝反思；reflect a trend＝反映趋势。"
+  },
+  "relief": {
+    "meaning": "n. 减轻；宽慰；救济；替班",
+    "note": "disaster relief＝赈灾援助；a sense of relief＝如释重负。"
+  },
+  "remote": {
+    "meaning": "adj. 遥远的；关系疏远的；可能性微小的；远程的",
+    "note": "a remote possibility＝极小的可能；remote work＝远程工作。"
+  },
+  "rest": {
+    "meaning": "n. 其余部分；休息\nv. 休息；依靠；基于",
+    "note": "rest on an assumption＝基于一个假设；the rest＝其余部分。"
+  },
+  "return": {
+    "meaning": "v. 返回；归还；产生收益\nn. 回报；返回；申报表",
+    "note": "in return for＝作为……的回报；tax return＝纳税申报表。"
+  },
+  "review": {
+    "meaning": "n. 审查；回顾；评论\nv. 审查；复习；评论",
+    "note": "literature review＝文献综述；review evidence＝审查证据。"
+  },
+  "rule": {
+    "meaning": "n. 规则；惯例；统治\nv. 统治；裁定",
+    "note": "rule out＝排除；as a rule＝通常。"
+  },
+  "run": {
+    "meaning": "v. 经营；运行；竞选；持续\nn. 一段时期；连续过程",
+    "note": "run a business＝经营企业；in the long run＝从长期看。"
+  },
+  "sample": {
+    "meaning": "n. 样本；样品\nv. 抽样；品尝、试用",
+    "note": "a representative sample＝有代表性的样本。"
+  },
+  "school": {
+    "meaning": "n. 学校；学派\nv. 训练、教育",
+    "note": "a school of thought＝一种思想流派，不是一所思想学校。"
+  },
+  "screen": {
+    "meaning": "n. 屏幕；屏障\nv. 筛查；审查；掩护；放映",
+    "note": "screen candidates＝筛选候选人；screen for disease＝筛查疾病。"
+  },
+  "section": {
+    "meaning": "n. 部分；章节；部门；截面",
+    "note": "a cross-section of society＝社会各阶层的代表样本。"
+  },
+  "sense": {
+    "meaning": "n. 意义；感觉；理智\nv. 感觉到、意识到",
+    "note": "make sense＝有道理；in a sense＝在某种意义上。"
+  },
+  "service": {
+    "meaning": "n. 服务；公共事业；维护\nv. 检修；偿付利息",
+    "note": "public services＝公共服务；service debt＝偿付债务利息。"
+  },
+  "settle": {
+    "meaning": "v. 解决；定居；确定；结清",
+    "note": "settle for＝勉强接受；settle on＝最终选定。"
+  },
+  "share": {
+    "meaning": "n. 份额；股份\nv. 分享；共同具有",
+    "note": "share a view＝持相同看法；market share＝市场份额。"
+  },
+  "significant": {
+    "meaning": "adj. 重要的；显著的；有深意的",
+    "note": "statistically significant＝有统计学显著性，不等于实际效应很大。"
+  },
+  "sole": {
+    "meaning": "adj. 唯一的；独自的\nn. 脚底；鞋底",
+    "note": "the sole reason＝唯一原因；sole不是soul灵魂。"
+  },
+  "spare": {
+    "meaning": "adj. 多余的；备用的；空闲的\nv. 抽出；免去；饶恕",
+    "note": "spare no effort＝不遗余力；spare time＝空闲时间。"
+  },
+  "spot": {
+    "meaning": "n. 地点；斑点；处境\nv. 发现、认出",
+    "note": "spot a mistake＝发现错误；on the spot＝当场。"
+  },
+  "spring": {
+    "meaning": "n. 春季；弹簧；泉水\nv. 跃起；源于；突然出现",
+    "note": "spring from＝源于；spring up＝突然出现、迅速兴起。"
+  },
+  "stable": {
+    "meaning": "adj. 稳定的\nn. 马厩",
+    "note": "a stable environment＝稳定环境；stable不等于static静止的。"
+  },
+  "stand": {
+    "meaning": "v. 站立；忍受；处于某状态\nn. 立场；摊位",
+    "note": "stand for＝代表、支持；stand out＝突出。"
+  },
+  "stock": {
+    "meaning": "n. 股票；库存；储备\nv. 储备、备货\nadj. 惯常的",
+    "note": "take stock of＝评估现状；a stock response＝惯常回应。"
+  },
+  "strain": {
+    "meaning": "n. 压力；拉伤；品种\nv. 竭力；拉紧；使紧张",
+    "note": "put a strain on＝使……承受压力；a strain of virus＝一种病毒株。"
+  },
+  "stretch": {
+    "meaning": "v. 延伸；伸展；勉强维持；过度使用\nn. 一段范围、一段时间",
+    "note": "stretch resources＝使资源勉强够用；a stretch of road＝一段道路。"
+  },
+  "subscribe": {
+    "meaning": "v. 订阅；同意、赞同；定期捐助",
+    "note": "subscribe to a view＝赞同一种观点；不只是订阅。"
+  },
+  "substantial": {
+    "meaning": "adj. 相当大的；大量的；实质性的",
+    "note": "substantial evidence＝大量或有分量的证据；不是subtle细微的。"
+  },
+  "suspect": {
+    "meaning": "v. 怀疑；猜想\nn. 嫌疑人\nadj. 可疑的",
+    "note": "suspect that＝怀疑、猜测；suspect someone of＝怀疑某人有某行为。"
+  },
+  "temper": {
+    "meaning": "n. 脾气；情绪\nv. 缓和、调和",
+    "note": "temper optimism with caution＝以谨慎调节乐观态度。"
+  },
+  "tender": {
+    "meaning": "adj. 温柔的；嫩的；疼痛的\nn. 投标\nv. 正式提出；投标",
+    "note": "tender a resignation＝正式递交辞呈；a tender offer＝收购要约。"
+  },
+  "track": {
+    "meaning": "n. 轨道；路径；踪迹\nv. 跟踪；追踪",
+    "note": "keep track of＝持续了解、记录；lose track of＝不了解动态。"
+  },
+  "trial": {
+    "meaning": "n. 试验；审判；考验\nadj. 试验性的",
+    "note": "clinical trial＝临床试验；trial and error＝反复试错。"
+  },
+  "undertake": {
+    "meaning": "v. 承担；着手进行；承诺",
+    "note": "undertake research＝开展研究；undertake to do＝承诺做。"
+  },
+  "value": {
+    "meaning": "n. 价值；数值；价值观\nv. 重视；估价",
+    "note": "values常表示价值观；value something at＝给某物估价为。"
+  },
+  "volume": {
+    "meaning": "n. 数量；体积；音量；卷、册",
+    "note": "a volume of data＝大量数据；volume不一定是声音大小。"
+  },
+  "wage": {
+    "meaning": "n. 工资、工钱\nv. 发动、进行斗争",
+    "note": "wage a campaign＝开展一场运动；wages通常指工资。"
+  },
+  "want": {
+    "meaning": "v. 想要；缺少\nn. 缺乏、匮乏",
+    "note": "for want of＝由于缺少；be found wanting＝被发现不够好。"
+  },
+  "weigh": {
+    "meaning": "v. 权衡；称重；有影响",
+    "note": "weigh the evidence＝权衡证据；weigh on＝使忧虑、压在心头。"
+  },
+  "well": {
+    "meaning": "adv. 好地；相当地；很\nadj. 健康的\nn. 井",
+    "note": "may well＝很可能；as well as＝以及；well beyond＝远远超出。"
+  },
+  "work": {
+    "meaning": "n. 工作；作品；研究成果\nv. 起作用；运转；工作",
+    "note": "work out＝解决、算出；work通常不可数，works可指作品。"
+  },
+  "worth": {
+    "meaning": "adj. 值……的；值得的\nn. 价值",
+    "note": "be worth doing＝值得做；worth后不用不定式表达这一结构。"
+  },
+  "apply": {
+    "meaning": "v. 申请；应用；适用；涂抹",
+    "note": "apply to＝适用于、向……申请；apply for＝申请某物。"
+  },
+  "application": {
+    "meaning": "n. 申请；应用；涂抹；应用程序",
+    "note": "practical application＝实际应用；不总是手机软件。"
+  },
+  "appreciate": {
+    "meaning": "v. 欣赏；感激；充分认识；增值",
+    "note": "appreciate the difficulty＝充分理解困难；不等于赞赏困难。"
+  },
+  "assess": {
+    "meaning": "v. 评估；估价；核定",
+    "note": "assess the impact＝评估影响；assess不等于断言结论。"
+  },
+  "assure": {
+    "meaning": "v. 向……保证；使确信",
+    "note": "assure someone that＝向某人保证；ensure侧重确保结果。"
+  },
+  "assurance": {
+    "meaning": "n. 保证；信心；把握",
+    "note": "quality assurance＝质量保证；self-assurance＝自信。"
+  },
+  "confirm": {
+    "meaning": "v. 证实；确认；巩固",
+    "note": "confirm a finding＝证实研究发现；不是conform遵从。"
+  },
+  "conform": {
+    "meaning": "v. 遵守；符合；顺从",
+    "note": "conform to standards＝符合标准；confirm才是确认。"
+  },
+  "constitutive": {
+    "meaning": "adj. 构成性的；起形成作用的",
+    "note": "constitutive of＝构成……的重要部分；与constitutional宪法的区分。"
+  },
+  "economy": {
+    "meaning": "n. 经济；节约；简练",
+    "note": "economies of scale＝规模经济；economy of expression＝表达简练。"
+  },
+  "economic": {
+    "meaning": "adj. 经济的；经济学的；有利可图的",
+    "note": "economic growth＝经济增长；economical侧重节省资源。"
+  },
+  "economical": {
+    "meaning": "adj. 节约的；经济实惠的；简练的",
+    "note": "economical with fuel＝省燃料；不是所有经济话题都用economical。"
+  },
+  "efficient": {
+    "meaning": "adj. 效率高的；不浪费资源的",
+    "note": "an efficient process＝高效流程；effective侧重是否达到预期效果。"
+  },
+  "effective": {
+    "meaning": "adj. 有效的；实际的；生效的",
+    "note": "an effective measure＝有效措施；effective from＝自……起生效。"
+  },
+  "efficiently": {
+    "meaning": "adv. 高效率地；节省资源地",
+    "note": "work efficiently＝高效工作；不直接等于成功实现目标。"
+  },
+  "effectively": {
+    "meaning": "adv. 有效地；实际上、等同于",
+    "note": "effectively impossible＝实际上不可能；未必只表示做得高效。"
+  },
+  "generalization": {
+    "meaning": "n. 概括、归纳；概括性或笼统说法",
+    "note": "a sweeping generalization＝过度笼统的概括；名词，不是具体动词动作。"
+  },
+  "generalize": {
+    "meaning": "v. 概括、归纳；作笼统推论",
+    "note": "generalize from a sample＝根据样本作概括；不要直接当作名词。"
+  },
+  "generally": {
+    "meaning": "adv. 一般地；通常；总体上",
+    "note": "generally speaking＝一般而言；不是gradually逐渐地。"
+  },
+  "gradually": {
+    "meaning": "adv. 逐渐地、渐渐地",
+    "note": "increase gradually＝逐渐增加；generally表示通常或总体上。"
+  },
+  "principle": {
+    "meaning": "n. 原则；原理；行为准则",
+    "note": "in principle＝原则上；principal可表示主要的或校长。"
+  },
+  "affect": {
+    "meaning": "v. 影响；使感动；假装",
+    "note": "affect the outcome＝影响结果；effect作动词是使发生。"
+  },
+  "affection": {
+    "meaning": "n. 喜爱、感情",
+    "note": "affection for＝对……的喜爱；affect影响，affection不译作影响。"
+  },
+  "alternate": {
+    "meaning": "v. 交替、轮流\nadj. 交替的；间隔的；替代的",
+    "note": "alternate between A and B＝在两者之间交替；alternate days＝隔天。"
+  },
+  "alternative": {
+    "meaning": "n. 替代选择\nadj. 可替代的；另类的",
+    "note": "an alternative to＝……的替代方案；不总是二选一。"
+  },
+  "adapt": {
+    "meaning": "v. 适应；改编；改装",
+    "note": "adapt to＝适应；adapt A for B＝将A改造为适合B。"
+  },
+  "adopt": {
+    "meaning": "v. 采用；收养；采取",
+    "note": "adopt a policy＝采取政策；adapt侧重适应或改造。"
+  },
+  "adept": {
+    "meaning": "adj. 熟练的、擅长的\nn. 行家",
+    "note": "be adept at doing＝擅长做；不是adapt适应。"
+  },
+  "accept": {
+    "meaning": "v. 接受；认可；承认",
+    "note": "accept responsibility＝承担责任；except表示除外。"
+  },
+  "except": {
+    "meaning": "prep./conj. 除……之外；只是",
+    "note": "except排除某项，besides可表示除此以外还包括。"
+  },
+  "access": {
+    "meaning": "n. 进入、使用的机会；通道\nv. 访问、获取",
+    "note": "access to education＝受教育的机会；excess才是过量。"
+  },
+  "excess": {
+    "meaning": "n. 过量；超出部分\nadj. 额外的、过量的",
+    "note": "in excess of＝超过；excessive＝过度的。"
+  },
+  "assistance": {
+    "meaning": "n. 帮助、援助",
+    "note": "provide assistance＝提供帮助；assistant是助手。"
+  },
+  "assistant": {
+    "meaning": "n. 助手、助理\nadj. 助理的",
+    "note": "a research assistant＝研究助理；assistance表示帮助行为。"
+  },
+  "insist": {
+    "meaning": "v. 坚持要求；坚持认为",
+    "note": "insist on doing＝坚持做；insist that可能是主张或认定。"
+  },
+  "persist": {
+    "meaning": "v. 坚持；持续存在",
+    "note": "persist in doing＝坚持做；problems persist＝问题持续存在。"
+  },
+  "resist": {
+    "meaning": "v. 抵抗；抵制；忍住",
+    "note": "resist doing＝忍住不做；不要与persist坚持混淆。"
+  },
+  "consist": {
+    "meaning": "v. 由……组成；在于",
+    "note": "consist of＝由……组成；consist in＝在于。"
+  },
+  "assist": {
+    "meaning": "v. 帮助、协助",
+    "note": "assist in doing＝协助做；assistant是助手，assist是动作。"
+  },
+  "retain": {
+    "meaning": "v. 保留、保持；记住；留住",
+    "note": "retain information＝记住信息；retain staff＝留住员工。"
+  },
+  "restrain": {
+    "meaning": "v. 克制；阻止；限制",
+    "note": "restrain someone from doing＝阻止某人做；不是retain保留。"
+  },
+  "refrain": {
+    "meaning": "v. 克制、避免\nn. 反复出现的话；副歌",
+    "note": "refrain from doing＝避免做；restrain通常带被限制的对象。"
+  },
+  "restore": {
+    "meaning": "v. 恢复；修复；归还",
+    "note": "restore confidence＝恢复信心；store是储存。"
+  },
+  "store": {
+    "meaning": "v. 储存\nn. 商店；储备",
+    "note": "store information＝储存信息；in store＝即将到来或备有。"
+  },
+  "conserve": {
+    "meaning": "v. 节约；保护、保存",
+    "note": "conserve energy＝节能；conserve侧重避免浪费或损害。"
+  },
+  "preserve": {
+    "meaning": "v. 保护、保存；维持\nn. 专属领域；果酱或腌制品",
+    "note": "preserve tradition＝保存传统；reserve侧重保留或预订。"
+  },
+  "considerable": {
+    "meaning": "adj. 相当大的；相当多的",
+    "note": "considerable progress＝长足进步；considerate才是体贴的。"
+  },
+  "considerate": {
+    "meaning": "adj. 体贴的；考虑周到的",
+    "note": "be considerate of others＝体谅他人；不要译作相当大的。"
+  },
+  "sensible": {
+    "meaning": "adj. 明智的；合理的；切实可行的",
+    "note": "a sensible decision＝明智决定；sensitive才是敏感的。"
+  },
+  "sensitive": {
+    "meaning": "adj. 敏感的；易受影响的；需谨慎对待的",
+    "note": "be sensitive to＝对……敏感；sensible表示明智。"
+  },
+  "comprehensive": {
+    "meaning": "adj. 全面的；综合性的",
+    "note": "a comprehensive review＝全面审查；comprehensible才是易懂的。"
+  },
+  "comprehensible": {
+    "meaning": "adj. 可理解的、易懂的",
+    "note": "comprehensible to readers＝读者能懂的；不表示内容全面。"
+  },
+  "comprehend": {
+    "meaning": "v. 理解、领会",
+    "note": "comprehend the meaning＝理解含义；comprehension是名词理解。"
+  },
+  "comprehension": {
+    "meaning": "n. 理解、理解力",
+    "note": "reading comprehension＝阅读理解；不能当形容词全面的。"
+  },
+  "compliment": {
+    "meaning": "n. 赞美、恭维\nv. 称赞",
+    "note": "compliment someone on＝称赞某人某方面；complement表示补充。"
+  },
+  "complement": {
+    "meaning": "v. 补充；使相得益彰\nn. 补充物；足量配置",
+    "note": "complement each other＝互相补充；不是compliment夸奖。"
+  },
+  "the": {
+    "meaning": "art. 定冠词，表示特指的人或事物；用于最高级等结构",
+    "note": "the same＝同一个；the＋比较级，the＋比较级＝越……越……。"
+  },
+  "a": {
+    "meaning": "art. 一个；某个；每一",
+    "note": "a year＝每年；a用在辅音音素前，不是只看首字母。"
+  },
+  "an": {
+    "meaning": "art. 一个；某个；每一",
+    "note": "an用于元音音素前：an hour；a university。不是只看元音字母。"
+  },
+  "of": {
+    "meaning": "prep. ……的；属于；关于；由……构成",
+    "note": "of importance＝重要的；a sense of purpose＝目标感。"
+  },
+  "for": {
+    "meaning": "prep. 为了；对于；因为；持续某段时间\nconj. 因为",
+    "note": "for lack of＝由于缺乏；for引导原因分句时说明理由。"
+  },
+  "with": {
+    "meaning": "prep. 与……一起；具有；用；随着",
+    "note": "with the development of＝随着……的发展；with＋宾语＋补足语可表示伴随情况。"
+  },
+  "on": {
+    "meaning": "prep. 在……上；关于；处于……状态；一……就",
+    "note": "on arrival＝一到达；on the basis of＝根据。"
+  },
+  "as": {
+    "meaning": "prep. 作为\nconj. 因为；当……时；按……方式；尽管\nadv. 同样地、一样地",
+    "note": "as a result＝因此；as引导让步时可用倒装，具体含义要结合句法。"
+  },
+  "it": {
+    "meaning": "pron. 它；这；用于指天气、时间、距离；可作形式主语或宾语",
+    "note": "it is important to do中it是形式主语；真正内容在后。"
+  },
+  "i": {
+    "meaning": "pron. 我",
+    "note": "I在英语中始终大写；句中作主语。"
+  },
+  "by": {
+    "meaning": "prep. 通过；由；在……之前、不迟于；相差某个幅度",
+    "note": "increase by 10%＝增加10%；increase to 10%＝增加到10%。"
+  },
+  "to": {
+    "meaning": "prep. 向；到；对于；与……相比\n不定式标记",
+    "note": "be used to doing＝习惯于做；used to do＝过去常做，to的性质不同。"
+  },
+  "must": {
+    "meaning": "modal v. 必须；一定，表示有把握的推测",
+    "note": "must have done可表示对过去情况的肯定推测；must not表示禁止。"
+  },
+  "also": {
+    "meaning": "adv. 也；还；同样",
+    "note": "not only...but also...＝不仅……而且……，注意连接成分一致。"
+  },
+  "after": {
+    "meaning": "prep./conj. 在……之后\nadv. 后来",
+    "note": "after all＝毕竟；be after可能表示寻求、追求。"
+  },
+  "because": {
+    "meaning": "conj. 因为",
+    "note": "because引导从句；because of后接名词、代词或动名词。"
+  },
+  "never": {
+    "meaning": "adv. 从不；绝不",
+    "note": "never用于句首强调否定时，主句常用部分倒装。"
+  },
+  "no": {
+    "meaning": "det. 没有；不允许；丝毫不\nadv. 不；并不",
+    "note": "no more than可表示仅仅；no less than可强调多达，须结合语境。"
+  },
+  "since": {
+    "meaning": "prep./conj. 自……以来\nconj. 既然、因为\nadv. 从那以后",
+    "note": "since既可指时间，也可引出已知原因，不要一律译成自从。"
+  },
+  "that": {
+    "meaning": "pron./det. 那、那个；代指前文事物\nconj. 引导从句；也可作关系代词",
+    "note": "that可能只连接从句，也可能在定语从句中承担成分；先判断句法。"
+  },
+  "so": {
+    "meaning": "adv. 如此；那么；也这样\nconj. 因而、所以",
+    "note": "so that可表示目的或结果；so...that...＝如此……以至于……。"
+  },
+  "still": {
+    "meaning": "adv. 仍然；还；尽管如此\nadj. 静止的；平静的",
+    "note": "still可表示让步转折；still more＝更加，不一定表示时间上的仍然。"
+  },
+  "whether": {
+    "meaning": "conj. 是否；不论……还是……",
+    "note": "whether...or...表示两种可能；whether or not＝无论是否。"
+  },
+  "while": {
+    "meaning": "conj. 当……时；然而；虽然\nn. 一段时间",
+    "note": "while可能表示时间、对比或让步，不能一律译作当……时。"
+  },
+  "yet": {
+    "meaning": "adv. 尚未；还；更\nconj. 然而、可是",
+    "note": "as yet＝迄今；yet another＝又一个，yet可以加强语气。"
+  },
+  "either": {
+    "meaning": "det./pron. 两者中的任一个\nadv. 也不",
+    "note": "either...or...＝或者……或者……；否定句末的either表示也不。"
+  },
+  "neither": {
+    "meaning": "det./pron. 两者都不\nadv. 也不",
+    "note": "neither...nor...＝既不……也不……；neither指两者，不泛指任意多项。"
+  },
+  "unless": {
+    "meaning": "conj. 除非；如果不",
+    "note": "unless引出例外条件；注意主句否定与条件之间的逻辑。"
+  },
+  "rather": {
+    "meaning": "adv. 相当；宁可；更确切地说",
+    "note": "rather than＝而不是；or rather＝更确切地说。"
+  },
+  "otherwise": {
+    "meaning": "adv. 否则；除此以外；在其他方面",
+    "note": "otherwise可引出未满足条件时的结果，不总是普通转折。"
+  },
+  "whereas": {
+    "meaning": "conj. 然而；鉴于",
+    "note": "whereas在阅读中常用于对照两个事实，突出差异。"
+  },
+  "therefore": {
+    "meaning": "adv. 因此、所以",
+    "note": "therefore表达推论或结果；不是表示另外一个并列事实。"
+  },
+  "although": {
+    "meaning": "conj. 虽然；尽管",
+    "note": "although引导让步从句；标准句式通常不再用but连接同一主句。"
+  },
+  "despite": {
+    "meaning": "prep. 尽管；不管",
+    "note": "despite后接名词、代词或动名词；despite the fact that后才接从句。"
+  },
+  "within": {
+    "meaning": "prep. 在……之内；不超出\nadv. 在内部",
+    "note": "within reach＝够得着；within limits＝在限度内，不是without缺少。"
+  },
+  "without": {
+    "meaning": "prep. 没有；不带；未做某事",
+    "note": "without doing＝没有做；cannot...without...表示没有……就不能……。"
+  },
+  "besides": {
+    "meaning": "prep. 除……之外还\nadv. 而且、此外",
+    "note": "besides表示追加；与except的排除方向不同。"
+  },
+  "between": {
+    "meaning": "prep. 在……之间；涉及各个明确对象之间的关系",
+    "note": "between可用于多个明确对象之间的关系，不是只能机械用于两者。"
+  },
+  "among": {
+    "meaning": "prep. 在……之中；属于某群体",
+    "note": "among the reasons＝在诸多原因之中，通常强调群体内部。"
+  },
+  "through": {
+    "meaning": "prep. 穿过；自始至终；通过某种方式\nadv. 通过；完成",
+    "note": "through research＝通过研究；throughout强调遍及整个范围或全程。"
+  },
+  "throughout": {
+    "meaning": "prep./adv. 遍及；贯穿整个期间",
+    "note": "throughout the study＝在整个研究期间；不要与though尽管混淆。"
+  },
+  "though": {
+    "meaning": "conj. 虽然；尽管\nadv. 不过、然而",
+    "note": "句末though常表示不过；thought才是think的过去式或名词想法。"
+  },
+  "thought": {
+    "meaning": "n. 想法；思考；看法\nv. think的过去式和过去分词，想、认为",
+    "note": "give thought to＝考虑；thought与through、though拼写相近但词性不同。"
+  },
+  "general": {
+    "meaning": "adj. 一般的；普遍的；总体的\nn. 将军",
+    "note": "in general＝一般而言、总的来说；general是形容词或名词，generally是副词。"
+  },
+  "result": {
+    "meaning": "n. 结果；后果；成绩\nv. 产生某种结果",
+    "note": "result in＝导致；result from＝由……造成，因果方向相反。"
+  },
+  "resort": {
+    "meaning": "v. 诉诸、求助于某种办法\nn. 度假胜地；可采取的手段",
+    "note": "resort to doing＝采取某种手段；as a last resort＝作为最后手段。"
+  },
+  "resent": {
+    "meaning": "v. 对……感到愤恨或不满",
+    "note": "resent doing＝对做某事感到不满；不是consent同意。"
+  },
+  "revolt": {
+    "meaning": "n./v. 反抗；叛乱\nv. 使反感、使厌恶",
+    "note": "revolt against＝反抗；be revolted by＝对……感到厌恶。"
+  },
+  "riddle": {
+    "meaning": "n. 谜语；难解的问题\nv. 使布满孔洞",
+    "note": "be riddled with errors＝错误百出；不要把riddle与result结果混淆。"
+  },
+  "bank": {
+    "meaning": "n. 银行；河岸；储库\nv. 存入银行",
+    "note": "a river bank＝河岸；a data bank＝数据库；bank on＝指望。"
+  },
+  "game": {
+    "meaning": "n. 游戏；比赛；一局；猎物\nadj. 愿意尝试的、有勇气的",
+    "note": "the rules of the game可比喻活动规则；game作猎物时不是游戏。"
+  }
+}
