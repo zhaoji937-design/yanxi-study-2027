@@ -2,7 +2,7 @@
   "id": "./",
   "name": "研习 · 考研题库",
   "short_name": "研习",
-  "description": "政治、英语（二）与346体育综合，直接看题、回忆、核对答案。",
+  "description": "学校体育学、运动生理学、运动训练学：教材知识树、题目与答案、手写批注。",
   "lang": "zh-CN",
   "start_url": "./#professional?type=term",
   "scope": "./",

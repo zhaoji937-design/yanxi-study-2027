@@ -17,9 +17,9 @@ for (const [, src] of html.matchAll(/<script[^>]+src="([^"]+)"/g)) {
   if (name !== 'engine.js' && !name.startsWith('bank-')) continue;
   vm.runInContext(fs.readFileSync(path.join(root, name), 'utf8'), context, { filename: name });
 }
-const questions = context.QuizEngine.validateBank([].concat(context.POLITICS_BANK, context.ENGLISH_BANK, context.SPORTS_BANK)).questions;
-assert.equal(questions.length, 694);
-assert.equal(new Set(questions.map(q => q.id)).size, 694);
+const questions = context.QuizEngine.validateBank(context.SPORTS_BANK || []).questions;
+assert.equal(questions.length, 610);
+assert.equal(new Set(questions.map(q => q.id)).size, 610);
 const sports = questions.filter(q => q.subject === '346 体育综合');
 assert.equal(sports.length, 610);
 for (const q of sports) assert.ok(q.textbookRefs.length && q.textbookRefs.every(r => r.printedPages?.length), q.id + ' printed reference');

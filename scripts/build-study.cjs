@@ -6,7 +6,7 @@ const ctx=vm.createContext({console,URL});
 for(const [,url] of fs.readFileSync(path.join(dist,'index.html'),'utf8').matchAll(/<script[^>]+src="([^"]+)"/g)){
  const file=url.split('?')[0];if((file.startsWith('bank-')&&file!=='bank-study.js')||file==='engine.js')vm.runInContext(fs.readFileSync(path.join(dist,file),'utf8'),ctx);
 }
-const bank=ctx.QuizEngine.validateBank([].concat(ctx.POLITICS_BANK,ctx.ENGLISH_BANK,ctx.SPORTS_BANK)).questions;
+const bank=ctx.QuizEngine.validateBank(ctx.SPORTS_BANK || []).questions;
 const prepared=ctx.QuizEngine.validateBank(JSON.parse(fs.readFileSync(path.join(repo,'content/verified-study-cards.json'),'utf8'))).questions;
 assert.equal(prepared.length,27);
 const metadata={verifiedCards:27,definitions:15,shortAnswers:9,essays:3,reused:prepared.filter(q=>bank.some(b=>b.id===q.id)).length,added:prepared.filter(q=>!bank.some(b=>b.id===q.id)).length};

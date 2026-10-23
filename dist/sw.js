@@ -1,13 +1,13 @@
 'use strict';
 // Bump this version whenever a bundled HTML, script, stylesheet or question bank changes.
-const CACHE = 'yanxi-offline-v13';
+const CACHE = 'yanxi-offline-v14';
 const ROOT = new URL('./', self.location.href);
 const SHELL = [
   './', 'latest.html', 'textbook-images.json', 'bank-sports-revised.js?v=2', 'style.css', 'simple.css?v=5', 'icon.svg',
-  'study.css?v=3', 'study-tools.js?v=2', 'engine.js?v=7', 'bank-politics.js', 'bank-english.js',
-  'bank-sports-legacy.js', 'bank-sports.js', 'bank-challenge.js',
-  'bank-politics-extended.js', 'bank-sports-expanded.js', 'bank-sports-systematic.js?v=4.1',
-  'bank-study.js?v=1', 'paper-data.js?v=1', 'app.js?v=11', 'ink.css?v=2', 'ink.js?v=3', 'knowledge.css?v=2', 'knowledge-data.js?v=1', 'knowledge.js?v=3', 'offline.js?v=5', 'manifest.json',
+  'study.css?v=3', 'study-tools.js?v=2', 'engine.js?v=7',
+  'bank-sports-legacy.js', 'bank-sports.js',
+  'bank-sports-expanded.js', 'bank-sports-systematic.js?v=4.1',
+  'bank-study.js?v=1', 'paper-data.js?v=1', 'app.js?v=12', 'ink.css?v=2', 'ink.js?v=3', 'knowledge.css?v=3', 'knowledge-data.js?v=2', 'knowledge.js?v=4', 'offline.js?v=5', 'manifest.json',
   'touch-icon.png', 'icon-192.png', 'icon-512.png'
 ].map(function (path) { return new URL(path, ROOT).href; });
 

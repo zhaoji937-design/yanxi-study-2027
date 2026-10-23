@@ -4,7 +4,7 @@ const root=path.resolve(__dirname,'../dist'),ctx=vm.createContext({console,URL})
 for(const [,url] of fs.readFileSync(path.join(root,'index.html'),'utf8').matchAll(/<script[^>]+src="([^"]+)"/g)){
  const n=url.split('?')[0];if(['study-tools.js','engine.js','paper-data.js'].includes(n)||n.startsWith('bank-'))vm.runInContext(fs.readFileSync(path.join(root,n),'utf8'),ctx,{filename:n});
 }
-const qs=ctx.QuizEngine.validateBank([].concat(ctx.POLITICS_BANK,ctx.ENGLISH_BANK,ctx.SPORTS_BANK)).questions;
+const qs=ctx.QuizEngine.validateBank(ctx.SPORTS_BANK || []).questions;
 const verified=qs.filter(q=>q.studyGuide),byId=new Map(qs.map(q=>[q.id,q]));
 assert.equal(verified.length,27);assert.equal(new Set(verified.map(q=>q.studyGuide.auditKey)).size,27);
 assert.equal(verified.filter(q=>q.examType==='term').length,15);

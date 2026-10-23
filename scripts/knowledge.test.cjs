@@ -2,7 +2,7 @@
 const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
 const K=require('../dist/knowledge.js');const c=vm.createContext({});vm.runInContext(fs.readFileSync(require.resolve('../dist/knowledge-data.js'),'utf8'),c);const data=JSON.parse(JSON.stringify(c.KNOWLEDGE_DATA)),db=K.index(data);
 test('two verified sections retain every major and lower numbered branch',()=>{
- assert.deepEqual(data.sections,['tr4s2','tr4s3']);assert.equal(data.nodes.length,148);
+ assert.equal(data.sections.length,134);assert.ok(data.sections.includes('tr4s2')&&data.sections.includes('tr4s3'));assert.equal(data.books.length,3);assert.equal(data.nodes.filter(n=>n.kind==='chapter').length,40);
  const counts={'psy-factors':8,'psy-goals':6,'psy-imagery-stages':3,'psy-imagery-conditions':3,'psy-imagery-evaluation':7,'psy-attention-direction':10,'psy-attention-concentration':5,'psy-will-training':7,'psy-requirements':4,'know-acquisition':4,'know-application':3,'know-four-levels':4};
  for(const [id,count]of Object.entries(counts))assert.equal(db.children.get(id).length,count,id);
  assert.equal(K.sectionOf(db,'psy-attention-dir-task'),'tr4s2');assert.equal(K.sectionOf(db,'know-tacit'),'tr4s3');
@@ -20,9 +20,9 @@ test('search keeps the full ancestor path and respects independent classificatio
 test('question mapping invokes multiple exact nodes and supports reverse lookup',()=>{
  const q=db.questions.get('know-q-classification-cross');assert.ok(q.nodeIds.includes('know-procedural'));assert.ok(q.nodeIds.includes('know-tacit'));
  assert.ok(K.relevant(db,q.nodeIds,'know-classification'));assert.ok(!K.relevant(db,q.nodeIds,'psy-goals'));
- assert.deepEqual(db.links.get('sp4-training-075'),['psy-goals','psy-imagery','psy-relaxation','psy-attention']);
- assert.equal(data.questions.length,32);assert.equal(data.comparisons.length,13);assert.equal(data.bankLinks.length,12);
- for(const q of data.questions){assert.ok(q.answer.length);assert.ok(q.printedPages.every(p=>p>=141&&p<=164));assert.doesNotMatch(q.answer.join(''),/教材指出|书中指出/);}
+ assert.deepEqual(db.links.get('sp4-training-075').slice(0,4),['psy-goals','psy-imagery','psy-relaxation','psy-attention']);
+ assert.equal(data.questions.length,204);assert.equal(data.comparisons.length,55);assert.equal(data.bankLinks.length,610);
+ for(const q of data.questions){assert.ok(q.answer.length);assert.ok(q.printedPages.every(p=>p>=1&&p<=360));assert.doesNotMatch(q.answer.join(''),/教材指出|书中指出/);}
 });
 test('expanded map lays out all nodes without overlap or clipping negative coordinates',()=>{
  for(const section of data.sections){const ids=K.descendants(db,section),plan=K.layout(db,section,new Set(ids));assert.equal(plan.nodes.length,ids.length);assert.equal(plan.edges.length,ids.length-1);
@@ -34,4 +34,14 @@ test('rendered labels escape HTML and reference pages are printed book pages',()
  assert.equal(K.esc('<img src=x onerror=alert(1)>'),'&lt;img src=x onerror=alert(1)&gt;');
  assert.deepEqual(db.nodes.get('psy-definition').printedPages,[141]);assert.deepEqual(db.nodes.get('know-meaning').printedPages,[154]);
  const reviews=data.questions.filter(q=>q.sourceType==='textbook-review');assert.equal(reviews.length,3);for(const q of reviews)assert.deepEqual(q.promptPages,[165]);
+});
+
+test('full book graph is acyclic, every canonical question is attached and every section has study content',()=>{
+ for(const n of data.nodes){const p=K.path(db,n.id);assert.equal(new Set(p.map(n=>n.id)).size,p.length);assert.equal(p[0].kind,'book');assert.ok(p.length<18);if(n.sourceQuestionId)assert.ok(data.bankLinks.some(l=>l.bankId===n.sourceQuestionId));}
+ for(const section of data.sections){assert.ok(K.descendants(db,section).length>1,section);assert.ok(data.questions.some(q=>K.relevant(db,q.nodeIds,section)),section);}
+ for(const b of data.books)assert.equal(K.descendants(db,b.id).length,b.nodeCount);
+});
+
+test('all original pilot anchors, paragraphs and definition text survive the expansion',()=>{
+ for(const file of ['knowledge-psychology.json','knowledge-capacity.json']){const source=JSON.parse(fs.readFileSync(require('node:path').join(__dirname,'../content',file),'utf8'));for(const n of source.nodes){const actual=db.nodes.get(n.id);assert.ok(actual,n.id);for(const field of ['title','body','definition','parentId'])assert.deepEqual(actual[field],n[field],n.id+' '+field);}for(const q of source.questions)assert.deepEqual(db.questions.get(q.id).answer,q.answer,q.id);}
 });
