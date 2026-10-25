@@ -38,6 +38,7 @@ for (const value of urls) {
 }
 console.log(JSON.stringify({ result: 'passed', questions: questions.length, professional: sports.length, offlineResources: shell.length }));
 require('./check-words.cjs');
+require('./check-spelling.cjs');
 require('./check-study.cjs');
 assert.equal(fs.readFileSync(path.join(root,'latest.html'),'utf8'),html,'Fresh entry must match current app');
 require('node:child_process').execFileSync(process.execPath,[path.join(__dirname,'build-sports-revision.cjs'),'--check'],{stdio:'inherit'});

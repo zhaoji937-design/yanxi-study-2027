@@ -1,0 +1,11 @@
+词芽 spelling deck (data.json)
+CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/
+Derived from the existing 词辨 deck. Changes: retain the 3,600-word legacy core, add 60 NETEM entries, select core-only comparison candidates, derive overlapping POS/length categories, retain curated examples, add explicit orthographic variants and concise reviewed supplemental reading glosses.
+NETEMVocabulary by exam-data contributors: https://github.com/exam-data/NETEMVocabulary
+Revision: b1850fdd51fca9143006ef54bca99b246d56c934
+ECDICT by skywind3000 and contributors: https://github.com/skywind3000/ECDICT
+MIT; exact text in ECDICT.txt.
+CMUdict by CMU and contributors: https://github.com/cmusphinx/cmudict
+BSD-style; exact text in cmudict.txt.
+Original editorial comparisons, examples and supplemental gloss selection: 研习 / 词辨 / 词芽.
+This is a learning selection, not an official 2027 core syllabus or an exam-frequency ranking. Original textbooks and unrelated applications are not included.

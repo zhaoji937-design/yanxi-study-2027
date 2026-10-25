@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#f7f3ed">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="词芽">
+  <meta name="description" content="可爱的考研单词默写小本：看中文拼英文、听音默写、错词重练与分类复习。">
+  <title>词芽 · 考研单词默写</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="touch-icon.png">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css?v=1">
+  <script defer src="core.js?v=1"></script>
+  <script defer src="app.js?v=1"></script>
+</head>
+<body>
+  <a class="skip" href="#main">跳到主要内容</a>
+  <header class="site-header">
+    <a href="#home" class="brand" aria-label="词芽首页"><svg width="38" height="38" viewBox="0 0 48 48" aria-hidden="true"><rect x="2" y="2" width="44" height="44" rx="15" fill="#e3ead8"/><path d="M24 36V23" stroke="#526d4a" stroke-width="2.8" stroke-linecap="round"/><path d="M24 27C13 28 11 21 13 16c8-1 13 3 11 11Z" fill="#7e9b69"/><path d="M24 23c-1-10 5-14 12-12 1 7-3 13-12 12Z" fill="#a3b48c"/></svg><span>词芽<small>一词一小步</small></span></a>
+    <nav class="desktop-nav" aria-label="主要导航"><a href="#home" data-nav="home">今日默写</a><a href="#words" data-nav="words">小词本</a><a href="#mistakes" data-nav="mistakes">错词重练</a><a href="#mine" data-nav="mine">我的</a></nav>
+    <span class="header-note" id="header-note">考研核心精选</span>
+  </header>
+  <main id="main" tabindex="-1"><div class="loading"><span class="loading-sprout">❀</span><p>正在打开你的默写小本…</p></div></main>
+  <nav class="mobile-nav" aria-label="手机导航"><a href="#home" data-nav="home"><span aria-hidden="true">✎</span>默写</a><a href="#words" data-nav="words"><span aria-hidden="true">▤</span>词本</a><a href="#mistakes" data-nav="mistakes"><span aria-hidden="true">↻</span>错词</a><a href="#mine" data-nav="mine"><span aria-hidden="true">♧</span>我的</a></nav>
+  <dialog id="dialog" aria-labelledby="dialog-title"></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <input type="file" id="backup-file" accept=".json,application/json" hidden>
+  <noscript>请在浏览器中启用 JavaScript 后使用词芽。</noscript>
+</body>
+</html>

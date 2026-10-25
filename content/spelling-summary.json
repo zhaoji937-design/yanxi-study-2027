@@ -1,0 +1,101 @@
+{
+  "version": 1,
+  "title": "词芽 · 考研单词默写",
+  "wordCount": 3660,
+  "legacyCoreCount": 3600,
+  "addedExamWords": 60,
+  "examListMatches": 3471,
+  "legacySupplementCount": 189,
+  "categories": [
+    {
+      "id": "all",
+      "title": "全部核心词",
+      "count": 3660
+    },
+    {
+      "id": "verbs",
+      "title": "动作与变化",
+      "count": 1658
+    },
+    {
+      "id": "nouns",
+      "title": "名词小仓库",
+      "count": 2605
+    },
+    {
+      "id": "adjectives",
+      "title": "形容词花园",
+      "count": 955
+    },
+    {
+      "id": "adverbs",
+      "title": "副词小尾巴",
+      "count": 178
+    },
+    {
+      "id": "function",
+      "title": "句子连接件",
+      "count": 91
+    },
+    {
+      "id": "affixes",
+      "title": "词头词尾",
+      "count": 213
+    },
+    {
+      "id": "shape",
+      "title": "长得像的词",
+      "count": 2680
+    },
+    {
+      "id": "sound",
+      "title": "听着像的词",
+      "count": 2321
+    },
+    {
+      "id": "family",
+      "title": "词族变形",
+      "count": 174
+    },
+    {
+      "id": "short",
+      "title": "短词热身",
+      "count": 1194
+    },
+    {
+      "id": "long",
+      "title": "长词挑战",
+      "count": 465
+    }
+  ],
+  "meaningSources": {
+    "exam-editorial": 254,
+    "NETEM": 2926,
+    "curated": 355,
+    "reading-gloss-review": 96,
+    "ECDICT": 29
+  },
+  "phoneticCoverage": 3660,
+  "reviewedVariantEntries": 49,
+  "exampleCoverage": 455,
+  "comparisonGroups": 160,
+  "affixGroups": 20,
+  "selection": "沿用词辨原有 3,600 词，并补充 60 个所用考研整理表中的单词，共 3,660 词。不是官方“核心 3,660 词”名单，也未逐词核对 2027 官方大纲或历年真题频率。",
+  "meaningNote": "优先沿用已有考研整理释义、人工辨析释义和阅读义项。原核心表的补充词采用已有筛选词典义或明确标记的简明阅读释义。主释义不穷尽所有义项，不能据此断言某义从未考过。",
+  "license": "CC BY-NC-SA 4.0 (derived data); ECDICT MIT; CMUdict BSD-style",
+  "sources": [
+    {
+      "repo": "skywind3000/ECDICT",
+      "sha": "bc015ed2e24a7abef49fc6dbbb7fe32c1dadaf8b"
+    },
+    {
+      "repo": "cmusphinx/cmudict",
+      "sha": "74790861f652b15e4ac49015a90074ad62a27690"
+    },
+    {
+      "repo": "exam-data/NETEMVocabulary",
+      "sha": "b1850fdd51fca9143006ef54bca99b246d56c934",
+      "license": "CC BY-NC-SA 4.0"
+    }
+  ]
+}
