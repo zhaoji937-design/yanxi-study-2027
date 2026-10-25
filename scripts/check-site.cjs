@@ -44,3 +44,13 @@ require('node:child_process').execFileSync(process.execPath,[path.join(__dirname
 require('node:child_process').execFileSync(process.execPath,[path.join(__dirname,'build-knowledge.cjs'),'--check'],{stdio:'inherit'});
 const knowledgeContext=vm.createContext({});vm.runInContext(fs.readFileSync(path.join(root,'knowledge-data.js'),'utf8'),knowledgeContext);
 for(const link of knowledgeContext.KNOWLEDGE_DATA.bankLinks)assert.ok(questions.some(q=>q.id===link.bankId),'Unknown knowledge-bank link '+link.bankId);
+const exam=require('../dist/exam-engine.js');
+for(const bookKey of Object.keys(exam.BOOKS))for(const mode of ['mixed','single']){
+  const paper=exam.createPaper(questions,{mode,bookKey,durationMinutes:180,seed:42});
+  assert.equal(paper.questions.length,9);assert.equal(paper.questions.reduce((n,q)=>n+q.maxScore,0),100);exam.validatePublicPaper(exam.publicPaper(paper));
+}
+assert.ok(!cached.has('/exam-online.json'),'Online exam probe must never be precached');
+assert.ok(!cached.has('/exam-config.json'),'Runtime exam connection must not use old offline configuration');
+const examConfig=JSON.parse(fs.readFileSync(path.join(root,'exam-config.json'),'utf8'));
+assert.equal(examConfig.version,1);assert.equal(typeof examConfig.apiBase,'string');
+console.log(JSON.stringify({result:'passed',mockExam:{term:5,short:3,essay:1,totalScore:100,onlineGrading:true}}));

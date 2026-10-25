@@ -1,7 +1,7 @@
 (function () {
   'use strict';
   var E = globalThis.QuizEngine;
-  var K = globalThis.KnowledgeTree, I = globalThis.InkNotes;
+  var K = globalThis.KnowledgeTree, I = globalThis.InkNotes, X = globalThis.MockExams;
   var T = globalThis.StudyTools, papers = globalThis.PAST_PAPERS || [], paperIndex = T.paperIndex(papers), conceptIndex=T.paperIndex(papers,true);
   var paperQuery = '', paperYear = '';
   var app = document.getElementById('app');
@@ -83,7 +83,7 @@
   var session = restoreSession(read(keys.session, null));
   var reading = sanitizeReading(read(keys.reading, {}));
   var route = 'overview', materialsTab = 'notes', filter = { search: '', subject: '', topic: '', type: '', difficulty: '', status: '' }, page = 1, mobileOpen = false;
-  var titles = { knowledge: '教材知识树', overview: '学习概览', bank: '我的题库', professional: '专业课总复习', mistakes: '待复习', favorites: '我的收藏', materials: '题目与答案', settings: '备份与设置', practice: '作答练习', summary: '练习回顾', review: '快速背题', notes: '个人笔记', study: '怎么背与怎么答', papers: '历年题与来源' };
+  var titles = { exam:'模拟考试', knowledge: '教材知识树', overview: '学习概览', bank: '我的题库', professional: '专业课总复习', mistakes: '待复习', favorites: '我的收藏', materials: '题目与答案', settings: '备份与设置', practice: '作答练习', summary: '练习回顾', review: '快速背题', notes: '个人笔记', study: '怎么背与怎么答', papers: '历年题与来源' };
   var sportsCatalog = globalThis.SPORTS_CATALOG || [];
   function sanitizeNotes(raw) {
     if (!Array.isArray(raw)) return [];
@@ -131,7 +131,7 @@
   function navItem(id, ico, label, count) { return '<button type="button" data-action="navigate" data-route="' + id + '" class="' + ((route === id || (id === 'bank' && ['practice','summary','review'].includes(route))) ? 'active' : '') + '"' + (route === id ? ' aria-current="page"' : '') + '>' + icon(ico) + '<span>' + label + '</span>' + (count ? '<span class="count">' + count + '</span>' : '') + '</button>'; }
   function shell(content) {
     var count = questions.filter(function(q){return T.allowPaper(q,settings.paperScope,paperIndex,conceptIndex)&&needsReview(q);}).length;
-    return '<div class="shell'+(mobileOpen?' nav-open':'')+'"><aside id="main-navigation" class="sidebar' + (mobileOpen ? ' mobile-open' : '') + '" aria-label="主导航" '+(mobileOpen?'':'inert aria-hidden="true"')+'><div class="brand">' + icon('book') + '<strong>研习</strong><button type="button" class="nav-close" data-action="menu" aria-label="收起主导航">×</button></div><nav class="nav">' + navItem('overview','grid','学习概览') + navItem('bank','stack','我的题库') + navItem('professional','book','专业课总复习') + navItem('knowledge','stack','教材知识树') + navItem('materials','book','题目与答案') + navItem('mistakes','error','待复习',count) + navItem('favorites','star','我的收藏') + navItem('settings','settings','备份与设置') + '</nav><div class="sidebar-bottom"><div class="local-label">记录保存在当前浏览器</div></div></aside><div class="overlay' + (mobileOpen ? ' open' : '') + '" data-action="menu"></div><div class="workspace"><header class="topbar"><button class="mobile-menu" data-action="menu" aria-label="打开或关闭导航" aria-controls="main-navigation" aria-expanded="'+mobileOpen+'">' + icon('menu') + '</button><strong>' + titles[route] + '</strong><span class="top-context">厦门大学 · 2027</span></header>' + (!storageOK ? '<div class="storage-banner">当前浏览器无法保存记录，请及时导出备份。</div>' : '') + '<main id="main" tabindex="-1">' + (bankError ? '<div class="error-banner">' + esc(bankError) + '</div>' : '') + content + '</main></div></div>';
+    return '<div class="shell'+(mobileOpen?' nav-open':'')+'"><aside id="main-navigation" class="sidebar' + (mobileOpen ? ' mobile-open' : '') + '" aria-label="主导航" '+(mobileOpen?'':'inert aria-hidden="true"')+'><div class="brand">' + icon('book') + '<strong>研习</strong><button type="button" class="nav-close" data-action="menu" aria-label="收起主导航">×</button></div><nav class="nav">' + navItem('overview','grid','学习概览') + navItem('bank','stack','我的题库') + navItem('professional','book','专业课总复习') + navItem('knowledge','stack','教材知识树') + navItem('exam','clock','模拟考试') + navItem('materials','book','题目与答案') + navItem('mistakes','error','待复习',count) + navItem('favorites','star','我的收藏') + navItem('settings','settings','备份与设置') + '</nav><div class="sidebar-bottom"><div class="local-label">记录保存在当前浏览器</div></div></aside><div class="overlay' + (mobileOpen ? ' open' : '') + '" data-action="menu"></div><div class="workspace"><header class="topbar"><button class="mobile-menu" data-action="menu" aria-label="打开或关闭导航" aria-controls="main-navigation" aria-expanded="'+mobileOpen+'">' + icon('menu') + '</button><strong>' + titles[route] + '</strong><span class="top-context">厦门大学 · 2027</span></header>' + (!storageOK ? '<div class="storage-banner">当前浏览器无法保存记录，请及时导出备份。</div>' : '') + '<main id="main" tabindex="-1">' + (bankError ? '<div class="error-banner">' + esc(bankError) + '</div>' : '') + content + '</main></div></div>';
   }
   function heading(title, subtitle, actions) { return '<div class="page-heading"><div><h1>' + title + '</h1><p>' + subtitle + '</p></div>' + (actions || '') + '</div>'; }
   function render() {
@@ -139,9 +139,10 @@
     clearInterval(timerId);
     if (route === 'practice' && !session) route = 'bank';
     if (route === 'summary' && !session) route = 'overview';
-    var views = { overview: overview, bank: bankView, professional: professionalView, knowledge: knowledgeView, mistakes: bankView, favorites: bankView, materials: materialsView, settings: settingsView, practice: practiceView, summary: summaryView, review: readerView, notes: legacyMaterialsView, study: studyView, papers: papersView };
+    var views = { exam:function(){return X.render(questions);}, overview: overview, bank: bankView, professional: professionalView, knowledge: knowledgeView, mistakes: bankView, favorites: bankView, materials: materialsView, settings: settingsView, practice: practiceView, summary: summaryView, review: readerView, notes: legacyMaterialsView, study: studyView, papers: papersView };
     app.innerHTML = shell((views[route] || overview)());
     if(route==='knowledge')K.mount();
+    if(route==='exam')X.mount();
     mountSourceImages();I.mount();
     if (globalThis.YanxiOffline) globalThis.YanxiOffline.refresh();
     if (route === 'practice') { updateElapsed(); timerId = setInterval(updateElapsed, 1000); }
@@ -180,7 +181,7 @@
       var qs=available.filter(function(q){return q.bookKey===sub.key;}),book=globalThis.KNOWLEDGE_DATA?.books?.find(function(b){return b.key===sub.key;});
       return '<button type="button" class="subject-card ' + sub.className + '" data-action="open-book" data-book="' + sub.key + '"><h3>' + esc(sub.name) + '</h3><p>' + sub.detail + '</p><span>'+(book?book.chapterIds.length+'章 · '+book.sectionIds.length+'节 · ':'')+(book?.questionCount||qs.length)+'道题<br>进入教材知识树 →</span></button>';
     }).join('');
-    return heading('今天看哪一本', '从教材知识树理解，再用题目和答案核对。', '') + '<section class="stats-grid" aria-label="学习入口">' + stat('题库总量',questions.length,'题','查看全部题目','stack','bank','','all') + stat('已浏览',viewed,'题','回看浏览过的题','check','bank','seen') + stat('待复习',available.filter(needsReview).length,'题','集中回顾薄弱处','error','mistakes','') + stat('我的收藏',favorites,'题','打开收藏题目','star','favorites','') + '</section><section class="subjects">' + cards + '</section><div class="overview-actions">' + button('快速背题','read-filtered','','data-all="true"') + button('题目与答案','goto-materials','secondary') + (reading.ids.length ? button('继续上次背题','resume-reading','secondary') : '') + '</div>' + professionalLinks() + (session && !session.completed ? '<p class="small muted">还有一组未结束的作答练习。' + button('继续作答','resume','ghost small') + '</p>' : '');
+    return heading('今天看哪一本', '从教材知识树理解，再用题目和答案核对。', '') + '<section class="stats-grid" aria-label="学习入口">' + stat('题库总量',questions.length,'题','查看全部题目','stack','bank','','all') + stat('已浏览',viewed,'题','回看浏览过的题','check','bank','seen') + stat('待复习',available.filter(needsReview).length,'题','集中回顾薄弱处','error','mistakes','') + stat('我的收藏',favorites,'题','打开收藏题目','star','favorites','') + '</section><section class="subjects">' + cards + '</section><div class="overview-actions">' + button('快速背题','read-filtered','','data-all="true"') + button('题目与答案','goto-materials','secondary') + (reading.ids.length ? button('继续上次背题','resume-reading','secondary') : '') + '</div>' + '<div class="exam-entry"><a class="btn secondary" href="#exam?mode=mixed">三本书综合模拟 →</a><a class="btn secondary" href="#exam?mode=single">单本书模拟 →</a></div>' + professionalLinks() + (session && !session.completed ? '<p class="small muted">还有一组未结束的作答练习。' + button('继续作答','resume','ghost small') + '</p>' : '');
   }
   function filtersHTML() {
     var topics=Array.from(new Set(questions.filter(function(q){return !filter.book || q.bookKey===filter.book;}).map(function(q){return q.topic;})));
@@ -501,7 +502,7 @@
   function settingsView() {
     return heading('备份与设置','题库已内置。更换设备前，请导出完整备份。','')+'<section class="panel settings-simple"><h2>学习记录备份</h2><p>背题位置、回忆自评与到期时间、浏览记录、待复习、收藏和原有作答记录以及手写批注都保存在当前浏览器。手写批注会随完整备份导出；不同设备不会自动同步。</p><div class="btn-row">'+button('导出完整备份','export-backup','')+button('恢复完整备份','choose-backup','secondary')+'</div></section><details class="settings-extra"><summary>手机直接打开与离线使用</summary><p>将本站网址保存在 Safari 书签，或通过 Safari 的分享菜单“添加到主屏幕”，以后直接打开。</p><p id="offline-status" role="status" aria-live="polite">正在检查离线题库…</p><p>首次打开需要网络。离线保存完成后，题目、答案和教材定义原图可断网查阅；外部资料链接仍需联网。浏览器清理网站数据会移除离线内容和本机记录，请保留完整备份。</p></details><details class="settings-extra"><summary>题库导入、导出与个人笔记</summary><p>不用重复导入内置题库。仅在添加其他合法来源的 JSON 题库时使用导入。</p><div class="btn-row">'+button('导入其他题库','import-modal','secondary small')+button('导出完整题库','export-bank','secondary small')+button('个人笔记（'+notes.length+'）','open-notes','secondary small')+'</div></details><details class="settings-extra"><summary>题库说明</summary><p>当前题库包含原创模拟与有第三方来源的历年题对应整理。610道专业课已重新整理，含358道名词解释、237道简答、15道论述。名词以教材定义段原图为准，核对要点仅留关键词；思路与提醒是辅助讲解。简答默认显示背诵要点，关键词在正文中加粗，可展开详细答案；论述为依据教材组织的参考作答。本学习室专用于三本专业课教材，知识树包含各章各节，并关联已有题库与专题模拟题。主观题参考答案供核对，不是官方评分细则；题库尚未覆盖全部考试内容。</p><p>专业课题后标注教材印刷页码。同一考点的不同问法不重复计算题库数量。</p></details><details class="settings-extra"><summary>重置学习记录</summary><p>题库和个人笔记会保留，建议先备份。</p>'+button('重置学习记录','reset-modal','danger small')+'</details>';
   }
-  function exportBackup() { I.finish();download('研习-完整备份-' + dateStamp() + '.json', JSON.stringify({ app: 'yanxi', version: 1, exportedAt: new Date().toISOString(), questions: questions, progress: progress, notes: notes, settings: settings, session: session, reading: reading, ink: I.exportData() }, null, 2)); toast('完整备份已导出。'); }
+  function exportBackup() { I.finish();download('研习-完整备份-' + dateStamp() + '.json', JSON.stringify({ app: 'yanxi', version: 1, exportedAt: new Date().toISOString(), questions: questions, progress: progress, notes: notes, settings: settings, session: session, reading: reading, ink: I.exportData(), mockExams: X.exportData() }, null, 2)); toast('完整备份已导出。'); }
   function sampleBank() {
     var q = { id: 'custom-001', prompt: '请填写原创简答题题干', subject: '346 体育综合', topic: '学校体育学 · 自定义章节', type: 'free', examType: 'short', options: [], answer: ['请填写第一条完整作答。', '请填写第二条完整作答。'], answerOutline: ['请填写自评要点'], commonMistakes: ['请填写容易混淆的概念或答题遗漏'], explanation: '请填写答题思路及各要点与题干的联系。', difficulty: 2, tags: ['原创模拟'], sourceNote: '原创模拟｜请填写教材版本、章节及核对情况；非官方评分细则' };
     download('研习-题库格式示例.json', JSON.stringify({ version: 1, title: '我的原创模拟题库', questions: [q] }, null, 2)); toast('题库格式示例已下载。');
@@ -636,7 +637,7 @@
         var replacements = {};
         replacements[keys.bank] = b.custom; replacements[keys.notes] = b.notes; replacements[keys.settings] = b.settings; replacements[E.STORAGE_KEY] = b.progress; replacements[keys.session] = b.session; replacements[keys.reading] = b.reading;
         I.finish();if(b.ink!==null)replacements[I.KEY]=b.ink;
-        replaceStored(replacements);if(b.ink!==null)I.reload();
+        if(b.mockExams!==null)replacements[X.KEY]={version:1,records:b.mockExams}; replaceStored(replacements);if(b.ink!==null)I.reload();if(b.mockExams!==null)X.reload();
         custom = b.custom; questions = builtIn.concat(custom).filter(isProfessional); notes = b.notes; settings = b.settings; progress = b.progress; session = b.session; reading = b.reading; modal._backup = null; modal.close(); navigate('overview'); render(); toast('备份已恢复。');
       }
       else if (action === 'reset-modal') showModal('重置所有学习记录？', '答题历史、错题状态、收藏和当前练习将被清除。题库和学习资料保留。建议先导出完整备份。', '<div class="modal-actions">' + button('取消', 'close-modal', 'secondary') + button('确认重置', 'confirm-reset', 'danger') + '</div>');
@@ -712,7 +713,7 @@
     if(raw.session!=null&&!cleanSession&&(!Array.isArray(raw.session.ids)||raw.session.ids.some(function(id){return !checked.some(function(q){return q.id===id;})&&!builtIds.has(id);})))throw new Error('备份中的当前练习不完整，请检查题目与练习记录。');
     if (raw.notes.length > 200 || raw.notes.some(function (n) { return !n || typeof n.text !== 'string' || n.text.length > 150000; })) throw new Error('备份资料超过容量限制或格式不完整。');
     var cleanSettings = { goal: Math.max(1, Math.min(100, Number(raw.settings && raw.settings.goal) || 10)), school: '厦门大学', year: 2027, paperScope:['topics','daily','all','past'].includes(raw.settings&&raw.settings.paperScope)?raw.settings.paperScope:'topics' };
-    modal._backup = { custom: customQs, progress: cleanProgress, notes: sanitizeNotes(raw.notes), settings: cleanSettings, session: cleanSession, reading: sanitizeReading(raw.reading || {}, builtIn.concat(customQs).filter(isProfessional)), ink:raw.ink===undefined?null:I.validate(raw.ink) };
+    modal._backup = { custom: customQs, progress: cleanProgress, notes: sanitizeNotes(raw.notes), settings: cleanSettings, session: cleanSession, reading: sanitizeReading(raw.reading || {}, builtIn.concat(customQs).filter(isProfessional)), ink:raw.ink===undefined?null:I.validate(raw.ink), mockExams:raw.mockExams===undefined?null:X.validateBackup(raw.mockExams) };
     showModal('恢复完整备份？', '将替换当前浏览器的导入题库、学习记录、收藏和学习资料。建议先导出当前备份。', '<p class="note-label">备份中有 ' + checked.length + ' 道题、' + raw.notes.length + ' 份资料。'+(modal._backup.ink===null?'旧备份不含手写批注，当前批注会保留。':'含 '+I.count(modal._backup.ink)+' 笔手写批注，将一同恢复。')+'</p><div class="modal-actions">' + button('取消', 'close-modal', 'secondary') + button('确认恢复', 'confirm-backup', '') + '</div>');
   });
   app.addEventListener('toggle',function(event){var el=event.target;if(el && el.dataset && el.dataset.libraryId){if(el.open){libraryOpenIds.add(el.dataset.libraryId);markViewed(el.dataset.libraryId);}else libraryOpenIds.delete(el.dataset.libraryId);}},true);
