@@ -1,4 +1,7 @@
 /* Soft book desk. Content, ink coordinates and map geometry keep their own layout. */
+.sidebar .nav-copy{min-width:0;flex:1;text-align:left}.sidebar .nav-copy small{display:block;margin-top:4px;font-size:11px;line-height:1.7;color:#7b6f80;font-weight:400;white-space:normal}.sidebar .nav .count{flex-shrink:0}
+.desk-daily{margin-bottom:24px;padding:20px 23px;border:1px solid #ded5e7;border-radius:18px;background:#f0eaf6}.desk-daily .desk-due-button{font-size:18px;font-weight:650;min-height:52px;padding:12px 22px}.desk-daily>p{margin:9px 0 0;font-size:12px;color:#74627e;line-height:1.8}.desk-daily>p.desk-daily-title{margin:0 0 13px;color:#594366;font-size:18px;font-weight:650}.desk-daily .btn-row{gap:10px;flex-wrap:wrap}.desk-review-help{font-size:12px;line-height:1.9;color:#75657e;margin:0 0 18px}.practice-recall-note{font-size:13px;line-height:1.9;color:#4e725a;margin:17px 0 0}
+@media(max-width:700px){.desk-daily{padding:18px 16px;margin-bottom:20px}.desk-daily .desk-due-button{width:100%;font-size:17px}.desk-daily .btn-row .btn{flex:1 1 100%;font-size:14px}.desk-daily>p{font-size:11px}.desk-review-help{font-size:11px}}
 :root{--bg:#f8f5f0;--paper:#fffefa;--ink:#393341;--muted:#756c7b;--green:#76538c;--green2:#614273;--line:#e7e0da;--sage:#eee8f4;--gold:#a77a3d;--red:#a44343;color:var(--ink);background:var(--bg)}
 body{background:var(--bg);color:var(--ink);font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;font-size:15px}
 main{max-width:1210px;padding:36px 36px 56px}

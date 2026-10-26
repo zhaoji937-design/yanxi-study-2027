@@ -16,7 +16,8 @@
   catch (_) { storageOK = false; var memory = {}; storage = { getItem: function (k) { return memory[k] || null; }, setItem: function (k, v) { memory[k] = v; }, removeItem: function (k) { delete memory[k]; } }; }
   function read(k, fallback) { try { var v = storage.getItem(k); return v ? JSON.parse(v) : fallback; } catch (_) { return fallback; } }
   function write(k, value) { try { storage.setItem(k, JSON.stringify(value)); return true; } catch (_) { toast('浏览器存储空间不足，请先导出备份。'); return false; } }
-  function replaceStored(entries) {
+  function replaceStored(entries, operation) {
+    operation = operation || '恢复';
     var prior = {};
     Object.keys(entries).forEach(function (key) { prior[key] = storage.getItem(key); });
     try {
@@ -25,8 +26,8 @@
       try {
         Object.keys(entries).forEach(function (key) { storage.removeItem(key); });
         Object.keys(prior).forEach(function (key) { if (prior[key] !== null) storage.setItem(key, prior[key]); });
-      } catch (_) { throw new Error('存储空间不足，恢复未完成且旧数据未能完整回滚。请保留备份文件，释放空间后重新恢复。'); }
-      throw new Error('存储空间不足，已保留原有数据。请释放空间后重新恢复。');
+      } catch (_) { throw new Error('存储空间不足，' + operation + '未完成且旧数据未能完整回滚。请保留备份文件，释放空间后重试。'); }
+      throw new Error('存储空间不足，已保留原有数据。请释放空间后重试。');
     }
   }
   function esc(v) { return String(v == null ? '' : v).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
@@ -128,11 +129,12 @@
     });
     return list;
   }
-  function navItem(id, ico, label, count) { return '<button type="button" data-action="navigate" data-route="' + id + '" class="' + ((route === id || (id === 'bank' && ['practice','summary','review'].includes(route))) ? 'active' : '') + '"' + (route === id ? ' aria-current="page"' : '') + '>' + icon(ico) + '<span>' + label + '</span>' + (count ? '<span class="count">' + count + '</span>' : '') + '</button>'; }
+  function navItem(id, ico, label, count, note) { return '<button type="button" data-action="navigate" data-route="' + id + '" class="' + ((route === id || (id === 'bank' && ['practice','summary','review'].includes(route))) ? 'active' : '') + '"' + (route === id ? ' aria-current="page"' : '') + '>' + icon(ico) + '<span class="nav-copy">' + esc(label) + (note ? '<small>' + esc(note) + '</small>' : '') + '</span>' + (count ? '<span class="count">' + count + '</span>' : '') + '</button>'; }
   function shell(content) {
     var count = questions.filter(function(q){return T.allowPaper(q,settings.paperScope,paperIndex,conceptIndex)&&needsReview(q);}).length;
     var moreOpen=['bank','materials','study','papers','notes','settings','practice','summary','review'].includes(route);
-    var navigation = navItem('overview','grid','我的书桌') + navItem('knowledge','stack','教材知识树') + navItem('professional','book','按章节背题') + navItem('exam','clock','模拟考试') + '<div class="nav-divider">我的复习</div>' + navItem('mistakes','error','待复习',count) + navItem('favorites','star','我的收藏') + '<details class="nav-more"'+(moreOpen?' open':'')+'><summary>更多工具</summary><div class="nav">'+navItem('materials','book','题目与答案') + navItem('bank','stack','我的题库') + navItem('study','check','怎么背与怎么答') + navItem('papers','book','历年题与来源') + navItem('notes','book','个人笔记') + navItem('settings','settings','备份与设置')+'</div></details>';
+    var recallNav = '<button type="button" data-action="recall-due">' + icon('clock') + '<span class="nav-copy">' + esc('到期回忆') + '<small>' + esc('仅含按回忆排程已到期的题。') + '</small></span><span class="count">' + esc(dueQuestions().length) + '</span></button>';
+    var navigation = navItem('overview','grid','我的书桌') + navItem('knowledge','stack','教材知识树') + navItem('professional','book','按章节背题') + navItem('exam','clock','模拟考试') + '<div class="nav-divider">我的复习</div>' + navItem('mistakes','error','待复习',count,'含答错、标记需复习与到期题。') + recallNav + navItem('favorites','star','我的收藏') + '<details class="nav-more"'+(moreOpen?' open':'')+'><summary>更多工具</summary><div class="nav">'+navItem('materials','book','题目与答案') + navItem('bank','stack','我的题库') + navItem('study','check','怎么背与怎么答') + navItem('papers','book','历年题与来源') + navItem('notes','book','个人笔记') + navItem('settings','settings','备份与设置')+'</div></details>';
     return '<div class="shell'+(mobileOpen?' nav-open':'')+'" data-page="'+esc(route)+'"><aside id="main-navigation" class="sidebar' + (mobileOpen ? ' mobile-open' : '') + '" aria-label="主导航" '+(mobileOpen?'':'inert aria-hidden="true"')+'><div class="brand">' + icon('book') + '<strong>研习</strong><button type="button" class="nav-close" data-action="menu" aria-label="收起主导航">×</button></div><nav class="nav">' + navigation + '</nav><div class="sidebar-bottom"><div class="local-label">慢慢学，也在向前。</div></div></aside><div class="overlay' + (mobileOpen ? ' open' : '') + '" data-action="menu"></div><div class="workspace"><header class="topbar"><button class="mobile-menu" data-action="menu" aria-label="打开或关闭导航" aria-controls="main-navigation" aria-expanded="'+mobileOpen+'">' + icon('menu') + '</button><button class="top-brand" data-action="navigate" data-route="overview" aria-label="研习，返回我的书桌">'+icon('book')+'<span>研习</span></button><span class="top-location">' + (route==='overview'?'我的书桌':titles[route]) + '</span><span class="top-context">厦大 · 2027</span></header>' + (!storageOK ? '<div class="storage-banner">当前浏览器无法保存记录，请及时导出备份。</div>' : '') + '<main id="main" tabindex="-1">' + (bankError ? '<div class="error-banner">' + esc(bankError) + '</div>' : '') + content + '</main></div></div>';
   }
   function heading(title, subtitle, actions) { return '<div class="page-heading"><div><h1>' + title + '</h1><p>' + subtitle + '</p></div>' + (actions || '') + '</div>'; }
@@ -177,6 +179,8 @@
   function stat(label, value, suffix, note, ico, destination, status, scope) { return '<button type="button" class="stat" data-action="open-stat" data-route="' + destination + '" data-status="' + (status || '') + '" data-paper-scope="'+(scope||'')+'"><span class="stat-label">' + label + icon(ico) + '</span><span class="stat-number">' + value + '<small>' + suffix + '</small></span><span class="stat-note">' + note + ' →</span></button>'; }
   function overview() {
     var available=questions.filter(function(q){return T.allowPaper(q,settings.paperScope,paperIndex,conceptIndex);});
+    var due=dueQuestions().length;
+    var daily='<section class="desk-daily" aria-label="'+esc('今日复习')+'">'+(due ? button(esc('今日复习 '+due+' 题')+' '+icon('arrow'),'recall-due','desk-due-button')+'<p>'+esc('只复习已到期的回忆题，遵循设置中的题目范围。')+'</p>' : '<p class="desk-daily-title">'+esc('今天没有到期的题')+'</p><div class="btn-row">'+button(esc('继续上次背题'),'resume-reading','',reading.ids.length?'':'disabled aria-describedby="desk-resume-note"')+button(esc('背几道没看过的题'),'read-unseen','secondary')+'</div>'+(!reading.ids.length?'<p id="desk-resume-note">'+esc('还没有背题进度，可以先背几道没看过的题。')+'</p>':''))+'</section>';
     var viewed = available.filter(function(q){ return isViewed(q); }).length;
     var favorites = available.filter(function(q){ var r=record(q.id); return r && r.favorite; }).length;
     var cards = subjects.map(function(sub,i){
@@ -185,8 +189,8 @@
       return '<button type="button" class="subject-card book-'+sub.key+'" data-action="open-book" data-book="' + sub.key + '"><span class="cozy-book-cover" aria-hidden="true"><span class="book-volume">0'+(i+1)+'</span><svg viewBox="0 0 72 72" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">'+symbols[sub.key]+'</svg><span class="book-cover-line"></span></span><span class="book-card-copy"><h3>' + esc(sub.name) + '</h3><p>' + sub.detail + '</p><span class="book-counts">'+(book?book.chapterIds.length+'章 · '+book.sectionIds.length+'节 · ':'')+(book?.questionCount||qs.length)+'道题</span><span class="book-enter">翻开这本书 '+icon('arrow')+'</span></span></button>';
     }).join('');
     var mascot='<svg class="desk-mascot" viewBox="0 0 180 130" fill="none" aria-hidden="true"><ellipse cx="92" cy="116" rx="65" ry="7" fill="#eae3db"/><path d="M50 74 48 26q0-9 8-3l20 15q17-7 34 0l20-15q8-6 7 4l-2 48" fill="#f2e7da" stroke="#716258" stroke-width="2.5" stroke-linejoin="round"/><path d="M48 68q-1-32 44-32t45 32v24q0 23-43 23T49 92Z" fill="#f2e7da" stroke="#716258" stroke-width="2.5"/><path d="m56 33 12 9-11 8m71-17-12 9 11 8" fill="#e6b6aa"/><path d="M68 66q5-5 10 0m29 0q5-5 10 0m-28 7h6l-3 3-3-3m3 3v4m0-1q-5 5-9 0m9 0q5 5 9 0" stroke="#716258" stroke-width="2.3" stroke-linecap="round"/><ellipse cx="66" cy="77" rx="7" ry="4" fill="#e9b8ab"/><ellipse cx="119" cy="77" rx="7" ry="4" fill="#e9b8ab"/><path d="m39 86 52 8 53-8v30l-52 8-53-8Z" fill="#d8cbe8" stroke="#7e6a91" stroke-width="2.3" stroke-linejoin="round"/><path d="M91 95v28m-42-28 30 5m-30 4 30 5m54-14-30 5m30 4-30 5" stroke="#9d88b0" stroke-width="2" stroke-linecap="round"/><path d="M44 89q13-1 13 8t-13 7m95-15q-13-1-13 8t13 7" fill="#f2e7da" stroke="#716258" stroke-width="2.3"/><path d="m154 41 2-7 3 7 7 2-7 3-3 7-2-7-7-3Z" fill="#c1b0d7"/><path d="m25 63 2-4 2 4 5 2-5 2-2 4-2-4-5-2Z" fill="#bdcbb4"/></svg>';
-    var resume=reading.ids.length?'<div class="desk-resume">'+icon('book')+'<span>接着上次的地方，慢慢来。</span>'+button('继续背题 '+icon('arrow'),'resume-reading','small')+'</div>':'';
-    return '<div class="desk"><div class="desk-heading">'+heading('今天看哪一本', '读懂一个考点，再记住一道题。', '')+mascot+'</div>'+resume+'<section class="subjects" aria-label="我的三本教材">'+cards+'</section><section class="desk-shortcuts" aria-label="学习方式"><button type="button" class="desk-shortcut" data-action="goto-materials"><span class="shortcut-icon">'+icon('book')+'</span><span><strong>看题背答案</strong><small>先回忆，再展开核对</small></span>'+icon('arrow')+'</button><a class="desk-shortcut" href="#exam?mode=mixed"><span class="shortcut-icon peach">'+icon('clock')+'</span><span><strong>计时模拟</strong><small>三本综合 / 单本专练</small></span>'+icon('arrow')+'</a></section><details class="desk-progress"><summary><span>我的复习</span><span class="desk-progress-hint">学习记录与收藏</span></summary><section class="stats-grid" aria-label="学习入口">'+stat('题库总量',questions.length,'题','查看全部题目','stack','bank','','all')+stat('已浏览',viewed,'题','回看浏览过的题','check','bank','seen')+stat('待复习',available.filter(needsReview).length,'题','集中回顾薄弱处','error','mistakes','')+stat('我的收藏',favorites,'题','打开收藏题目','star','favorites','')+'</section></details>'+(session&&!session.completed?'<div class="desk-resume"><span>还有一组未结束的作答练习。</span>'+button('继续作答','resume','secondary small')+'</div>':'')+'<p class="desk-footnote">只管专心学，其余的慢慢来。</p></div>';
+    var resume=due&&reading.ids.length?'<div class="desk-resume">'+icon('book')+'<span>接着上次的地方，慢慢来。</span>'+button('继续背题 '+icon('arrow'),'resume-reading','small')+'</div>':'';
+    return '<div class="desk">'+daily+'<div class="desk-heading">'+heading('今天看哪一本', '读懂一个考点，再记住一道题。', '')+mascot+'</div>'+resume+'<section class="subjects" aria-label="我的三本教材">'+cards+'</section><section class="desk-shortcuts" aria-label="学习方式"><button type="button" class="desk-shortcut" data-action="goto-materials"><span class="shortcut-icon">'+icon('book')+'</span><span><strong>看题背答案</strong><small>先回忆，再展开核对</small></span>'+icon('arrow')+'</button><a class="desk-shortcut" href="#exam?mode=mixed"><span class="shortcut-icon peach">'+icon('clock')+'</span><span><strong>计时模拟</strong><small>三本综合 / 单本专练</small></span>'+icon('arrow')+'</a></section><details class="desk-progress"><summary><span>我的复习</span><span class="desk-progress-hint">学习记录与收藏</span></summary><section class="stats-grid" aria-label="学习入口">'+stat('题库总量',questions.length,'题','查看全部题目','stack','bank','','all')+stat('已浏览',viewed,'题','回看浏览过的题','check','bank','seen')+stat('待复习',available.filter(needsReview).length,'题',esc('含答错、标记需复习与到期题'),'error','mistakes','')+stat('我的收藏',favorites,'题','打开收藏题目','star','favorites','')+'</section><p class="desk-review-help">'+esc('到期回忆：仅含按回忆排程已到期的题，与上方“今日复习”使用同一题目范围。')+'</p></details>'+(session&&!session.completed?'<div class="desk-resume"><span>还有一组未结束的作答练习。</span>'+button('继续作答','resume','secondary small')+'</div>':'')+'<p class="desk-footnote">只管专心学，其余的慢慢来。</p></div>';
   }
   function filtersHTML() {
     var topics=Array.from(new Set(questions.filter(function(q){return !filter.book || q.bookKey===filter.book;}).map(function(q){return q.topic;})));
@@ -305,17 +309,28 @@
     var next=JSON.parse(JSON.stringify(reading));next.recalls[id]=T.nextRecall(next.recalls[id],result,Date.now());next.marks[id]=result==='independent'?'mastered':'review';next.ratingLock=id;if(!next.viewed.includes(id))next.viewed.push(id);
     if(!write(keys.reading,next))return;reading=next;render();toast('已保存本次回忆表现；仅作为自评记录。');
   }
+  function dueQuestions(){
+    var now=Date.now();
+    return questions.filter(function(q){return reading.recalls[q.id]&&reading.recalls[q.id].due<=now&&T.allowPaper(q,settings.paperScope,paperIndex,conceptIndex);});
+  }
   function openDue(){
-    var ids=questions.filter(function(q){return reading.recalls[q.id]&&reading.recalls[q.id].due<=Date.now()&&T.allowPaper(q,settings.paperScope,paperIndex,conceptIndex);}).map(function(q){return q.id;});
+    var ids=dueQuestions().map(function(q){return q.id;});
     if(!ids.length){toast('当前题目范围暂无到期回忆题；可继续看待复习或调整题目范围。');return;}
     reading.ids=ids;reading.index=0;reading.shown=false;reading.variant=0;reading.origin='study';saveReading();readerRoute();
+  }
+  function openUnseen(){
+    var ids=questions.filter(function(q){return T.allowPaper(q,settings.paperScope,paperIndex,conceptIndex)&&!isViewed(q);}).slice(0,10).map(function(q){return q.id;});
+    if(!ids.length){toast('当前题目范围的题目都已看过，可以继续上次背题或调整题目范围。');return;}
+    var next=JSON.parse(JSON.stringify(reading));
+    next.ids=ids;next.index=0;next.shown=false;next.variant=0;next.origin='bank';next.ratingLock='';delete next.scope;delete next.knowledgeHash;
+    if(!write(keys.reading,next))return;reading=next;readerRoute();
   }
   function openStudyExamples(){
     reading.ids=questions.filter(function(q){return q.studyGuide;}).map(function(q){return q.id;});if(!reading.ids.length)return;
     reading.index=0;reading.shown=false;reading.variant=0;reading.origin='study';saveReading();readerRoute();toast('打开已核对的历年题示例，日常排除设置保持。');
   }
   function studyView(){
-    var due=questions.filter(function(q){return reading.recalls[q.id]&&reading.recalls[q.id].due<=Date.now()&&T.allowPaper(q,settings.paperScope,paperIndex,conceptIndex);}).length;
+    var due=dueQuestions().length;
     return '<div class="study-layout">'+heading('把知识记准，也能用在题目里','先核对概念，再回忆框架，最后检查有没有答齐题干。',button('回到题库','goto-bank','secondary small'))+'<section class="panel"><h2>怎样使用这一版复习资料</h2><ol class="steps"><li>只看题目，先想定义或列出框架。</li><li>需要时展开“提示框架”，核对对象、任务与范围。</li><li>展开答案，先看加粗关键词，逐点还原关系；需要补充时展开详细答案。</li><li>遮住后再说一遍。根据真实回忆表现记录，而不是按看着熟不熟记录。</li></ol><p class="notice">610道专业课已重新整理：358道名词解释以教材定义原图为主，237道简答与15道论述提供分项完整作答。原文与辅助讲解分开展示。</p><div class="btn-row">'+button('查看27题复习示例','study-examples','')+button('到期回忆 '+due+' 题','recall-due','secondary')+button('历年题与来源','past-papers','ghost small')+'</div></section><section class="panel"><h2>防止答到相邻知识点：四步检查</h2><ol class="steps"><li><strong>对象：</strong>题目究竟问谁？“红细胞”不等于整个血液系统。</li><li><strong>任务：</strong>问定义、原因、影响、比较，还是应用？有“并、及、以及”时逐项拆开。</li><li><strong>范围：</strong>急性运动还是长期训练？机制还是检测？不要扩大到整章。</li><li><strong>对照：</strong>写前列任务标题，写后检查每一问是否有对应段落；要求例子时补例子。</li></ol><p>例：“重复训练法与持续训练法的区别，并举例说明”需要比较两种方法的组织、休息与作用，还需要分别举例。只背出两个定义，任务还没有完成。</p></section><section class="panel"><h2>复习和考场常见问题</h2>'+T.FAQ.map(function(item){return '<details><summary>'+esc(item[0])+'</summary><p>'+esc(item[1])+'</p></details>';}).join('')+'</section><section class="panel"><h2>方法依据与使用边界</h2><p class="study-footer">遮住后尝试回忆、得到反馈、隔一段时间再回忆，是这里的练习方向；把相近概念并列比较用于练习分辨。它们是依据学习研究作的设计选择，不能保证分数，默认复习间隔也不是人人最优。</p><div class="source-links"><a href="https://pubmed.ncbi.nlm.nih.gov/16507066/" target="_blank" rel="noopener noreferrer">Roediger与Karpicke：回忆测验与长期保持</a><br><a href="https://pubmed.ncbi.nlm.nih.gov/23138567/" target="_blank" rel="noopener noreferrer">Birnbaum等：交错学习与类别辨别</a></div></section></div>';
   }
   function paperResults(){
@@ -362,6 +377,7 @@
       var free = q.type === 'free', resultClass = free ? 'neutral' : entry.correct ? '' : 'wrong';
       var resultTitle = free ? (entry.answered ? (entry.correct ? '已标记掌握' : '已加入错题本，等待复习') : '对照参考要点，判断是否掌握') : entry.correct ? '回答正确，继续保持' : '这题值得再练一次';
       content += '<section class="result ' + resultClass + '" aria-label="答案与解析"><div class="result-title">' + icon(free ? 'book' : entry.correct ? 'check' : 'info') + resultTitle + '</div>' + compactAnswer(q) +
+        (free && entry.answered && reading.recalls[q.id] ? '<p class="practice-recall-note">' + esc('已同步到回忆排程；下次约 ' + new Date(reading.recalls[q.id].due).toLocaleString('zh-CN',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit',hour12:false}) + '。') + '</p>' : '') +
         (free && !entry.answered ? '<div class="self-grade">' + button(icon('check') + ' 已掌握', 'grade-free', '', 'data-mastered="true"') + button('需复习', 'grade-free', 'secondary', 'data-mastered="false"') + '</div>' : '') +
         '<div class="source-note">' + esc(q.sourceNote) + (q.sourceUrls && q.sourceUrls.length ? ' · <a href="' + safeUrl(q.sourceUrls[0]) + '" target="_blank" rel="noopener noreferrer">查看依据</a>' : '') + '</div></section>';
     }
@@ -378,10 +394,18 @@
     if (entry.answered) return;
     if (q.type === 'free' && typeof mastered !== 'boolean') { entry.revealed = true; saveSession(); render(); return; }
     if (q.type !== 'free' && !entry.selected.length) { toast('请先选择答案。'); return; }
-    progress = E.recordAnswer(progress, q, entry.selected, q.type === 'free' ? { mastered: mastered } : {});
-    delete reading.marks[q.id]; saveReading();
-    entry.correct = q.type === 'free' ? mastered : E.grade(q, entry.selected).correct;
-    entry.revealed = true; entry.answered = true; saveProgress(); saveSession(); render();
+    var now=Date.now(), nextProgress=E.recordAnswer(progress,q,entry.selected,q.type==='free'?{mastered:mastered,now:now}:{now:now});
+    var nextReading=JSON.parse(JSON.stringify(reading)), nextSession=JSON.parse(JSON.stringify(session)), nextEntry=nextSession.entries[q.id];
+    if(q.type==='free'){
+      nextReading.recalls[q.id]=T.nextRecall(nextReading.recalls[q.id],mastered?'independent':'missing',now);
+      nextReading.marks[q.id]=mastered?'mastered':'review';nextReading.ratingLock=q.id;
+      if(!nextReading.viewed.includes(q.id))nextReading.viewed.push(q.id);
+    }else delete nextReading.marks[q.id];
+    nextEntry.correct=q.type==='free'?mastered:E.grade(q,entry.selected).correct;
+    nextEntry.revealed=true;nextEntry.answered=true;
+    var stored={};stored[E.STORAGE_KEY]=nextProgress;stored[keys.reading]=nextReading;stored[keys.session]=nextSession;
+    try{replaceStored(stored,'作答保存');}catch(error){toast(error.message);return;}
+    progress=nextProgress;reading=nextReading;session=nextSession;render();
   }
   function finishSession() {
     var pending = session.ids.filter(function (id) { return !session.entries[id] || !session.entries[id].answered; }).length;
@@ -574,6 +598,7 @@
       else if(action==='past-papers')navigate('papers');
       else if(action==='recall-rate')markRecall(node.dataset.result);
       else if(action==='recall-due')openDue();
+      else if(action==='read-unseen')openUnseen();
       else if(action==='study-examples')openStudyExamples();
       else if (action === 'open-subject') navigate('bank',node.dataset.subject);
       else if(action==='open-book')location.hash='#knowledge?book='+encodeURIComponent(node.dataset.book)+'&node='+encodeURIComponent(node.dataset.book+'-book');
