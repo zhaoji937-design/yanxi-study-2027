@@ -84,7 +84,7 @@
     });
     if(raw.recallGuide!=null){
       var recall=raw.recallGuide;
-      if(type!=='free'||q.examType!=='short'||!isObject(recall)||recall.version!==1)fail(label+'背诵资料不合法');
+      if(type!=='free'||!['short','essay'].includes(q.examType)||!isObject(recall)||recall.version!==1)fail(label+'背诵资料不合法');
       var guide={version:1,object:str(recall.object,label+'答题对象',400),scope:str(recall.scope,label+'答题范围',600)};
       ['tasks','checks','highlights','fullAnswer','notes'].forEach(function(field){
         var limit=field==='highlights'?40:field==='fullAnswer'?30:field==='notes'?30:12;

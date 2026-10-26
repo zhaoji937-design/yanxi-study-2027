@@ -16,6 +16,35 @@
       out[id]={result:r.result,streak:Math.max(0,Math.min(30,Math.trunc(Number(r.streak)||0))),due:r.due,updated:r.updated};
     });return out;
   }
+  function cleanReaderDrafts(raw,ids){
+    var out={};if(!raw||typeof raw!=='object'||Array.isArray(raw))return out;
+    Object.keys(raw).slice(0,10000).forEach(function(id){
+      if(ids.has(id)&&!['__proto__','constructor','prototype'].includes(id)&&typeof raw[id]==='string'&&raw[id].length)out[id]=raw[id].slice(0,40000);
+    });return out;
+  }
+  function keywordExercise(q){
+    if(!q||q.type!=='free'||!['term','short','essay'].includes(q.examType))return null;
+    var source=q.examType==='term'?q.answerOutline:q.recallGuide&&q.recallGuide.highlights;
+    if(!Array.isArray(source)||!Array.isArray(q.answer))return null;
+    var keywords=Array.from(new Set(source.filter(function(k){return typeof k==='string'&&k.trim().length;})));
+    if(!keywords.length)return null;
+    var order=keywords.map(function(k,i){return {text:k,index:i};}).sort(function(a,b){return b.text.length-a.text.length;}),used=new Set();
+    var parts=q.answer.filter(function(part){return typeof part==='string';}).map(function(part){
+      var tokens=[],plain='',i=0;
+      while(i<part.length){
+        var key=order.find(function(k){return part.startsWith(k.text,i);});
+        if(key){if(plain)tokens.push({text:plain});plain='';tokens.push({index:key.index});used.add(key.index);i+=key.text.length;}
+        else{plain+=part[i];i++;}
+      }
+      if(plain)tokens.push({text:plain});return tokens;
+    });
+    return {keywords:keywords,parts:parts,extras:keywords.map(function(_,i){return i;}).filter(function(i){return !used.has(i);})};
+  }
+  function matchesKeyword(input,keyword){
+    if(typeof input!=='string'||typeof keyword!=='string')return false;
+    var normalize=function(text){return text.normalize('NFKC').toLowerCase().replace(/[\s、，,；;]/g,'');};
+    return !!normalize(input)&&normalize(input)===normalize(keyword);
+  }
   function nextRecall(prior,result,now){
     if(!RESULTS.includes(result)||!Number.isFinite(now)||now<0)throw new Error('回忆记录不合法');
     var streak=result==='independent'?Math.min(30,(prior&&prior.streak||0)+1):0;
@@ -41,5 +70,5 @@
     ['教材、整理答案说法不一致时怎么办？','先确认是不是同一版教材、同一个概念、同一种语境。名词解释优先核实教材定义，自己的说明另列。当前只有标为“原文已核对”的条目完成了逐页核查，其他整理答案还需核对。'],
     ['考过的知识点能确定不再考吗？','不能据此确定。按你的选择，日常练习可排除已匹配的原题及关联考点，也可切换为只排除原题；原题与关联理由保留在历年题页面。筛选帮助安排时间，不是对下一次命题的预测。部分年份未取得正文，当前也不能覆盖全部历史考点。']
   ];
-  return {RESULTS:RESULTS,cleanRecalls:cleanRecalls,nextRecall:nextRecall,paperIndex:paperIndex,allowPaper:allowPaper,highlightTerms:highlightTerms,FAQ:FAQ};
+  return {RESULTS:RESULTS,cleanRecalls:cleanRecalls,cleanReaderDrafts:cleanReaderDrafts,keywordExercise:keywordExercise,matchesKeyword:matchesKeyword,nextRecall:nextRecall,paperIndex:paperIndex,allowPaper:allowPaper,highlightTerms:highlightTerms,FAQ:FAQ};
 });
