@@ -1,0 +1,342 @@
+{
+  "originalBytes": 13588483,
+  "manifestBytes": 40565,
+  "totalBytes": 13631639,
+  "books": {
+    "school": {
+      "title": "学校体育学",
+      "files": [
+        "textbook-images/school/school-01-86f7a8e4de04.json",
+        "textbook-images/school/school-02-814aec237e3c.json",
+        "textbook-images/school/school-03-0c21c67d1499.json",
+        "textbook-images/school/school-04-f0f5325351b8.json",
+        "textbook-images/school/school-05-1dbea173b793.json",
+        "textbook-images/school/school-06-a4b028778d29.json",
+        "textbook-images/school/school-07-101690069a63.json",
+        "textbook-images/school/school-08-42022b0a1495.json",
+        "textbook-images/school/school-09-5fcbb7c7d479.json",
+        "textbook-images/school/school-10-d3de5a9c070d.json",
+        "textbook-images/school/school-11-9accbb40a359.json",
+        "textbook-images/school/school-12-2aa92ae3b587.json",
+        "textbook-images/school/school-13-27949c95bf66.json",
+        "textbook-images/school/school-14-4c1001bd278f.json",
+        "textbook-images/school/school-16-0e05a1b12b45.json"
+      ],
+      "images": 69,
+      "bytes": 2108390
+    },
+    "physiology": {
+      "title": "运动生理学",
+      "files": [
+        "textbook-images/physiology/physiology-00-eb8d8f13e7fe.json",
+        "textbook-images/physiology/physiology-01-a0aa03b7baf3.json",
+        "textbook-images/physiology/physiology-02-b03383d6daf2.json",
+        "textbook-images/physiology/physiology-03-d3655c989029.json",
+        "textbook-images/physiology/physiology-04-edfb15b42d65.json",
+        "textbook-images/physiology/physiology-05-5daf5021e77f.json",
+        "textbook-images/physiology/physiology-06-110a0a077eb4.json",
+        "textbook-images/physiology/physiology-07-71f9e7d17e81.json",
+        "textbook-images/physiology/physiology-08-c459619e087f.json",
+        "textbook-images/physiology/physiology-09-657380f0fbd0.json",
+        "textbook-images/physiology/physiology-10-794cdce243ca.json",
+        "textbook-images/physiology/physiology-11-d558288d7ac9.json",
+        "textbook-images/physiology/physiology-12-73fb4e59c03b.json",
+        "textbook-images/physiology/physiology-13-b8c86d10da66.json",
+        "textbook-images/physiology/physiology-14-7e25ca60500c.json",
+        "textbook-images/physiology/physiology-15-3eee339a3a58.json"
+      ],
+      "images": 181,
+      "bytes": 6955505
+    },
+    "training": {
+      "title": "运动训练学",
+      "files": [
+        "textbook-images/training/training-01-612fb045ed78.json",
+        "textbook-images/training/training-02-4c97c80db77c.json",
+        "textbook-images/training/training-03-24090b24adc6.json",
+        "textbook-images/training/training-04-cbfc5f636c48.json",
+        "textbook-images/training/training-05-c456253b2deb.json",
+        "textbook-images/training/training-06-8fc68b78505f.json",
+        "textbook-images/training/training-07-f919f82c0aeb.json",
+        "textbook-images/training/training-08-ebbb55b97d9b.json"
+      ],
+      "images": 103,
+      "bytes": 4527179
+    }
+  },
+  "files": {
+    "textbook-images/physiology/physiology-00-eb8d8f13e7fe.json": {
+      "book": "physiology",
+      "chapter": "physiology-00",
+      "images": 10,
+      "bytes": 375933,
+      "sha256": "eb8d8f13e7fecf4573eda4c4701c6ef6a9f95d793defb8ea20713e19d04ae2f0"
+    },
+    "textbook-images/physiology/physiology-01-a0aa03b7baf3.json": {
+      "book": "physiology",
+      "chapter": "physiology-01",
+      "images": 15,
+      "bytes": 567234,
+      "sha256": "a0aa03b7baf302c212915e29595a0a6cd7af9d10aa6f0caa11d14e3721353d00"
+    },
+    "textbook-images/physiology/physiology-02-b03383d6daf2.json": {
+      "book": "physiology",
+      "chapter": "physiology-02",
+      "images": 10,
+      "bytes": 362169,
+      "sha256": "b03383d6daf2b637c82bc7149af110c6fe374a88d59291459db608e779b087c7"
+    },
+    "textbook-images/physiology/physiology-03-d3655c989029.json": {
+      "book": "physiology",
+      "chapter": "physiology-03",
+      "images": 16,
+      "bytes": 654359,
+      "sha256": "d3655c989029e06510456e7f8cdc40c90fc73ddb22b264de9a9808bb1078f772"
+    },
+    "textbook-images/physiology/physiology-04-edfb15b42d65.json": {
+      "book": "physiology",
+      "chapter": "physiology-04",
+      "images": 8,
+      "bytes": 350675,
+      "sha256": "edfb15b42d65fb148ca0cddc75e2ba4081e8d6392a8d0906e43916409b3db787"
+    },
+    "textbook-images/physiology/physiology-05-5daf5021e77f.json": {
+      "book": "physiology",
+      "chapter": "physiology-05",
+      "images": 8,
+      "bytes": 360331,
+      "sha256": "5daf5021e77ffbd8f25ec5961ddb5be8f744af88d20cfaf95d4858b081ab0329"
+    },
+    "textbook-images/physiology/physiology-06-110a0a077eb4.json": {
+      "book": "physiology",
+      "chapter": "physiology-06",
+      "images": 6,
+      "bytes": 236157,
+      "sha256": "110a0a077eb4871971e2a8be3eb808dd72d1240b069f59ada3479f479582b166"
+    },
+    "textbook-images/physiology/physiology-07-71f9e7d17e81.json": {
+      "book": "physiology",
+      "chapter": "physiology-07",
+      "images": 13,
+      "bytes": 405884,
+      "sha256": "71f9e7d17e81260c0fca28b56569cae437831e4e3cf2faa85e6149313fafd324"
+    },
+    "textbook-images/physiology/physiology-08-c459619e087f.json": {
+      "book": "physiology",
+      "chapter": "physiology-08",
+      "images": 17,
+      "bytes": 599952,
+      "sha256": "c459619e087f18968d38054d61bc15aef0349f16585a5e9d7a83c8333bd8554b"
+    },
+    "textbook-images/physiology/physiology-09-657380f0fbd0.json": {
+      "book": "physiology",
+      "chapter": "physiology-09",
+      "images": 9,
+      "bytes": 291392,
+      "sha256": "657380f0fbd091084e6d503e074743be9cc1e3d5996aec3f0245a84fa16c984c"
+    },
+    "textbook-images/physiology/physiology-10-794cdce243ca.json": {
+      "book": "physiology",
+      "chapter": "physiology-10",
+      "images": 27,
+      "bytes": 977690,
+      "sha256": "794cdce243ca9b5e7ab7d296b9f0bf11943aa57ab6414fd618ed1a65bd4bd2df"
+    },
+    "textbook-images/physiology/physiology-11-d558288d7ac9.json": {
+      "book": "physiology",
+      "chapter": "physiology-11",
+      "images": 14,
+      "bytes": 559249,
+      "sha256": "d558288d7ac912d5841ec92d74083b3661b6c512f6645f252c841581010c33d7"
+    },
+    "textbook-images/physiology/physiology-12-73fb4e59c03b.json": {
+      "book": "physiology",
+      "chapter": "physiology-12",
+      "images": 10,
+      "bytes": 460429,
+      "sha256": "73fb4e59c03b59bac851d27902332897824b98e91c6bd48603cdb9f09d352b99"
+    },
+    "textbook-images/physiology/physiology-13-b8c86d10da66.json": {
+      "book": "physiology",
+      "chapter": "physiology-13",
+      "images": 2,
+      "bytes": 85761,
+      "sha256": "b8c86d10da66a12c85363a12fc43c037bb84de69e356bcf3466de591e1624151"
+    },
+    "textbook-images/physiology/physiology-14-7e25ca60500c.json": {
+      "book": "physiology",
+      "chapter": "physiology-14",
+      "images": 6,
+      "bytes": 188117,
+      "sha256": "7e25ca60500c6dac321323f40f20568ac80db80d1835901e76a6d5128afa729d"
+    },
+    "textbook-images/physiology/physiology-15-3eee339a3a58.json": {
+      "book": "physiology",
+      "chapter": "physiology-15",
+      "images": 10,
+      "bytes": 480173,
+      "sha256": "3eee339a3a582177e9ef34b9f8386c5e1e273f7c1fd34b917ae31e1e11187f84"
+    },
+    "textbook-images/school/school-01-86f7a8e4de04.json": {
+      "book": "school",
+      "chapter": "school-01",
+      "images": 1,
+      "bytes": 53256,
+      "sha256": "86f7a8e4de0458ebac2c96f5c8d22c84f84692ebf5cc4e943e34bddf2674de8e"
+    },
+    "textbook-images/school/school-02-814aec237e3c.json": {
+      "book": "school",
+      "chapter": "school-02",
+      "images": 5,
+      "bytes": 142088,
+      "sha256": "814aec237e3ccb1179f178638403addad15e446355dc13bbb405c6a6932f1b20"
+    },
+    "textbook-images/school/school-03-0c21c67d1499.json": {
+      "book": "school",
+      "chapter": "school-03",
+      "images": 6,
+      "bytes": 154825,
+      "sha256": "0c21c67d14993e147adf56ae5068a9c498c1c3ac168a1bca0ed1d7838d88055b"
+    },
+    "textbook-images/school/school-04-f0f5325351b8.json": {
+      "book": "school",
+      "chapter": "school-04",
+      "images": 3,
+      "bytes": 103954,
+      "sha256": "f0f5325351b87aa223ad1d45808ef9bc97ae38e4ae71b868b08c564a9ede7d4e"
+    },
+    "textbook-images/school/school-05-1dbea173b793.json": {
+      "book": "school",
+      "chapter": "school-05",
+      "images": 3,
+      "bytes": 108030,
+      "sha256": "1dbea173b793e814dc75f5fcc7009b80a2393ce05b27eb85a3dde4dea8e71e84"
+    },
+    "textbook-images/school/school-06-a4b028778d29.json": {
+      "book": "school",
+      "chapter": "school-06",
+      "images": 3,
+      "bytes": 69466,
+      "sha256": "a4b028778d293fd63265be3b98d6d1102506cfe0a16895ebcecec0decfc3118a"
+    },
+    "textbook-images/school/school-07-101690069a63.json": {
+      "book": "school",
+      "chapter": "school-07",
+      "images": 14,
+      "bytes": 363737,
+      "sha256": "101690069a63888113b5b1491d3cfb8edd65cb3232e2436fd366e9876b739211"
+    },
+    "textbook-images/school/school-08-42022b0a1495.json": {
+      "book": "school",
+      "chapter": "school-08",
+      "images": 7,
+      "bytes": 280610,
+      "sha256": "42022b0a1495bd7d80a763e202b8dcc0fa3aae29cbbbf48cac44f26682e796b7"
+    },
+    "textbook-images/school/school-09-5fcbb7c7d479.json": {
+      "book": "school",
+      "chapter": "school-09",
+      "images": 1,
+      "bytes": 29972,
+      "sha256": "5fcbb7c7d479138e2fbd5a9b9dd3aaf1f6b9aa314231100df8dd9458aeacc61c"
+    },
+    "textbook-images/school/school-10-d3de5a9c070d.json": {
+      "book": "school",
+      "chapter": "school-10",
+      "images": 1,
+      "bytes": 36004,
+      "sha256": "d3de5a9c070de33d97a8604b793bd5af51acc0965eb37d91d6163da42756ce6b"
+    },
+    "textbook-images/school/school-11-9accbb40a359.json": {
+      "book": "school",
+      "chapter": "school-11",
+      "images": 11,
+      "bytes": 310026,
+      "sha256": "9accbb40a359d1c9293b848f377dafc6c26bad3221dc641b18ed47f5f74972a6"
+    },
+    "textbook-images/school/school-12-2aa92ae3b587.json": {
+      "book": "school",
+      "chapter": "school-12",
+      "images": 1,
+      "bytes": 46528,
+      "sha256": "2aa92ae3b5873c1f6c15734d5c20cda1eeec20f4916e00e8765b3f97de2887dd"
+    },
+    "textbook-images/school/school-13-27949c95bf66.json": {
+      "book": "school",
+      "chapter": "school-13",
+      "images": 4,
+      "bytes": 97575,
+      "sha256": "27949c95bf66eab2a24f384aea85cabdb62ccb3ee9c337ae93dbc904322d84d2"
+    },
+    "textbook-images/school/school-14-4c1001bd278f.json": {
+      "book": "school",
+      "chapter": "school-14",
+      "images": 6,
+      "bytes": 184197,
+      "sha256": "4c1001bd278f4c7429ede4bf7c6524771f7e53f28b52a0bcb8b5330fe915bdf6"
+    },
+    "textbook-images/school/school-16-0e05a1b12b45.json": {
+      "book": "school",
+      "chapter": "school-16",
+      "images": 3,
+      "bytes": 128122,
+      "sha256": "0e05a1b12b45b184597b11f38f54c94d72c2f3f4e8bd2ef64d9b9297d15568a8"
+    },
+    "textbook-images/training/training-01-612fb045ed78.json": {
+      "book": "training",
+      "chapter": "training-01",
+      "images": 23,
+      "bytes": 1081194,
+      "sha256": "612fb045ed785a1bc636c6ede651fffb74ca43e9c94e789417cc3d626740bd56"
+    },
+    "textbook-images/training/training-02-4c97c80db77c.json": {
+      "book": "training",
+      "chapter": "training-02",
+      "images": 6,
+      "bytes": 299413,
+      "sha256": "4c97c80db77c9f6944275dac1f99eb59b5d3e437c30e54a27b6d9195717a9bb8"
+    },
+    "textbook-images/training/training-03-24090b24adc6.json": {
+      "book": "training",
+      "chapter": "training-03",
+      "images": 24,
+      "bytes": 913715,
+      "sha256": "24090b24adc657d43a0bfc51bc917b2cf5d9ab5b40d0cd1276475bc05c4b3cb3"
+    },
+    "textbook-images/training/training-04-cbfc5f636c48.json": {
+      "book": "training",
+      "chapter": "training-04",
+      "images": 11,
+      "bytes": 453454,
+      "sha256": "cbfc5f636c487a28990a7edee512a4e8ca00e82849aa72fa3bca87ec815f696d"
+    },
+    "textbook-images/training/training-05-c456253b2deb.json": {
+      "book": "training",
+      "chapter": "training-05",
+      "images": 14,
+      "bytes": 605805,
+      "sha256": "c456253b2deb3a032d3a43f10786204cc9262d9cd03a80fbc51ba7ba1d9a5bbd"
+    },
+    "textbook-images/training/training-06-8fc68b78505f.json": {
+      "book": "training",
+      "chapter": "training-06",
+      "images": 9,
+      "bytes": 437632,
+      "sha256": "8fc68b78505feb56b72e839872a6213aa62fa289fc93884ea424aeaacf08ce3c"
+    },
+    "textbook-images/training/training-07-f919f82c0aeb.json": {
+      "book": "training",
+      "chapter": "training-07",
+      "images": 8,
+      "bytes": 395383,
+      "sha256": "f919f82c0aebf2a8391c2ed9cd3cb15b7f2a4a0ba0bbf23f4bf97dca28090602"
+    },
+    "textbook-images/training/training-08-ebbb55b97d9b.json": {
+      "book": "training",
+      "chapter": "training-08",
+      "images": 8,
+      "bytes": 340583,
+      "sha256": "ebbb55b97d9bbddb73af30763f14018400e4f78bf65716ba18331d3c6aa2b896"
+    }
+  }
+}

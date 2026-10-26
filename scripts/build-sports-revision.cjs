@@ -12,7 +12,8 @@ const html=fs.readFileSync(path.join(dist,'index.html'),'utf8');
 for(const [,src] of html.matchAll(/<script[^>]+src="([^"]+)"/g)){
  const name=src.split('?')[0];if(name.startsWith('bank-')&&name!=='bank-sports-revised.js')vm.runInContext(fs.readFileSync(path.join(dist,name),'utf8'),context);
 }
-const images=JSON.parse(fs.readFileSync(path.join(dist,'textbook-images.json'),'utf8')).images;
+const imageIndex=JSON.parse(fs.readFileSync(path.join(dist,'textbook-images.json'),'utf8'));
+const images=imageIndex.version===1?imageIndex.images:Object.assign({},...Object.keys(imageIndex.packs).map(file=>JSON.parse(fs.readFileSync(path.join(dist,file),'utf8')).images));
 const crypto=require('node:crypto');
 for(const [key,url] of Object.entries(images)){
  assert.match(key,/^[a-f0-9]{24}$/);assert.match(url,/^data:image\/webp;base64,[A-Za-z0-9+/=]+$/);

@@ -45,6 +45,21 @@
     var normalize=function(text){return text.normalize('NFKC').toLowerCase().replace(/[\s、，,；;]/g,'');};
     return !!normalize(input)&&normalize(input)===normalize(keyword);
   }
+  function canonicalHash(hash){
+    var parts=String(hash||'#overview').replace(/^#/,'').split('?'),route=parts[0],params=new URLSearchParams(parts[1]||'');
+    if(route==='materials'||route==='professional'){params.set('view',route==='materials'?'answers':'chapters');if(route==='professional'&&!params.has('type'))params.set('type','term');route='bank';}
+    if(route==='mistakes'||route==='favorites'){params.set('tab',route==='mistakes'?'pending':'favorites');route='revision';}
+    return '#'+(route||'overview')+(params.size?'?'+params.toString():'');
+  }
+  function cleanSettings(raw,exportedAt){
+    raw=raw&&typeof raw==='object'?raw:{};
+    var stamp=function(value){return Number.isSafeInteger(value)&&value>0?Math.min(value,Date.now()):0;};
+    return {school:'厦门大学',year:2027,paperScope:['topics','daily','all','past'].includes(raw.paperScope)?raw.paperScope:'topics',lastExportedAt:stamp(raw.lastExportedAt)||stamp(typeof exportedAt==='string'?Date.parse(exportedAt):0),backupStartedAt:stamp(raw.backupStartedAt),backupReminderDismissedAt:stamp(raw.backupReminderDismissedAt)};
+  }
+  function backupDue(settings,hasRecords,now){
+    var since=Math.max(settings.lastExportedAt||settings.backupStartedAt||0,settings.backupReminderDismissedAt||0);
+    return !!(hasRecords&&since&&now-since>=7*86400000);
+  }
   function nextRecall(prior,result,now){
     if(!RESULTS.includes(result)||!Number.isFinite(now)||now<0)throw new Error('回忆记录不合法');
     var streak=result==='independent'?Math.min(30,(prior&&prior.streak||0)+1):0;
@@ -70,5 +85,5 @@
     ['教材、整理答案说法不一致时怎么办？','先确认是不是同一版教材、同一个概念、同一种语境。名词解释优先核实教材定义，自己的说明另列。当前只有标为“原文已核对”的条目完成了逐页核查，其他整理答案还需核对。'],
     ['考过的知识点能确定不再考吗？','不能据此确定。按你的选择，日常练习可排除已匹配的原题及关联考点，也可切换为只排除原题；原题与关联理由保留在历年题页面。筛选帮助安排时间，不是对下一次命题的预测。部分年份未取得正文，当前也不能覆盖全部历史考点。']
   ];
-  return {RESULTS:RESULTS,cleanRecalls:cleanRecalls,cleanReaderDrafts:cleanReaderDrafts,keywordExercise:keywordExercise,matchesKeyword:matchesKeyword,nextRecall:nextRecall,paperIndex:paperIndex,allowPaper:allowPaper,highlightTerms:highlightTerms,FAQ:FAQ};
+  return {RESULTS:RESULTS,cleanRecalls:cleanRecalls,cleanReaderDrafts:cleanReaderDrafts,keywordExercise:keywordExercise,matchesKeyword:matchesKeyword,canonicalHash:canonicalHash,cleanSettings:cleanSettings,backupDue:backupDue,nextRecall:nextRecall,paperIndex:paperIndex,allowPaper:allowPaper,highlightTerms:highlightTerms,FAQ:FAQ};
 });

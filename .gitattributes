@@ -1,2 +1,5 @@
 * text=auto
 *.png binary
+dist/textbook-images.json text eol=lf
+dist/textbook-images/**/*.json text eol=lf
+content/textbook-image-sizes.json text eol=lf

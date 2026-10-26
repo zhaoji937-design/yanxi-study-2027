@@ -23,7 +23,7 @@ assert.equal(new Set(questions.map(q => q.id)).size, 610);
 const sports = questions.filter(q => q.subject === '346 体育综合');
 assert.equal(sports.length, 610);
 for (const q of sports) assert.ok(q.textbookRefs.length && q.textbookRefs.every(r => r.printedPages?.length), q.id + ' printed reference');
-const worker = vm.createContext({ URL, self: { location: { href: 'https://check.invalid/sw.js' }, addEventListener() {} } });
+const worker = vm.createContext({ URL, self: { location: { href: 'https://check.invalid/sw.js' }, addEventListener() {} },importScripts(file){vm.runInContext(fs.readFileSync(path.join(root,file.split('?')[0]),'utf8'),worker);} });
 vm.runInContext(fs.readFileSync(path.join(root, 'sw.js'), 'utf8'), worker);
 const shell = vm.runInContext('SHELL', worker);
 for (const value of shell) {
@@ -37,6 +37,7 @@ for (const value of urls) {
   assert.ok(cached.has(url.pathname + url.search), 'HTML asset is absent from offline shell: ' + value);
 }
 console.log(JSON.stringify({ result: 'passed', questions: questions.length, professional: sports.length, offlineResources: shell.length }));
+require('node:child_process').execFileSync(process.execPath,[path.join(__dirname,'split-textbook-images.cjs'),'--check'],{stdio:'inherit'});
 require('./check-words.cjs');
 require('./check-spelling.cjs');
 require('./check-study.cjs');

@@ -6,7 +6,9 @@
 
 v20 完成分阶段修改的第一阶段：书桌最上方显示“今日复习 N 题”，数量与到期回忆共用同一筛选，遵循当前题目范围；无到期题时可继续上次背题或从当前范围打开最多10道未看过的题。导航与统计说明“待复习”包含答错、手动标记与到期题，“到期回忆”仅含排程已到期的题。主观作答自评同时更新现有回忆排程，已掌握对应 independent、需复习对应 missing，保留原作答历史；保存失败会回滚这次的作答、回忆和练习状态。没有新增存储字段或键，完整备份仍为 version:1。第一阶段验证方法见 [第一阶段验收说明](PHASE1-REVIEW.md)。
 
-v21 完成第二阶段：背题页增加可选的“先写一写”，每题草稿上限40000字符，自动保存并可清除；展开答案时收起编辑框，将自己的作答放在参考答案上方对照。有关键词资料的题可切换填空，点击或输入揭晓，输入匹配只作提示，仍由四档自评记录回忆表现。新增 reading.drafts 与 reading.recallMode 已进入 sanitizeReading 恢复白名单；settings 无新字段，所有存储键及完整备份 version:1 保留。旧笔迹、旧备份与离线已回归检查。第三阶段等待使用者确认。详见 [第二阶段验收说明](PHASE2-REVIEW.md)。
+v21 完成第二阶段：背题页增加可选的“先写一写”，每题草稿上限40000字符，自动保存并可清除；展开答案时收起编辑框，将自己的作答放在参考答案上方对照。有关键词资料的题可切换填空，点击或输入揭晓，输入匹配只作提示，仍由四档自评记录回忆表现。新增 reading.drafts 与 reading.recallMode 已进入 sanitizeReading 恢复白名单；settings 无新字段，所有存储键及完整备份 version:1 保留。旧笔迹、旧备份与离线已回归检查。第三阶段现已按使用者确认实施。详见 [第二阶段验收说明](PHASE2-REVIEW.md)。
+
+v22 完成第三阶段：题库入口统一为列表、展开答案和按章节三个视图；复习页合并待复习与收藏。旧链接和旧备份 origin 继续可用，按题保存返回的列表范围。加入七天备份提醒与导出时间；清理闲置模拟/目标表单及主应用旧政治英语来源。353张教材定义原图拆为39个章节包，首次只加载40,565字节索引，按需下载、按书保存，顶部与设置显示保存状态；旧整包缓存自动迁移。所有存储键与 version:1 学习备份不变。详细变更、验证和每包大小见 [第三阶段验收说明](PHASE3-REVIEW.md)。
 
 2026-10-26 专业课界面改为奶油白、淡紫、浅绿的书桌风格。首页先显示三本教材，下方保留看题背答案与计时模拟，复习统计默认折叠；导航分为主要学习入口、我的复习和更多工具。`dist/cozy.css` 统一首页、知识树、答案阅读和模拟考试样式，长答案保留清晰正文与关键词强调。原有题库、知识点 ID、手写锚点与存储键未改动。
 
@@ -44,7 +46,7 @@ v19 为连续阅读增加大标题“收起／展开”和本节“全部收起�
 - 构建检查：`node scripts/check-site.cjs`。
 - 学习卡生成：`node scripts/build-study.cjs`，读取仓库内的 `content/verified-study-cards.json` 生成 `dist/bank-study.js`。
 - 全量修订生成：`node scripts/build-sports-revision.cjs`，读取 `content/sports-revised.json`，校验原文与来源的一致、关键词及全部定义原图引用和内容哈希，生成最终覆盖层 `dist/bank-sports-revised.js`。该覆盖层须在旧题库和学习卡之后加载。
-- 定义原图集合：`dist/textbook-images.json`，只包含定义区域与必要上下文，不发布整本PDF。原始扫描件及内部校对脚本不进入仓库。
+- 定义原图索引：`dist/textbook-images.json`（version:2），数据位于 `dist/textbook-images/<教材>/<章>-<内容指纹>.json`。只包含定义区域与必要上下文，不发布整本PDF。生成/核验：`node scripts/split-textbook-images.cjs [--check]`；每包大小见 `content/textbook-image-sizes.json`。原始扫描件及内部校对脚本不进入仓库。
 - 背诵与词辨逻辑检查：`node --test scripts/study.test.cjs scripts/sports-revision.test.cjs scripts/recall-answer.test.cjs scripts/words.test.cjs`。
 - Render服务类型：Static Site；Build Command：`node scripts/check-site.cjs`；Publish Directory：`dist`。
 - 常规题库与笔记不需要数据库、后台服务器或AI接口。模拟考试的在线自动评阅使用下述独立服务。

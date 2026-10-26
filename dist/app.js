@@ -2,6 +2,7 @@
   'use strict';
   var E = globalThis.QuizEngine;
   var K = globalThis.KnowledgeTree, I = globalThis.InkNotes, X = globalThis.MockExams;
+  var P = globalThis.TextbookImages;
   var T = globalThis.StudyTools, papers = globalThis.PAST_PAPERS || [], paperIndex = T.paperIndex(papers), conceptIndex=T.paperIndex(papers,true);
   var paperQuery = '', paperYear = '';
   var app = document.getElementById('app');
@@ -50,7 +51,6 @@
     calendar: '<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 11h18m-13 4h2m4 0h2"/>',
     clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v6l4 2"/>',
     leaf: '<path d="M20 3C8 3 3 7 5 14c1 5 8 7 12 3s3-10 3-14ZM5 20 17 8"/>',
-    english: '<path d="m4 20 7-16 7 16M7 14h8m1 3h5m-2-3v6"/>',
     sports: '<circle cx="14" cy="4" r="2"/><path d="m8 8 5-1 4 4h4m-8-4-3 7 5 3-2 5M10 14l-4 4H2"/>',
     download: '<path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/>',
     upload: '<path d="M12 16V4m-5 5 5-5 5 5M4 16v5h16v-5"/>',
@@ -80,12 +80,12 @@
   var progress = E.loadState(storage);
   var notes = sanitizeNotes(read(keys.notes, []));
   var settings = read(keys.settings, {});
-  settings = { goal: Math.max(1, Math.min(100, Number(settings.goal) || 10)), school: '厦门大学', year: 2027, paperScope: ['topics','daily','all','past'].includes(settings.paperScope) ? settings.paperScope : 'topics' };
+  settings = T.cleanSettings(settings);
   var session = restoreSession(read(keys.session, null));
   var reading = sanitizeReading(read(keys.reading, {}));
   var draftPanels={},draftSaveFailed=false,keywordState={id:'',revealed:{},inputs:{},feedback:{}};
-  var route = 'overview', materialsTab = 'notes', filter = { search: '', subject: '', topic: '', type: '', difficulty: '', status: '' }, page = 1, mobileOpen = false;
-  var titles = { exam:'模拟考试', knowledge: '教材知识树', overview: '学习概览', bank: '我的题库', professional: '专业课总复习', mistakes: '待复习', favorites: '我的收藏', materials: '题目与答案', settings: '备份与设置', practice: '作答练习', summary: '练习回顾', review: '快速背题', notes: '个人笔记', study: '怎么背与怎么答', papers: '历年题与来源' };
+  var route = 'overview', bankMode='list', revisionTab='pending', materialsTab = 'notes', filter = { search: '', subject: '', topic: '', type: '', difficulty: '', status: '' }, page = 1, mobileOpen = false;
+  var titles = { exam:'模拟考试', knowledge: '教材知识树', overview: '学习概览', bank: '题库', revision:'复习', professional: '题库', mistakes: '复习', favorites: '复习', materials: '题库', settings: '备份与设置', practice: '作答练习', summary: '练习回顾', review: '快速背题', notes: '个人笔记', study: '怎么背与怎么答', papers: '历年题与来源' };
   var sportsCatalog = globalThis.SPORTS_CATALOG || [];
   function sanitizeNotes(raw) {
     if (!Array.isArray(raw)) return [];
@@ -122,9 +122,9 @@
       return T.allowPaper(q,f.paperScope||settings.paperScope,paperIndex,conceptIndex) && (!f.subject || f.subject==='346 体育综合'||q.subject === f.subject||bookTitle(q)===f.subject) && (!f.topic || q.topic === f.topic) && (!f.book || q.bookKey===f.book) && (!f.chapter || q.chapterId===f.chapter) && (!f.section || q.sectionId===f.section) && typeMatches(q, f.type) && (!f.difficulty || String(q.difficulty) === f.difficulty) &&
         statusMatches(q, f.status) && (!f.search || [q.prompt, q.topic, q.subject].concat(q.tags, q.promptVariants || [], q.headingPath || [], q.answer).join(' ').toLowerCase().includes(f.search.toLowerCase()));
     });
-    if (activeRoute === 'mistakes') list = list.filter(needsReview);
-    if (activeRoute === 'favorites') list = list.filter(function (q) { return record(q.id) && record(q.id).favorite; });
-    if(activeRoute==='professional')list.sort(function(a,b){
+    if (activeRoute === 'mistakes'||activeRoute==='revision'&&revisionTab==='pending') list = list.filter(needsReview);
+    if (activeRoute === 'favorites'||activeRoute==='revision'&&revisionTab==='favorites') list = list.filter(function (q) { return record(q.id) && record(q.id).favorite; });
+    if(activeRoute==='professional'||activeRoute==='bank'&&bankMode==='chapters')list.sort(function(a,b){
       var order={school:0,physiology:1,training:2};
       return (order[a.bookKey]??3)-(order[b.bookKey]??3)||String(a.chapterId||'').localeCompare(b.chapterId||'')||String(a.sectionId||'').localeCompare(b.sectionId||'')||(a.textbookRefs?.[0]?.printedPages?.[0]||0)-(b.textbookRefs?.[0]?.printedPages?.[0]||0)||a.prompt.localeCompare(b.prompt,'zh-CN');
     });
@@ -133,10 +133,9 @@
   function navItem(id, ico, label, count, note) { return '<button type="button" data-action="navigate" data-route="' + id + '" class="' + ((route === id || (id === 'bank' && ['practice','summary','review'].includes(route))) ? 'active' : '') + '"' + (route === id ? ' aria-current="page"' : '') + '>' + icon(ico) + '<span class="nav-copy">' + esc(label) + (note ? '<small>' + esc(note) + '</small>' : '') + '</span>' + (count ? '<span class="count">' + count + '</span>' : '') + '</button>'; }
   function shell(content) {
     var count = questions.filter(function(q){return T.allowPaper(q,settings.paperScope,paperIndex,conceptIndex)&&needsReview(q);}).length;
-    var moreOpen=['bank','materials','study','papers','notes','settings','practice','summary','review'].includes(route);
-    var recallNav = '<button type="button" data-action="recall-due">' + icon('clock') + '<span class="nav-copy">' + esc('到期回忆') + '<small>' + esc('仅含按回忆排程已到期的题。') + '</small></span><span class="count">' + esc(dueQuestions().length) + '</span></button>';
-    var navigation = navItem('overview','grid','我的书桌') + navItem('knowledge','stack','教材知识树') + navItem('professional','book','按章节背题') + navItem('exam','clock','模拟考试') + '<div class="nav-divider">我的复习</div>' + navItem('mistakes','error','待复习',count,'含答错、标记需复习与到期题。') + recallNav + navItem('favorites','star','我的收藏') + '<details class="nav-more"'+(moreOpen?' open':'')+'><summary>更多工具</summary><div class="nav">'+navItem('materials','book','题目与答案') + navItem('bank','stack','我的题库') + navItem('study','check','怎么背与怎么答') + navItem('papers','book','历年题与来源') + navItem('notes','book','个人笔记') + navItem('settings','settings','备份与设置')+'</div></details>';
-    return '<div class="shell'+(mobileOpen?' nav-open':'')+'" data-page="'+esc(route)+'"><aside id="main-navigation" class="sidebar' + (mobileOpen ? ' mobile-open' : '') + '" aria-label="主导航" '+(mobileOpen?'':'inert aria-hidden="true"')+'><div class="brand">' + icon('book') + '<strong>研习</strong><button type="button" class="nav-close" data-action="menu" aria-label="收起主导航">×</button></div><nav class="nav">' + navigation + '</nav><div class="sidebar-bottom"><div class="local-label">慢慢学，也在向前。</div></div></aside><div class="overlay' + (mobileOpen ? ' open' : '') + '" data-action="menu"></div><div class="workspace"><header class="topbar"><button class="mobile-menu" data-action="menu" aria-label="打开或关闭导航" aria-controls="main-navigation" aria-expanded="'+mobileOpen+'">' + icon('menu') + '</button><button class="top-brand" data-action="navigate" data-route="overview" aria-label="研习，返回我的书桌">'+icon('book')+'<span>研习</span></button><span class="top-location">' + (route==='overview'?'我的书桌':titles[route]) + '</span><span class="top-context">厦大 · 2027</span></header>' + (!storageOK ? '<div class="storage-banner">当前浏览器无法保存记录，请及时导出备份。</div>' : '') + '<main id="main" tabindex="-1">' + (bankError ? '<div class="error-banner">' + esc(bankError) + '</div>' : '') + content + '</main></div></div>';
+    var moreOpen=['study','papers','notes','settings'].includes(route);
+    var navigation=navItem('overview','grid','我的书桌')+navItem('knowledge','stack','教材知识树')+navItem('bank','book','题库')+navItem('exam','clock','模拟考试')+navItem('revision','error','复习',count,'待复习含答错、标记需复习和到期题；到期回忆只含排程到期题。')+'<details class="nav-more"'+(moreOpen?' open':'')+'><summary>'+esc('更多')+'</summary><div class="nav">'+navItem('study','check','怎么背与怎么答')+navItem('papers','book','历年题与来源')+navItem('notes','book','个人笔记')+navItem('settings','settings','备份与设置')+'</div></details>';
+    return '<div class="shell'+(mobileOpen?' nav-open':'')+'" data-page="'+esc(route)+'"><aside id="main-navigation" class="sidebar' + (mobileOpen ? ' mobile-open' : '') + '" aria-label="主导航" '+(mobileOpen?'':'inert aria-hidden="true"')+'><div class="brand">' + icon('book') + '<strong>研习</strong><button type="button" class="nav-close" data-action="menu" aria-label="收起主导航">×</button></div><nav class="nav">' + navigation + '</nav><div class="sidebar-bottom"><div class="local-label">慢慢学，也在向前。</div></div></aside><div class="overlay' + (mobileOpen ? ' open' : '') + '" data-action="menu"></div><div class="workspace"><header class="topbar"><button class="mobile-menu" data-action="menu" aria-label="打开或关闭导航" aria-controls="main-navigation" aria-expanded="'+mobileOpen+'">' + icon('menu') + '</button><button class="top-brand" data-action="navigate" data-route="overview" aria-label="研习，返回我的书桌">'+icon('book')+'<span>研习</span></button><span class="top-location">' + esc(route==='overview'?'我的书桌':titles[route]) + '</span><span class="top-context">厦大 · 2027</span><button type="button" class="offline-summary" id="offline-summary" data-action="offline-settings" aria-label="'+esc('查看离线保存状态')+'">'+esc('离线准备中')+'</button></header>' + (!storageOK ? '<div class="storage-banner">当前浏览器无法保存记录，请及时导出备份。</div>' : '') + '<main id="main" tabindex="-1">' + (bankError ? '<div class="error-banner">' + esc(bankError) + '</div>' : '') + content + '</main></div></div>';
   }
   function heading(title, subtitle, actions) { return '<div class="page-heading"><div><h1>' + title + '</h1><p>' + subtitle + '</p></div>' + (actions || '') + '</div>'; }
   function render() {
@@ -144,7 +143,7 @@
     clearInterval(timerId);
     if (route === 'practice' && !session) route = 'bank';
     if (route === 'summary' && !session) route = 'overview';
-    var views = { exam:function(){return X.render(questions);}, overview: overview, bank: bankView, professional: professionalView, knowledge: knowledgeView, mistakes: bankView, favorites: bankView, materials: materialsView, settings: settingsView, practice: practiceView, summary: summaryView, review: readerView, notes: legacyMaterialsView, study: studyView, papers: papersView };
+    var views = { exam:function(){return X.render(questions);}, overview: overview, bank: bankView, revision: revisionView, knowledge: knowledgeView, settings: settingsView, practice: practiceView, summary: summaryView, review: readerView, notes: notesView, study: studyView, papers: papersView };
     app.innerHTML = shell((views[route] || overview)());
     if(route==='knowledge')K.mount();
     if(route==='exam')X.mount();
@@ -153,34 +152,52 @@
     if (route === 'practice') { updateElapsed(); timerId = setInterval(updateElapsed, 1000); }
   }
   function knowledgeView(){return K.render(questions,compactAnswer,mountSourceImages);}
-  function readRoute() {
-    var parts = location.hash.slice(1).split('?');
-    route = Object.prototype.hasOwnProperty.call(titles, parts[0]) ? parts[0] : 'overview';
-    var params = new URLSearchParams(parts[1] || '');
-    if (params.has('subject') || params.has('status')) filter = { search: '', subject: params.get('subject') || '', topic: '', type: '', difficulty: '', status: params.get('status') || '' };
-    if(route==='professional'){
-      var book=sportsCatalog.find(function(b){return b.key===params.get('book');}), chapters=(book?[book]:sportsCatalog).flatMap(function(b){return b.chapters;}), chapter=chapters.find(function(c){return c.id===params.get('chapter');});
-      var section=chapter&&chapter.sections.find(function(s){return s.id===params.get('section');});
-      filter={subject:'346 体育综合',topic:'',difficulty:'',status:'',search:params.get('search')||'',type:['term','short','essay'].includes(params.get('type'))?params.get('type'):'term',book:book?book.key:'',chapter:chapter?chapter.id:'',section:section?section.id:''};
-    }
-    if(['bank','materials','mistakes','favorites'].includes(route)){if(params.has('book')){filter.book=subjects.some(function(b){return b.key===params.get('book');})?params.get('book'):'';filter.topic='';}delete filter.chapter;delete filter.section;if(['政治','英语（二）'].includes(filter.subject))filter.subject='';}
-    if (route === 'review' && params.has('id')) { var ri = reading.ids.indexOf(params.get('id')); if (ri >= 0) reading.index = ri; else if (qById(params.get('id'))) { reading.ids = [params.get('id')]; reading.index = 0; reading.shown = false; reading.variant = 0; } }
-    mobileOpen = false; page = 1; render();
+  function bankHash(criteria,view){
+    var params=new URLSearchParams();params.set('view',view||'list');['book','chapter','section','type','search','topic','difficulty','status','subject','paperScope'].forEach(function(key){if(criteria[key])params.set(key,criteria[key]);});return '#bank?'+params.toString();
   }
-  function navigate(next, subject) {
-    if (subject != null) { filter = { search: '', subject: subject, topic: '', type: '', difficulty: '', status: '' }; }
-    var parts = [];
-    if (subject) parts.push('subject=' + encodeURIComponent(subject));
-    if (next === 'bank' && filter.status) parts.push('status=' + encodeURIComponent(filter.status));
-    var hash = '#' + next + (parts.length ? '?' + parts.join('&') : '');
-    if (location.hash === hash) { mobileOpen=false;route = next; render(); } else location.hash = hash;
-    window.scrollTo(0, 0);
+  function revisionHash(criteria,tab){var params=new URLSearchParams(bankHash(criteria,'list').split('?')[1]);params.delete('view');params.set('tab',tab||'pending');return '#revision?'+params.toString();}
+  function currentListHash(){return route==='revision'?revisionHash(filter,revisionTab):bankHash(filter,bankMode);}
+  function updateListRoute(){var hash=currentListHash();if(location.hash===hash)readRoute();else location.hash=hash;}
+  function readRoute(){
+    var canonical=T.canonicalHash(location.hash);if(canonical!==location.hash)history.replaceState(null,'',canonical);
+    var parts=canonical.slice(1).split('?'),params=new URLSearchParams(parts[1]||'');route=Object.prototype.hasOwnProperty.call(titles,parts[0])?parts[0]:'overview';
+    if(route==='bank'||route==='revision'){
+      var nextMode=['list','answers','chapters'].includes(params.get('view'))?params.get('view'):'list';if(route==='bank'&&nextMode!==bankMode){libraryExpanded=nextMode==='answers';libraryOpenIds.clear();}bankMode=nextMode;
+      if(route==='bank'&&bankMode==='answers'&&!params.has('view'))libraryExpanded=true;
+      revisionTab=params.get('tab')==='favorites'?'favorites':'pending';filter={};['book','chapter','section','type','search','topic','difficulty','status','subject','paperScope'].forEach(function(key){filter[key]=params.get(key)||'';});
+      if(!subjects.some(function(b){return b.key===filter.book;}))filter.book='';
+      if(!['','346 体育综合'].concat(subjectNames()).includes(filter.subject))filter.subject='';
+      if(!['','topics','daily','all','past'].includes(filter.paperScope))filter.paperScope='';
+      var chapters=(filter.book?sportsCatalog.filter(function(b){return b.key===filter.book;}):sportsCatalog).flatMap(function(b){return b.chapters;}),chapter=chapters.find(function(c){return c.id===filter.chapter;});
+      if(!chapter)filter.chapter='';if(!chapter||!chapter.sections.some(function(section){return section.id===filter.section;}))filter.section='';
+      if(route==='bank'&&bankMode==='chapters'&&!['term','short','essay'].includes(filter.type))filter.type='term';
+    }
+    if(route==='review'&&params.has('id')){var ri=reading.ids.indexOf(params.get('id'));if(ri>=0)reading.index=ri;else if(qById(params.get('id'))){reading.ids=[params.get('id')];reading.index=0;reading.shown=false;reading.variant=0;}}
+    mobileOpen=false;page=1;render();
+  }
+  function navigate(next,subject){
+    if(subject!=null)filter={search:'',subject:subject,topic:'',type:'',difficulty:'',status:''};
+    var hash=next==='bank'?bankHash(filter,bankMode):next==='revision'?revisionHash(filter,revisionTab):'#'+next;
+    if(!['bank','revision'].includes(next)&&subject)hash+='?subject='+encodeURIComponent(subject);
+    hash=T.canonicalHash(hash);if(location.hash===hash)readRoute();else location.hash=hash;window.scrollTo(0,0);
   }
   function empty(ico, title, text, actions) { return '<div class="empty-state">' + icon(ico) + '<h3>' + title + '</h3><p>' + text + '</p>' + (actions || '') + '</div>'; }
   function stat(label, value, suffix, note, ico, destination, status, scope) { return '<button type="button" class="stat" data-action="open-stat" data-route="' + destination + '" data-status="' + (status || '') + '" data-paper-scope="'+(scope||'')+'"><span class="stat-label">' + label + icon(ico) + '</span><span class="stat-number">' + value + '<small>' + suffix + '</small></span><span class="stat-note">' + note + ' →</span></button>'; }
+  function learningInfo(){
+    var ink=I.exportData(),exams=X.exportData(),has=!!(Object.keys(progress.records).length||progress.history.length||reading.viewed.length||Object.keys(reading.marks).length||Object.keys(reading.recalls).length||Object.keys(reading.drafts).length||notes.length||I.count(ink)||exams.records.length||session&&Object.keys(session.entries).length);
+    var times=progress.history.map(function(entry){return Date.parse(entry.answeredAt);}).concat(Object.values(reading.recalls).map(function(record){return record.updated;}),notes.map(function(note){return Date.parse(note.createdAt);}));
+    Object.values(ink.blocks).forEach(function(block){block.strokes.forEach(function(stroke){times.push(stroke.at);});});
+    var valid=times.filter(function(time){return Number.isFinite(time)&&time>0&&time<=Date.now();});
+    return {has:has,since:valid.length?Math.min.apply(null,valid):Date.now()};
+  }
+  function backupReminder(){
+    var info=learningInfo();if(info.has&&!settings.backupStartedAt){var next=Object.assign({},settings,{backupStartedAt:info.since});if(write(keys.settings,next))settings=next;}
+    if(!T.backupDue(settings,info.has,Date.now()))return '';
+    return '<aside class="backup-reminder" aria-label="'+esc('备份提醒')+'"><span>'+esc('学习记录已有一段时间没备份了，记得留一份。')+'</span>'+button(esc('导出完整备份'),'export-backup','secondary small')+button(esc('关闭'),'dismiss-backup','ghost small')+'</aside>';
+  }
   function overview() {
     var available=questions.filter(function(q){return T.allowPaper(q,settings.paperScope,paperIndex,conceptIndex);});
-    var due=dueQuestions().length;
+    var due=dueQuestions().length,reminder=backupReminder();
     var daily='<section class="desk-daily" aria-label="'+esc('今日复习')+'">'+(due ? button(esc('今日复习 '+due+' 题')+' '+icon('arrow'),'recall-due','desk-due-button')+'<p>'+esc('只复习已到期的回忆题，遵循设置中的题目范围。')+'</p>' : '<p class="desk-daily-title">'+esc('今天没有到期的题')+'</p><div class="btn-row">'+button(esc('继续上次背题'),'resume-reading','',reading.ids.length?'':'disabled aria-describedby="desk-resume-note"')+button(esc('背几道没看过的题'),'read-unseen','secondary')+'</div>'+(!reading.ids.length?'<p id="desk-resume-note">'+esc('还没有背题进度，可以先背几道没看过的题。')+'</p>':''))+'</section>';
     var viewed = available.filter(function(q){ return isViewed(q); }).length;
     var favorites = available.filter(function(q){ var r=record(q.id); return r && r.favorite; }).length;
@@ -191,7 +208,7 @@
     }).join('');
     var mascot='<svg class="desk-mascot" viewBox="0 0 180 130" fill="none" aria-hidden="true"><ellipse cx="92" cy="116" rx="65" ry="7" fill="#eae3db"/><path d="M50 74 48 26q0-9 8-3l20 15q17-7 34 0l20-15q8-6 7 4l-2 48" fill="#f2e7da" stroke="#716258" stroke-width="2.5" stroke-linejoin="round"/><path d="M48 68q-1-32 44-32t45 32v24q0 23-43 23T49 92Z" fill="#f2e7da" stroke="#716258" stroke-width="2.5"/><path d="m56 33 12 9-11 8m71-17-12 9 11 8" fill="#e6b6aa"/><path d="M68 66q5-5 10 0m29 0q5-5 10 0m-28 7h6l-3 3-3-3m3 3v4m0-1q-5 5-9 0m9 0q5 5 9 0" stroke="#716258" stroke-width="2.3" stroke-linecap="round"/><ellipse cx="66" cy="77" rx="7" ry="4" fill="#e9b8ab"/><ellipse cx="119" cy="77" rx="7" ry="4" fill="#e9b8ab"/><path d="m39 86 52 8 53-8v30l-52 8-53-8Z" fill="#d8cbe8" stroke="#7e6a91" stroke-width="2.3" stroke-linejoin="round"/><path d="M91 95v28m-42-28 30 5m-30 4 30 5m54-14-30 5m30 4-30 5" stroke="#9d88b0" stroke-width="2" stroke-linecap="round"/><path d="M44 89q13-1 13 8t-13 7m95-15q-13-1-13 8t13 7" fill="#f2e7da" stroke="#716258" stroke-width="2.3"/><path d="m154 41 2-7 3 7 7 2-7 3-3 7-2-7-7-3Z" fill="#c1b0d7"/><path d="m25 63 2-4 2 4 5 2-5 2-2 4-2-4-5-2Z" fill="#bdcbb4"/></svg>';
     var resume=due&&reading.ids.length?'<div class="desk-resume">'+icon('book')+'<span>接着上次的地方，慢慢来。</span>'+button('继续背题 '+icon('arrow'),'resume-reading','small')+'</div>':'';
-    return '<div class="desk">'+daily+'<div class="desk-heading">'+heading('今天看哪一本', '读懂一个考点，再记住一道题。', '')+mascot+'</div>'+resume+'<section class="subjects" aria-label="我的三本教材">'+cards+'</section><section class="desk-shortcuts" aria-label="学习方式"><button type="button" class="desk-shortcut" data-action="goto-materials"><span class="shortcut-icon">'+icon('book')+'</span><span><strong>看题背答案</strong><small>先回忆，再展开核对</small></span>'+icon('arrow')+'</button><a class="desk-shortcut" href="#exam?mode=mixed"><span class="shortcut-icon peach">'+icon('clock')+'</span><span><strong>计时模拟</strong><small>三本综合 / 单本专练</small></span>'+icon('arrow')+'</a></section><details class="desk-progress"><summary><span>我的复习</span><span class="desk-progress-hint">学习记录与收藏</span></summary><section class="stats-grid" aria-label="学习入口">'+stat('题库总量',questions.length,'题','查看全部题目','stack','bank','','all')+stat('已浏览',viewed,'题','回看浏览过的题','check','bank','seen')+stat('待复习',available.filter(needsReview).length,'题',esc('含答错、标记需复习与到期题'),'error','mistakes','')+stat('我的收藏',favorites,'题','打开收藏题目','star','favorites','')+'</section><p class="desk-review-help">'+esc('到期回忆：仅含按回忆排程已到期的题，与上方“今日复习”使用同一题目范围。')+'</p></details>'+(session&&!session.completed?'<div class="desk-resume"><span>还有一组未结束的作答练习。</span>'+button('继续作答','resume','secondary small')+'</div>':'')+'<p class="desk-footnote">只管专心学，其余的慢慢来。</p></div>';
+    return '<div class="desk">'+daily+reminder+'<div class="desk-heading">'+heading('今天看哪一本', '读懂一个考点，再记住一道题。', '')+mascot+'</div>'+resume+'<section class="subjects" aria-label="我的三本教材">'+cards+'</section><section class="desk-shortcuts" aria-label="学习方式"><button type="button" class="desk-shortcut" data-action="goto-materials"><span class="shortcut-icon">'+icon('book')+'</span><span><strong>看题背答案</strong><small>先回忆，再展开核对</small></span>'+icon('arrow')+'</button><a class="desk-shortcut" href="#exam?mode=mixed"><span class="shortcut-icon peach">'+icon('clock')+'</span><span><strong>计时模拟</strong><small>三本综合 / 单本专练</small></span>'+icon('arrow')+'</a></section><details class="desk-progress"><summary><span>我的复习</span><span class="desk-progress-hint">学习记录与收藏</span></summary><section class="stats-grid" aria-label="学习入口">'+stat('题库总量',questions.length,'题','查看全部题目','stack','bank','','all')+stat('已浏览',viewed,'题','回看浏览过的题','check','bank','seen')+stat('待复习',available.filter(needsReview).length,'题',esc('含答错、标记需复习与到期题'),'error','mistakes','')+stat('我的收藏',favorites,'题','打开收藏题目','star','favorites','')+'</section><p class="desk-review-help">'+esc('到期回忆：仅含按回忆排程已到期的题，与上方“今日复习”使用同一题目范围。')+'</p></details>'+(session&&!session.completed?'<div class="desk-resume"><span>还有一组未结束的作答练习。</span>'+button('继续作答','resume','secondary small')+'</div>':'')+'<p class="desk-footnote">只管专心学，其余的慢慢来。</p></div>';
   }
   function filtersHTML() {
     var topics=Array.from(new Set(questions.filter(function(q){return !filter.book || q.bookKey===filter.book;}).map(function(q){return q.topic;})));
@@ -208,21 +225,21 @@
   }
   function bankResults() {
     var list = filtered(), limit = 10, pages = Math.max(1, Math.ceil(list.length / limit)); page = Math.min(page, pages);
-    var content = list.slice((page - 1) * limit, page * limit).map(function (q, i) { return ['materials','professional'].includes(route) ? libraryRow(q, (page - 1) * limit + i) : row(q, (page - 1) * limit + i); }).join('');
+    var content = list.slice((page - 1) * limit, page * limit).map(function (q, i) { return route==='bank'&&bankMode!=='list' ? libraryRow(q, (page - 1) * limit + i) : row(q, (page - 1) * limit + i); }).join('');
     if (!list.length) {
       var isFiltered = Object.values(filter).some(Boolean);
-      content = empty(route === 'favorites' ? 'star' : 'leaf', isFiltered ? '没有找到符合条件的题目' : route === 'mistakes' ? '暂时没有需要复习的题目' : route === 'favorites' ? '把值得再看的题，留在这里' : '准备你的第一份题库', isFiltered ? '试试更换关键词，或清除筛选条件。' : route === 'mistakes' ? '答错的客观题和自评需复习的主观题，会自动整理到这里。' : route === 'favorites' ? '练习时点击星标，就能随时回来巩固。' : '可以导入题库，或提供学习资料让助手编写模拟题。', button(isFiltered ? '清除筛选' : '去题库看看', isFiltered ? 'clear-filters' : 'goto-bank', 'secondary small'));
+      content = empty(route === 'revision'&&revisionTab==='favorites' ? 'star' : 'leaf', isFiltered ? '没有找到符合条件的题目' : route === 'revision'&&revisionTab==='pending' ? '暂时没有需要复习的题目' : route === 'revision'&&revisionTab==='favorites' ? '把值得再看的题，留在这里' : '准备你的第一份题库', isFiltered ? '试试更换关键词，或清除筛选条件。' : route === 'revision'&&revisionTab==='pending' ? '答错的客观题和自评需复习的主观题，会自动整理到这里。' : route === 'revision'&&revisionTab==='favorites' ? '练习时点击星标，就能随时回来巩固。' : '可以导入题库，或提供学习资料让助手编写模拟题。', button(isFiltered ? '清除筛选' : '去题库看看', isFiltered ? 'clear-filters' : 'goto-bank', 'secondary small'));
     }
     return '<div class="list-meta"><span>共 ' + list.length + ' 道题目</span><span>' + ((filter.paperScope||settings.paperScope)==='daily'?'已排除匹配到的历年原题':(filter.paperScope||settings.paperScope)==='topics'?'已排除匹配到的原题与关联考点':'题目来源与原文核对状态见题后') + '</span></div><div class="question-list">' + content + '</div>' +
       (pages > 1 ? '<div class="pagination">' + button('上一页', 'prev-page', 'secondary small', page === 1 ? 'disabled' : '') + '<span>' + page + ' / ' + pages + '</span>' + button('下一页', 'next-page', 'secondary small', page === pages ? 'disabled' : '') + '</div>' : '');
   }
-  function bankView() {
-    var descriptions={bank:'先看题，在脑海回忆，再展开答案。',mistakes:'作答错题和背题时标记需复习的题，都在这里。',favorites:'收藏需要反复看的题目。'};
-    return heading(titles[route],descriptions[route],button('背当前范围','read-filtered','')) + (route==='bank'&&(!filter.subject||filter.subject==='346 体育综合')?professionalLinks():'') + paperScopeHTML() + filtersHTML() + '<div id="bank-results">' + bankResults() + '</div><div class="quiet-tools">' + button('需要书写或判分时，进入作答练习','start-filtered','ghost small') + '</div>';
+  function bankView(){
+    var tabs='<div class="list-view-tabs" role="group" aria-label="'+esc('题库视图')+'">'+[['list','列表'],['answers','展开答案'],['chapters','按章节']].map(function(view){return button(esc(view[1]),'bank-view',bankMode===view[0]?'':'secondary','data-view="'+view[0]+'" aria-pressed="'+(bankMode===view[0])+'"');}).join('')+'</div>';
+    return heading(esc('题库'),esc('选好范围，按自己的方式看题与背题。'),button(esc('背当前范围'),'read-filtered',''))+tabs+(bankMode==='chapters'?chapterBankContent():paperScopeHTML()+filtersHTML()+(bankMode==='answers'?'<div class="quiet-tools">'+button(esc(libraryExpanded?'收起本页答案':'展开本页答案'),'library-toggle','secondary small')+'</div>':'')+'<div id="bank-results">'+bankResults()+'</div>')+'<div class="quiet-tools">'+button(esc('作答练习'),'start-filtered','ghost small')+'</div>';
   }
-  function mockPanel() {
-    if (route !== 'bank' || filter.subject && filter.subject !== '346 体育综合') return '';
-    return '<section class="mock-panel"><div><span class="pill gold">教材模拟 · 第一组</span><h3>按专业课三种题型，完整练一组</h3><p>学校体育学、运动训练学、运动生理学各 5 道名词解释、3 道简答、1 道论述。共 27 题，参考你提供的题量模式，不设官方分值。</p></div>' + button('开始专业课整组 ' + icon('arrow'), 'mock-modal', 'small') + '</section>';
+  function revisionView(){
+    var tabs='<div class="list-view-tabs" role="group" aria-label="'+esc('复习分类')+'">'+[['pending','待复习'],['favorites','收藏']].map(function(tab){return button(esc(tab[1]),'revision-tab',revisionTab===tab[0]?'':'secondary','data-tab="'+tab[0]+'" aria-pressed="'+(revisionTab===tab[0])+'"');}).join('')+'</div>';
+    return heading(esc('复习'),esc('待复习包含答错、标记需复习与到期题；到期回忆只包含排程已到期的题。'),button(esc('到期回忆 '+dueQuestions().length+' 题'),'recall-due','secondary'))+tabs+paperScopeHTML()+filtersHTML()+'<div class="btn-row">'+button(esc('背当前范围'),'read-filtered','')+'</div><div id="bank-results">'+bankResults()+'</div>';
   }
   function typeOptions(current) {
     return '<option value="">全部题型</option>' + ['term','short','essay','single','multiple','judgment','free'].map(function (value) { return '<option value="' + value + '"' + (value === current ? ' selected' : '') + '>' + typeName({ type: value }) + '</option>'; }).join('');
@@ -243,14 +260,11 @@
     if(q.commonMistakes && q.commonMistakes.length)html+='<details class="answer-more"><summary>易错提醒</summary><ul class="answer-list">'+q.commonMistakes.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul></details>';
     return html+printedRef(q);
   }
-  var textbookImageData=null,textbookImageRequest=null;
   function mountSourceImages(){
-    var nodes=document.querySelectorAll('img[data-source-key]');if(!nodes.length)return;
-    if(!textbookImageData){
-      if(!textbookImageRequest)textbookImageRequest=fetch('textbook-images.json').then(function(response){if(!response.ok)throw Error('原图暂未载入');return response.json();}).then(function(raw){textbookImageData=raw.images||{};mountSourceImages();}).catch(function(){textbookImageRequest=null;document.querySelectorAll('.source-image-state').forEach(function(el){el.textContent='原图暂未载入，可展开文字或联网后重试。';});});
-      return;
-    }
-    nodes.forEach(function(img){var src=textbookImageData[img.dataset.sourceKey];if(typeof src==='string'&&/^data:image\/webp;base64,[A-Za-z0-9+/=]+$/.test(src)){img.src=src;img.hidden=false;var label=img.parentElement.querySelector('.source-image-state');if(label)label.hidden=true;}});
+    var nodes=Array.from(document.querySelectorAll('img[data-source-key]')).filter(function(img){return img.parentElement.getClientRects().length;});if(!nodes.length)return;
+    function paint(){nodes.forEach(function(img){var src=P.get(img.dataset.sourceKey);if(src){img.src=src;img.hidden=false;var label=img.parentElement.querySelector('.source-image-state');if(label)label.hidden=true;}});}
+    paint();var missing=nodes.filter(function(img){return !P.get(img.dataset.sourceKey);});if(!missing.length)return;
+    P.load(missing.map(function(img){return img.dataset.sourceKey;})).then(paint).catch(function(){paint();missing.forEach(function(img){if(P.get(img.dataset.sourceKey))return;var label=img.parentElement.querySelector('.source-image-state');if(label)label.textContent='原图尚未保存，请联网重试或先保存本书原图。';});});
   }
   function sourceImages(q){
     var images=q.textbookRevision&&q.textbookRevision.images;if(!images||!images.length)return '';
@@ -317,18 +331,18 @@
   function openDue(){
     var ids=dueQuestions().map(function(q){return q.id;});
     if(!ids.length){toast('当前题目范围暂无到期回忆题；可继续看待复习或调整题目范围。');return;}
-    reading.ids=ids;reading.index=0;reading.shown=false;reading.variant=0;reading.origin='study';saveReading();readerRoute();
+    reading.ids=ids;reading.index=0;reading.shown=false;reading.variant=0;reading.origin='study';delete reading.listHash;saveReading();readerRoute();
   }
   function openUnseen(){
     var ids=questions.filter(function(q){return T.allowPaper(q,settings.paperScope,paperIndex,conceptIndex)&&!isViewed(q);}).slice(0,10).map(function(q){return q.id;});
     if(!ids.length){toast('当前题目范围的题目都已看过，可以继续上次背题或调整题目范围。');return;}
     var next=JSON.parse(JSON.stringify(reading));
-    next.ids=ids;next.index=0;next.shown=false;next.variant=0;next.origin='bank';next.ratingLock='';delete next.scope;delete next.knowledgeHash;
+    next.ids=ids;next.index=0;next.shown=false;next.variant=0;next.origin='bank';next.ratingLock='';delete next.listHash;delete next.scope;delete next.knowledgeHash;
     if(!write(keys.reading,next))return;reading=next;draftSaveFailed=false;readerRoute();
   }
   function openStudyExamples(){
     reading.ids=questions.filter(function(q){return q.studyGuide;}).map(function(q){return q.id;});if(!reading.ids.length)return;
-    reading.index=0;reading.shown=false;reading.variant=0;reading.origin='study';saveReading();readerRoute();toast('打开已核对的历年题示例，日常排除设置保持。');
+    reading.index=0;reading.shown=false;reading.variant=0;reading.origin='study';delete reading.listHash;saveReading();readerRoute();toast('打开已核对的历年题示例，日常排除设置保持。');
   }
   function studyView(){
     var due=dueQuestions().length;
@@ -351,7 +365,7 @@
     var isSubset = useFiltered === true;
     var selected = isSubset ? filter.book||'' : subjects.find(function(b){return b.key===subject||b.name===subject;})?.key||'';
     var topics = Array.from(new Set(questions.filter(function (q) { return !selected || q.bookKey === selected; }).map(function (q) { return q.topic; })));
-    showModal('开始一组练习', '按自己的节奏，一次练会几个知识点。', '<form id="start-form"><input type="hidden" name="subset" value="' + isSubset + '"><div class="form-grid"><label class="field"><span>练习教材</span><select name="book" id="start-book">' + bookOptions(selected) + '</select></label><label class="field"><span>练习章节</span><select name="topic" id="start-topic">' + opts(topics, isSubset ? filter.topic : '', '全部章节') + '</select></label><label class="field"><span>练习题型</span><select name="type">' + typeOptions(isSubset ? filter.type : '') + '</select></label><label class="field"><span>练习难度</span><select name="difficulty">' + levelOptions(isSubset ? filter.difficulty : '') + '</select></label><label class="field"><span>每组题量</span><select name="count"><option value="5">5 题 · 轻量巩固</option><option value="10" selected>10 题 · 日常练习</option><option value="20">20 题 · 集中练习</option><option value="all">全部符合条件的题目（最多 500 题）</option></select></label><label class="field"><span>题目顺序</span><select name="order"><option value="sequential">按章节顺序</option><option value="random">随机顺序</option></select></label><label class="field full"><span>练习模式</span><select name="mode"><option value="all">全部题目</option><option value="unseen">只练未做过的题</option><option value="wrong"' + (route === 'mistakes' ? ' selected' : '') + '>只练待复习错题</option><option value="favorite"' + (route === 'favorites' ? ' selected' : '') + '>只练收藏题</option></select></label></div>' + (session && !session.completed ? '<p class="note-label">当前有一组未结束的练习。开始新组会替换这组进度，已提交的答题记录保留。</p>' : '') + '<div class="modal-actions">' + button('取消', 'close-modal', 'secondary') + '<button class="btn" type="submit">开始练习 ' + icon('arrow') + '</button></div></form>');
+    showModal('开始一组练习', '按自己的节奏，一次练会几个知识点。', '<form id="start-form"><input type="hidden" name="subset" value="' + isSubset + '"><div class="form-grid"><label class="field"><span>练习教材</span><select name="book" id="start-book">' + bookOptions(selected) + '</select></label><label class="field"><span>练习章节</span><select name="topic" id="start-topic">' + opts(topics, isSubset ? filter.topic : '', '全部章节') + '</select></label><label class="field"><span>练习题型</span><select name="type">' + typeOptions(isSubset ? filter.type : '') + '</select></label><label class="field"><span>练习难度</span><select name="difficulty">' + levelOptions(isSubset ? filter.difficulty : '') + '</select></label><label class="field"><span>每组题量</span><select name="count"><option value="5">5 题 · 轻量巩固</option><option value="10" selected>10 题 · 日常练习</option><option value="20">20 题 · 集中练习</option><option value="all">全部符合条件的题目（最多 500 题）</option></select></label><label class="field"><span>题目顺序</span><select name="order"><option value="sequential">按章节顺序</option><option value="random">随机顺序</option></select></label><label class="field full"><span>练习模式</span><select name="mode"><option value="all">全部题目</option><option value="unseen">只练未做过的题</option><option value="wrong"' + (route === 'revision'&&revisionTab==='pending' ? ' selected' : '') + '>只练待复习错题</option><option value="favorite"' + (route === 'revision'&&revisionTab==='favorites' ? ' selected' : '') + '>只练收藏题</option></select></label></div>' + (session && !session.completed ? '<p class="note-label">当前有一组未结束的练习。开始新组会替换这组进度，已提交的答题记录保留。</p>' : '') + '<div class="modal-actions">' + button('取消', 'close-modal', 'secondary') + '<button class="btn" type="submit">开始练习 ' + icon('arrow') + '</button></div></form>');
   }
   function beginSession(ids) {
     if (!ids.length) { toast('当前范围没有可练习的题目，请更换筛选条件。'); return; }
@@ -430,10 +444,9 @@
     a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(function () { URL.revokeObjectURL(url); }, 1500);
   }
   function dateStamp() { var now = new Date(); return now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0') + '-' + String(now.getDate()).padStart(2, '0'); }
-  function getSources() {
-    var official = [{ title: '厦门大学 2027 年初试科目考试内容范围', url: 'https://zs.xmu.edu.cn/info/1174/37042.htm', scope: '346 体育综合参考书目；学习内容依据你提供的三本教材整理。' }];
-    var resources = [{ title: '肖秀荣2027《1000题》· 出版社公开说明', url: 'https://www.sina.cn/news/detail/5307569977691365.html', scope: '正版教辅资源说明，2026-06-08 发布。线上题库服务需通过正版图书授权码使用。本软件提供公开入口信息，未收录该商业题库的题目或解析。' }];
-    return official.concat(resources, globalThis.SPORTS_SOURCES || [], globalThis.POLITICS_SOURCES || [], globalThis.ENGLISH_SOURCES || []).filter(function (s, i, arr) { return s && typeof s.url === 'string' && arr.findIndex(function (t) { return t && t.url === s.url; }) === i; });
+  function getSources(){
+    var official=[{title:'厦门大学 2027 年初试科目考试内容范围',url:'https://zs.xmu.edu.cn/info/1174/37042.htm',scope:'346 体育综合参考书目；学习内容依据你提供的三本教材整理。'}];
+    return official.concat(globalThis.SPORTS_SOURCES||[]).filter(function(s,i,arr){return s&&typeof s.url==='string'&&arr.findIndex(function(t){return t&&t.url===s.url;})===i;});
   }
   var libraryExpanded = false, libraryOpenIds = new Set();
   function isViewed(q) { var r=record(q.id); return reading.viewed.includes(q.id) || !!(r && r.attempts); }
@@ -446,8 +459,9 @@
     out.shown=raw.shown===true;out.variant=Math.max(0,Math.min(20,Math.trunc(Number(raw.variant)||0)));
     if(Array.isArray(raw.viewed))out.viewed=Array.from(new Set(raw.viewed.filter(function(id){return valid.has(id);}))).slice(0,10000);
     if(raw.marks && typeof raw.marks==='object')Object.keys(raw.marks).forEach(function(id){if(valid.has(id) && ['review','mastered'].includes(raw.marks[id]))out.marks[id]=raw.marks[id];});
-    if(['bank','materials','professional','mistakes','favorites','papers','study','knowledge'].includes(raw.origin))out.origin=raw.origin;
+    if(['bank','materials','professional','mistakes','favorites','revision','papers','study','knowledge'].includes(raw.origin))out.origin=raw.origin;
     if(typeof raw.knowledgeHash==='string' && /^#knowledge(?:\?|$)/.test(raw.knowledgeHash) && raw.knowledgeHash.length<=1600)out.knowledgeHash=raw.knowledgeHash;
+    if(typeof raw.listHash==='string'&&/^#(?:bank|revision)(?:\?|$)/.test(raw.listHash)&&raw.listHash.length<=1600)out.listHash=raw.listHash;
     out.recalls=T.cleanRecalls(raw.recalls,valid);
     out.drafts=T.cleanReaderDrafts(raw.drafts,valid);
     if(raw.recallMode==='keywords')out.recallMode='keywords';
@@ -462,7 +476,7 @@
     if(route==='knowledge'&&id)ids=[id];
     if(id && !ids.includes(id))ids=[id];
     if(!ids.length){toast('当前范围没有题目。');return;}
-    reading.ids=ids;reading.index=id?Math.max(0,ids.indexOf(id)):0;reading.shown=false;reading.variant=0;reading.origin=['bank','materials','professional','mistakes','favorites','papers','study','knowledge'].includes(route)?route:'bank';if(route==='professional')reading.scope=professionalScope();else delete reading.scope;if(route==='knowledge')reading.knowledgeHash=location.hash;else delete reading.knowledgeHash;saveReading();
+    reading.ids=ids;reading.index=id?Math.max(0,ids.indexOf(id)):0;reading.shown=false;reading.variant=0;reading.origin=['bank','materials','professional','mistakes','favorites','revision','papers','study','knowledge'].includes(route)?route:'bank';if(route==='bank'&&bankMode==='chapters')reading.scope=professionalScope();else delete reading.scope;if(['bank','revision'].includes(route))reading.listHash=currentListHash();else delete reading.listHash;if(route==='knowledge')reading.knowledgeHash=location.hash;else delete reading.knowledgeHash;saveReading();
     readerRoute();
   }
   function readerRoute(){var id=reading.ids[reading.index];var hash='#review?id='+encodeURIComponent(id);if(location.hash===hash){route='review';render();}else location.hash=hash;window.scrollTo(0,0);}
@@ -531,13 +545,9 @@
     content+='</article><div class="reader-controls">'+button('上一题','reader-prev','secondary',reading.index===0?'disabled':'')+button('下一题','reader-next','',reading.index===reading.ids.length-1?'disabled':'')+'</div><div class="reader-foot"><span>空格展开答案 · ← → 切题；可直接切题，不必标记。</span>'+button('切换到作答练习','practice-one','ghost small','data-id="'+esc(q.id)+'"')+'</div>';
     return content;
   }
-  function materialsView(){
-    return heading('题目与答案','每道题都配有答案；展开即可对照，不用作答。',button(libraryExpanded?'收起本页答案':'展开本页答案','library-toggle','secondary small'))+professionalLinks()+paperScopeHTML()+filtersHTML()+'<div id="bank-results">'+bankResults()+'</div>';
-  }
   function professionalScope(){return {book:filter.book||'',chapter:filter.chapter||'',section:filter.section||'',type:filter.type||'term',search:filter.search||''};}
-  function professionalHash(scope){var params=new URLSearchParams();['type','book','chapter','section','search'].forEach(function(k){if(scope[k])params.set(k,scope[k]);});return '#professional?'+params.toString();}
+  function professionalHash(scope){return bankHash(scope,'chapters');}
   function goProfessional(scope){var hash=professionalHash(scope||{type:'term'});if(location.hash===hash)readRoute();else location.hash=hash;window.scrollTo(0,0);}
-  function professionalLinks(){return '<details class="professional-links-fold"><summary>按章节查阅与学习工具</summary><div class="professional-links">'+button('教材知识树','navigate','secondary small','data-route="knowledge"')+button('名词解释汇总','open-professional','secondary small','data-type="term"')+button('按章节看简答','open-professional','secondary small','data-type="short"')+button('怎么背与怎么答','study-method','ghost small')+button('历年题与来源','past-papers','ghost small')+'</div></details>';}
   function professionalOptions(items,value,label){return '<option value="">'+esc(label)+'</option>'+items.map(function(x){return '<option value="'+esc(x.id)+'"'+(x.id===value?' selected':'')+'>'+esc(x.label)+'</option>';}).join('');}
   function catalogCounts(chapter,type){return questions.filter(function(q){return T.allowPaper(q,settings.paperScope,paperIndex,conceptIndex)&&q.chapterId===chapter.id&&q.examType===type;}).length;}
   function sectionCounts(section,type){return questions.filter(function(q){return T.allowPaper(q,settings.paperScope,paperIndex,conceptIndex)&&q.sectionId===section.id&&q.examType===type;}).length;}
@@ -545,11 +555,11 @@
   function coverageIndex(){
     return '<details class="chapter-index"><summary>章节清单 · '+sportsCatalog.reduce(function(n,b){return n+b.chapters.length;},0)+' 章（含绪论）</summary><div class="catalog-books">'+sportsCatalog.map(function(b){return '<details class="catalog-book"><summary>'+esc(b.title)+'</summary><div>'+b.chapters.map(function(c){return '<div class="catalog-chapter"><div class="catalog-heading">'+scopeButton((c.number===0?'绪论':'第'+c.number+'章 '+c.title),b.key,c.id,'',filter.type)+'<div class="catalog-counts">'+scopeButton('名词',b.key,c.id,'','term',catalogCounts(c,'term'))+scopeButton('简答',b.key,c.id,'','short',catalogCounts(c,'short'))+'</div></div><details class="catalog-sections"><summary>小标题 · '+c.sections.length+' 节</summary>'+c.sections.map(function(s){return '<div class="catalog-section"><span>'+esc(s.title)+'</span><div>'+scopeButton('名词',b.key,c.id,s.id,'term',sectionCounts(s,'term'))+scopeButton('简答',b.key,c.id,s.id,'short',sectionCounts(s,'short'))+'</div></div>';}).join('')+'</details></div>';}).join('')+'</div></details>';}).join('')+'</div><p class="small muted">已按三本教材的40章（含绪论）、134节建立索引，各节均已建立简答题索引，当前数字按所选排除范围计算。术语为本次整理范围，不代表穷尽所有可考名词。扫描件缺页不作为答案页码引用。</p></details>';
   }
-  function professionalView(){
+  function chapterBankContent(){
     var sports=questions.filter(function(q){return q.subject==='346 体育综合'&&T.allowPaper(q,settings.paperScope,paperIndex,conceptIndex);}), chapters=sportsCatalog.filter(function(b){return !filter.book||b.key===filter.book;}).flatMap(function(b){return b.chapters.map(function(c){return {id:c.id,label:(!filter.book?b.title.split('（')[0]+' · ':'')+(c.number===0?'绪论':'第'+c.number+'章 '+c.title),sections:c.sections};});}),chapter=chapters.find(function(c){return c.id===filter.chapter;});
     var types=[['term','名词解释汇总'],['short','按章节看简答'],['essay','论述题']].map(function(t){return '<button type="button" data-action="professional-type" data-type="'+t[0]+'" aria-pressed="'+(filter.type===t[0])+'" class="'+(filter.type===t[0]?'active':'')+'">'+t[1]+' <span>'+sports.filter(function(q){return q.examType===t[0];}).length+'</span></button>';}).join('');
     var controls='<div class="professional-filter"><label class="search">'+icon('search')+'<input id="question-search" type="search" placeholder="搜索名词、标题或答案" aria-label="搜索题目" value="'+esc(filter.search)+'"></label><label><span>教材</span><select id="professional-book">'+professionalOptions(sportsCatalog.map(function(b){return {id:b.key,label:b.title};}),filter.book,'三本教材')+'</select></label><label><span>章节</span><select id="professional-chapter">'+professionalOptions(chapters,filter.chapter,'全部章节')+'</select></label><label><span>小标题</span><select id="professional-section"'+(!chapter?' disabled':'')+'>'+professionalOptions(chapter?chapter.sections.map(function(s){return {id:s.id,label:s.title};}):[],filter.section,chapter?'本章全部小标题':'先选择章节')+'</select></label></div>';
-    return heading('专业课总复习','按教材目录查阅；先回忆，再展开答案。',button('背当前范围','read-filtered',''))+'<div class="professional-types" aria-label="专业课题型">'+types+'</div>'+paperScopeHTML()+controls+'<div class="professional-tools">'+button(libraryExpanded?'收起本页答案':'展开本页答案','library-toggle','ghost small')+button('导出当前范围','export-professional','ghost small')+button('查看全部章节','professional-reset','ghost small')+button('怎么背与怎么答','study-method','ghost small')+'</div>'+coverageIndex()+'<div id="bank-results">'+bankResults()+'</div>';
+    return '<div class="professional-types" aria-label="专业课题型">'+types+'</div>'+paperScopeHTML()+controls+'<div class="professional-tools">'+button(libraryExpanded?'收起本页答案':'展开本页答案','library-toggle','ghost small')+button('导出当前范围','export-professional','ghost small')+button('查看全部章节','professional-reset','ghost small')+button('怎么背与怎么答','study-method','ghost small')+'</div>'+coverageIndex()+'<div id="bank-results">'+bankResults()+'</div>';
   }
   function exportProfessional(){
     var list=filtered();if(!list.length){toast('当前范围没有题目。');return;}
@@ -557,7 +567,7 @@
     list.forEach(function(q,i){text+='## '+(i+1)+'. '+q.prompt+'\n\n'+(q.headingPath?q.headingPath.join(' / ')+'\n\n':'')+q.answer.join('\n\n')+'\n\n'+(q.answerOutline?'核对要点：'+q.answerOutline.join('；')+'。\n\n':'')+(q.textbookRefs||[]).map(function(r){return r.bookTitle+'，'+r.chapter+'，教材第'+r.printedPages.join('、')+'页。';}).join('\n\n')+'\n\n';});
     download('厦大346-'+typeName({type:filter.type})+'-'+list.length+'题.md',text,'text/markdown;charset=utf-8');toast('当前范围的题目与答案已导出。');
   }
-  function legacyMaterialsView() {
+  function notesView() {
     var tabs = '<div class="tabs"><button class="' + (materialsTab === 'sources' ? 'active' : '') + '" data-action="materials-tab" data-tab="sources">备考依据与书目</button><button class="' + (materialsTab === 'notes' ? 'active' : '') + '" data-action="materials-tab" data-tab="notes">我的学习资料 <span class="muted">' + notes.length + '</span></button></div>';
     var content;
     if (materialsTab === 'sources') {
@@ -580,9 +590,13 @@
     download('研习-出题资料-' + dateStamp() + '.txt', content, 'text/plain;charset=utf-8'); toast('出题资料已导出，可将文件发给助手。');
   }
   function settingsView() {
-    return heading('备份与设置','题库已内置。更换设备前，请导出完整备份。','')+'<section class="panel settings-simple"><h2>学习记录备份</h2><p>背题位置、回忆自评与到期时间、浏览记录、待复习、收藏和原有作答记录以及手写批注都保存在当前浏览器。手写批注会随完整备份导出；不同设备不会自动同步。</p><div class="btn-row">'+button('导出完整备份','export-backup','')+button('恢复完整备份','choose-backup','secondary')+'</div></section><details class="settings-extra"><summary>手机直接打开与离线使用</summary><p>将本站网址保存在 Safari 书签，或通过 Safari 的分享菜单“添加到主屏幕”，以后直接打开。</p><p id="offline-status" role="status" aria-live="polite">正在检查离线题库…</p><p>首次打开需要网络。离线保存完成后，题目、答案和教材定义原图可断网查阅；外部资料链接仍需联网。浏览器清理网站数据会移除离线内容和本机记录，请保留完整备份。</p></details><details class="settings-extra"><summary>题库导入、导出与个人笔记</summary><p>不用重复导入内置题库。仅在添加其他合法来源的 JSON 题库时使用导入。</p><div class="btn-row">'+button('导入其他题库','import-modal','secondary small')+button('导出完整题库','export-bank','secondary small')+button('个人笔记（'+notes.length+'）','open-notes','secondary small')+'</div></details><details class="settings-extra"><summary>题库说明</summary><p>当前题库包含原创模拟与有第三方来源的历年题对应整理。610道专业课已重新整理，含358道名词解释、237道简答、15道论述。名词以教材定义段原图为准，核对要点仅留关键词；思路与提醒是辅助讲解。简答默认显示背诵要点，关键词在正文中加粗，可展开详细答案；论述为依据教材组织的参考作答。本学习室专用于三本专业课教材，知识树包含各章各节，并关联已有题库与专题模拟题。主观题参考答案供核对，不是官方评分细则；题库尚未覆盖全部考试内容。</p><p>专业课题后标注教材印刷页码。同一考点的不同问法不重复计算题库数量。</p></details><details class="settings-extra"><summary>重置学习记录</summary><p>题库和个人笔记会保留，建议先备份。</p>'+button('重置学习记录','reset-modal','danger small')+'</details>';
+    return heading('备份与设置','题库已内置。更换设备前，请导出完整备份。','')+'<section class="panel settings-simple"><h2>学习记录备份</h2><p>背题位置、回忆自评与到期时间、浏览记录、待复习、收藏和原有作答记录以及手写批注都保存在当前浏览器。手写批注会随完整备份导出；不同设备不会自动同步。</p><p class="last-backup">'+esc(settings.lastExportedAt?'上次导出：'+new Date(settings.lastExportedAt).toLocaleString('zh-CN'):'还没有导出记录')+'</p><div class="btn-row">'+button('导出完整备份','export-backup','')+button('恢复完整备份','choose-backup','secondary')+'</div></section><section class="panel offline-panel" id="offline-panel"><h2>'+esc('离线教材')+'</h2><p id="offline-status" role="status" aria-live="polite">'+esc('正在检查离线保存…')+'</p><p>'+esc('题目与答案自动保存。需要断网查看教材原图时，请按教材保存；已浏览的原图也会保留。')+'</p><div class="offline-books">'+subjects.map(function(book){return '<article><h3>'+esc(book.name)+'</h3><p id="offline-book-'+esc(book.key)+'" role="status">'+esc('正在检查本书原图…')+'</p>'+button(esc('保存本书原图'),'offline-save','secondary small','data-book="'+esc(book.key)+'"')+'</article>';}).join('')+'</div><p class="small muted">用 Safari 的分享菜单添加到主屏幕，之后可直接打开。更换设备前请导出完整备份。</p></section><details class="settings-extra"><summary>题库导入、导出与个人笔记</summary><p>不用重复导入内置题库。仅在添加其他合法来源的 JSON 题库时使用导入。</p><div class="btn-row">'+button('导入其他题库','import-modal','secondary small')+button('导出完整题库','export-bank','secondary small')+button('个人笔记（'+notes.length+'）','open-notes','secondary small')+'</div></details><details class="settings-extra"><summary>题库说明</summary><p>当前题库包含原创模拟与有第三方来源的历年题对应整理。610道专业课已重新整理，含358道名词解释、237道简答、15道论述。名词以教材定义段原图为准，核对要点仅留关键词；思路与提醒是辅助讲解。简答默认显示背诵要点，关键词在正文中加粗，可展开详细答案；论述为依据教材组织的参考作答。本学习室专用于三本专业课教材，知识树包含各章各节，并关联已有题库与专题模拟题。主观题参考答案供核对，不是官方评分细则；题库尚未覆盖全部考试内容。</p><p>专业课题后标注教材印刷页码。同一考点的不同问法不重复计算题库数量。</p></details><details class="settings-extra"><summary>重置学习记录</summary><p>题库和个人笔记会保留，建议先备份。</p>'+button('重置学习记录','reset-modal','danger small')+'</details>';
   }
-  function exportBackup() { I.finish();download('研习-完整备份-' + dateStamp() + '.json', JSON.stringify({ app: 'yanxi', version: 1, exportedAt: new Date().toISOString(), questions: questions, progress: progress, notes: notes, settings: settings, session: session, reading: reading, ink: I.exportData(), mockExams: X.exportData() }, null, 2)); toast('完整备份已导出。'); }
+  function exportBackup(){
+    I.finish();var next=Object.assign({},settings,{lastExportedAt:Date.now(),backupReminderDismissedAt:0});
+    download('研习-完整备份-'+dateStamp()+'.json',JSON.stringify({app:'yanxi',version:1,exportedAt:new Date(next.lastExportedAt).toISOString(),questions:questions,progress:progress,notes:notes,settings:next,session:session,reading:reading,ink:I.exportData(),mockExams:X.exportData()},null,2));
+    if(write(keys.settings,next)){settings=next;render();toast('完整备份已导出。');}else toast('备份已导出，但导出时间未能保存。');
+  }
   function sampleBank() {
     var q = { id: 'custom-001', prompt: '请填写原创简答题题干', subject: '346 体育综合', topic: '学校体育学 · 自定义章节', type: 'free', examType: 'short', options: [], answer: ['请填写第一条完整作答。', '请填写第二条完整作答。'], answerOutline: ['请填写自评要点'], commonMistakes: ['请填写容易混淆的概念或答题遗漏'], explanation: '请填写答题思路及各要点与题干的联系。', difficulty: 2, tags: ['原创模拟'], sourceNote: '原创模拟｜请填写教材版本、章节及核对情况；非官方评分细则' };
     download('研习-题库格式示例.json', JSON.stringify({ version: 1, title: '我的原创模拟题库', questions: [q] }, null, 2)); toast('题库格式示例已下载。');
@@ -640,11 +654,16 @@
       if(I.handle(action,node))return;
       if(action.startsWith('kt-')){K.handle(action,node);return;}
       if(action==='zoom-source-image'){
-        if(!textbookImageData||!textbookImageData[node.dataset.key]){mountSourceImages();toast('原图仍在载入，请稍候再点。');return;}
-        showModal('教材原文',esc(node.dataset.caption),'<div class="btn-row">'+button('适应宽度','source-image-zoom','secondary small')+'</div><div class="source-image-viewport enlarged"><img src="'+textbookImageData[node.dataset.key]+'" alt="'+esc(node.dataset.caption)+'原文"></div><p class="small muted">左右滑动查看完整原文。关闭后返回原题。</p>');
+        if(!P.get(node.dataset.key)){mountSourceImages();toast('原图仍在载入，请稍候再点。');return;}
+        showModal('教材原文',esc(node.dataset.caption),'<div class="btn-row">'+button('适应宽度','source-image-zoom','secondary small')+'</div><div class="source-image-viewport enlarged"><img src="'+P.get(node.dataset.key)+'" alt="'+esc(node.dataset.caption)+'原文"></div><p class="small muted">左右滑动查看完整原文。关闭后返回原题。</p>');
       }
       else if(action==='source-image-zoom'){var enlarged=modal.querySelector('.source-image-viewport').classList.toggle('enlarged');node.textContent=enlarged?'适应宽度':'放大原图';}
-      else if (action === 'navigate') navigate(node.dataset.route, ['bank','materials','mistakes','favorites'].includes(node.dataset.route) ? '' : undefined);
+      else if(action==='navigate'){if(node.dataset.route==='bank')bankMode='list';navigate(node.dataset.route,['bank','revision'].includes(node.dataset.route)?'':undefined);}
+      else if(action==='bank-view'){var nextFilter=Object.assign({},filter);if(node.dataset.view==='chapters'&&!['term','short','essay'].includes(nextFilter.type))nextFilter.type='term';location.hash=bankHash(nextFilter,node.dataset.view);}
+      else if(action==='revision-tab')location.hash=revisionHash(filter,node.dataset.tab);
+      else if(action==='offline-settings')navigate('settings');
+      else if(action==='offline-save'){if(globalThis.YanxiOffline)globalThis.YanxiOffline.saveBook(node.dataset.book);}
+      else if(action==='dismiss-backup'){var dismissed=Object.assign({},settings,{backupReminderDismissedAt:Date.now()});if(write(keys.settings,dismissed)){settings=dismissed;render();}}
       else if(action==='study-method')navigate('study');
       else if(action==='past-papers')navigate('papers');
       else if(action==='recall-rate')markRecall(node.dataset.result);
@@ -658,11 +677,11 @@
       else if(action==='professional-scope')goProfessional({book:node.dataset.book,chapter:node.dataset.chapter,section:node.dataset.section,type:node.dataset.type});
       else if(action==='professional-reset')goProfessional({type:filter.type});
       else if(action==='export-professional')exportProfessional();
-      else if (action === 'open-stat') { filter={search:'',subject:'',topic:'',type:'',difficulty:'',status:node.dataset.status||'',paperScope:node.dataset.paperScope||''}; navigate(node.dataset.route); }
+      else if (action === 'open-stat') { if(node.dataset.route==='bank')bankMode='list';filter={search:'',subject:'',topic:'',type:'',difficulty:'',status:node.dataset.status||'',paperScope:node.dataset.paperScope||''}; navigate(node.dataset.route); }
       else if (action === 'read-one') openReader(id,false);
       else if (action === 'read-filtered') openReader(null,node.dataset.all==='true');
       else if (action === 'resume-reading') readerRoute();
-      else if (action === 'reader-back') {if(reading.origin==='professional')goProfessional(reading.scope);else if(reading.origin==='knowledge')location.hash=reading.knowledgeHash||'#knowledge';else navigate(reading.origin);}
+      else if (action === 'reader-back') {if(reading.listHash)location.hash=T.canonicalHash(reading.listHash);else if(reading.origin==='professional')goProfessional(reading.scope);else if(reading.origin==='knowledge')location.hash=reading.knowledgeHash||'#knowledge';else navigate(reading.origin);}
       else if (action === 'reader-reveal') revealReading();
       else if (action === 'reader-prev') moveReading(-1);
       else if (action === 'reader-next') moveReading(1);
@@ -691,8 +710,6 @@
       else if (action === 'close-modal') modal.close();
       else if (action === 'start-modal') startModal(node.dataset.subject || '', false);
       else if (action === 'start-filtered') startModal(filter.subject, true);
-      else if (action === 'mock-modal') showModal('开始专业课模拟整组', '共27题：每本教材5道名词解释、3道简答题、1道论述题。按教材及题型顺序作答。开始后会替换当前练习进度，已经提交的记录保留。', '<div class="modal-actions">' + button('取消', 'close-modal', 'secondary') + button('开始这组模拟题', 'confirm-mock', '') + '</div>');
-      else if (action === 'confirm-mock') beginSession(filtered(builtIn,{subject:'346 体育综合'},'bank').filter(function (q) { return q.tags.includes('专业课模拟一'); }).map(function (q) { return q.id; }));
       else if (action === 'resume') navigate(session.completed ? 'summary' : 'practice');
       else if (action === 'practice-one') {
         if (session && !session.completed) {
@@ -709,7 +726,7 @@
       else if (action === 'finish-session') finishSession();
       else if (action === 'confirm-finish') confirmFinish();
       else if (action === 'retry-session') { var wrongIds = session.ids.filter(function (qid) { var e = session.entries[qid]; return e && e.answered && !e.correct; }); beginSession(wrongIds); }
-      else if (action === 'clear-filters') { if(route==='professional')goProfessional({type:filter.type});else {filter = { search: '', subject: '', topic: '', type: '', difficulty: '', status: '' }; page = 1; render();} }
+      else if (action === 'clear-filters') { if(route==='bank'&&bankMode==='chapters')goProfessional({type:filter.type});else {filter = { search: '', subject: '', topic: '', type: '', difficulty: '', status: '' }; page = 1; updateListRoute();} }
       else if (action === 'prev-page' || action === 'next-page') { page += action === 'prev-page' ? -1 : 1; render(); window.scrollTo(0, 0); }
       else if (action === 'import-modal') importModal();
       else if (action === 'choose-bank') document.getElementById('bank-file').click();
@@ -741,7 +758,7 @@
   app.addEventListener('input', function (event) {
     if(event.target.id==='kt-search'){K.input(event.target.value);return;}
     if(event.target.id==='past-search'){paperQuery=event.target.value;document.getElementById('paper-results').innerHTML=paperResults();}
-    if (event.target.id === 'question-search') { filter.search = event.target.value; page = 1; document.getElementById('bank-results').innerHTML = bankResults(); if(route==='professional'&&typeof history!=='undefined')history.replaceState(null,'',professionalHash(professionalScope())); }
+    if (event.target.id === 'question-search') { filter.search = event.target.value; page = 1; document.getElementById('bank-results').innerHTML = bankResults(); if(['bank','revision'].includes(route))history.replaceState(null,'',currentListHash()); }
     if (event.target.id === 'free-draft' && session) { currentEntry().draft = event.target.value; saveSession(); }
     if(event.target.id==='reader-draft')saveReaderDraft(event.target);
     if(event.target.classList.contains('keyword-input'))keywordState.inputs[event.target.dataset.index]=event.target.value.slice(0,3000);
@@ -749,11 +766,11 @@
   app.addEventListener('keydown',function(event){if(event.key==='Enter'&&!event.isComposing&&event.target.classList.contains('keyword-input')){event.preventDefault();revealKeyword(event.target.dataset.index,true);}});
   app.addEventListener('change', function (event) {
     var field = event.target;
-    if(field.id==='paper-scope'){var next=Object.assign({},settings,{paperScope:field.value});if(['topics','daily','all','past'].includes(field.value)&&write(keys.settings,next)){settings=next;delete filter.paperScope;page=1;render();}return;}
+    if(field.id==='paper-scope'){var next=Object.assign({},settings,{paperScope:field.value});if(['topics','daily','all','past'].includes(field.value)&&write(keys.settings,next)){settings=next;delete filter.paperScope;page=1;if(['bank','revision'].includes(route))updateListRoute();else render();}return;}
     if(field.id==='paper-year'){paperYear=field.value;document.getElementById('paper-results').innerHTML=paperResults();return;}
     if(field.id.startsWith('professional-')){var scope=professionalScope(),key=field.id.slice(13);scope[key]=field.value;if(key==='book'){scope.chapter='';scope.section='';}if(key==='chapter')scope.section='';goProfessional(scope);return;}
     if(field.id.startsWith('kt-')&&K.change(field.id,field.value))return;
-    if (field.id.startsWith('filter-')) { filter[field.id.slice(7)] = field.value; if (field.id === 'filter-subject'||field.id==='filter-book'){filter.topic='';filter.subject='';delete filter.chapter;delete filter.section;} page = 1; render(); }
+    if (field.id.startsWith('filter-')) { filter[field.id.slice(7)] = field.value; if(field.id==='filter-book'){filter.topic='';filter.subject='';delete filter.chapter;delete filter.section;} page = 1; updateListRoute(); }
     if (field.name === 'choice' && session) {
       var entry = currentEntry(); if (entry.answered) return;
       var q = qById(session.ids[session.index]);
@@ -770,7 +787,7 @@
   });
   document.addEventListener('submit', function (event) {
     var form = event.target;
-    if (!['start-form', 'note-form', 'goal-form'].includes(form.id)) return;
+    if (!['start-form', 'note-form'].includes(form.id)) return;
     event.preventDefault();
     try {
       var data = new FormData(form);
@@ -787,7 +804,6 @@
         var count = data.get('count') === 'all' ? pool.length : Number(data.get('count'));
         beginSession(pool.slice(0, count).map(function (q) { return q.id; }));
       }
-      else if (form.id === 'goal-form') { var goal = Number(data.get('goal')); if (!Number.isInteger(goal) || goal < 1 || goal > 100) throw new Error('每日目标请填写 1 到 100 的整数。'); var nextSettings = Object.assign({}, settings, { goal: goal }); if (write(keys.settings, nextSettings)) { settings = nextSettings; render(); toast('每日目标已保存。'); } }
       else if (form.id === 'note-form') {
         var title = String(data.get('title')).trim(), text = String(data.get('text')).trim();
         if (!title || !text) throw new Error('请填写资料名称和内容。');
@@ -809,11 +825,11 @@
     var cleanSession = raw.session == null ? null : restoreSession(raw.session, builtIn.concat(customQs));
     if(raw.session!=null&&!cleanSession&&(!Array.isArray(raw.session.ids)||raw.session.ids.some(function(id){return !checked.some(function(q){return q.id===id;})&&!builtIds.has(id);})))throw new Error('备份中的当前练习不完整，请检查题目与练习记录。');
     if (raw.notes.length > 200 || raw.notes.some(function (n) { return !n || typeof n.text !== 'string' || n.text.length > 150000; })) throw new Error('备份资料超过容量限制或格式不完整。');
-    var cleanSettings = { goal: Math.max(1, Math.min(100, Number(raw.settings && raw.settings.goal) || 10)), school: '厦门大学', year: 2027, paperScope:['topics','daily','all','past'].includes(raw.settings&&raw.settings.paperScope)?raw.settings.paperScope:'topics' };
+    var cleanSettings=T.cleanSettings(raw.settings,raw.exportedAt);
     modal._backup = { custom: customQs, progress: cleanProgress, notes: sanitizeNotes(raw.notes), settings: cleanSettings, session: cleanSession, reading: sanitizeReading(raw.reading || {}, builtIn.concat(customQs).filter(isProfessional)), ink:raw.ink===undefined?null:I.validate(raw.ink), mockExams:raw.mockExams===undefined?null:X.validateBackup(raw.mockExams) };
     showModal('恢复完整备份？', '将替换当前浏览器的导入题库、学习记录、收藏和学习资料。建议先导出当前备份。', '<p class="note-label">备份中有 ' + checked.length + ' 道题、' + raw.notes.length + ' 份资料。'+(modal._backup.ink===null?'旧备份不含手写批注，当前批注会保留。':'含 '+I.count(modal._backup.ink)+' 笔手写批注，将一同恢复。')+'</p><div class="modal-actions">' + button('取消', 'close-modal', 'secondary') + button('确认恢复', 'confirm-backup', '') + '</div>');
   });
-  app.addEventListener('toggle',function(event){var el=event.target;if(el&&el.dataset&&el.dataset.readerDraft)draftPanels[el.dataset.readerDraft]=el.open;if(el && el.dataset && el.dataset.libraryId){if(el.open){libraryOpenIds.add(el.dataset.libraryId);markViewed(el.dataset.libraryId);}else libraryOpenIds.delete(el.dataset.libraryId);}},true);
+  app.addEventListener('toggle',function(event){var el=event.target;if(el&&el.dataset&&el.dataset.readerDraft)draftPanels[el.dataset.readerDraft]=el.open;if(el && el.dataset && el.dataset.libraryId){if(el.open){libraryOpenIds.add(el.dataset.libraryId);markViewed(el.dataset.libraryId);mountSourceImages();}else libraryOpenIds.delete(el.dataset.libraryId);}},true);
   document.addEventListener('keydown',function(event){if(route!=='review' || modal.open || /INPUT|TEXTAREA|SELECT/.test(event.target.tagName) || event.target.isContentEditable)return;if(event.code==='Space' && event.target.tagName!=='BUTTON'){event.preventDefault();revealReading();}else if(event.key==='ArrowRight'){event.preventDefault();moveReading(1);}else if(event.key==='ArrowLeft'){event.preventDefault();moveReading(-1);}});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&mobileOpen){document.querySelector('.mobile-menu').click();}});
   document.addEventListener('keydown',function(e){
