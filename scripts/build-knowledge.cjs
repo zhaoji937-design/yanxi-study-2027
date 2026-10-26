@@ -29,6 +29,22 @@ for(const q of canonical){const section=alias(q.sectionId),sectionNode=db.nodes.
 const sections=catalog.flatMap(b=>b.chapters.flatMap(c=>c.sections.map(s=>alias(s.id))));
 const data={version:2,title:'三本专业课教材知识树',books,sections,nodes,questions,comparisons,bankLinks,source:{books:books.map(b=>({...b,file:definitions[b.key].file})),verification:'依据用户提供教材整理标题及知识，定义原图与校对文字来自既有逐题核对资料。原标题与整理考点分开；不声称为官方答案或押题。'},researchReports};
 const indexed=K.index(data),ids=new Set();
+const readingVerifications=read('knowledge-reading-verifications.json'),readingGuides=read('knowledge-reading-guides.json');
+for(const [id,v] of Object.entries(readingVerifications.nodes)){
+ const n=indexed.nodes.get(id);assert.ok(n,id+' verification node');assert.ok(v.printedPages?.length&&v.printedPages.every(p=>Number.isInteger(p)&&p>=173&&p<=187),id+' verified printed pages');
+ for(const field of ['additionalBody','verifiedText'])if(v[field])assert.ok(v[field].every(p=>typeof p==='string'&&p.trim()),id+' '+field);
+ if(v.verifiedDefinition)assert.ok(v.verifiedText.includes(v.verifiedDefinition),id+' verified definition must match checked original');
+ if(v.additionalBody)assert.ok(v.additionalBody.every(p=>!n.body.includes(p)),id+' must supplement rather than duplicate');
+ if(v.excludeFromReading)assert.ok(v.correctionNote,id+' reason for OCR fragment');
+ if(v.verifiedComparison){const c=v.verifiedComparison;assert.ok(c.columns.length>=3&&c.rows.every(row=>row.length===c.columns.length));}
+}
+for(const [id,g] of Object.entries(readingGuides.nodes)){
+ const n=indexed.nodes.get(id),v=readingVerifications.nodes[id]||{};assert.ok(n,id+' memory node');
+ const evidence=[n.title,n.definition||''].concat(n.body,v.additionalBody||[],v.verifiedText||[]).join('\n');
+ assert.ok(g.keywords.length&&g.keywords.every(k=>typeof k==='string'&&k.length>=2&&evidence.includes(k)),id+' memory anchors must be exact phrases');
+ assert.ok(g.recallOrder?.length&&g.recallOrder.every(p=>typeof p==='string'&&p.trim())&&g.memory&&g.pitfall,id+' complete memory guidance');
+}
+data.readingVerifications=readingVerifications.nodes;data.readingGuides=readingGuides.nodes;data.readingSources={verifications:readingVerifications.source,guides:readingGuides.source};
 for(const n of data.nodes){assert.match(n.id,/^[a-z0-9-]+$/);assert.ok(!ids.has(n.id),n.id);ids.add(n.id);assert.ok(n.title&&Array.isArray(n.body)&&n.body.every(t=>typeof t==='string'&&t.trim()),n.id);assert.equal(typeof n.original,'boolean');assert.ok(n.printedPages.length&&n.printedPages.every(p=>Number.isInteger(p)&&p>0&&p<=400),n.id+' printed pages');if(n.parentId)assert.ok(indexed.nodes.has(n.parentId),n.id+' parent '+n.parentId);assert.ok(K.path(indexed,n.id).length<=18,'cycle/depth '+n.id);if(!['book','chapter'].includes(n.kind))assert.ok(sections.includes(K.sectionOf(indexed,n.id)),n.id+' section');}
 assert.equal(books.length,3);assert.equal(sections.length,134);assert.equal(new Set(sections).size,134);for(const id of sections)assert.ok(indexed.nodes.get(id)?.kind==='section',id);
 assert.equal(data.nodes.filter(n=>n.kind==='chapter').length,40);assert.equal(indexed.questions.size,data.questions.length,'duplicate questions');assert.equal(new Set(comparisons.map(c=>c.id)).size,comparisons.length,'duplicate comparisons');
