@@ -1,15 +1,15 @@
 (function(){
  'use strict';
- var VERSION='yanxi-offline-v22',state={ready:false,books:{}},message='正在保存离线题库…',registration=null,saving={},lastCheck=0,checkTimer;
+ var VERSION='yanxi-offline-v23',state={ready:false,books:{}},message='正在保存离线题库…',saveError='',registration=null,saving={},lastCheck=0,checkTimer;
  function refresh(){
   var label=document.getElementById('offline-status');if(label)label.textContent=message;
   var complete=Object.values(state.books).filter(function(book){return book.ready;}).length,summary=document.getElementById('offline-summary');if(summary)summary.textContent=state.ready?'题目已保存 · 原图 '+complete+'/3 本':message;
   ['school','physiology','training'].forEach(function(book){var data=state.books[book],el=document.getElementById('offline-book-'+book),button=document.querySelector('[data-action="offline-save"][data-book="'+book+'"]');if(el)el.textContent=saving[book]?'正在保存原图 '+(data?data.savedImages:0)+' / '+(data?data.totalImages:'…')+' 张':data&&data.ready?'本书原图已保存，可离线查看。':data?'已保存 '+data.savedImages+' / '+data.totalImages+' 张原图。':'尚未保存本书原图。';if(button){button.disabled=!state.ready||!!saving[book]||!!(data&&data.ready);button.textContent=saving[book]?'保存中…':data&&data.ready?'已保存':'保存本书原图';}});
  }
- function accept(value){if(value.version!==VERSION)return;state=value;message=value.ready?'题目与答案已离线保存；原图按教材单独保存。':'离线题库尚未保存完成，请联网重试。';refresh();}
+ function accept(value){if(value.version!==VERSION)return;state=value;message=saveError||(value.ready?'题目与答案已离线保存；原图按教材单独保存。':'离线题库尚未保存完成，请联网重试。');refresh();}
  function request(type,book,onProgress){return new Promise(function(resolve,reject){var worker=navigator.serviceWorker.controller||registration&&registration.active;if(!worker||worker.state!=='activated'){reject(Error('离线功能仍在准备，请稍后重试。'));return;}var channel=new MessageChannel(),timer;function reset(){clearTimeout(timer);timer=setTimeout(function(){channel.port1.close();reject(Error('保存超时，已完成的原图会保留，可稍后重试。'));},type==='YANXI_SAVE_BOOK'?120000:10000);}reset();channel.port1.onmessage=function(event){if(event.data.type==='progress'){reset();if(onProgress)onProgress(event.data);return;}clearTimeout(timer);channel.port1.close();resolve(event.data);};worker.postMessage({type:type,book:book},[channel.port2]);});}
  async function check(){if(Date.now()-lastCheck<500){clearTimeout(checkTimer);checkTimer=setTimeout(check,510-(Date.now()-lastCheck));return;}lastCheck=Date.now();try{accept(await request('YANXI_OFFLINE_STATUS'));}catch(_){}}
- async function saveBook(book){if(!state.ready){message='离线功能仍在准备，请稍后重试。';refresh();return;}if(!['school','physiology','training'].includes(book)||saving[book])return;saving[book]=true;refresh();try{var value=await request('YANXI_SAVE_BOOK',book,function(progress){state.books[book]=progress.state;refresh();});accept(value);if(!value.ok)message='部分原图尚未保存，已完成的会保留，请联网重试。';}catch(error){message=error.message;}finally{delete saving[book];refresh();}}
+ async function saveBook(book){if(!state.ready){message='离线功能仍在准备，请稍后重试。';refresh();return;}if(!['school','physiology','training'].includes(book)||saving[book])return;saving[book]=true;saveError='';refresh();try{var value=await request('YANXI_SAVE_BOOK',book,function(progress){state.books[book]=progress.state;refresh();});accept(value);if(!value.ok){saveError='部分原图尚未保存，已完成的会保留，请联网重试。';message=saveError;}}catch(error){saveError=error.message;message=saveError;}finally{delete saving[book];refresh();}}
  globalThis.YanxiOffline={refresh:refresh,check:check,saveBook:saveBook};
  if(!('serviceWorker'in navigator)||!window.isSecureContext){message='当前打开方式不支持离线保存，在线浏览仍可使用。';refresh();return;}
  navigator.serviceWorker.addEventListener('controllerchange',function(){lastCheck=0;check();});

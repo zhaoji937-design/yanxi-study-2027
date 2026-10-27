@@ -24,7 +24,7 @@ test('public exam hides answers, clock is absolute and bank question wording is 
 test('grading must match the frozen answer, all criteria and the actual quoted student text',async()=>{
  const p=paper(),answers=E.answersFor(p,{});answers[p.questions[0].id]='我自己的原始作答。';const digest=await E.digest(p,answers),raw=gradeFixture(p,answers,digest),g=E.validateGrade(raw,p,answers,digest);assert.equal(g.totalScore,5);
  const changed={...answers,[p.questions[0].id]:'另一个答案'};assert.notEqual(await E.digest(p,changed),digest);
- const wrong=structuredClone(raw);wrong.questions[0].criteria[0].evidence=['答卷里没有的话'];assert.throws(()=>E.validateGrade(wrong,p,answers,digest),/不存在/);
+ const wrong=structuredClone(raw);wrong.questions[0].criteria[0].evidence=['答卷里没有的话'];assert.throws(()=>E.validateGrade(wrong,p,answers,digest),/找不到/);
  const forged=structuredClone(raw);forged.questions[0].criteria[0].awarded=100;assert.throws(()=>E.validateGrade(forged,p,answers,digest),/满分/);
  assert.throws(()=>E.validateGrade({...raw,paperId:'other'},p,answers,digest),/不属于/);
  const missing=structuredClone(raw);missing.questions.pop();assert.throws(()=>E.validateGrade(missing,p,answers,digest),/全部9道/);

@@ -1,0 +1,22 @@
+{
+  "fixture": "同一份综合9题，seed=37，作答使用各题完整参考答案以固定测量，不是用户真实答卷",
+  "unit": "JavaScript string.length（UTF-16字符计数）",
+  "questions": [
+    "sp4-school-027",
+    "sp3-training-14",
+    "sp4-physiology-064",
+    "sp4-school-138",
+    "sp4-training-121",
+    "sp2-school-07",
+    "sp4-training-114",
+    "sp4-physiology-015",
+    "sp3-physiology-22"
+  ],
+  "studentAnswerChars": 2156,
+  "beforeChars": 19145,
+  "afterChars": 11898,
+  "savedChars": 7247,
+  "reductionPercent": 37.85,
+  "beforePacketChars": 16627,
+  "afterPacketChars": 9390
+}
