@@ -15,7 +15,7 @@
     if(pack.version!==1||pack.book!==meta.book||pack.chapter!==meta.chapter||keys.length!==meta.images||keys.some(function(key){return manifest.images[key]!==file||typeof pack.images[key]!=='string'||!/^data:image\/webp;base64,[A-Za-z0-9+/=]+$/.test(pack.images[key]);}))throw Error('原图分包内容不正确');return pack;
   }
   function manifest(){
-    if(!indexRequest)indexRequest=fetch(url('textbook-images.json?v=2')).then(function(response){if(!response.ok)throw Error('原图目录暂未载入');return response.json();}).then(validateManifest).catch(function(error){indexRequest=null;throw error;});return indexRequest;
+    if(!indexRequest)indexRequest=fetch(url('textbook-images.json?v=3')).then(function(response){if(!response.ok)throw Error('原图目录暂未载入');return response.json();}).then(validateManifest).catch(function(error){indexRequest=null;throw error;});return indexRequest;
   }
   async function loadFile(file,index){
     var cache=root.caches?await root.caches.open(cacheName(index.packs[file].book)):null,response=cache&&await cache.match(url(file)),pack;

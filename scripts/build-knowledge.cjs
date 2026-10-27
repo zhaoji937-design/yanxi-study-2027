@@ -27,7 +27,11 @@ for(const q of canonical){const section=alias(q.sectionId),sectionNode=db.nodes.
  bankLinks.push({bankId:q.id,nodeIds:[...new Set(headings.concat(id))]});
 }
 const sections=catalog.flatMap(b=>b.chapters.flatMap(c=>c.sections.map(s=>alias(s.id))));
-const data={version:2,title:'三本专业课教材知识树',books,sections,nodes,questions,comparisons,bankLinks,source:{books:books.map(b=>({...b,file:definitions[b.key].file})),verification:'依据用户提供教材整理标题及知识，定义原图与校对文字来自既有逐题核对资料。原标题与整理考点分开；不声称为官方答案或押题。'},researchReports};
+const readingPages=read('physiology-reading-pages.json');
+assert.equal(Object.keys(readingPages.pages).length,360);
+for(let page=1;page<=360;page++){const image=readingPages.pages[page];assert.match(image.key,/^[a-f0-9]{24}$/);assert.ok(image.width>=1000&&image.height>image.width);}
+for(const n of nodes)if(/^kb-physiology-.*-study(?:\d+)?$/.test(n.id))n.readingRole='study-summary';
+const data={version:2,title:'三本专业课教材知识树',books,sections,nodes,questions,comparisons,bankLinks,readingPages:{physiology:readingPages.pages},source:{books:books.map(b=>({...b,file:definitions[b.key].file})),verification:'依据用户提供教材整理标题及知识，定义原图与校对文字来自既有逐题核对资料。原标题与整理考点分开；不声称为官方答案或押题。'},researchReports};
 const indexed=K.index(data),ids=new Set();
 const readingVerifications=read('knowledge-reading-verifications.json'),readingGuides=read('knowledge-reading-guides.json');
 for(const [id,v] of Object.entries(readingVerifications.nodes)){

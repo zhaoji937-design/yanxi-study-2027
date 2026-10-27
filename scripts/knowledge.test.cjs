@@ -45,3 +45,15 @@ test('full book graph is acyclic, every canonical question is attached and every
 test('all original pilot anchors, paragraphs and definition text survive the expansion',()=>{
  for(const file of ['knowledge-psychology.json','knowledge-capacity.json']){const source=JSON.parse(fs.readFileSync(require('node:path').join(__dirname,'../content',file),'utf8'));for(const n of source.nodes){const actual=db.nodes.get(n.id);assert.ok(actual,n.id);for(const field of ['title','body','definition','parentId'])assert.deepEqual(actual[field],n[field],n.id+' '+field);}for(const q of source.questions)assert.deepEqual(db.questions.get(q.id).answer,q.answer,q.id);}
 });
+
+test('physiology has actual reading evidence for every heading and all 56 section summaries',()=>{
+ const pages=data.readingPages.physiology,manifest=JSON.parse(fs.readFileSync(require('node:path').join(__dirname,'../dist/textbook-images.json'),'utf8'));
+ assert.equal(Object.keys(pages).length,360);
+ for(let page=1;page<=360;page++){assert.ok(manifest.images[pages[page].key],'printed '+page);assert.ok(pages[page].width>=1000);}
+ const sections=data.sections.filter(id=>id.startsWith('physiology-'));assert.equal(sections.length,56);
+ let points=0,headings=0;
+ for(const id of sections){const study=db.nodes.get('kb-'+id+'-study');assert.equal(study.readingRole,'study-summary');const children=db.children.get(study.id);assert.equal(children.length,4,id);for(const child of children){const n=db.nodes.get(child);assert.ok(n.body.join('').length>=50,child+' must contain actual readable paragraphs');assert.equal(n.readingRole,'study-summary');points++;}
+  for(const node of K.descendants(db,id).map(id=>db.nodes.get(id)).filter(n=>n.original)){for(const page of node.printedPages)assert.ok(pages[page],node.id+' has original-page evidence');if(!['section','chapter','book'].includes(node.kind))headings++;}
+ }
+ assert.equal(points,224);assert.equal(headings,1043);
+});

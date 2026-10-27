@@ -94,7 +94,7 @@
   function anchors(n){
     var g=guideFor(n),text=[n.title,n.definition||''].concat(n.body||[],verification(n).additionalBody||[]).join('\n'),terms=(g?.keywords||[]).concat(n.keywords||[],shortTitle(n),shortTitle(n).split(/与|和|及/).filter(function(s){return s.length>=3;}));
     (db.children.get(n.id)||[]).map(function(id){return db.nodes.get(id);}).filter(function(x){return x.original;}).forEach(function(x){terms.push(shortTitle(x));});
-    var common=['训练目标','训练内容','训练负荷','检查手段','评定标准','训练手段','信息反馈','过程监督','结果评定','方案修正','科学控制','系统控制','反馈控制','训练模式','定量关系','逻辑顺序','时间序列','适时恢复','负荷强度','身体练习','认识活动','最大摄氧量','有氧代谢','无氧代谢','兴奋性','内环境','稳态','信息化','定量化','循环性','系统化','定性化','程序化','自动化','菜单化','一体化'];
+    var common=['训练目标','训练内容','训练负荷','检查手段','评定标准','训练手段','信息反馈','过程监督','结果评定','方案修正','科学控制','系统控制','反馈控制','训练模式','定量关系','逻辑顺序','时间序列','适时恢复','负荷强度','身体练习','认识活动','最大摄氧量','有氧代谢','无氧代谢','兴奋性','内环境','稳态','信息化','定量化','循环性','系统化','定性化','程序化','自动化','菜单化','一体化','新陈代谢','细胞外液','神经调节','体液调节','自身调节','负反馈','正反馈','前馈','静息电位','动作电位','阈值','钾离子','钠离子','去极化','复极化','局部电流','肌小节','肌质网','横桥','终板电位','乙酰胆碱','兴奋—收缩耦联','缩短收缩','拉长收缩','等长收缩','主动张力','被动张力','慢肌纤维','快肌纤维','运动单位','磷酸肌酸','糖酵解','有氧供能','无氧供能','基础代谢','反射弧','单向传递','中枢延搁','神经递质','感受器','膜受体','靶细胞','胰岛素','胰高血糖素','肾小球','肾小管','红细胞','血红蛋白','氧分压','二氧化碳','心输出量','搏出量','射血分数','运动性疲劳','超量恢复','稳定状态','第二次呼吸','负荷强度','相对负荷','能量平衡','体脂','热平衡','生物节律'];
     common.forEach(function(k){if(text.includes(k))terms.push(k);});
     var pattern=/(?:一是|二是|三是|四是|五是|六是)([^，。；：]{2,12})/g,m;while((m=pattern.exec(text)))terms.push(m[1]);
     return Array.from(new Set(terms)).filter(function(k){return typeof k==='string'&&k.length>=2&&k.length<=30&&!['运动员','训练','知识','能力','发展','提高','应用','结构','特点'].includes(k);});
@@ -116,8 +116,32 @@
     return '<aside class="kt-memory-cue"><strong>怎么记</strong>'+(steps.length?'<ol class="kt-recall-order">'+steps.map(function(s){return'<li>'+esc(s)+'</li>';}).join('')+'</ol>':'')+'<p>'+esc(memory)+'</p></aside>'+(g?.pitfall&&(primary||selected)?'<details class="kt-explain kt-memory-pitfall"><summary>易混提醒</summary><p>'+esc(g.pitfall)+'</p></details>':'');
   }
   function verifiedComparison(c){return '<section class="kt-reading-comparison"><h3>放在一起辨析 · '+esc(c.title)+'</h3>'+ref(c.printedPages)+'<div class="kt-table-scroll"><table><thead><tr>'+c.columns.map(function(v){return '<th scope="col">'+esc(v)+'</th>';}).join('')+'</tr></thead><tbody>'+c.rows.map(function(row){return '<tr>'+row.map(function(v){return '<td>'+esc(v)+'</td>';}).join('')+'</tr>';}).join('')+'</tbody></table></div><p class="kt-note">'+esc(c.sourceLabel||'')+' · '+esc(c.note||'')+'</p></section>';}
+  function readingPage(page){
+    var image=dataset.readingPages.physiology[page],caption='运动生理学（第三版） · 印刷第 '+page+' 页';
+    return '<div class="source-image-list kt-textbook-page"><figure><button type="button" class="source-image-button" data-action="zoom-source-image" data-key="'+esc(image.key)+'" data-caption="'+esc(caption)+'" aria-label="放大'+esc(caption)+'"><span class="source-image-state">正在打开教材原页…</span><img data-source-key="'+esc(image.key)+'" width="'+esc(image.width)+'" height="'+esc(image.height)+'" alt="'+esc(caption)+'教材原页" loading="lazy" hidden></button><figcaption>'+esc(caption)+' · 点图放大</figcaption></figure></div>';
+  }
+  function physiologyReading(selected,rootNode){
+    var main=(db.children.get(rootNode.id)||[]).map(function(id){return db.nodes.get(id);}).filter(function(n){return n.original;}),study=db.nodes.get('kb-'+rootNode.id+'-study'),all=new Set(descendants(db,rootNode.id)),related=questionList().filter(function(q){return q.nodes.some(function(id){return all.has(id);});});
+    function foldUnit(n,content,cls,title){
+      var folded=foldedReading.has(n.id),heading=title?'<h3 class="kt-reading-title">'+esc(title)+'</h3>':titleMarkup(n,'h3',true);
+      return '<section class="kt-reading-unit '+(cls||'')+'" data-reading-node="'+esc(n.id)+'" data-ink-owner="node:'+esc(n.id)+'" data-reading-depth="1" data-folded="'+folded+'"><div class="kt-unit-heading">'+heading+'<button type="button" class="kt-unit-fold" data-action="kt-fold" data-node="'+esc(n.id)+'" aria-expanded="'+(!folded)+'" aria-controls="kt-reading-body-'+esc(n.id)+'">'+(folded?'展开':'收起')+'</button></div><div class="kt-unit-content" id="kt-reading-body-'+esc(n.id)+'"'+(folded?' hidden':'')+'>'+content+'</div></section>';
+    }
+    var summaries=study?(db.children.get(study.id)||[]).map(function(id){var n=db.nodes.get(id);return '<section class="kt-study-point" data-reading-node="'+esc(id)+'" data-ink-owner="node:'+esc(id)+'">'+titleMarkup(n,'h4',true)+ref(n.printedPages)+nodeBody(n)+'</section>';}).join(''):'';
+    var studyHTML=study?foldUnit(study,'<p class="kt-note">依据教材整理的理解要点；定义及完整内容在下方教材原页核对。</p>'+summaries,'kt-study-summary','本节学习要点'):'',first=main[0]?.printedPages[0]||rootNode.printedPages[0],intro=rootNode.printedPages.filter(function(p){return p<first;}).map(readingPage).join('');
+    var originals=main.map(function(n,i){
+      var children=descendants(db,n.id).map(function(id){return db.nodes.get(id);}).filter(function(x){return x.original;}),start=n.printedPages[0],last=Math.max.apply(null,children.flatMap(function(x){return x.printedPages;})),end=Math.max(last,i+1<main.length?main[i+1].printedPages[0]:rootNode.printedPages[rootNode.printedPages.length-1]),html='';
+      for(var p=start;p<=end;p++){
+        var headings=children.filter(function(x){return x.id!==n.id&&x.printedPages[0]===p;}).map(function(x){var depth=path(db,x.id).length-path(db,n.id).length;return '<div class="kt-source-heading" data-reading-node="'+esc(x.id)+'" data-ink-owner="node:'+esc(x.id)+'" data-source-depth="'+Math.min(3,depth)+'">'+titleMarkup(x,depth===1?'h4':'h5',true)+'</div>';}).join('');
+        html+='<div class="kt-source-page" data-printed-page="'+p+'">'+headings+readingPage(p)+'</div>';
+      }
+      return foldUnit(n,ref([start,end])+'<p class="kt-note">以下为教材原页，保留原书文字、图表与层级；页首或页尾可能包含相邻内容。</p>'+html,'kt-original-reading');
+    }).join('');
+    var toc='<nav class="kt-unit-toc" aria-label="本节知识点"><div class="kt-section-fold-tools"><span>本节内容</span><button type="button" data-action="kt-fold-all" data-collapsed="true">全部收起</button><button type="button" data-action="kt-fold-all" data-collapsed="false">全部展开</button></div>'+main.map(function(n){return link({node:n.id,view:'outline'},esc(nodeLabel(n)),'kt-unit-jump');}).join('')+'</nav>';
+    return '<article class="kt-detail kt-continuous kt-physiology-reading" id="kt-detail" data-reading-node="'+esc(rootNode.id)+'" data-ink-owner="node:'+esc(rootNode.id)+'">'+breadcrumb(rootNode.parentId)+titleMarkup(rootNode,'h2',false)+ref(rootNode.printedPages)+toc+nodeBody(rootNode)+memoryCue(rootNode,true)+studyHTML+intro+originals+dataset.comparisons.filter(function(c){return c.nodeIds.some(function(id){return all.has(id);});}).map(comparison).join('')+(related.length?'<div class="kt-related-entry">'+link({view:'questions',node:rootNode.id,question:'',scope:rootNode.id},'看这一节的题目 <span>'+related.length+' 题 ›</span>','kt-related-button')+'</div>':'')+'<div class="kt-reading-bottom">'+link({node:rootNode.parentId,view:'outline',question:''},'‹ 返回本章目录','kt-parent-link')+'</div></article>';
+  }
   function continuousReading(selected){
     var rootNode=db.nodes.get(sectionOf(db,selected.id)),ids=descendants(db,rootNode.id),allowed=new Set(ids),main=(db.children.get(rootNode.id)||[]).filter(function(id){return db.nodes.get(id).original&&!verification(db.nodes.get(id)).excludeFromReading;}),related=questionList().filter(function(q){return q.nodes.some(function(id){return allowed.has(id);});});
+    if(bookOf(rootNode.id)?.bookKey==='physiology'&&dataset.readingPages?.physiology)return physiologyReading(selected,rootNode);
     function unit(id,depth){
       var n=db.nodes.get(id);if(!n.original)return '';var v=verification(n),children=(db.children.get(id)||[]).filter(function(child){return db.nodes.get(child).original;}),tag=depth===1?'h3':depth===2?'h4':'h5';
       var foldable=depth===1,folded=foldable&&foldedReading.has(id),heading=titleMarkup(n,tag,true);
@@ -132,7 +156,7 @@
   }
   function detail(){
     var n=db.nodes.get(state.node),scopeIds=new Set(descendants(db,n.id)),related=questionList().filter(function(q){return q.nodes.some(function(id){return scopeIds.has(id);});}),children=db.children.get(n.id)||[],comparisons=dataset.comparisons.filter(function(c){return c.nodeIds.includes(n.id)||c.nodeIds.some(function(id){return children.includes(id);});});
-    if(n.original&&sectionOf(db,n.id))return continuousReading(n);
+    if((n.original||n.readingRole==='study-summary')&&sectionOf(db,n.id))return continuousReading(n);
     var directory=['book','chapter'].includes(n.kind),body='<div class="kt-body">'+(n.body||[]).filter(function(p){return p!==n.definition;}).map(function(p){return'<p data-ink-text>'+highlight(p,n.keywords)+'</p>';}).join('')+'</div>';
     var pathHTML=directory?'':breadcrumb(n.parentId||n.id);
     return '<article class="kt-detail'+(directory?' kt-index-page':'')+'" id="kt-detail" data-ink-owner="node:'+esc(n.id)+'">'+pathHTML+titleMarkup(n,'h2',false)+ref(n.printedPages)+(n.core?'<span class="kt-core-label">核心考点</span>':'')+(n.sourceQuestionId&&bankMap.has(n.sourceQuestionId)?'<section class="kt-source-answer">'+answerRenderer(bankMap.get(n.sourceQuestionId))+'</section>':'')+(n.definition?'<h3>教材定义 · 原文</h3><blockquote class="kt-definition" data-ink-text>'+esc(n.definition)+'</blockquote>':'')+(directory?'':body)+(n.studyNodeIds?.length?'<section class="kt-children"><h3>关联知识</h3>'+nodeLinks(n.studyNodeIds)+'</section>':'')+(children.length?'<section class="kt-children"><h3>'+(n.kind==='book'?'章节目录':n.kind==='chapter'?'本章目录':'下一级知识')+'</h3>'+nodeLinks(children)+'</section>':'')+(related.length?'<div class="kt-related-entry">'+link({view:'questions',question:'',scope:n.id},'看这一部分的题目 <span>'+related.length+' 题 ›</span>','kt-related-button')+'</div>':'')+(directory?'<details class="kt-explain kt-index-about"><summary>'+(n.kind==='book'?'教材信息':'本章概览')+'</summary>'+body+'</details>':'')+(n.core?'<details class="kt-explain"><summary>考点提示</summary><p>'+esc(n.core)+'</p></details>':'')+(n.explanation?'<details class="kt-explain"><summary>理解提示</summary><p>'+esc(n.explanation)+'</p></details>':'')+comparisons.map(comparison).join('')+'</article>';
@@ -177,7 +201,7 @@
     if(action==='kt-fold'||action==='kt-fold-all'){
       if(ink())ink().finish();var folded=action==='kt-fold-all'?el.dataset.collapsed==='true':el.getAttribute('aria-expanded')==='true';
       if(action==='kt-fold')setReadingFold(el.dataset.node,folded);else document.querySelectorAll('.kt-continuous>.kt-reading-unit[data-folded]').forEach(function(unit){setReadingFold(unit.dataset.readingNode,folded);});
-      saveUI();if(ink())ink().mount();if(folded){var anchor=action==='kt-fold'?el.closest('.kt-reading-unit'):document.querySelector('.kt-unit-toc');if(anchor)anchor.scrollIntoView({block:'start'});}syncTopButton();return true;
+      saveUI();if(ink())ink().mount();if(!folded&&onMount)onMount();if(folded){var anchor=action==='kt-fold'?el.closest('.kt-reading-unit'):document.querySelector('.kt-unit-toc');if(anchor)anchor.scrollIntoView({block:'start'});}syncTopButton();return true;
     }
     if(action==='kt-directory'){ui.directoryHidden=!(ui.directoryHidden||ui.focus);if(ui.focus)ui.focus=false;saveUI();syncUI();return true;}
     if(action==='kt-focus'){ui.focus=!ui.focus;saveUI();syncUI();if(!ui.focus)document.querySelector('.kt-tools>summary')?.focus();return true;}

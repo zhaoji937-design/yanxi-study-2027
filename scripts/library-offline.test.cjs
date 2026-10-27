@@ -15,12 +15,18 @@ test('backup reminders require records and seven elapsed days, dismissal postpon
 });
 test('all chapter packs retain verified image bytes and reject corrupted responses',async()=>{
  let total=0;for(const[file,meta]of Object.entries(manifest.packs)){const text=fs.readFileSync(path.join(dist,file),'utf8'),pack=await P.parsePack(file,text,manifest);assert.equal(Buffer.byteLength(text),meta.bytes);total+=Object.keys(pack.images).length;}
- assert.equal(total,353);const file=Object.keys(manifest.packs)[0],text=fs.readFileSync(path.join(dist,file),'utf8');await assert.rejects(P.parsePack(file,text+' ',manifest),/校验失败/);assert.throws(()=>P.validateManifest({...manifest,images:{bad:'https://example.com'}}));
+ assert.equal(total,713);const file=Object.keys(manifest.packs)[0],text=fs.readFileSync(path.join(dist,file),'utf8');await assert.rejects(P.parsePack(file,text+' ',manifest),/校验失败/);assert.throws(()=>P.validateManifest({...manifest,images:{bad:'https://example.com'}}));
 });
 function workerContext(){const listeners={},context=vm.createContext({URL,Request,Response,TextEncoder,Uint8Array,TextbookImages:P,console,setInterval,clearInterval,self:{location:{href:'https://check.invalid/sw.js'},addEventListener(name,fn){listeners[name]=fn;}},importScripts(){}});vm.runInContext(fs.readFileSync(path.join(dist,'sw.js'),'utf8'),context);return context;}
 test('an incompletely updated HTML cannot replace the working offline entry',()=>{
- const context=workerContext(),compatible=vm.runInContext('compatibleHTML',context),html=fs.readFileSync(path.join(dist,'index.html'),'utf8');assert.equal(compatible(html),true);assert.equal(compatible(html.replace('app.js?v=17','app.js?v=future')),false);assert.equal(compatible('<h1>Network error</h1>'),false);const shell=vm.runInContext('SHELL',context);assert.ok(shell.includes('https://check.invalid/textbook-images.json?v=2'));assert.ok(!shell.some(url=>url.includes('/textbook-images/')));
+ const context=workerContext(),compatible=vm.runInContext('compatibleHTML',context),html=fs.readFileSync(path.join(dist,'index.html'),'utf8');assert.equal(compatible(html),true);assert.equal(compatible(html.replace('app.js?v=17','app.js?v=future')),false);assert.equal(compatible('<h1>Network error</h1>'),false);const shell=vm.runInContext('SHELL',context);assert.ok(shell.includes('https://check.invalid/textbook-images.json?v=3'));assert.ok(!shell.some(url=>url.includes('/textbook-images/')));
 });
 test('old complete image cache reconstructs an identical hashed chapter pack',async()=>{
  const context=workerContext(),file=Object.keys(manifest.packs)[0],raw=JSON.parse(fs.readFileSync(path.join(dist,file),'utf8'));context.fixture=raw.images;vm.runInContext('legacyPromise=Promise.resolve(fixture)',context);const response=await vm.runInContext('legacyPack',context)(file,manifest);assert.equal(await response.text(),fs.readFileSync(path.join(dist,file),'utf8'));
+});
+
+test('new reading pages absent from the old monolithic cache do not abort legacy migration',async()=>{
+ const context=workerContext(),file=Object.keys(manifest.packs).find(file=>file.includes('-pages-'));
+ context.fixture={};vm.runInContext('legacyPromise=Promise.resolve(fixture)',context);
+ assert.equal(await vm.runInContext('legacyPack',context)(file,manifest),null);
 });

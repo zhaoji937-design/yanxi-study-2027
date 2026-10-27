@@ -6,10 +6,22 @@ let images={};if(old.version===1)images=old.images;else for(const file of Object
 const context=vm.createContext({URL});for(const[,src]of fs.readFileSync(path.join(dist,'index.html'),'utf8').matchAll(/<script[^>]+src="([^"]+)"/g)){const file=src.split('?')[0];if(file==='engine.js'||file.startsWith('bank-'))vm.runInContext(fs.readFileSync(path.join(dist,file),'utf8'),context);}
 const questions=context.QuizEngine.validateBank(context.SPORTS_BANK).questions,groups=new Map(),assigned=new Set();
 for(const q of questions)for(const image of q.textbookRevision?.images||[]){if(assigned.has(image.key))continue;assert.ok(images[image.key]);assigned.add(image.key);const id=q.bookKey+'/'+q.chapterId;if(!groups.has(id))groups.set(id,{book:q.bookKey,chapter:q.chapterId,images:{}});groups.get(id).images[image.key]=images[image.key];}
+// Full reading pages supplement definition crops. Keep old crop packs unchanged so
+// existing per-book caches remain useful; new pages are split into six-page packs.
+const reading=JSON.parse(fs.readFileSync(path.join(root,'content/physiology-reading-pages.json'),'utf8'));
+const research=JSON.parse(fs.readFileSync(path.join(root,'content/knowledge-physiology-full.json'),'utf8'));
+const chapters=research.nodes.filter(n=>n.kind==='chapter').sort((a,b)=>a.printedPages[0]-b.printedPages[0]);
+let rendered;
+for(const [page,image] of Object.entries(reading.pages)){
+ if(!images[image.key]){if(!rendered)rendered=JSON.parse(fs.readFileSync(path.join(root,'build/physiology-page-images.json'),'utf8'));images[image.key]=rendered[image.key];}
+ assert.ok(images[image.key],page+' missing rendered textbook page');assert.ok(!assigned.has(image.key));assigned.add(image.key);
+ const chapter=chapters.filter(n=>n.printedPages[0]<=Number(page)).at(-1),chunk=String(Math.floor((Number(page)-chapter.printedPages[0])/6)+1).padStart(2,'0'),id='physiology/'+chapter.id+'/pages-'+chunk;
+ if(!groups.has(id))groups.set(id,{book:'physiology',chapter:chapter.id,suffix:'-pages-'+chunk,images:{}});groups.get(id).images[image.key]=images[image.key];
+}
 assert.equal(assigned.size,Object.keys(images).length,'All existing definition images must be retained');
 const books={school:{title:'学校体育学',files:[],images:0,bytes:0},physiology:{title:'运动生理学',files:[],images:0,bytes:0},training:{title:'运动训练学',files:[],images:0,bytes:0}},manifest={version:2,originalBytes,books,packs:{},images:{}},files={};
 for(const[,group]of [...groups].sort(([a],[b])=>a.localeCompare(b))){
- const ordered=Object.fromEntries(Object.entries(group.images).sort(([a],[b])=>a.localeCompare(b))),data=JSON.stringify({version:1,book:group.book,chapter:group.chapter,images:ordered})+'\n',sha256=crypto.createHash('sha256').update(data).digest('hex'),file='textbook-images/'+group.book+'/'+group.chapter+'-'+sha256.slice(0,12)+'.json',bytes=Buffer.byteLength(data);
+ const ordered=Object.fromEntries(Object.entries(group.images).sort(([a],[b])=>a.localeCompare(b))),data=JSON.stringify({version:1,book:group.book,chapter:group.chapter,images:ordered})+'\n',sha256=crypto.createHash('sha256').update(data).digest('hex'),file='textbook-images/'+group.book+'/'+group.chapter+(group.suffix||'')+'-'+sha256.slice(0,12)+'.json',bytes=Buffer.byteLength(data);
  manifest.packs[file]={book:group.book,chapter:group.chapter,images:Object.keys(ordered).length,bytes,sha256};manifest.books[group.book].files.push(file);manifest.books[group.book].images+=Object.keys(ordered).length;manifest.books[group.book].bytes+=bytes;Object.keys(ordered).forEach(key=>manifest.images[key]=file);files[file]=data;
 }
 const serialized=JSON.stringify(manifest)+'\n';files['textbook-images.json']=serialized;

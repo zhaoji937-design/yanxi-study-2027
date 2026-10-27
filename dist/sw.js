@@ -1,16 +1,16 @@
 'use strict';
-importScripts('textbook-images.js?v=1');
-const CACHE='yanxi-offline-v24',ROOT=new URL('./',self.location.href),INDEX=new URL('textbook-images.json?v=2',ROOT).href;
+importScripts('textbook-images.js?v=2');
+const CACHE='yanxi-offline-v25',ROOT=new URL('./',self.location.href),INDEX=new URL('textbook-images.json?v=3',ROOT).href;
 const SHELL=[
- './','latest.html','textbook-images.json?v=2','textbook-images.js?v=1','bank-sports-revised.js?v=2','style.css','simple.css?v=5','icon.svg',
+ './','latest.html','textbook-images.json?v=3','textbook-images.js?v=2','bank-sports-revised.js?v=2','style.css','simple.css?v=5','icon.svg',
  'study.css?v=3','study-tools.js?v=4','engine.js?v=8','bank-sports-legacy.js','bank-sports.js','bank-sports-expanded.js','bank-sports-systematic.js?v=4.1',
- 'bank-study.js?v=1','paper-data.js?v=1','exam-engine.js?v=3','mock-exam.js?v=3','mock-exam.css?v=3','cozy.css?v=7','app.js?v=17','ink.css?v=2','ink.js?v=3','knowledge.css?v=3','knowledge-data.js?v=3','knowledge.js?v=7','offline.js?v=8','manifest.json','touch-icon.png','icon-192.png','icon-512.png'
+ 'bank-study.js?v=1','paper-data.js?v=1','exam-engine.js?v=3','mock-exam.js?v=3','mock-exam.css?v=3','cozy.css?v=7','app.js?v=17','ink.css?v=2','ink.js?v=3','knowledge.css?v=4','knowledge-data.js?v=4','knowledge.js?v=8','offline.js?v=9','manifest.json','touch-icon.png','icon-192.png','icon-512.png'
 ].map(path=>new URL(path,ROOT).href);
 let indexPromise=null,legacyPromise=null;const bookJobs=new Map();
 async function pool(items,task){let cursor=0,failure=null;await Promise.all(Array.from({length:Math.min(3,items.length)},async()=>{while(cursor<items.length&&!failure){const item=items[cursor++];try{await task(item);}catch(error){failure=error;}}}));if(failure)throw failure;}
 async function index(){if(!indexPromise)indexPromise=(async()=>{const cache=await caches.open(CACHE),response=await cache.match(INDEX);if(!response)throw Error('Missing image directory');return TextbookImages.validateManifest(await response.json());})().catch(error=>{indexPromise=null;throw error;});return indexPromise;}
 async function legacy(){if(!legacyPromise)legacyPromise=(async()=>{for(const name of await caches.keys()){if(!name.startsWith('yanxi-offline-')||name===CACHE)continue;const cache=await caches.open(name),response=await cache.match(new URL('textbook-images.json',ROOT).href);if(response){try{const raw=await response.json();if(raw.version===1&&raw.images)return raw.images;}catch(_){}}}return null;})();return legacyPromise;}
-async function legacyPack(file,manifest){const images=await legacy();if(!images)return null;const meta=manifest.packs[file],selected={};Object.keys(manifest.images).filter(key=>manifest.images[key]===file).sort().forEach(key=>{if(images[key])selected[key]=images[key];});const text=JSON.stringify({version:1,book:meta.book,chapter:meta.chapter,images:selected})+'\n';await TextbookImages.parsePack(file,text,manifest);return new Response(text,{headers:{'Content-Type':'application/json;charset=utf-8'}});}
+async function legacyPack(file,manifest){const images=await legacy();if(!images)return null;const meta=manifest.packs[file],selected={},keys=Object.keys(manifest.images).filter(key=>manifest.images[key]===file).sort();if(keys.some(key=>!images[key]))return null;keys.forEach(key=>{selected[key]=images[key];});const text=JSON.stringify({version:1,book:meta.book,chapter:meta.chapter,images:selected})+'\n';await TextbookImages.parsePack(file,text,manifest);return new Response(text,{headers:{'Content-Type':'application/json;charset=utf-8'}});}
 async function pack(file,manifest){
  const cache=await caches.open(TextbookImages.cacheName(manifest.packs[file].book)),url=new URL(file,ROOT).href,cached=await cache.match(url);
  if(cached){try{await TextbookImages.parsePack(file,await cached.clone().text(),manifest);return cached;}catch(_){await cache.delete(url);}}
@@ -21,7 +21,7 @@ async function bookStatus(manifest){const books={};for(const book of TextbookIma
 async function status(){const cache=await caches.open(CACHE),matches=await Promise.all(SHELL.map(url=>cache.match(url)));return {ready:matches.every(Boolean),version:CACHE,books:await bookStatus(await index())};}
 self.addEventListener('install',event=>event.waitUntil((async()=>{const cache=await caches.open(CACHE);try{await pool(SHELL,async url=>{const response=await fetch(new Request(url,{cache:'reload',redirect:'error',credentials:'same-origin'}));if(!response.ok||url===ROOT.href&&!(await response.clone().text()).includes('id="app"'))throw Error('Offline resource unavailable');await cache.put(url,response);});await self.skipWaiting();}catch(error){await caches.delete(CACHE);throw error;}})()));
 self.addEventListener('activate',event=>event.waitUntil((async()=>{
- let migrated=true;try{const manifest=await index();if(await legacy())await pool(Object.keys(manifest.packs),async file=>{const response=await legacyPack(file,manifest);await(await caches.open(TextbookImages.cacheName(manifest.packs[file].book))).put(new URL(file,ROOT).href,response);});}catch(_){migrated=false;}
+ let migrated=true;try{const manifest=await index();if(await legacy())await pool(Object.keys(manifest.packs),async file=>{const response=await legacyPack(file,manifest);if(response)await(await caches.open(TextbookImages.cacheName(manifest.packs[file].book))).put(new URL(file,ROOT).href,response);});}catch(_){migrated=false;}
  if(migrated)await Promise.all((await caches.keys()).filter(name=>name.startsWith('yanxi-offline-')&&name!==CACHE).map(name=>caches.delete(name)));
  await self.clients.claim();
 })()));

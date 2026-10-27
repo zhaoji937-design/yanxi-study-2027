@@ -1,6 +1,6 @@
 (function(){
  'use strict';
- var VERSION='yanxi-offline-v24',state={ready:false,books:{}},message='正在保存离线题库…',saveError='',registration=null,saving={},lastCheck=0,checkTimer;
+ var VERSION='yanxi-offline-v25',state={ready:false,books:{}},message='正在保存离线题库…',saveError='',registration=null,saving={},lastCheck=0,checkTimer;
  function refresh(){
   var label=document.getElementById('offline-status');if(label)label.textContent=message;
   var complete=Object.values(state.books).filter(function(book){return book.ready;}).length,summary=document.getElementById('offline-summary');if(summary)summary.textContent=state.ready?'题目已保存 · 原图 '+complete+'/3 本':message;
