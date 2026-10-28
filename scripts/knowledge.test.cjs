@@ -55,5 +55,24 @@ test('physiology has actual reading evidence for every heading and all 56 sectio
  for(const id of sections){const study=db.nodes.get('kb-'+id+'-study');assert.equal(study.readingRole,'study-summary');const children=db.children.get(study.id);assert.equal(children.length,4,id);for(const child of children){const n=db.nodes.get(child);assert.ok(n.body.join('').length>=50,child+' must contain actual readable paragraphs');assert.equal(n.readingRole,'study-summary');points++;}
   for(const node of K.descendants(db,id).map(id=>db.nodes.get(id)).filter(n=>n.original)){for(const page of node.printedPages)assert.ok(pages[page],node.id+' has original-page evidence');if(!['section','chapter','book'].includes(node.kind))headings++;}
  }
- assert.equal(points,224);assert.equal(headings,1043);
+ assert.equal(points,224);assert.equal(headings,1046);
+});
+
+test('physiology has substantive text and memory routes rather than title/page placeholders',()=>{
+ for(const id of data.sections.filter(id=>id.startsWith('physiology-'))){
+  const own=K.descendants(db,id).map(key=>db.nodes.get(key)).filter(n=>n.original&&n.readingRole!=='source-fragment');
+  assert.ok(own.flatMap(n=>n.body).join('').length>=300,id+' needs actual chapter text');
+  const guide=data.readingGuides[id];assert.ok(guide.memory.length>=40&&guide.pitfall.length>=20&&guide.recallOrder.length>=3,id+' memory must be concrete');
+  for(const n of own)if(!(db.children.get(n.id)||[]).some(id=>{const child=db.nodes.get(id);return child.original&&child.readingRole!=='source-fragment';}))assert.ok(n.body.join('').length>=8,n.id+' visible leaf must have actual text');
+  for(const n of own)assert.ok(!K.path(db,n.id).some(ancestor=>ancestor.readingRole==='source-fragment'),n.id+' actual knowledge must not be hidden below a source fragment');
+ }
+ assert.match(db.nodes.get('kb-physiology-01-s01-source009').body.join(''),/钾离子.*外流/);
+ assert.match(db.nodes.get('kb-physiology-01-s01-source012').body.join(''),/钠离子.*内流/);
+ assert.match(db.nodes.get('kb-physiology-01-s01-source012').body.join(''),/钾离子.*外流/);
+ assert.equal(db.nodes.get('kb-physiology-01-s02-source007').parentId,'kb-physiology-01-s02-source005');
+ for(const i of ['006','007','008'])assert.equal(db.nodes.get('kb-physiology-05-s01-source'+i).parentId,'kb-physiology-05-s01-source005');
+ assert.equal(db.nodes.get('kb-physiology-04-s02-source036').parentId,'kb-physiology-04-s02-source033');
+ assert.equal(db.nodes.get('kb-physiology-10-s06-source001').parentId,'kb-physiology-restored-core-training');
+ for(const i of ['001','002','003'])assert.equal(db.nodes.get('kb-physiology-10-s03-source'+i).parentId,'kb-physiology-restored-anaerobic-basis');
+ for(const i of ['004','005'])assert.equal(db.nodes.get('kb-physiology-10-s03-source'+i).parentId,'kb-physiology-restored-anaerobic-measurement');
 });

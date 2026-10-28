@@ -4,7 +4,7 @@ const root=path.resolve(__dirname,'..'),read=name=>JSON.parse(fs.readFileSync(pa
 const K=require('../dist/knowledge.js');
 const catalogContext=vm.createContext({SPORTS_BANK:[]});vm.runInContext(fs.readFileSync(path.join(root,'dist/bank-sports-systematic.js'),'utf8'),catalogContext);const catalog=JSON.parse(JSON.stringify(catalogContext.SPORTS_CATALOG));
 const definitions={school:{title:'学校体育学（第三版）',shortTitle:'学校体育学',author:'潘绍伟、于可红 主编',edition:'2015年第三版',last:346,file:'原版  潘绍伟 学校体育学 第三版15年.pdf'},physiology:{title:'运动生理学（第三版）',shortTitle:'运动生理学',author:'邓树勋等 主编',edition:'2015年第三版',last:360,file:'原版 运动生理学-邓树勋（第三版）.pdf'},training:{title:'运动训练学（第二版）',shortTitle:'运动训练学',author:'田麦久 主编',edition:'2017年第二版（所用扫描本2019年重印）',last:316,file:'原版 运动训练学 (田麦久第2版) 教材电子版.pdf'}};
-const psy=read('knowledge-psychology.json'),know=read('knowledge-capacity.json');
+const psy=read('knowledge-psychology.json'),know=read('knowledge-capacity.json'),physiologyNotes=read('physiology-reading-notes.json');
 const pilotNodes=[{id:'tr4s2',parentId:'training-ch4',kind:'section',original:true,title:psy.section.title,printedPages:psy.section.printedPages,body:['本节依次讨论运动员心理能力的定义及其构成、常用的心理训练方法、心理训练的基本要求。先分清分类依据，再把不同心理技能与训练、比赛情境联系起来。'],keywords:['定义及其构成','心理训练方法','基本要求']},{id:'tr4s3',parentId:'training-ch4',kind:'section',original:true,title:know.section.title,printedPages:know.section.printedPages,body:['本节按“是什么与怎样构成—怎样获得和提高—怎样运用”展开。学习时要分别辨清知识的分类标准，并理解实践经验、理论表达与再次运用之间的联系。'],keywords:['构成','获得和提高','运用']}].concat(psy.nodes,know.nodes);
 const aliases={'training-04':'training-ch4','training-04-s02':'tr4s2','training-04-s03':'tr4s3'},alias=id=>aliases[id]||id;
 const nodes=[],questions=psy.questions.concat(know.questions),comparisons=psy.comparisons.concat(know.comparisons),books=[],researchReports=[];
@@ -12,7 +12,8 @@ for(const source of catalog){const key=source.key,meta=definitions[key],research
  assert.equal(research.bookKey,key);const chapterIds=source.chapters.map(c=>alias(c.id));
  books.push({id:rootId,key,title:meta.title,shortTitle:meta.shortTitle,author:meta.author,edition:meta.edition,chapterIds,sectionIds:source.chapters.flatMap(c=>c.sections.map(s=>alias(s.id)))});
  nodes.push({id:rootId,parentId:null,kind:'book',bookKey:key,original:true,title:meta.title,printedPages:Array.from({length:meta.last},(_,i)=>i+1),body:[meta.author+'，高等教育出版社，'+meta.edition+'。','按教材的章、节和分项理解知识；名词定义从教材原文核对，简答与论述按题干任务组织。可以先看全书目录，再进入一节，沿知识点定位相关题目。'],keywords:['知识结构','教材原文','分类辨析','完整作答']});
- const protectedIds=new Set(pilotNodes.map(n=>n.id));research.nodes.forEach(raw=>{const n=JSON.parse(JSON.stringify(raw));n.id=alias(n.id);n.parentId=alias(n.parentId);if(protectedIds.has(n.id))return;nodes.push(n);});
+ if(key==='physiology')nodes.push(...(physiologyNotes.additionalNodes||[]).map(n=>JSON.parse(JSON.stringify(n))));
+ const protectedIds=new Set(pilotNodes.map(n=>n.id));research.nodes.forEach(raw=>{const n=JSON.parse(JSON.stringify(raw));n.id=alias(n.id);n.parentId=alias(n.parentId);if(protectedIds.has(n.id))return;if(key==='physiology'){const extra=physiologyNotes.overrides[n.id];if(extra){Object.assign(n,extra);n.sourceStatus='依据教材组织的学习提要，非逐字定义';}if(physiologyNotes.reparent[n.id])n.parentId=physiologyNotes.reparent[n.id];}nodes.push(n);});
  questions.push(...(research.questions||[]));comparisons.push(...(research.comparisons||[]));researchReports.push({bookKey:key,...research.report});
 }
 nodes.push(...pilotNodes);
@@ -33,7 +34,19 @@ for(let page=1;page<=360;page++){const image=readingPages.pages[page];assert.mat
 for(const n of nodes)if(/^kb-physiology-.*-study(?:\d+)?$/.test(n.id))n.readingRole='study-summary';
 const data={version:2,title:'三本专业课教材知识树',books,sections,nodes,questions,comparisons,bankLinks,readingPages:{physiology:readingPages.pages},source:{books:books.map(b=>({...b,file:definitions[b.key].file})),verification:'依据用户提供教材整理标题及知识，定义原图与校对文字来自既有逐题核对资料。原标题与整理考点分开；不声称为官方答案或押题。'},researchReports};
 const indexed=K.index(data),ids=new Set();
+for(const id of Object.keys(physiologyNotes.overrides))assert.ok(indexed.nodes.has(id),id+' unknown physiology text override');
+for(const [id,parent]of Object.entries(physiologyNotes.reparent)){assert.ok(indexed.nodes.has(id)&&indexed.nodes.has(parent),id+' invalid repaired parent');assert.ok(K.path(indexed,id).some(n=>n.id==='physiology-book'),id+' must stay in the physiology book');}
 const readingVerifications=read('knowledge-reading-verifications.json'),readingGuides=read('knowledge-reading-guides.json');
+Object.assign(readingGuides.nodes,physiologyNotes.nodeGuides||{});
+assert.equal(Object.keys(physiologyNotes.sections).length,56);
+const physiologyTerms=Array.from(new Set(canonical.filter(q=>q.bookKey==='physiology').flatMap(q=>[q.termName,...q.answerOutline,...(q.recallGuide?.highlights||[])]).filter(t=>typeof t==='string'&&t.length>=2&&t.length<=16)));
+for(const [id,guide]of Object.entries(physiologyNotes.sections)){
+ const evidence=K.descendants(indexed,id).map(key=>indexed.nodes.get(key)).filter(n=>n.readingRole!=='source-fragment').flatMap(n=>[n.title,...n.body]).join('\n');
+ const keywords=physiologyTerms.filter(t=>evidence.includes(t)).slice(0,8);assert.ok(keywords.length,id+' must have actual memory anchors');readingGuides.nodes[id]={...guide,keywords};
+}
+for(const n of nodes.filter(n=>n.id.startsWith('kb-physiology-')&&n.original&&n.readingRole!=='source-fragment')){
+ const text=n.body.join('\n'),terms=[...(n.keywords||[]),...physiologyTerms.filter(t=>text.includes(t))];let used=0;n.keywords=Array.from(new Set(terms)).filter(t=>{if(!text.includes(t)||used+t.length>Math.max(12,text.length*.16))return false;used+=t.length;return true;}).slice(0,12);
+}
 for(const [id,v] of Object.entries(readingVerifications.nodes)){
  const n=indexed.nodes.get(id);assert.ok(n,id+' verification node');assert.ok(v.printedPages?.length&&v.printedPages.every(p=>Number.isInteger(p)&&p>=173&&p<=187),id+' verified printed pages');
  for(const field of ['additionalBody','verifiedText'])if(v[field])assert.ok(v[field].every(p=>typeof p==='string'&&p.trim()),id+' '+field);
@@ -44,7 +57,7 @@ for(const [id,v] of Object.entries(readingVerifications.nodes)){
 }
 for(const [id,g] of Object.entries(readingGuides.nodes)){
  const n=indexed.nodes.get(id),v=readingVerifications.nodes[id]||{};assert.ok(n,id+' memory node');
- const evidence=[n.title,n.definition||''].concat(n.body,v.additionalBody||[],v.verifiedText||[]).join('\n');
+ const evidence=[n.title,n.definition||''].concat(n.body,v.additionalBody||[],v.verifiedText||[],n.id.startsWith('physiology-')?K.descendants(indexed,n.id).flatMap(key=>{const child=indexed.nodes.get(key);return [child.title,...child.body];}):[]).join('\n');
  assert.ok(g.keywords.length&&g.keywords.every(k=>typeof k==='string'&&k.length>=2&&evidence.includes(k)),id+' memory anchors must be exact phrases');
  assert.ok(g.recallOrder?.length&&g.recallOrder.every(p=>typeof p==='string'&&p.trim())&&g.memory&&g.pitfall,id+' complete memory guidance');
 }

@@ -1,10 +1,10 @@
 'use strict';
 importScripts('textbook-images.js?v=2');
-const CACHE='yanxi-offline-v25',ROOT=new URL('./',self.location.href),INDEX=new URL('textbook-images.json?v=3',ROOT).href;
+const CACHE='yanxi-offline-v26',ROOT=new URL('./',self.location.href),INDEX=new URL('textbook-images.json?v=3',ROOT).href;
 const SHELL=[
  './','latest.html','textbook-images.json?v=3','textbook-images.js?v=2','bank-sports-revised.js?v=2','style.css','simple.css?v=5','icon.svg',
  'study.css?v=3','study-tools.js?v=4','engine.js?v=8','bank-sports-legacy.js','bank-sports.js','bank-sports-expanded.js','bank-sports-systematic.js?v=4.1',
- 'bank-study.js?v=1','paper-data.js?v=1','exam-engine.js?v=3','mock-exam.js?v=3','mock-exam.css?v=3','cozy.css?v=7','app.js?v=17','ink.css?v=2','ink.js?v=3','knowledge.css?v=4','knowledge-data.js?v=4','knowledge.js?v=8','offline.js?v=9','manifest.json','touch-icon.png','icon-192.png','icon-512.png'
+ 'bank-study.js?v=1','paper-data.js?v=1','exam-engine.js?v=3','mock-exam.js?v=3','mock-exam.css?v=3','cozy.css?v=7','app.js?v=17','ink.css?v=2','ink.js?v=3','knowledge.css?v=5','knowledge-data.js?v=5','knowledge.js?v=9','offline.js?v=10','manifest.json','touch-icon.png','icon-192.png','icon-512.png'
 ].map(path=>new URL(path,ROOT).href);
 let indexPromise=null,legacyPromise=null;const bookJobs=new Map();
 async function pool(items,task){let cursor=0,failure=null;await Promise.all(Array.from({length:Math.min(3,items.length)},async()=>{while(cursor<items.length&&!failure){const item=items[cursor++];try{await task(item);}catch(error){failure=error;}}}));if(failure)throw failure;}
