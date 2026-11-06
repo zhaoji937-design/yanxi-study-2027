@@ -113,7 +113,7 @@ async function currentSection(page,id){await page.waitForFunction(id=>document.q
  const older=structuredClone(backup);delete older.reading.textbookPlaces;await restore(older);assert.deepEqual((await reading(page)).textbookPlaces,{});assert.equal((await reading(page)).drafts[sample.short],sample.draft);assert.deepEqual((await reading(page)).recalls[sample.short],sample.recall);
  await restore(backup);await context.close();
 
- noteStage('v26 to v27 cache upgrade and offline cold resume');legacy=true;
+ noteStage('v26 to v28 cache upgrade and offline cold resume');legacy=true;
  const upgraded=await browser.newContext({viewport:{width:390,height:1000},locale:'zh-CN'});upgraded.setDefaultTimeout(20000);upgraded.setDefaultNavigationTimeout(60000);const oldPage=await upgraded.newPage();observe(oldPage);
  await oldPage.goto(base+'/latest.html#overview');await ready(oldPage,'yanxi-offline-v26');
  const oldState=await oldPage.evaluate(()=>{const q=QuizEngine.validateBank(SPORTS_BANK).questions.find(q=>q.examType==='short'),recall=StudyTools.nextRecall(null,'missing',Date.now());const values={
@@ -123,7 +123,7 @@ async function currentSection(page,id){await page.waitForFunction(id=>document.q
   'yanxi-settings-v1':JSON.stringify({paperScope:'all',goal:20}),
   'yanxi-words-v1':'independent-words-data'
  };Object.entries(values).forEach(([key,value])=>localStorage.setItem(key,value));return {values,id:q.id,recall};});
- legacy=false;await oldPage.evaluate(async()=>{await(await navigator.serviceWorker.getRegistration('/')).update();});await ready(oldPage,'yanxi-offline-v27');await oldPage.reload();await oldPage.locator('.desk-daily').waitFor();
+ legacy=false;await oldPage.evaluate(async()=>{await(await navigator.serviceWorker.getRegistration('/')).update();});await ready(oldPage,'yanxi-offline-v28');await oldPage.reload();await oldPage.locator('.desk-daily').waitFor();
  for(const key of ['yanxi-quiz-progress-v1','yanxi-notes-v1','yanxi-words-v1'])assert.equal(await oldPage.evaluate(key=>localStorage.getItem(key),key),oldState.values[key]);
  assert.equal((await reading(oldPage)).drafts[oldState.id],'升级前草稿');assert.deepEqual((await reading(oldPage)).recalls[oldState.id],oldState.recall);
  await route(oldPage,'#knowledge?book=training&node=know-meaning&view=outline','.kt-continuous');await oldPage.waitForFunction(()=>JSON.parse(localStorage.getItem('yanxi-reading-v1')).textbookPlaces?.training?.node);
@@ -133,6 +133,6 @@ async function currentSection(page,id){await page.waitForFunction(id=>document.q
  const nextSection=await cold.locator('.kt-reading-bottom .kt-section-next').getAttribute('href');await cold.locator('.kt-reading-bottom .kt-section-next').click();await currentSection(cold,new URLSearchParams(nextSection.split('?')[1]).get('node'));await cold.reload();await cold.locator('.kt-continuous').waitFor();await fits(cold,'offline textbook');
  assert.equal((await reading(cold)).drafts[oldState.id],'升级前草稿');assert.deepEqual((await reading(cold)).recalls[oldState.id],oldState.recall);
  await upgraded.close();assert.deepEqual(errors,[]);assert.equal(requests.filter(request=>request.path.startsWith('/textbook-images/')).length,0,'no whole-book image downloads required');
- const report={passed:true,pageAndBatchRestored:true,visibleFiltersAndClear:true,dueQueueReturnsToRevision:true,fixedReaderToolbar:true,handwritingToolbarHidden:true,widths:[390,768,1024],textbookResumeAndReload:true,mapPositionStaysSelected:true,sectionBoundaries:true,backupVersion1:true,oldDraftsAndRecallsPreserved:true,cacheUpgrade:'v26 to v27',offlineResumeAndSectionPaging:true,imagePackDownloads:0,errors};
+ const report={passed:true,pageAndBatchRestored:true,visibleFiltersAndClear:true,dueQueueReturnsToRevision:true,fixedReaderToolbar:true,handwritingToolbarHidden:true,widths:[390,768,1024],textbookResumeAndReload:true,mapPositionStaysSelected:true,sectionBoundaries:true,backupVersion1:true,oldDraftsAndRecallsPreserved:true,cacheUpgrade:'v26 to v28',offlineResumeAndSectionPaging:true,imagePackDownloads:0,errors};
  fs.writeFileSync(path.join(out,'report.json'),JSON.stringify(report,null,2));console.log(JSON.stringify(report));
 })().catch(error=>{console.error('Failed during '+stage+':',error);process.exitCode=1;}).finally(async()=>{await browser?.close();await new Promise(resolve=>server.close(resolve));});
