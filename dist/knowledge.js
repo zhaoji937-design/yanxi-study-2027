@@ -1,6 +1,6 @@
 (function(root,factory){'use strict';var api=factory();if(typeof module==='object'&&module.exports)module.exports=api;root.KnowledgeTree=api;})(typeof globalThis!=='undefined'?globalThis:this,function(){
   'use strict';
-  var dataset=null,db=null,bank=[],bankMap=new Map(),questionCache=[],answerRenderer=null,onMount=null;
+  var dataset=null,db=null,bank=[],bankMap=new Map(),questionCache=[],answerRenderer=null,onMount=null,onReadingPlace=null,readingPlaceTimer=null;
   var foldedReading=new Set();
   var ui={directoryHidden:true,focus:false,layout:'quiet-v1'};try{var savedUI=JSON.parse(localStorage.getItem('yanxi-knowledge-ui-v1'));if(savedUI?.layout==='quiet-v1'&&typeof savedUI.directoryHidden==='boolean')ui.directoryHidden=savedUI.directoryHidden;if(savedUI?.focus===true)ui.focus=true;if(Array.isArray(savedUI?.readingCollapsed))savedUI.readingCollapsed.slice(-1500).forEach(function(id){if(typeof id==='string'&&/^[a-z0-9-]{1,100}$/.test(id))foldedReading.add(id);});}catch(_){}
   function saveUI(){try{localStorage.setItem('yanxi-knowledge-ui-v1',JSON.stringify(Object.assign({},ui,{readingCollapsed:Array.from(foldedReading).slice(-1500)})));}catch(_){}}
@@ -127,6 +127,11 @@
     var evidence=dataset.readingPages?.physiology?'<details class="kt-explain kt-evidence" data-kt-evidence="physiology" data-pages="'+esc(rootNode.printedPages.join(','))+'"><summary>核对本节教材原页 · 按需查看</summary><p class="kt-note">正文已按层级整理为文字，原页仅用于核对文字、公式和图表。</p><div class="kt-evidence-pages"></div></details>':'';
     return summary+evidence+(fragments.length?'<details class="kt-explain kt-outline-fragments"><summary>原目录中的图表标注与章末材料</summary><p class="kt-note">这些标注不作为独立知识点，保留原位置以兼容已有链接和笔记。</p>'+fragments.map(function(n){return '<section data-reading-node="'+esc(n.id)+'" data-ink-owner="node:'+esc(n.id)+'">'+titleMarkup(n,'h5',true)+ref(n.printedPages)+'</section>';}).join('')+'</details>':'');
   }
+  function sectionPaging(rootNode){
+    var book=dataset.books.find(function(b){return b.id===bookOf(rootNode.id)?.id;}),ids=book?.sectionIds||[],position=ids.indexOf(rootNode.id);
+    function step(delta){var target=position>=0&&db.nodes.get(ids[position+delta]);if(!target)return '';var chapter=db.nodes.get(target.parentId),crossChapter=target.parentId!==rootNode.parentId,label=delta<0?'‹ 上一节':'下一节 ›';return link({node:target.id,view:'outline',question:'',scope:target.id},'<span>'+esc(label)+'</span><strong>'+esc(target.title)+'</strong>'+(crossChapter&&chapter?'<small>'+esc(chapter.title)+'</small>':''),'kt-section-step '+(delta<0?'kt-section-prev':'kt-section-next'));}
+    return '<nav class="kt-reading-bottom" aria-label="'+esc('本节前后导航')+'">'+link({node:rootNode.parentId,view:'outline',question:''},esc('‹ 返回本章目录'),'kt-parent-link')+'<div class="kt-reading-step-links">'+step(-1)+step(1)+'</div></nav>';
+  }
   function continuousReading(selected){
     var rootNode=db.nodes.get(sectionOf(db,selected.id)),ids=descendants(db,rootNode.id),allowed=new Set(ids),main=(db.children.get(rootNode.id)||[]).filter(function(id){return db.nodes.get(id).original&&db.nodes.get(id).readingRole!=='source-fragment'&&!verification(db.nodes.get(id)).excludeFromReading;}),related=questionList().filter(function(q){return q.nodes.some(function(id){return allowed.has(id);});});
 
@@ -141,7 +146,7 @@
     }
     var toc='<nav class="kt-unit-toc" aria-label="本节知识点"><div class="kt-section-fold-tools"><span>本节内容</span><button type="button" data-action="kt-fold-all" data-collapsed="true">全部收起</button><button type="button" data-action="kt-fold-all" data-collapsed="false">全部展开</button></div>'+main.map(function(id){return link({node:id,view:'outline'},esc(nodeLabel(db.nodes.get(id))),'kt-unit-jump');}).join('')+'</nav>';
     var comparisonData=verification(rootNode).verifiedComparison;
-    return '<article class="kt-detail kt-continuous" id="kt-detail" data-reading-node="'+esc(rootNode.id)+'" data-ink-owner="node:'+esc(rootNode.id)+'">'+breadcrumb(rootNode.parentId)+titleMarkup(rootNode,'h2',false)+ref(rootNode.printedPages)+toc+nodeBody(rootNode)+memoryCue(rootNode,true)+main.map(function(id){return unit(id,1);}).join('')+(comparisonData?verifiedComparison(comparisonData):'')+dataset.comparisons.filter(function(c){return c.nodeIds.some(function(id){return allowed.has(id);});}).map(comparison).join('')+physiologySupplements(rootNode)+(related.length?'<div class="kt-related-entry">'+link({view:'questions',node:rootNode.id,question:'',scope:rootNode.id},'看这一节的题目 <span>'+related.length+' 题 ›</span>','kt-related-button')+'</div>':'')+'<div class="kt-reading-bottom">'+link({node:rootNode.parentId,view:'outline',question:''},'‹ 返回本章目录','kt-parent-link')+'</div></article>';
+    return '<article class="kt-detail kt-continuous" id="kt-detail" data-reading-node="'+esc(rootNode.id)+'" data-ink-owner="node:'+esc(rootNode.id)+'">'+breadcrumb(rootNode.parentId)+titleMarkup(rootNode,'h2',false)+ref(rootNode.printedPages)+toc+nodeBody(rootNode)+memoryCue(rootNode,true)+main.map(function(id){return unit(id,1);}).join('')+(comparisonData?verifiedComparison(comparisonData):'')+dataset.comparisons.filter(function(c){return c.nodeIds.some(function(id){return allowed.has(id);});}).map(comparison).join('')+physiologySupplements(rootNode)+(related.length?'<div class="kt-related-entry">'+link({view:'questions',node:rootNode.id,question:'',scope:rootNode.id},'看这一节的题目 <span>'+related.length+' 题 ›</span>','kt-related-button')+'</div>':'')+sectionPaging(rootNode)+'</article>';
   }
   function detail(){
     var n=db.nodes.get(state.node),scopeIds=new Set(descendants(db,n.id)),related=questionList().filter(function(q){return q.nodes.some(function(id){return scopeIds.has(id);});}),children=db.children.get(n.id)||[],comparisons=dataset.comparisons.filter(function(c){return c.nodeIds.includes(n.id)||c.nodeIds.some(function(id){return children.includes(id);});});
@@ -159,9 +164,9 @@
     return paging+'<article class="kt-detail kt-question-detail" data-ink-surface-owner="question:'+esc(q.id)+'"><p class="kt-kind">'+({term:'名词解释',short:'简答题',essay:'论述题'}[q.examType]||'参考作答')+'</p><h2>'+esc(q.prompt)+'</h2>'+(!q.existing?ref(q.printedPages):'')+(q.promptPages?'<p class="kt-note">题干见教材印刷第 '+pages(q.promptPages)+' 页。</p>':'')+content+(q.explanation?'<details class="kt-explain"><summary>作答思路</summary><p>'+esc(q.explanation)+'</p></details>':'')+(q.keywords?.length?'<details class="kt-explain"><summary>关键词核对</summary><p>'+q.keywords.map(esc).join(' · ')+'</p></details>':'')+'<section class="kt-used-nodes"><details class="kt-call-paths"><summary>知识出处 · '+q.nodes.length+'个知识点</summary>'+nodeLinks(q.nodes)+'<details class="kt-explain"><summary>完整所属路径</summary>'+q.nodes.map(function(id){return'<div class="kt-question-path">'+breadcrumb(id)+'</div>';}).join('')+'</details>'+link({view:'map',question:q.id},'在导图中查看','btn secondary small')+'</details></section>'+(q.existing?'<button class="btn secondary small kt-review-link" data-action="read-one" data-id="'+esc(q.id)+'">背诵这道题</button>':'')+'</article>'+paging;
   }
   function workspace(){var results=search(db,state.scope,state.query,state.core);if(state.view==='questions')return '<div class="kt-questions">'+questionsView()+'</div>';return(state.query||state.core?'<p class="kt-scope-note">找到 '+results.hits.size+' 个匹配节点</p>':'')+(state.view==='map'?mapView(results)+'<details class="kt-map-reading"><summary>展开当前知识点正文</summary><div class="kt-map-detail">'+detail()+'</div></details>':'<div class="kt-columns"><details class="kt-directory" open><summary>教材层级目录</summary>'+outline(results)+'</details>'+detail()+'</div>');}
-  function render(currentBank,renderAnswer,mount){
+  function render(currentBank,renderAnswer,mount,readingPlace){
     if(!dataset&&typeof globalThis!=='undefined'&&globalThis.KNOWLEDGE_DATA)init(globalThis.KNOWLEDGE_DATA);
-    if(!db)return '<p>知识树正在准备。</p>';bank=currentBank||[];bankMap=new Map(bank.map(function(q){return[q.id,q];}));cacheQuestions();answerRenderer=renderAnswer;onMount=mount;configure(new URLSearchParams(location.hash.split('?')[1]||''));
+    if(!db)return '<p>知识树正在准备。</p>';bank=currentBank||[];bankMap=new Map(bank.map(function(q){return[q.id,q];}));cacheQuestions();answerRenderer=renderAnswer;onMount=mount;onReadingPlace=typeof readingPlace==='function'?readingPlace:null;configure(new URLSearchParams(location.hash.split('?')[1]||''));
     var settings='<div class="kt-settings-area"><div class="kt-search-row"><label class="kt-search-label" for="kt-search">搜索<input id="kt-search" type="search" value="'+esc(state.query)+'" placeholder="标题、知识点或题目"></label>'+button('core',state.core?'查看全部知识':'只看核心','aria-pressed="'+state.core+'"')+button('clear','清空筛选')+'</div>'+(state.view==='questions'?'':'<div class="kt-controls">'+button('expand-all','展开当前范围')+button('collapse','收起到主干')+'</div>')+'</div>';
     return '<div class="kt-app kt-quiet" data-view="'+state.view+'"'+(ui.focus?' data-focus="true"':'')+'><h1 class="visually-hidden">教材知识树</h1><div class="kt-heading-area">'+locationPicker()+'</div><div class="kt-controls kt-toolbar"><div class="kt-view-tabs" role="group" aria-label="知识树视图">'+[['outline','大纲'],['map','导图'],['questions','题目与答案']].map(function(p){return '<a href="'+href({view:p[0]})+'" class="btn '+(state.view===p[0]?'':'secondary')+' small"'+(state.view===p[0]?' aria-current="page"':'')+'>'+p[1]+'</a>';}).join('')+'</div>'+(state.view==='outline'?button('directory','目录','aria-pressed="'+(!ui.directoryHidden&&!ui.focus)+'" aria-label="显示或隐藏教材层级目录"'):'')+'<details class="kt-tools kt-popover"'+(state.query||state.core?' open':'')+'><summary>工具<span aria-hidden="true">⌄</span></summary><div class="kt-tools-panel"><div class="kt-tool-actions">'+button('focus',ui.focus?'退出专注':'专注阅读','aria-pressed="'+ui.focus+'"')+(ink()?ink().controls():'')+'</div>'+settings+'</div></details></div>'+(ink()?ink().toolbar():'')+(state.view==='questions'?'':readingNav())+'<div id="kt-workspace">'+workspace()+'</div><button type="button" class="kt-back-top" data-action="kt-top" aria-label="快速回到页面顶部" hidden><span aria-hidden="true">↑</span> 回到顶部</button></div>';
   }
@@ -173,8 +178,31 @@
     if(target&&changed){for(var ancestor=target.parentElement;ancestor;ancestor=ancestor.parentElement)if(ancestor.tagName==='DETAILS')ancestor.open=true;target.scrollIntoView({block:'start'});}
     else if(lastMountedView!==state.view||lastMountedSection!==state.scope)window.scrollTo(0,0);
     else if(state.view==='questions'&&lastMountedQuestion!==state.question||state.view==='outline'&&lastMountedNode!==state.node){var detail=state.view==='questions'?document.querySelector('.kt-question-nav,.kt-question-list'):document.getElementById('kt-detail');if(detail)detail.scrollIntoView({block:'start'});}
-    lastMountedView=state.view;lastMountedSection=state.scope;lastMountedNode=state.node;lastMountedQuestion=state.question;mapFocus='';if(ink())ink().mount();syncTopButton();
+    lastMountedView=state.view;lastMountedSection=state.scope;lastMountedNode=state.node;lastMountedQuestion=state.question;mapFocus='';if(ink())ink().mount();syncTopButton();notifyReadingPlace();
   }
+  function currentReadingPlace(){
+    if(!db||typeof document==='undefined'||!['outline','map'].includes(state.view)||!document.querySelector('.kt-app[data-view="'+state.view+'"]'))return null;
+    var selected=db.nodes.get(state.node),section=selected&&sectionOf(db,selected.id);if(!section)return null;
+    function eligible(n){return !!n&&sectionOf(db,n.id)===section&&n.readingRole!=='source-fragment'&&!verification(n).excludeFromReading;}
+    if(!eligible(selected))selected=db.nodes.get(section);
+    if(state.view==='outline'){
+      var article=document.querySelector('.kt-continuous[data-reading-node="'+section+'"]');
+      if(article){
+        var bar=document.querySelector('.kt-reading-nav'),line=Math.min(window.innerHeight*.4,Math.max(100,bar?bar.getBoundingClientRect().bottom+20:120)),before=null,after=null;
+        Array.from(article.querySelectorAll('[data-reading-node]')).concat(article).forEach(function(element){
+          var n=db.nodes.get(element.dataset.readingNode);if(!eligible(n)||element.closest('[hidden]'))return;
+          var title=element.querySelector(':scope > .kt-reading-title, :scope > .kt-unit-heading > .kt-reading-title');if(!title||!title.getClientRects().length)return;
+          var rect=title.getBoundingClientRect();if(rect.height<=0)return;
+          if(rect.top<=line){if(!before||rect.top>=before.top)before={node:n,top:rect.top};}
+          else if(!after||rect.top<after.top)after={node:n,top:rect.top};
+        });
+        selected=before?.node||after?.node||selected;
+      }
+    }
+    return {book:bookOf(selected.id)?.bookKey||state.book,node:selected.id,view:state.view};
+  }
+  function notifyReadingPlace(){var place=currentReadingPlace();if(place&&onReadingPlace)onReadingPlace(place);}
+  function scheduleReadingPlace(){clearTimeout(readingPlaceTimer);readingPlaceTimer=setTimeout(notifyReadingPlace,400);}
   function syncTopButton(){var b=document.querySelector('.kt-back-top');if(b)b.hidden=window.scrollY<300;}
   function setReadingFold(id,folded){
     var body=document.getElementById('kt-reading-body-'+id),node=db.nodes.get(id);if(!body||!node)return;
@@ -228,10 +256,10 @@
   function linksFor(id){if(!db&&typeof globalThis!=='undefined'&&globalThis.KNOWLEDGE_DATA)init(globalThis.KNOWLEDGE_DATA);return db?.links.get(id)||[];}
   function footer(id){var ids=linksFor(id);if(!ids.length)return '';return '<details class="kt-bank-link"><summary>这道题在教材知识树中的位置</summary>'+ids.map(function(n){return link({section:sectionOf(db,n),node:n,view:'map',question:id},esc(path(db,n).map(function(x){return x.title;}).join(' › ')),'kt-bank-path');}).join('')+'</details>';}
   if(typeof document!=='undefined'){
-    window.addEventListener('scroll',syncTopButton,{passive:true});
+    window.addEventListener('scroll',function(){syncTopButton();scheduleReadingPlace();},{passive:true});
     document.addEventListener('toggle',function(e){var detail=e.target;if(detail.matches?.('.kt-evidence[open]')){if(!detail.dataset.loaded){var pageNumbers=detail.dataset.pages.split(',').map(Number).filter(function(p){return Number.isInteger(p)&&dataset.readingPages?.physiology?.[p];});detail.querySelector('.kt-evidence-pages').innerHTML=pageNumbers.map(readingPage).join('');detail.dataset.loaded='true';}if(onMount)onMount();}if(detail.matches?.('.kt-popover[open]'))document.querySelectorAll('.kt-popover[open]').forEach(function(other){if(other!==detail&&!other.closest('.kt-focused'))other.open=false;});},true);
     document.addEventListener('click',function(e){document.querySelectorAll('.kt-popover[open]').forEach(function(panel){if(panel.closest('.kt-focused'))return;if(!panel.contains(e.target)||e.target.closest('[data-action="ink-toggle"]'))panel.open=false;});});
     document.addEventListener('keydown',function(e){if(e.key==='Escape'){var panel=document.querySelector('.kt-popover[open]');if(panel&&!panel.closest('.kt-focused')){panel.open=false;panel.querySelector('summary').focus();}}});
   }
-  return{init:init,index:index,path:path,descendants:descendants,sectionOf:sectionOf,relevant:relevant,search:search,layout:layout,render:render,mount:mount,handle:handle,change:change,input:input,linksFor:linksFor,footer:footer,esc:esc,zoomAnchor:zoomAnchor};
+  return{init:init,index:index,path:path,descendants:descendants,sectionOf:sectionOf,relevant:relevant,search:search,layout:layout,render:render,mount:mount,handle:handle,change:change,input:input,linksFor:linksFor,footer:footer,esc:esc,zoomAnchor:zoomAnchor,currentReadingPlace:currentReadingPlace};
 });

@@ -22,6 +22,26 @@
       if(ids.has(id)&&!['__proto__','constructor','prototype'].includes(id)&&typeof raw[id]==='string'&&raw[id].length)out[id]=raw[id].slice(0,40000);
     });return out;
   }
+  function cleanTextbookPlaces(raw,data){
+    var out={};if(!raw||typeof raw!=='object'||Array.isArray(raw)||!data||!Array.isArray(data.nodes)||!Array.isArray(data.books))return out;
+    var own=function(value,key){return Object.prototype.hasOwnProperty.call(value,key);},nodes=new Map(),latest=Date.now()+86400000;
+    data.nodes.forEach(function(node){if(node&&typeof node.id==='string')nodes.set(node.id,node);});
+    ['school','physiology','training'].forEach(function(key){
+      if(!own(raw,key))return;var place=raw[key],book=data.books.find(function(entry){return entry&&entry.key===key;});
+      if(!place||typeof place!=='object'||Array.isArray(place)||!book||!own(place,'node')||!own(place,'view')||!own(place,'updated'))return;
+      if(typeof place.node!=='string'||!/^[a-z0-9-]{1,100}$/.test(place.node)||!['outline','map'].includes(place.view)||!Number.isFinite(place.updated)||place.updated<=0||place.updated>latest)return;
+      var node=nodes.get(place.node);if(!node||node.original!==true||!['section','heading','point'].includes(node.kind))return;
+      var seen=new Set(),at=node;
+      while(at){
+        if(seen.has(at.id)||seen.size>=18||at.readingRole==='source-fragment')return;seen.add(at.id);
+        if(at.kind==='book'){
+          if(at.id===book.id&&!at.parentId)out[key]={node:place.node,view:place.view,updated:place.updated};
+          return;
+        }
+        if(!at.parentId||!nodes.has(at.parentId))return;at=nodes.get(at.parentId);
+      }
+    });return out;
+  }
   function keywordExercise(q){
     if(!q||q.type!=='free'||!['term','short','essay'].includes(q.examType))return null;
     var source=q.examType==='term'?q.answerOutline:q.recallGuide&&q.recallGuide.highlights;
@@ -85,5 +105,5 @@
     ['教材、整理答案说法不一致时怎么办？','先确认是不是同一版教材、同一个概念、同一种语境。名词解释优先核实教材定义，自己的说明另列。当前只有标为“原文已核对”的条目完成了逐页核查，其他整理答案还需核对。'],
     ['考过的知识点能确定不再考吗？','不能据此确定。按你的选择，日常练习可排除已匹配的原题及关联考点，也可切换为只排除原题；原题与关联理由保留在历年题页面。筛选帮助安排时间，不是对下一次命题的预测。部分年份未取得正文，当前也不能覆盖全部历史考点。']
   ];
-  return {RESULTS:RESULTS,cleanRecalls:cleanRecalls,cleanReaderDrafts:cleanReaderDrafts,keywordExercise:keywordExercise,matchesKeyword:matchesKeyword,canonicalHash:canonicalHash,cleanSettings:cleanSettings,backupDue:backupDue,nextRecall:nextRecall,paperIndex:paperIndex,allowPaper:allowPaper,highlightTerms:highlightTerms,FAQ:FAQ};
+  return {RESULTS:RESULTS,cleanRecalls:cleanRecalls,cleanReaderDrafts:cleanReaderDrafts,cleanTextbookPlaces:cleanTextbookPlaces,keywordExercise:keywordExercise,matchesKeyword:matchesKeyword,canonicalHash:canonicalHash,cleanSettings:cleanSettings,backupDue:backupDue,nextRecall:nextRecall,paperIndex:paperIndex,allowPaper:allowPaper,highlightTerms:highlightTerms,FAQ:FAQ};
 });

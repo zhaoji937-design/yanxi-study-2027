@@ -39,7 +39,7 @@ let browser;
    const stat=page.locator('.desk-progress [data-route=mistakes] .stat-number');assert.match(await stat.innerText(),/^4/,'mixed review includes two due, one manual and one wrong');
    await page.locator('.desk-progress [data-route=mistakes]').click();await page.locator('.q-row').first().waitFor();assert.equal(await page.locator('.q-row').count(),4);await go('#overview');
   }
-  await page.locator('.desk-daily [data-action=recall-due]').click();await page.locator('.reader-card').waitFor();const saved=(await read())['yanxi-reading-v1'];assert.deepEqual([...saved.ids].sort(),expected[scope].sort());assert.equal(saved.origin,'study');assert.equal(saved.index,0);
+  await page.locator('.desk-daily [data-action=recall-due]').click();await page.locator('.reader-card').waitFor();const saved=(await read())['yanxi-reading-v1'];assert.deepEqual([...saved.ids].sort(),expected[scope].sort());assert.equal(saved.origin,'revision');assert.equal(saved.index,0);
   await go('#study');assert.equal(await page.locator('#main [data-action=recall-due]').innerText(),'到期回忆 '+expected[scope].length+' 题');
  }
  // No due: resume keeps the prior position; unseen ignores stale list filters and respects settings.
@@ -85,7 +85,7 @@ let browser;
  // A fresh service-worker cache supports cold start, self-grade and the due queue entirely offline.
  const offlineContext=await browser.newContext({viewport:{width:390,height:900},locale:'zh-CN'}),boot=await offlineContext.newPage();offlineContext.setDefaultNavigationTimeout(90000);boot.on('pageerror',e=>errors.push(e.message));
  await boot.goto(base+'/latest.html');await boot.locator('.desk-daily').waitFor();
- await boot.waitForFunction(async()=>{const registration=await navigator.serviceWorker.getRegistration('/');if(!registration?.active)return false;return new Promise(resolve=>{const c=new MessageChannel(),t=setTimeout(()=>resolve(false),1000);c.port1.onmessage=e=>{clearTimeout(t);resolve(e.data?.ready&&e.data.version==='yanxi-offline-v26');};registration.active.postMessage({type:'YANXI_OFFLINE_STATUS'},[c.port2]);});},null,{timeout:60000});
+ await boot.waitForFunction(async()=>{const registration=await navigator.serviceWorker.getRegistration('/');if(!registration?.active)return false;return new Promise(resolve=>{const c=new MessageChannel(),t=setTimeout(()=>resolve(false),1000);c.port1.onmessage=e=>{clearTimeout(t);resolve(e.data?.ready&&e.data.version==='yanxi-offline-v27');};registration.active.postMessage({type:'YANXI_OFFLINE_STATUS'},[c.port2]);});},null,{timeout:60000});
  await boot.evaluate(({a,now})=>{localStorage.setItem('yanxi-session-v1',JSON.stringify({ids:[a],index:0,entries:{[a]:{selected:[],draft:'断网草稿',revealed:true,answered:false,correct:false}},startedAt:now,completed:false}));localStorage.setItem('yanxi-settings-v1',JSON.stringify({paperScope:'all',goal:10}));},{a,now});
  await boot.waitForFunction(()=>navigator.serviceWorker.controller?.state==='activated');await offlineContext.setOffline(true);const cold=await offlineContext.newPage();cold.on('pageerror',e=>errors.push(e.message));await cold.clock.install({time:now});await cold.goto(base+'/latest.html#practice');await cold.locator('[data-action=grade-free][data-mastered=false]').click();
  const offlineReading=await cold.evaluate(()=>JSON.parse(localStorage.getItem('yanxi-reading-v1')));assert.equal(offlineReading.recalls[a].result,'missing');assert.equal(offlineReading.recalls[a].due-offlineReading.recalls[a].updated,1800000);assert.match(await cold.locator('.practice-recall-note').innerText(),/已同步到回忆排程/);
